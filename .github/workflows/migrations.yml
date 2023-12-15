@@ -1,0 +1,33 @@
+name: Make and Apply Migrations
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  make-and-apply-migrations:
+    runs-on: ubuntu-latest
+
+    env:
+      DJANGO_SETTINGS_MODULE: "procurement_system_backend.settings"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Make Migrations
+        run: python manage.py makemigrations
+
+      - name: Apply Migrations
+        run: python manage.py migrate
