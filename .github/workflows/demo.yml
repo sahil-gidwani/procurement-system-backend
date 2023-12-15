@@ -11,6 +11,8 @@ jobs:
 
     steps:
       - name: Print Environment Variables
+        env:
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
         run: |
           echo "DB_NAME: $DB_NAME"
           # Add more variables as needed
