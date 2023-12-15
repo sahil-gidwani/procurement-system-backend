@@ -1,0 +1,16 @@
+name: Check Secrets
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check-secrets:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print Environment Variables
+        run: |
+          echo "DB_NAME: $DB_NAME"
+          # Add more variables as needed
