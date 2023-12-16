@@ -41,7 +41,7 @@ jobs:
         run: coverage html -i
 
       - name: Publish coverage report to Codecov
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./htmlcov/index.html
