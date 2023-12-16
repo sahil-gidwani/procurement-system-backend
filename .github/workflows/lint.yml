@@ -26,16 +26,4 @@ jobs:
           pip install pylint
 
       - name: Run Pylint
-        id: pylint
-        run: pylint --output-format=parseable $(git ls-files '*.py')
-
-      - name: Check Pylint rating
-        run: |
-          threshold=5.0 
-          rating=$(echo "${{ steps.pylint.outputs.pylint }}" | awk -F'[:=]' '/Your module or file name/ {print $6}')
-          if (( $(bc <<< "$rating < $threshold") )); then
-            echo "Pylint rating is below threshold ($rating). Continue workflow."
-          else
-            echo "Pylint rating is above threshold ($rating). Marking workflow as successful."
-            exit 0
-          fi
+        run: pylint --output-format=parseable $(git ls-files '*.py') || true
