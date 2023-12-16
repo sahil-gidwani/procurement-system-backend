@@ -31,6 +31,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Install ghp-import
+        run: |
+          pip install ghp-import
+
       - name: Build HTML
         run: |
           cd docs/
