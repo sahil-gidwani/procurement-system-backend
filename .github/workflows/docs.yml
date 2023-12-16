@@ -19,7 +19,7 @@ jobs:
           python-version: 3.11
 
       - name: Build Documentation
-        uses: ammaraskar/sphinx-action@v3
+        uses: ammaraskar/sphinx-action@master
         with:
           docs-dir: docs
           builder: html
