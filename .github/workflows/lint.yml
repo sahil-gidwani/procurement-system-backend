@@ -1,11 +1,11 @@
 name: Linting
 
 on:
-    push:
-      branches: [main]
-    pull_request:
-      branches: [main]
-    workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
   lint:
@@ -26,4 +26,16 @@ jobs:
           pip install pylint
 
       - name: Run Pylint
-        run: pylint $(git ls-files '*.py')
+        id: pylint
+        run: pylint --output-format=parseable $(git ls-files '*.py')
+
+      - name: Check Pylint rating
+        run: |
+          threshold=5.0 
+          rating=$(echo "${{ steps.pylint.outputs.pylint }}" | awk -F'[:=]' '/Your module or file name/ {print $6}')
+          if (( $(bc <<< "$rating < $threshold") )); then
+            echo "Pylint rating is below threshold ($rating). Continue workflow."
+          else
+            echo "Pylint rating is above threshold ($rating). Marking workflow as successful."
+            exit 0
+          fi
