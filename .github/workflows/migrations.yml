@@ -2,8 +2,10 @@ name: Make and Apply Migrations
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
   make-and-apply-migrations:
