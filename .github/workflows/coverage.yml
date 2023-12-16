@@ -38,10 +38,10 @@ jobs:
           coverage run manage.py test
 
       - name: Generate coverage report
-        run: coverage html -i
+        run: coverage xml
 
       - name: Publish coverage report to Codecov
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./htmlcov/index.html
+          files: ./coverage.xml
