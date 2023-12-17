@@ -23,15 +23,15 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build \
-        -t $DOCKER_USERNAME/procurement-system-backend:latest \
-        --build-arg DEBUG=$DEBUG \
-        --build-arg SECRET_KEY=$SECRET_KEY \
-        --build-arg SECRET_KEY=$SECRET_KEY \
-        --build-arg ALLOWED_HOSTS=$ALLOWED_HOSTS \
-        --build-arg DB_ENGINE=$DB_ENGINE \
-        --build-arg DB_NAME=$DB_NAME \
-        --no-cache .
+      run: |
+        docker build \
+          -t $DOCKER_USERNAME/procurement-system-backend:latest \
+          --build-arg DEBUG=$DEBUG \
+          --build-arg SECRET_KEY=$SECRET_KEY \
+          --build-arg ALLOWED_HOSTS=$ALLOWED_HOSTS \
+          --build-arg DB_ENGINE=$DB_ENGINE \
+          --build-arg DB_NAME=$DB_NAME \
+          --no-cache .
     - name: Log in to Docker Hub
       run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     - name: Push the Docker image
