@@ -1,0 +1,31 @@
+# Ignore Python cache files
+**/__pycache__
+**/*.pyc
+**/*.pyo
+**/*.pyd
+
+# Ignore git and SVN directories
+.git
+.svn
+
+# Ignore virtual environment
+venv/
+
+# Ignore database file
+db.sqlite3
+
+# Ignore all log files
+*.log
+
+# Ignore all .env files
+*.env
+
+# Ignore documentation
+docs/
+
+# Ignore GitHub files
+.github/
+.gitignore
+
+# Ignore Docker-related files
+Dockerfile

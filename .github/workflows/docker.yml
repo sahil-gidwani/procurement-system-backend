@@ -1,0 +1,30 @@
+name: Build and Upload Docker Image
+
+on:
+    push:
+      branches: [main]
+    pull_request:
+      branches: [main]
+    workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DEBUG: ${{ secrets.DEBUG }}
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
+        DB_ENGINE: ${{ secrets.DB_ENGINE }}
+        DB_NAME: ${{ secrets.DB_NAME }}
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build -t your-docker-username/procurement-system-backend:latest --build-arg DEBUG=$DEBUG --build-arg SECRET_KEY=$SECRET_KEY --build-arg ALLOWED_HOSTS=$ALLOWED_HOSTS --build-arg DB_ENGINE=$DB_ENGINE --build-arg DB_NAME=$DB_NAME .
+    - name: Log in to Docker Hub
+      run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+    - name: Push the Docker image
+      run: docker push $DOCKER_USERNAME/procurement-system-backend:latest
