@@ -16,4 +16,3 @@ jobs:
       - uses: pyupio/safety@2.3.5
         with:
           api-key: ${{ secrets.SAFETY_API_KEY }}
-          
