@@ -7,16 +7,17 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)
 
     phone_number_regex = RegexValidator(
-        regex=r'^\d{10}$', message="Phone number must be 10 digits.")
+        regex=r"^\d{10}$", message="Phone number must be 10 digits."
+    )
     phone_number = models.CharField(
-        validators=[phone_number_regex], max_length=10, null=True)
+        validators=[phone_number_regex], max_length=10, null=True
+    )
 
     USER_ROLE_CHOICES = [
-        ('procurement_officer', 'Procurement Officer'), 
-        ('vendor', 'Vendor')
+        ("procurement_officer", "Procurement Officer"),
+        ("vendor", "Vendor"),
     ]
-    user_role = models.CharField(
-        max_length=255, choices=USER_ROLE_CHOICES)
+    user_role = models.CharField(max_length=255, choices=USER_ROLE_CHOICES)
 
     def __str__(self):
         return str(self.username)
@@ -28,12 +29,12 @@ class Vendor(models.Model):
     vendor_certified = models.BooleanField(default=False)
 
     VENDOR_TYPE_CHOICES = [
-        ('supplier', 'Supplier'),
-        ('manufacturer', 'Manufacturer'),
-        ('service_provider', 'Service Provider'),
+        ("supplier", "Supplier"),
+        ("manufacturer", "Manufacturer"),
+        ("service_provider", "Service Provider"),
     ]
     vendor_type = models.CharField(max_length=20, choices=VENDOR_TYPE_CHOICES)
-    
+
     contract_expiry_date = models.DateField()
     vendor_rating = models.FloatField(
         validators=[MinValueValidator(0.0), MaxValueValidator(5.0)]
