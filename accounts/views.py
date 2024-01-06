@@ -27,7 +27,8 @@ class MyTokenObtainPairView(TokenObtainPairView):
     Attributes:
         permission_classes (list): The list of permission classes for this view.
         serializer_class (MyTokenObtainPairSerializer): The serializer class for this view.
-    """    
+    """
+
     permission_classes = [AllowAny]
     serializer_class = MyTokenObtainPairSerializer
 
@@ -43,6 +44,7 @@ class ChangePasswordView(generics.UpdateAPIView):
         queryset (QuerySet): The queryset to retrieve User objects.
         serializer_class (ChangePasswordSerializer): The serializer class for this view.
     """
+
     queryset = User.objects.all()
     serializer_class = ChangePasswordSerializer
 
@@ -67,6 +69,7 @@ class PasswordResetView(generics.CreateAPIView):
         permission_classes (list): The list of permission classes for this view.
         serializer_class (PasswordResetSerializer): The serializer class for this view.
     """
+
     permission_classes = [AllowAny]
     serializer_class = PasswordResetSerializer
 
@@ -113,6 +116,7 @@ class PasswordResetConfirmView(generics.UpdateAPIView):
         permission_classes (list): The list of permission classes for this view.
         serializer_class (PasswordResetConfirmSerializer): The serializer class for this view.
     """
+
     permission_classes = [AllowAny]
     serializer_class = PasswordResetConfirmSerializer
 
@@ -163,6 +167,7 @@ class RegisterView(generics.CreateAPIView):
         queryset (QuerySet): The queryset to retrieve User objects.
         serializer_class (RegisterSerializer): The serializer class for this view.
     """
+
     permission_classes = [AllowAny]
     queryset = User.objects.all()
     serializer_class = RegisterSerializer
@@ -179,6 +184,7 @@ class UserProfileView(generics.RetrieveAPIView):
         queryset (QuerySet): The queryset to retrieve User objects.
         serializer_class (ProfileSerializer): The serializer class for this view.
     """
+
     queryset = User.objects.all()
     serializer_class = ProfileSerializer
 
@@ -203,6 +209,7 @@ class UpdateUserProfileView(generics.UpdateAPIView):
         queryset (QuerySet): The queryset to retrieve User objects.
         serializer_class (ProfileSerializer): The serializer class for this view.
     """
+
     queryset = User.objects.all()
     serializer_class = ProfileSerializer
 
@@ -237,6 +244,7 @@ class DeleteUserProfileView(generics.DestroyAPIView):
         permission_classes (list): The list of permission classes for this view.
         queryset (QuerySet): The queryset to retrieve User objects.
     """
+
     permission_classes = [IsAuthenticated | IsAdminUser]
     queryset = User.objects.all()
 
@@ -262,6 +270,7 @@ class VendorView(generics.ListAPIView):
         queryset (QuerySet): The queryset to retrieve Vendor objects.
         serializer_class (VendorSerializer): The serializer class for this view.
     """
+
     permission_classes = [IsAuthenticated, IsAdminUser | IsProcurementOfficer]
     queryset = Vendor.objects.all()
     serializer_class = VendorSerializer
