@@ -1,0 +1,29 @@
+inventory.migrations package
+============================
+
+Submodules
+----------
+
+inventory.migrations.0001\_initial module
+-----------------------------------------
+
+.. automodule:: inventory.migrations.0001_initial
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+inventory.migrations.0002\_alter\_inventory\_image module
+---------------------------------------------------------
+
+.. automodule:: inventory.migrations.0002_alter_inventory_image
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: inventory.migrations
+   :members:
+   :undoc-members:
+   :show-inheritance:

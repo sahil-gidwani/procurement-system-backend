@@ -1,0 +1,10 @@
+procurement-system-backend
+==========================
+
+.. toctree::
+   :maxdepth: 4
+
+   accounts
+   inventory
+   manage
+   procurement_system_backend

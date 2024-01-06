@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>procurement-system-backend &mdash; Smart Procurement System 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Smart Procurement System
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">procurement-system-backend</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Smart Procurement System</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">procurement-system-backend</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/modules.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="procurement-system-backend">
+<h1>procurement-system-backend<a class="headerlink" href="#procurement-system-backend" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="accounts.html">accounts package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="accounts.migrations.html">accounts.migrations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.migrations.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.migrations.html#module-accounts.migrations.0001_initial">accounts.migrations.0001_initial module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.migrations.html#module-accounts.migrations.0002_alter_user_user_role">accounts.migrations.0002_alter_user_user_role module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.migrations.html#module-accounts.migrations.0003_alter_user_email">accounts.migrations.0003_alter_user_email module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.migrations.html#module-accounts.migrations">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#module-accounts.admin">accounts.admin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#module-accounts.apps">accounts.apps module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.apps.AccountsConfig"><code class="docutils literal notranslate"><span class="pre">AccountsConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.apps.AccountsConfig.default_auto_field"><code class="docutils literal notranslate"><span class="pre">AccountsConfig.default_auto_field</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.apps.AccountsConfig.name"><code class="docutils literal notranslate"><span class="pre">AccountsConfig.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#module-accounts.models">accounts.models module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.models.User"><code class="docutils literal notranslate"><span class="pre">User</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">User.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">User.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.USER_ROLE_CHOICES"><code class="docutils literal notranslate"><span class="pre">User.USER_ROLE_CHOICES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.date_joined"><code class="docutils literal notranslate"><span class="pre">User.date_joined</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.email"><code class="docutils literal notranslate"><span class="pre">User.email</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.first_name"><code class="docutils literal notranslate"><span class="pre">User.first_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.get_next_by_date_joined"><code class="docutils literal notranslate"><span class="pre">User.get_next_by_date_joined()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.get_previous_by_date_joined"><code class="docutils literal notranslate"><span class="pre">User.get_previous_by_date_joined()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.get_user_role_display"><code class="docutils literal notranslate"><span class="pre">User.get_user_role_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.groups"><code class="docutils literal notranslate"><span class="pre">User.groups</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.id"><code class="docutils literal notranslate"><span class="pre">User.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.inventory_set"><code class="docutils literal notranslate"><span class="pre">User.inventory_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.is_active"><code class="docutils literal notranslate"><span class="pre">User.is_active</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.is_staff"><code class="docutils literal notranslate"><span class="pre">User.is_staff</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.is_superuser"><code class="docutils literal notranslate"><span class="pre">User.is_superuser</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.last_login"><code class="docutils literal notranslate"><span class="pre">User.last_login</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.last_name"><code class="docutils literal notranslate"><span class="pre">User.last_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.logentry_set"><code class="docutils literal notranslate"><span class="pre">User.logentry_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.outstandingtoken_set"><code class="docutils literal notranslate"><span class="pre">User.outstandingtoken_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.password"><code class="docutils literal notranslate"><span class="pre">User.password</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.phone_number"><code class="docutils literal notranslate"><span class="pre">User.phone_number</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.phone_number_regex"><code class="docutils literal notranslate"><span class="pre">User.phone_number_regex</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.user_permissions"><code class="docutils literal notranslate"><span class="pre">User.user_permissions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.user_role"><code class="docutils literal notranslate"><span class="pre">User.user_role</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.username"><code class="docutils literal notranslate"><span class="pre">User.username</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.vendor"><code class="docutils literal notranslate"><span class="pre">User.vendor</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.models.Vendor"><code class="docutils literal notranslate"><span class="pre">Vendor</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Vendor.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Vendor.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Vendor.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Vendor.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Vendor.VENDOR_TYPE_CHOICES"><code class="docutils literal notranslate"><span class="pre">Vendor.VENDOR_TYPE_CHOICES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Vendor.address"><code class="docutils literal notranslate"><span class="pre">Vendor.address</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Vendor.contract_expiry_date"><code class="docutils literal notranslate"><span class="pre">Vendor.contract_expiry_date</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Vendor.get_next_by_contract_expiry_date"><code class="docutils literal notranslate"><span class="pre">Vendor.get_next_by_contract_expiry_date()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Vendor.get_previous_by_contract_expiry_date"><code class="docutils literal notranslate"><span class="pre">Vendor.get_previous_by_contract_expiry_date()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Vendor.get_vendor_type_display"><code class="docutils literal notranslate"><span class="pre">Vendor.get_vendor_type_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Vendor.id"><code class="docutils literal notranslate"><span class="pre">Vendor.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Vendor.objects"><code class="docutils literal notranslate"><span class="pre">Vendor.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Vendor.user"><code class="docutils literal notranslate"><span class="pre">Vendor.user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Vendor.user_id"><code class="docutils literal notranslate"><span class="pre">Vendor.user_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Vendor.vendor_certified"><code class="docutils literal notranslate"><span class="pre">Vendor.vendor_certified</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Vendor.vendor_name"><code class="docutils literal notranslate"><span class="pre">Vendor.vendor_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Vendor.vendor_rating"><code class="docutils literal notranslate"><span class="pre">Vendor.vendor_rating</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.Vendor.vendor_type"><code class="docutils literal notranslate"><span class="pre">Vendor.vendor_type</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#module-accounts.permissions">accounts.permissions module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.permissions.IsProcurementOfficer"><code class="docutils literal notranslate"><span class="pre">IsProcurementOfficer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.permissions.IsProcurementOfficer.has_permission"><code class="docutils literal notranslate"><span class="pre">IsProcurementOfficer.has_permission()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.permissions.IsVendor"><code class="docutils literal notranslate"><span class="pre">IsVendor</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.permissions.IsVendor.has_permission"><code class="docutils literal notranslate"><span class="pre">IsVendor.has_permission()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#module-accounts.serializers">accounts.serializers module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.serializers.ChangePasswordSerializer"><code class="docutils literal notranslate"><span class="pre">ChangePasswordSerializer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.serializers.ChangePasswordSerializer.update"><code class="docutils literal notranslate"><span class="pre">ChangePasswordSerializer.update()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.serializers.ChangePasswordSerializer.validate"><code class="docutils literal notranslate"><span class="pre">ChangePasswordSerializer.validate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.serializers.ChangePasswordSerializer.validate_old_password"><code class="docutils literal notranslate"><span class="pre">ChangePasswordSerializer.validate_old_password()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.serializers.MyTokenObtainPairSerializer"><code class="docutils literal notranslate"><span class="pre">MyTokenObtainPairSerializer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.serializers.MyTokenObtainPairSerializer.get_token"><code class="docutils literal notranslate"><span class="pre">MyTokenObtainPairSerializer.get_token()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.serializers.PasswordResetConfirmSerializer"><code class="docutils literal notranslate"><span class="pre">PasswordResetConfirmSerializer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.serializers.PasswordResetConfirmSerializer.validate"><code class="docutils literal notranslate"><span class="pre">PasswordResetConfirmSerializer.validate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.serializers.PasswordResetSerializer"><code class="docutils literal notranslate"><span class="pre">PasswordResetSerializer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.serializers.PasswordResetSerializer.validate_email"><code class="docutils literal notranslate"><span class="pre">PasswordResetSerializer.validate_email()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.serializers.ProfileSerializer"><code class="docutils literal notranslate"><span class="pre">ProfileSerializer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.serializers.ProfileSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">ProfileSerializer.Meta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.serializers.ProfileSerializer.to_representation"><code class="docutils literal notranslate"><span class="pre">ProfileSerializer.to_representation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.serializers.ProfileSerializer.update"><code class="docutils literal notranslate"><span class="pre">ProfileSerializer.update()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.serializers.RegisterSerializer"><code class="docutils literal notranslate"><span class="pre">RegisterSerializer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.serializers.RegisterSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">RegisterSerializer.Meta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.serializers.RegisterSerializer.create"><code class="docutils literal notranslate"><span class="pre">RegisterSerializer.create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.serializers.RegisterSerializer.validate"><code class="docutils literal notranslate"><span class="pre">RegisterSerializer.validate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.serializers.VendorSerializer"><code class="docutils literal notranslate"><span class="pre">VendorSerializer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.serializers.VendorSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">VendorSerializer.Meta</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#module-accounts.tests">accounts.tests module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.tests.ChangePasswordViewTests"><code class="docutils literal notranslate"><span class="pre">ChangePasswordViewTests</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.ChangePasswordViewTests.setUp"><code class="docutils literal notranslate"><span class="pre">ChangePasswordViewTests.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.ChangePasswordViewTests.test_change_password_successfully"><code class="docutils literal notranslate"><span class="pre">ChangePasswordViewTests.test_change_password_successfully()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.ChangePasswordViewTests.test_change_password_with_invalid_old_password"><code class="docutils literal notranslate"><span class="pre">ChangePasswordViewTests.test_change_password_with_invalid_old_password()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.tests.PasswordResetConfirmViewTests"><code class="docutils literal notranslate"><span class="pre">PasswordResetConfirmViewTests</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.PasswordResetConfirmViewTests.setUp"><code class="docutils literal notranslate"><span class="pre">PasswordResetConfirmViewTests.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.PasswordResetConfirmViewTests.test_password_reset_confirm_successful"><code class="docutils literal notranslate"><span class="pre">PasswordResetConfirmViewTests.test_password_reset_confirm_successful()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.PasswordResetConfirmViewTests.test_password_reset_confirm_with_invalid_token"><code class="docutils literal notranslate"><span class="pre">PasswordResetConfirmViewTests.test_password_reset_confirm_with_invalid_token()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.PasswordResetConfirmViewTests.test_password_reset_confirm_with_mismatched_passwords"><code class="docutils literal notranslate"><span class="pre">PasswordResetConfirmViewTests.test_password_reset_confirm_with_mismatched_passwords()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.tests.PasswordResetViewTests"><code class="docutils literal notranslate"><span class="pre">PasswordResetViewTests</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.PasswordResetViewTests.setUp"><code class="docutils literal notranslate"><span class="pre">PasswordResetViewTests.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.PasswordResetViewTests.test_password_reset_email_sent"><code class="docutils literal notranslate"><span class="pre">PasswordResetViewTests.test_password_reset_email_sent()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.PasswordResetViewTests.test_password_reset_with_invalid_email"><code class="docutils literal notranslate"><span class="pre">PasswordResetViewTests.test_password_reset_with_invalid_email()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.tests.RegisterViewTests"><code class="docutils literal notranslate"><span class="pre">RegisterViewTests</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.RegisterViewTests.setUp"><code class="docutils literal notranslate"><span class="pre">RegisterViewTests.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.RegisterViewTests.test_register_procurement_officer_user"><code class="docutils literal notranslate"><span class="pre">RegisterViewTests.test_register_procurement_officer_user()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.RegisterViewTests.test_register_user_with_invalid_email"><code class="docutils literal notranslate"><span class="pre">RegisterViewTests.test_register_user_with_invalid_email()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.RegisterViewTests.test_register_user_with_invalid_phone_number"><code class="docutils literal notranslate"><span class="pre">RegisterViewTests.test_register_user_with_invalid_phone_number()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.RegisterViewTests.test_register_user_with_password_mismatch"><code class="docutils literal notranslate"><span class="pre">RegisterViewTests.test_register_user_with_password_mismatch()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.RegisterViewTests.test_register_vendor_user"><code class="docutils literal notranslate"><span class="pre">RegisterViewTests.test_register_vendor_user()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.tests.SetUpUsers"><code class="docutils literal notranslate"><span class="pre">SetUpUsers</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.SetUpUsers.setUp"><code class="docutils literal notranslate"><span class="pre">SetUpUsers.setUp()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.tests.TokenViewTests"><code class="docutils literal notranslate"><span class="pre">TokenViewTests</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.TokenViewTests.setUp"><code class="docutils literal notranslate"><span class="pre">TokenViewTests.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.TokenViewTests.test_obtain_token"><code class="docutils literal notranslate"><span class="pre">TokenViewTests.test_obtain_token()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.TokenViewTests.test_refresh_token"><code class="docutils literal notranslate"><span class="pre">TokenViewTests.test_refresh_token()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.TokenViewTests.test_verify_token"><code class="docutils literal notranslate"><span class="pre">TokenViewTests.test_verify_token()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.tests.UserProfileViewTests"><code class="docutils literal notranslate"><span class="pre">UserProfileViewTests</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.UserProfileViewTests.setUp"><code class="docutils literal notranslate"><span class="pre">UserProfileViewTests.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.UserProfileViewTests.test_delete_procurement_officer_profile"><code class="docutils literal notranslate"><span class="pre">UserProfileViewTests.test_delete_procurement_officer_profile()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.UserProfileViewTests.test_delete_user_profile_unauthenticated"><code class="docutils literal notranslate"><span class="pre">UserProfileViewTests.test_delete_user_profile_unauthenticated()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.UserProfileViewTests.test_delete_vendor_profile"><code class="docutils literal notranslate"><span class="pre">UserProfileViewTests.test_delete_vendor_profile()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.UserProfileViewTests.test_get_procurement_officer_profile"><code class="docutils literal notranslate"><span class="pre">UserProfileViewTests.test_get_procurement_officer_profile()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.UserProfileViewTests.test_get_user_profile_unauthenticated"><code class="docutils literal notranslate"><span class="pre">UserProfileViewTests.test_get_user_profile_unauthenticated()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.UserProfileViewTests.test_get_vendor_profile"><code class="docutils literal notranslate"><span class="pre">UserProfileViewTests.test_get_vendor_profile()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.UserProfileViewTests.test_update_procurement_officer_profile"><code class="docutils literal notranslate"><span class="pre">UserProfileViewTests.test_update_procurement_officer_profile()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.UserProfileViewTests.test_update_user_profile_unauthenticated"><code class="docutils literal notranslate"><span class="pre">UserProfileViewTests.test_update_user_profile_unauthenticated()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.UserProfileViewTests.test_update_vendor_profile"><code class="docutils literal notranslate"><span class="pre">UserProfileViewTests.test_update_vendor_profile()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.tests.VendorListViewTests"><code class="docutils literal notranslate"><span class="pre">VendorListViewTests</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.VendorListViewTests.setUp"><code class="docutils literal notranslate"><span class="pre">VendorListViewTests.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.VendorListViewTests.test_insufficient_permissions_vendor"><code class="docutils literal notranslate"><span class="pre">VendorListViewTests.test_insufficient_permissions_vendor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.VendorListViewTests.test_no_vendors"><code class="docutils literal notranslate"><span class="pre">VendorListViewTests.test_no_vendors()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.VendorListViewTests.test_sufficient_permissions_admin"><code class="docutils literal notranslate"><span class="pre">VendorListViewTests.test_sufficient_permissions_admin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.VendorListViewTests.test_sufficient_permissions_procurement_officer"><code class="docutils literal notranslate"><span class="pre">VendorListViewTests.test_sufficient_permissions_procurement_officer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.tests.VendorListViewTests.test_vendor_list"><code class="docutils literal notranslate"><span class="pre">VendorListViewTests.test_vendor_list()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#module-accounts.urls">accounts.urls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#module-accounts.views">accounts.views module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.views.ChangePasswordView"><code class="docutils literal notranslate"><span class="pre">ChangePasswordView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.views.ChangePasswordView.get_object"><code class="docutils literal notranslate"><span class="pre">ChangePasswordView.get_object()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.views.ChangePasswordView.queryset"><code class="docutils literal notranslate"><span class="pre">ChangePasswordView.queryset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.views.ChangePasswordView.serializer_class"><code class="docutils literal notranslate"><span class="pre">ChangePasswordView.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.views.DeleteUserProfileView"><code class="docutils literal notranslate"><span class="pre">DeleteUserProfileView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.views.DeleteUserProfileView.get_object"><code class="docutils literal notranslate"><span class="pre">DeleteUserProfileView.get_object()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.views.DeleteUserProfileView.permission_classes"><code class="docutils literal notranslate"><span class="pre">DeleteUserProfileView.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.views.DeleteUserProfileView.queryset"><code class="docutils literal notranslate"><span class="pre">DeleteUserProfileView.queryset</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.views.MyTokenObtainPairView"><code class="docutils literal notranslate"><span class="pre">MyTokenObtainPairView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.views.MyTokenObtainPairView.permission_classes"><code class="docutils literal notranslate"><span class="pre">MyTokenObtainPairView.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.views.MyTokenObtainPairView.serializer_class"><code class="docutils literal notranslate"><span class="pre">MyTokenObtainPairView.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.views.PasswordResetConfirmView"><code class="docutils literal notranslate"><span class="pre">PasswordResetConfirmView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.views.PasswordResetConfirmView.get_object"><code class="docutils literal notranslate"><span class="pre">PasswordResetConfirmView.get_object()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.views.PasswordResetConfirmView.permission_classes"><code class="docutils literal notranslate"><span class="pre">PasswordResetConfirmView.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.views.PasswordResetConfirmView.serializer_class"><code class="docutils literal notranslate"><span class="pre">PasswordResetConfirmView.serializer_class</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.views.PasswordResetConfirmView.update"><code class="docutils literal notranslate"><span class="pre">PasswordResetConfirmView.update()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.views.PasswordResetView"><code class="docutils literal notranslate"><span class="pre">PasswordResetView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.views.PasswordResetView.create"><code class="docutils literal notranslate"><span class="pre">PasswordResetView.create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.views.PasswordResetView.permission_classes"><code class="docutils literal notranslate"><span class="pre">PasswordResetView.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.views.PasswordResetView.serializer_class"><code class="docutils literal notranslate"><span class="pre">PasswordResetView.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.views.RegisterView"><code class="docutils literal notranslate"><span class="pre">RegisterView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.views.RegisterView.permission_classes"><code class="docutils literal notranslate"><span class="pre">RegisterView.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.views.RegisterView.queryset"><code class="docutils literal notranslate"><span class="pre">RegisterView.queryset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.views.RegisterView.serializer_class"><code class="docutils literal notranslate"><span class="pre">RegisterView.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.views.UpdateUserProfileView"><code class="docutils literal notranslate"><span class="pre">UpdateUserProfileView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.views.UpdateUserProfileView.get_object"><code class="docutils literal notranslate"><span class="pre">UpdateUserProfileView.get_object()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.views.UpdateUserProfileView.queryset"><code class="docutils literal notranslate"><span class="pre">UpdateUserProfileView.queryset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.views.UpdateUserProfileView.serializer_class"><code class="docutils literal notranslate"><span class="pre">UpdateUserProfileView.serializer_class</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.views.UpdateUserProfileView.update"><code class="docutils literal notranslate"><span class="pre">UpdateUserProfileView.update()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.views.UserProfileView"><code class="docutils literal notranslate"><span class="pre">UserProfileView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.views.UserProfileView.get_object"><code class="docutils literal notranslate"><span class="pre">UserProfileView.get_object()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.views.UserProfileView.queryset"><code class="docutils literal notranslate"><span class="pre">UserProfileView.queryset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.views.UserProfileView.serializer_class"><code class="docutils literal notranslate"><span class="pre">UserProfileView.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.views.VendorView"><code class="docutils literal notranslate"><span class="pre">VendorView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.views.VendorView.permission_classes"><code class="docutils literal notranslate"><span class="pre">VendorView.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.views.VendorView.queryset"><code class="docutils literal notranslate"><span class="pre">VendorView.queryset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.views.VendorView.serializer_class"><code class="docutils literal notranslate"><span class="pre">VendorView.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#accounts.views.getRoutes"><code class="docutils literal notranslate"><span class="pre">getRoutes()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#module-accounts">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="inventory.html">inventory package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="inventory.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="inventory.migrations.html">inventory.migrations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inventory.migrations.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.migrations.html#module-inventory.migrations.0001_initial">inventory.migrations.0001_initial module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.migrations.html#module-inventory.migrations.0002_alter_inventory_image">inventory.migrations.0002_alter_inventory_image module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.migrations.html#module-inventory.migrations">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="inventory.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory.html#module-inventory.admin">inventory.admin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory.html#module-inventory.apps">inventory.apps module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.apps.InventoryConfig"><code class="docutils literal notranslate"><span class="pre">InventoryConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.apps.InventoryConfig.default_auto_field"><code class="docutils literal notranslate"><span class="pre">InventoryConfig.default_auto_field</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.apps.InventoryConfig.name"><code class="docutils literal notranslate"><span class="pre">InventoryConfig.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="inventory.html#module-inventory.models">inventory.models module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.models.HistoricalInventory"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.HistoricalInventory.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.HistoricalInventory.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.HistoricalInventory.date"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.date</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.HistoricalInventory.get_next_by_date"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.get_next_by_date()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.HistoricalInventory.get_previous_by_date"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.get_previous_by_date()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.HistoricalInventory.id"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.HistoricalInventory.inventory"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.inventory</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.HistoricalInventory.inventory_id"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.inventory_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.HistoricalInventory.objects"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.HistoricalInventory.stock_quantity"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.stock_quantity</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.models.Inventory"><code class="docutils literal notranslate"><span class="pre">Inventory</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Inventory.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Inventory.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.date_added"><code class="docutils literal notranslate"><span class="pre">Inventory.date_added</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.description"><code class="docutils literal notranslate"><span class="pre">Inventory.description</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.expiration_date"><code class="docutils literal notranslate"><span class="pre">Inventory.expiration_date</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.get_next_by_date_added"><code class="docutils literal notranslate"><span class="pre">Inventory.get_next_by_date_added()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.get_next_by_last_updated"><code class="docutils literal notranslate"><span class="pre">Inventory.get_next_by_last_updated()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.get_previous_by_date_added"><code class="docutils literal notranslate"><span class="pre">Inventory.get_previous_by_date_added()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.get_previous_by_last_updated"><code class="docutils literal notranslate"><span class="pre">Inventory.get_previous_by_last_updated()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.historicalinventory_set"><code class="docutils literal notranslate"><span class="pre">Inventory.historicalinventory_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.id"><code class="docutils literal notranslate"><span class="pre">Inventory.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.image"><code class="docutils literal notranslate"><span class="pre">Inventory.image</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.item_name"><code class="docutils literal notranslate"><span class="pre">Inventory.item_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.last_updated"><code class="docutils literal notranslate"><span class="pre">Inventory.last_updated</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.location"><code class="docutils literal notranslate"><span class="pre">Inventory.location</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.objects"><code class="docutils literal notranslate"><span class="pre">Inventory.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.procurement_officer"><code class="docutils literal notranslate"><span class="pre">Inventory.procurement_officer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.procurement_officer_id"><code class="docutils literal notranslate"><span class="pre">Inventory.procurement_officer_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.reorder_level"><code class="docutils literal notranslate"><span class="pre">Inventory.reorder_level</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.stock_quantity"><code class="docutils literal notranslate"><span class="pre">Inventory.stock_quantity</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.unit_price"><code class="docutils literal notranslate"><span class="pre">Inventory.unit_price</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.models.create_historical_inventory"><code class="docutils literal notranslate"><span class="pre">create_historical_inventory()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="inventory.html#module-inventory.serializers">inventory.serializers module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.serializers.HistoricalInventorySerializer"><code class="docutils literal notranslate"><span class="pre">HistoricalInventorySerializer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.serializers.HistoricalInventorySerializer.Meta"><code class="docutils literal notranslate"><span class="pre">HistoricalInventorySerializer.Meta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.serializers.InventorySerializer"><code class="docutils literal notranslate"><span class="pre">InventorySerializer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.serializers.InventorySerializer.Meta"><code class="docutils literal notranslate"><span class="pre">InventorySerializer.Meta</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="inventory.html#module-inventory.tests">inventory.tests module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.tests.InventoryModelsTestCase"><code class="docutils literal notranslate"><span class="pre">InventoryModelsTestCase</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.tests.InventoryModelsTestCase.setUp"><code class="docutils literal notranslate"><span class="pre">InventoryModelsTestCase.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.tests.InventoryModelsTestCase.test_create_historical_inventory_on_create"><code class="docutils literal notranslate"><span class="pre">InventoryModelsTestCase.test_create_historical_inventory_on_create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.tests.InventoryModelsTestCase.test_create_historical_inventory_on_update"><code class="docutils literal notranslate"><span class="pre">InventoryModelsTestCase.test_create_historical_inventory_on_update()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.tests.InventoryModelsTestCase.test_delete_historical_inventory_on_inventory_delete"><code class="docutils literal notranslate"><span class="pre">InventoryModelsTestCase.test_delete_historical_inventory_on_inventory_delete()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.tests.InventoryViewsTestCase"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTestCase</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.tests.InventoryViewsTestCase.create_inventory_item"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTestCase.create_inventory_item()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.tests.InventoryViewsTestCase.setUp"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTestCase.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.tests.InventoryViewsTestCase.test_historical_inventory_list_view_procurement_officer"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTestCase.test_historical_inventory_list_view_procurement_officer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.tests.InventoryViewsTestCase.test_historical_inventory_list_view_procurement_officer_invalid_inventory_id"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTestCase.test_historical_inventory_list_view_procurement_officer_invalid_inventory_id()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.tests.InventoryViewsTestCase.test_inventory_create_view_procurement_officer"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTestCase.test_inventory_create_view_procurement_officer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.tests.InventoryViewsTestCase.test_inventory_create_view_vendor"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTestCase.test_inventory_create_view_vendor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.tests.InventoryViewsTestCase.test_inventory_delete_view_procurement_officer_other_item"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTestCase.test_inventory_delete_view_procurement_officer_other_item()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.tests.InventoryViewsTestCase.test_inventory_delete_view_procurement_officer_own_item"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTestCase.test_inventory_delete_view_procurement_officer_own_item()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.tests.InventoryViewsTestCase.test_inventory_list_view_procurement_officer"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTestCase.test_inventory_list_view_procurement_officer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.tests.InventoryViewsTestCase.test_inventory_list_view_vendor"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTestCase.test_inventory_list_view_vendor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.tests.InventoryViewsTestCase.test_inventory_retrieve_view_procurement_officer"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTestCase.test_inventory_retrieve_view_procurement_officer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.tests.InventoryViewsTestCase.test_inventory_retrieve_view_vendor"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTestCase.test_inventory_retrieve_view_vendor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.tests.InventoryViewsTestCase.test_inventory_update_view_procurement_officer_other_item"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTestCase.test_inventory_update_view_procurement_officer_other_item()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.tests.InventoryViewsTestCase.test_inventory_update_view_procurement_officer_own_item"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTestCase.test_inventory_update_view_procurement_officer_own_item()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="inventory.html#module-inventory.urls">inventory.urls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory.html#module-inventory.views">inventory.views module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.HistoricalInventoryListView"><code class="docutils literal notranslate"><span class="pre">HistoricalInventoryListView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.HistoricalInventoryListView.get_queryset"><code class="docutils literal notranslate"><span class="pre">HistoricalInventoryListView.get_queryset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.HistoricalInventoryListView.permission_classes"><code class="docutils literal notranslate"><span class="pre">HistoricalInventoryListView.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.HistoricalInventoryListView.serializer_class"><code class="docutils literal notranslate"><span class="pre">HistoricalInventoryListView.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.InventoryCreateView"><code class="docutils literal notranslate"><span class="pre">InventoryCreateView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryCreateView.permission_classes"><code class="docutils literal notranslate"><span class="pre">InventoryCreateView.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryCreateView.queryset"><code class="docutils literal notranslate"><span class="pre">InventoryCreateView.queryset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryCreateView.serializer_class"><code class="docutils literal notranslate"><span class="pre">InventoryCreateView.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.InventoryDeleteView"><code class="docutils literal notranslate"><span class="pre">InventoryDeleteView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryDeleteView.get_queryset"><code class="docutils literal notranslate"><span class="pre">InventoryDeleteView.get_queryset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryDeleteView.permission_classes"><code class="docutils literal notranslate"><span class="pre">InventoryDeleteView.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryDeleteView.serializer_class"><code class="docutils literal notranslate"><span class="pre">InventoryDeleteView.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.InventoryListView"><code class="docutils literal notranslate"><span class="pre">InventoryListView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryListView.get_queryset"><code class="docutils literal notranslate"><span class="pre">InventoryListView.get_queryset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryListView.permission_classes"><code class="docutils literal notranslate"><span class="pre">InventoryListView.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryListView.serializer_class"><code class="docutils literal notranslate"><span class="pre">InventoryListView.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.InventoryRetrieveView"><code class="docutils literal notranslate"><span class="pre">InventoryRetrieveView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryRetrieveView.get_queryset"><code class="docutils literal notranslate"><span class="pre">InventoryRetrieveView.get_queryset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryRetrieveView.permission_classes"><code class="docutils literal notranslate"><span class="pre">InventoryRetrieveView.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryRetrieveView.serializer_class"><code class="docutils literal notranslate"><span class="pre">InventoryRetrieveView.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.InventoryUpdateView"><code class="docutils literal notranslate"><span class="pre">InventoryUpdateView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryUpdateView.get_queryset"><code class="docutils literal notranslate"><span class="pre">InventoryUpdateView.get_queryset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryUpdateView.permission_classes"><code class="docutils literal notranslate"><span class="pre">InventoryUpdateView.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryUpdateView.serializer_class"><code class="docutils literal notranslate"><span class="pre">InventoryUpdateView.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.getRoutes"><code class="docutils literal notranslate"><span class="pre">getRoutes()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="inventory.html#module-inventory">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manage.html">manage module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manage.html#manage.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="procurement_system_backend.html">procurement_system_backend package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="procurement_system_backend.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="procurement_system_backend.html#module-procurement_system_backend.asgi">procurement_system_backend.asgi module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="procurement_system_backend.html#module-procurement_system_backend.settings">procurement_system_backend.settings module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="procurement_system_backend.html#module-procurement_system_backend.urls">procurement_system_backend.urls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="procurement_system_backend.html#module-procurement_system_backend.wsgi">procurement_system_backend.wsgi module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="procurement_system_backend.html#module-procurement_system_backend">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sahil Gidwani.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
