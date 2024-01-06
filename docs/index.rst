@@ -1,5 +1,5 @@
 .. Smart Procurement System documentation master file, created by
-   sphinx-quickstart on Sat Dec 16 11:57:48 2023.
+   sphinx-quickstart on Sat Jan  6 20:19:41 2024.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 

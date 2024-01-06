@@ -44,7 +44,7 @@ jobs:
       - name: Build HTML
         run: |
           cd docs/
-          sphinx-apidoc -o . ..
+          sphinx-apidoc -o modules ..
           make clean
           make html
 

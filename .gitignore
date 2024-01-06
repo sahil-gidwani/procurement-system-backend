@@ -35,15 +35,4 @@ htmlcov/
 
 # Ignore Sphinx Files
 # Ignore build artifacts
-docs/build/
-
-# Ignore virtual environment
-docs/venv/
-
-# Ignore cache directories
-docs/source/.doctrees/
-
-# Ignore miscellaneous files
-docs/source/.buildinfo
-docs/source/objects.inv
-docs/source/last_build
+docs/_build/
