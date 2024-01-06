@@ -14,7 +14,7 @@ class Inventory(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
     expiration_date = models.DateField(null=True, blank=True)
-    image = models.ImageField(upload_to='inventory', null=True, blank=True)
+    image = models.ImageField(upload_to="inventory", null=True, blank=True)
     procurement_officer = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -35,7 +35,5 @@ def create_historical_inventory(sender, instance, created, **kwargs):
     timestamp = instance.last_updated if not created else instance.date_added
 
     HistoricalInventory.objects.create(
-        stock_quantity=instance.stock_quantity,
-        date=timestamp,
-        inventory=instance
+        stock_quantity=instance.stock_quantity, date=timestamp, inventory=instance
     )

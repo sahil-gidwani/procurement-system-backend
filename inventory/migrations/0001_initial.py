@@ -6,7 +6,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -15,29 +14,57 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Inventory',
+            name="Inventory",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('item_name', models.CharField(max_length=255)),
-                ('description', models.TextField()),
-                ('unit_price', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('stock_quantity', models.IntegerField()),
-                ('reorder_level', models.IntegerField()),
-                ('location', models.CharField(max_length=255)),
-                ('date_added', models.DateTimeField(auto_now_add=True)),
-                ('last_updated', models.DateTimeField(auto_now=True)),
-                ('expiration_date', models.DateField(blank=True, null=True)),
-                ('image', models.ImageField(upload_to='inventory')),
-                ('procurement_officer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("item_name", models.CharField(max_length=255)),
+                ("description", models.TextField()),
+                ("unit_price", models.DecimalField(decimal_places=2, max_digits=10)),
+                ("stock_quantity", models.IntegerField()),
+                ("reorder_level", models.IntegerField()),
+                ("location", models.CharField(max_length=255)),
+                ("date_added", models.DateTimeField(auto_now_add=True)),
+                ("last_updated", models.DateTimeField(auto_now=True)),
+                ("expiration_date", models.DateField(blank=True, null=True)),
+                ("image", models.ImageField(upload_to="inventory")),
+                (
+                    "procurement_officer",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='HistoricalInventory',
+            name="HistoricalInventory",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('stock_quantity', models.IntegerField()),
-                ('date', models.DateField()),
-                ('inventory', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='inventory.inventory')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("stock_quantity", models.IntegerField()),
+                ("date", models.DateField()),
+                (
+                    "inventory",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="inventory.inventory",
+                    ),
+                ),
             ],
         ),
     ]

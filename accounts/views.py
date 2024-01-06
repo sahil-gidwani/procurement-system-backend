@@ -7,7 +7,15 @@ from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 from django.urls import reverse
 from django.conf import settings
-from .serializers import MyTokenObtainPairSerializer, ChangePasswordSerializer, PasswordResetSerializer, PasswordResetConfirmSerializer, RegisterSerializer, ProfileSerializer, VendorSerializer
+from .serializers import (
+    MyTokenObtainPairSerializer,
+    ChangePasswordSerializer,
+    PasswordResetSerializer,
+    PasswordResetConfirmSerializer,
+    RegisterSerializer,
+    ProfileSerializer,
+    VendorSerializer,
+)
 from .models import User, Vendor
 from .permissions import IsProcurementOfficer
 

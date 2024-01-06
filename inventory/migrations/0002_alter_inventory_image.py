@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('inventory', '0001_initial'),
+        ("inventory", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='inventory',
-            name='image',
-            field=models.ImageField(blank=True, null=True, upload_to='inventory'),
+            model_name="inventory",
+            name="image",
+            field=models.ImageField(blank=True, null=True, upload_to="inventory"),
         ),
     ]
