@@ -23,19 +23,13 @@ release = "1.0"
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-    "sphinx.ext.autodoc",  # Automatically document Python code
-    # 'sphinx.ext.autosummary'   # Generate autodoc summaries
+    "sphinx.ext.autodoc",   # Automatically document Python code
     "sphinx.ext.napoleon",  # Google-style or NumPy-style docstrings
-    # 'sphinx.ext.todo',         # Todo directive for marking incomplete sections
     "sphinx.ext.viewcode",  # View Source link for Python code
-    # 'sphinx.ext.githubpages',  # Configuration for hosting on GitHub Pages
-    # 'sphinx.ext.intersphinx',  # Link to external documentation
-    # 'sphinx.ext.graphviz',     # Add support for Graphviz graphs
-    # 'sphinx.ext.imgmath',      # Include math equations using LaTeX
 ]
 
 templates_path = ["_templates"]
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", "**/*.migrations.rst", "**manage.rst", "**procurement_system_backend.rst"]
 
 
 # -- Options for HTML output -------------------------------------------------
