@@ -23,11 +23,11 @@ class Inventory(models.Model):
 
 class HistoricalInventory(models.Model):
     stock_quantity = models.IntegerField()
-    date = models.DateField()
+    datetime = models.DateTimeField()
     inventory = models.ForeignKey(Inventory, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.inventory.item_name} - {self.date}"
+        return f"{self.inventory.item_name} - {self.datetime}"
 
 
 @receiver(post_save, sender=Inventory)
@@ -35,5 +35,5 @@ def create_historical_inventory(sender, instance, created, **kwargs):
     timestamp = instance.last_updated if not created else instance.date_added
 
     HistoricalInventory.objects.create(
-        stock_quantity=instance.stock_quantity, date=timestamp, inventory=instance
+        stock_quantity=instance.stock_quantity, datetime=timestamp, inventory=instance
     )

@@ -34,7 +34,7 @@ class InventoryModelsTestCase(TestCase):
             historical_inventory_item.stock_quantity, inventory_item.stock_quantity
         )
         self.assertEqual(
-            historical_inventory_item.date, inventory_item.date_added.date()
+            historical_inventory_item.datetime, inventory_item.date_added
         )
 
     def test_create_historical_inventory_on_update(self):
@@ -56,8 +56,8 @@ class InventoryModelsTestCase(TestCase):
         )
         self.assertEqual(historical_inventory_items.count(), 2)
 
-        updated_item = historical_inventory_items.latest("date")
-        self.assertEqual(updated_item.date, inventory_item.last_updated.date())
+        updated_item = historical_inventory_items.latest("datetime")
+        self.assertEqual(updated_item.datetime, inventory_item.last_updated)
 
     def test_delete_historical_inventory_on_inventory_delete(self):
         inventory_item = Inventory.objects.create(
