@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
 from django.shortcuts import get_object_or_404
+from drf_spectacular.utils import extend_schema
 from accounts.permissions import IsProcurementOfficer
 from .models import Inventory, HistoricalInventory
 from .serializers import InventorySerializer, HistoricalInventorySerializer
@@ -60,6 +61,7 @@ class HistoricalInventoryListView(generics.ListAPIView):
         return HistoricalInventory.objects.filter(inventory=inventory)
 
 
+@extend_schema(exclude=True)
 @api_view(["GET"])
 @permission_classes([AllowAny])
 def getRoutes(request):

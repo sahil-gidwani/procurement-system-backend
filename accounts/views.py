@@ -1,12 +1,13 @@
+from rest_framework import generics, exceptions, serializers
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
-from rest_framework import generics, exceptions
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework.decorators import api_view, permission_classes
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 from django.urls import reverse
 from django.conf import settings
+from drf_spectacular.utils import extend_schema
 from .serializers import (
     MyTokenObtainPairSerializer,
     ChangePasswordSerializer,
@@ -118,7 +119,10 @@ class UpdateUserProfileView(generics.UpdateAPIView):
 
 class DeleteUserProfileView(generics.DestroyAPIView):
     permission_classes = [IsAuthenticated | IsAdminUser]
+    serializer_class = serializers.ModelSerializer
     queryset = User.objects.all()
+    model = User
+    fields = '__all__'
 
     def get_object(self):
         return self.request.user
@@ -130,6 +134,7 @@ class VendorView(generics.ListAPIView):
     serializer_class = VendorSerializer
 
 
+@extend_schema(exclude=True)
 @api_view(["GET"])
 @permission_classes([AllowAny])
 def getRoutes(request):
