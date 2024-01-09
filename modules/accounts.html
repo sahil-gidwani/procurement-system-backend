@@ -137,6 +137,16 @@
 <li><a class="reference internal" href="#accounts.serializers.PasswordResetSerializer.validate_email"><code class="docutils literal notranslate"><span class="pre">PasswordResetSerializer.validate_email()</span></code></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#accounts.serializers.ProcurementOfficerRegisterSerializer"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerRegisterSerializer</span></code></a><ul>
+<li><a class="reference internal" href="#accounts.serializers.ProcurementOfficerRegisterSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerRegisterSerializer.Meta</span></code></a><ul>
+<li><a class="reference internal" href="#accounts.serializers.ProcurementOfficerRegisterSerializer.Meta.fields"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerRegisterSerializer.Meta.fields</span></code></a></li>
+<li><a class="reference internal" href="#accounts.serializers.ProcurementOfficerRegisterSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerRegisterSerializer.Meta.model</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#accounts.serializers.ProcurementOfficerRegisterSerializer.create"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerRegisterSerializer.create()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.serializers.ProcurementOfficerRegisterSerializer.validate"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerRegisterSerializer.validate()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#accounts.serializers.ProfileSerializer"><code class="docutils literal notranslate"><span class="pre">ProfileSerializer</span></code></a><ul>
 <li><a class="reference internal" href="#accounts.serializers.ProfileSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">ProfileSerializer.Meta</span></code></a><ul>
 <li><a class="reference internal" href="#accounts.serializers.ProfileSerializer.Meta.fields"><code class="docutils literal notranslate"><span class="pre">ProfileSerializer.Meta.fields</span></code></a></li>
@@ -147,14 +157,22 @@
 <li><a class="reference internal" href="#accounts.serializers.ProfileSerializer.update"><code class="docutils literal notranslate"><span class="pre">ProfileSerializer.update()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#accounts.serializers.RegisterSerializer"><code class="docutils literal notranslate"><span class="pre">RegisterSerializer</span></code></a><ul>
-<li><a class="reference internal" href="#accounts.serializers.RegisterSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">RegisterSerializer.Meta</span></code></a><ul>
-<li><a class="reference internal" href="#accounts.serializers.RegisterSerializer.Meta.fields"><code class="docutils literal notranslate"><span class="pre">RegisterSerializer.Meta.fields</span></code></a></li>
-<li><a class="reference internal" href="#accounts.serializers.RegisterSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">RegisterSerializer.Meta.model</span></code></a></li>
+<li><a class="reference internal" href="#accounts.serializers.VendorInfoSerializer"><code class="docutils literal notranslate"><span class="pre">VendorInfoSerializer</span></code></a><ul>
+<li><a class="reference internal" href="#accounts.serializers.VendorInfoSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">VendorInfoSerializer.Meta</span></code></a><ul>
+<li><a class="reference internal" href="#accounts.serializers.VendorInfoSerializer.Meta.fields"><code class="docutils literal notranslate"><span class="pre">VendorInfoSerializer.Meta.fields</span></code></a></li>
+<li><a class="reference internal" href="#accounts.serializers.VendorInfoSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">VendorInfoSerializer.Meta.model</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#accounts.serializers.RegisterSerializer.create"><code class="docutils literal notranslate"><span class="pre">RegisterSerializer.create()</span></code></a></li>
-<li><a class="reference internal" href="#accounts.serializers.RegisterSerializer.validate"><code class="docutils literal notranslate"><span class="pre">RegisterSerializer.validate()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#accounts.serializers.VendorRegisterSerializer"><code class="docutils literal notranslate"><span class="pre">VendorRegisterSerializer</span></code></a><ul>
+<li><a class="reference internal" href="#accounts.serializers.VendorRegisterSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">VendorRegisterSerializer.Meta</span></code></a><ul>
+<li><a class="reference internal" href="#accounts.serializers.VendorRegisterSerializer.Meta.fields"><code class="docutils literal notranslate"><span class="pre">VendorRegisterSerializer.Meta.fields</span></code></a></li>
+<li><a class="reference internal" href="#accounts.serializers.VendorRegisterSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">VendorRegisterSerializer.Meta.model</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#accounts.serializers.VendorRegisterSerializer.create"><code class="docutils literal notranslate"><span class="pre">VendorRegisterSerializer.create()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.serializers.VendorRegisterSerializer.validate"><code class="docutils literal notranslate"><span class="pre">VendorRegisterSerializer.validate()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#accounts.serializers.VendorSerializer"><code class="docutils literal notranslate"><span class="pre">VendorSerializer</span></code></a><ul>
@@ -240,9 +258,12 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#accounts.views.DeleteUserProfileView"><code class="docutils literal notranslate"><span class="pre">DeleteUserProfileView</span></code></a><ul>
+<li><a class="reference internal" href="#accounts.views.DeleteUserProfileView.fields"><code class="docutils literal notranslate"><span class="pre">DeleteUserProfileView.fields</span></code></a></li>
 <li><a class="reference internal" href="#accounts.views.DeleteUserProfileView.get_object"><code class="docutils literal notranslate"><span class="pre">DeleteUserProfileView.get_object()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.views.DeleteUserProfileView.model"><code class="docutils literal notranslate"><span class="pre">DeleteUserProfileView.model</span></code></a></li>
 <li><a class="reference internal" href="#accounts.views.DeleteUserProfileView.permission_classes"><code class="docutils literal notranslate"><span class="pre">DeleteUserProfileView.permission_classes</span></code></a></li>
 <li><a class="reference internal" href="#accounts.views.DeleteUserProfileView.queryset"><code class="docutils literal notranslate"><span class="pre">DeleteUserProfileView.queryset</span></code></a></li>
+<li><a class="reference internal" href="#accounts.views.DeleteUserProfileView.serializer_class"><code class="docutils literal notranslate"><span class="pre">DeleteUserProfileView.serializer_class</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#accounts.views.MyTokenObtainPairView"><code class="docutils literal notranslate"><span class="pre">MyTokenObtainPairView</span></code></a><ul>
@@ -263,10 +284,10 @@
 <li><a class="reference internal" href="#accounts.views.PasswordResetView.serializer_class"><code class="docutils literal notranslate"><span class="pre">PasswordResetView.serializer_class</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#accounts.views.RegisterView"><code class="docutils literal notranslate"><span class="pre">RegisterView</span></code></a><ul>
-<li><a class="reference internal" href="#accounts.views.RegisterView.permission_classes"><code class="docutils literal notranslate"><span class="pre">RegisterView.permission_classes</span></code></a></li>
-<li><a class="reference internal" href="#accounts.views.RegisterView.queryset"><code class="docutils literal notranslate"><span class="pre">RegisterView.queryset</span></code></a></li>
-<li><a class="reference internal" href="#accounts.views.RegisterView.serializer_class"><code class="docutils literal notranslate"><span class="pre">RegisterView.serializer_class</span></code></a></li>
+<li><a class="reference internal" href="#accounts.views.ProcurementOfficerRegisterView"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerRegisterView</span></code></a><ul>
+<li><a class="reference internal" href="#accounts.views.ProcurementOfficerRegisterView.permission_classes"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerRegisterView.permission_classes</span></code></a></li>
+<li><a class="reference internal" href="#accounts.views.ProcurementOfficerRegisterView.queryset"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerRegisterView.queryset</span></code></a></li>
+<li><a class="reference internal" href="#accounts.views.ProcurementOfficerRegisterView.serializer_class"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerRegisterView.serializer_class</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#accounts.views.UpdateUserProfileView"><code class="docutils literal notranslate"><span class="pre">UpdateUserProfileView</span></code></a><ul>
@@ -280,6 +301,12 @@
 <li><a class="reference internal" href="#accounts.views.UserProfileView.get_object"><code class="docutils literal notranslate"><span class="pre">UserProfileView.get_object()</span></code></a></li>
 <li><a class="reference internal" href="#accounts.views.UserProfileView.queryset"><code class="docutils literal notranslate"><span class="pre">UserProfileView.queryset</span></code></a></li>
 <li><a class="reference internal" href="#accounts.views.UserProfileView.serializer_class"><code class="docutils literal notranslate"><span class="pre">UserProfileView.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#accounts.views.VendorRegisterView"><code class="docutils literal notranslate"><span class="pre">VendorRegisterView</span></code></a><ul>
+<li><a class="reference internal" href="#accounts.views.VendorRegisterView.permission_classes"><code class="docutils literal notranslate"><span class="pre">VendorRegisterView.permission_classes</span></code></a></li>
+<li><a class="reference internal" href="#accounts.views.VendorRegisterView.queryset"><code class="docutils literal notranslate"><span class="pre">VendorRegisterView.queryset</span></code></a></li>
+<li><a class="reference internal" href="#accounts.views.VendorRegisterView.serializer_class"><code class="docutils literal notranslate"><span class="pre">VendorRegisterView.serializer_class</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#accounts.views.VendorView"><code class="docutils literal notranslate"><span class="pre">VendorView</span></code></a><ul>
@@ -772,6 +799,57 @@ object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="accounts.serializers.ProcurementOfficerRegisterSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accounts.serializers.</span></span><span class="sig-name descname"><span class="pre">ProcurementOfficerRegisterSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/serializers.html#ProcurementOfficerRegisterSerializer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.serializers.ProcurementOfficerRegisterSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="accounts.serializers.ProcurementOfficerRegisterSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="reference internal" href="../_modules/accounts/serializers.html#ProcurementOfficerRegisterSerializer.Meta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.serializers.ProcurementOfficerRegisterSerializer.Meta" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="accounts.serializers.ProcurementOfficerRegisterSerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('first_name',</span> <span class="pre">'last_name',</span> <span class="pre">'username',</span> <span class="pre">'email',</span> <span class="pre">'phone_number',</span> <span class="pre">'password1',</span> <span class="pre">'password2')</span></em><a class="headerlink" href="#accounts.serializers.ProcurementOfficerRegisterSerializer.Meta.fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="accounts.serializers.ProcurementOfficerRegisterSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#accounts.serializers.ProcurementOfficerRegisterSerializer.Meta.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#accounts.models.User" title="accounts.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.serializers.ProcurementOfficerRegisterSerializer.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">validated_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/serializers.html#ProcurementOfficerRegisterSerializer.create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.serializers.ProcurementOfficerRegisterSerializer.create" title="Link to this definition"></a></dt>
+<dd><p>We have a bit of extra checking around this in order to provide
+descriptive messages when something goes wrong, but this method is
+essentially just:</p>
+<blockquote>
+<div><p>return ExampleModel.objects.create(<a href="#id1"><span class="problematic" id="id2">**</span></a>validated_data)</p>
+</div></blockquote>
+<p>If there are many to many fields present on the instance then they
+cannot be set until the model is instantiated, in which case the
+implementation is like so:</p>
+<blockquote>
+<div><p>example_relationship = validated_data.pop(‘example_relationship’)
+instance = ExampleModel.objects.create(<a href="#id3"><span class="problematic" id="id4">**</span></a>validated_data)
+instance.example_relationship = example_relationship
+return instance</p>
+</div></blockquote>
+<p>The default implementation also does not handle nested relationships.
+If you want to support writable nested relationships you’ll need
+to write an explicit <cite>.create()</cite> method.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.serializers.ProcurementOfficerRegisterSerializer.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attrs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/serializers.html#ProcurementOfficerRegisterSerializer.validate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.serializers.ProcurementOfficerRegisterSerializer.validate" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="accounts.serializers.ProfileSerializer">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accounts.serializers.</span></span><span class="sig-name descname"><span class="pre">ProfileSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/serializers.html#ProfileSerializer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.serializers.ProfileSerializer" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
@@ -806,41 +884,64 @@ object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="accounts.serializers.RegisterSerializer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accounts.serializers.</span></span><span class="sig-name descname"><span class="pre">RegisterSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/serializers.html#RegisterSerializer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.serializers.RegisterSerializer" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="accounts.serializers.VendorInfoSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accounts.serializers.</span></span><span class="sig-name descname"><span class="pre">VendorInfoSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/serializers.html#VendorInfoSerializer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.serializers.VendorInfoSerializer" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
 <dl class="py class">
-<dt class="sig sig-object py" id="accounts.serializers.RegisterSerializer.Meta">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="reference internal" href="../_modules/accounts/serializers.html#RegisterSerializer.Meta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.serializers.RegisterSerializer.Meta" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="accounts.serializers.VendorInfoSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="reference internal" href="../_modules/accounts/serializers.html#VendorInfoSerializer.Meta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.serializers.VendorInfoSerializer.Meta" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="accounts.serializers.RegisterSerializer.Meta.fields">
-<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('first_name',</span> <span class="pre">'last_name',</span> <span class="pre">'username',</span> <span class="pre">'email',</span> <span class="pre">'phone_number',</span> <span class="pre">'password1',</span> <span class="pre">'password2',</span> <span class="pre">'user_role')</span></em><a class="headerlink" href="#accounts.serializers.RegisterSerializer.Meta.fields" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="accounts.serializers.VendorInfoSerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('vendor_name',</span> <span class="pre">'address',</span> <span class="pre">'vendor_certified',</span> <span class="pre">'vendor_type',</span> <span class="pre">'contract_expiry_date',</span> <span class="pre">'vendor_rating')</span></em><a class="headerlink" href="#accounts.serializers.VendorInfoSerializer.Meta.fields" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="accounts.serializers.RegisterSerializer.Meta.model">
-<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#accounts.serializers.RegisterSerializer.Meta.model" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="accounts.serializers.VendorInfoSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#accounts.serializers.VendorInfoSerializer.Meta.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#accounts.models.Vendor" title="accounts.models.Vendor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vendor</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="accounts.serializers.VendorRegisterSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accounts.serializers.</span></span><span class="sig-name descname"><span class="pre">VendorRegisterSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/serializers.html#VendorRegisterSerializer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.serializers.VendorRegisterSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="accounts.serializers.VendorRegisterSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="reference internal" href="../_modules/accounts/serializers.html#VendorRegisterSerializer.Meta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.serializers.VendorRegisterSerializer.Meta" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="accounts.serializers.VendorRegisterSerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('first_name',</span> <span class="pre">'last_name',</span> <span class="pre">'username',</span> <span class="pre">'email',</span> <span class="pre">'phone_number',</span> <span class="pre">'password1',</span> <span class="pre">'password2',</span> <span class="pre">'vendor_info')</span></em><a class="headerlink" href="#accounts.serializers.VendorRegisterSerializer.Meta.fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="accounts.serializers.VendorRegisterSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#accounts.serializers.VendorRegisterSerializer.Meta.model" title="Link to this definition"></a></dt>
 <dd><p>alias of <a class="reference internal" href="#accounts.models.User" title="accounts.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="accounts.serializers.RegisterSerializer.create">
-<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">validated_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/serializers.html#RegisterSerializer.create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.serializers.RegisterSerializer.create" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="accounts.serializers.VendorRegisterSerializer.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">validated_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/serializers.html#VendorRegisterSerializer.create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.serializers.VendorRegisterSerializer.create" title="Link to this definition"></a></dt>
 <dd><p>We have a bit of extra checking around this in order to provide
 descriptive messages when something goes wrong, but this method is
 essentially just:</p>
 <blockquote>
-<div><p>return ExampleModel.objects.create(<a href="#id1"><span class="problematic" id="id2">**</span></a>validated_data)</p>
+<div><p>return ExampleModel.objects.create(<a href="#id5"><span class="problematic" id="id6">**</span></a>validated_data)</p>
 </div></blockquote>
 <p>If there are many to many fields present on the instance then they
 cannot be set until the model is instantiated, in which case the
 implementation is like so:</p>
 <blockquote>
 <div><p>example_relationship = validated_data.pop(‘example_relationship’)
-instance = ExampleModel.objects.create(<a href="#id3"><span class="problematic" id="id4">**</span></a>validated_data)
+instance = ExampleModel.objects.create(<a href="#id7"><span class="problematic" id="id8">**</span></a>validated_data)
 instance.example_relationship = example_relationship
 return instance</p>
 </div></blockquote>
@@ -850,8 +951,8 @@ to write an explicit <cite>.create()</cite> method.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="accounts.serializers.RegisterSerializer.validate">
-<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attrs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/serializers.html#RegisterSerializer.validate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.serializers.RegisterSerializer.validate" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="accounts.serializers.VendorRegisterSerializer.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attrs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/serializers.html#VendorRegisterSerializer.validate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.serializers.VendorRegisterSerializer.validate" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1159,6 +1260,11 @@ keyword arguments in the url conf.</p>
 <dt class="sig sig-object py" id="accounts.views.DeleteUserProfileView">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accounts.views.</span></span><span class="sig-name descname"><span class="pre">DeleteUserProfileView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/views.html#DeleteUserProfileView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.views.DeleteUserProfileView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">DestroyAPIView</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="accounts.views.DeleteUserProfileView.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'__all__'</span></em><a class="headerlink" href="#accounts.views.DeleteUserProfileView.fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="accounts.views.DeleteUserProfileView.get_object">
 <span class="sig-name descname"><span class="pre">get_object</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/views.html#DeleteUserProfileView.get_object"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.views.DeleteUserProfileView.get_object" title="Link to this definition"></a></dt>
@@ -1166,6 +1272,12 @@ keyword arguments in the url conf.</p>
 <p>You may want to override this if you need to provide non-standard
 queryset lookups.  Eg if objects are referenced using multiple
 keyword arguments in the url conf.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="accounts.views.DeleteUserProfileView.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#accounts.views.DeleteUserProfileView.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#accounts.models.User" title="accounts.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -1177,6 +1289,12 @@ keyword arguments in the url conf.</p>
 <dt class="sig sig-object py" id="accounts.views.DeleteUserProfileView.queryset">
 <span class="sig-name descname"><span class="pre">queryset</span></span><a class="headerlink" href="#accounts.views.DeleteUserProfileView.queryset" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="accounts.views.DeleteUserProfileView.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#accounts.views.DeleteUserProfileView.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+</dd></dl>
 
 </dd></dl>
 
@@ -1251,23 +1369,23 @@ keyword arguments in the url conf.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="accounts.views.RegisterView">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accounts.views.</span></span><span class="sig-name descname"><span class="pre">RegisterView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/views.html#RegisterView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.views.RegisterView" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="accounts.views.ProcurementOfficerRegisterView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accounts.views.</span></span><span class="sig-name descname"><span class="pre">ProcurementOfficerRegisterView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/views.html#ProcurementOfficerRegisterView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.views.ProcurementOfficerRegisterView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">CreateAPIView</span></code></p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="accounts.views.RegisterView.permission_classes">
-<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.AllowAny'&gt;]</span></em><a class="headerlink" href="#accounts.views.RegisterView.permission_classes" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="accounts.views.ProcurementOfficerRegisterView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.AllowAny'&gt;]</span></em><a class="headerlink" href="#accounts.views.ProcurementOfficerRegisterView.permission_classes" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="accounts.views.RegisterView.queryset">
-<span class="sig-name descname"><span class="pre">queryset</span></span><a class="headerlink" href="#accounts.views.RegisterView.queryset" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="accounts.views.ProcurementOfficerRegisterView.queryset">
+<span class="sig-name descname"><span class="pre">queryset</span></span><a class="headerlink" href="#accounts.views.ProcurementOfficerRegisterView.queryset" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="accounts.views.RegisterView.serializer_class">
-<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#accounts.views.RegisterView.serializer_class" title="Link to this definition"></a></dt>
-<dd><p>alias of <a class="reference internal" href="#accounts.serializers.RegisterSerializer" title="accounts.serializers.RegisterSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">RegisterSerializer</span></code></a></p>
+<dt class="sig sig-object py" id="accounts.views.ProcurementOfficerRegisterView.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#accounts.views.ProcurementOfficerRegisterView.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#accounts.serializers.ProcurementOfficerRegisterSerializer" title="accounts.serializers.ProcurementOfficerRegisterSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProcurementOfficerRegisterSerializer</span></code></a></p>
 </dd></dl>
 
 </dd></dl>
@@ -1325,6 +1443,28 @@ keyword arguments in the url conf.</p>
 <dt class="sig sig-object py" id="accounts.views.UserProfileView.serializer_class">
 <span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#accounts.views.UserProfileView.serializer_class" title="Link to this definition"></a></dt>
 <dd><p>alias of <a class="reference internal" href="#accounts.serializers.ProfileSerializer" title="accounts.serializers.ProfileSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProfileSerializer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="accounts.views.VendorRegisterView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accounts.views.</span></span><span class="sig-name descname"><span class="pre">VendorRegisterView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/views.html#VendorRegisterView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.views.VendorRegisterView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">CreateAPIView</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="accounts.views.VendorRegisterView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.AllowAny'&gt;]</span></em><a class="headerlink" href="#accounts.views.VendorRegisterView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="accounts.views.VendorRegisterView.queryset">
+<span class="sig-name descname"><span class="pre">queryset</span></span><a class="headerlink" href="#accounts.views.VendorRegisterView.queryset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="accounts.views.VendorRegisterView.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#accounts.views.VendorRegisterView.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#accounts.serializers.VendorRegisterSerializer" title="accounts.serializers.VendorRegisterSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">VendorRegisterSerializer</span></code></a></p>
 </dd></dl>
 
 </dd></dl>

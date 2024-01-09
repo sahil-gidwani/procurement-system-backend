@@ -60,9 +60,9 @@
 <li><a class="reference internal" href="#inventory.models.HistoricalInventory"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory</span></code></a><ul>
 <li><a class="reference internal" href="#inventory.models.HistoricalInventory.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.DoesNotExist</span></code></a></li>
 <li><a class="reference internal" href="#inventory.models.HistoricalInventory.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.MultipleObjectsReturned</span></code></a></li>
-<li><a class="reference internal" href="#inventory.models.HistoricalInventory.date"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.date</span></code></a></li>
-<li><a class="reference internal" href="#inventory.models.HistoricalInventory.get_next_by_date"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.get_next_by_date()</span></code></a></li>
-<li><a class="reference internal" href="#inventory.models.HistoricalInventory.get_previous_by_date"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.get_previous_by_date()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.models.HistoricalInventory.datetime"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.datetime</span></code></a></li>
+<li><a class="reference internal" href="#inventory.models.HistoricalInventory.get_next_by_datetime"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.get_next_by_datetime()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.models.HistoricalInventory.get_previous_by_datetime"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.get_previous_by_datetime()</span></code></a></li>
 <li><a class="reference internal" href="#inventory.models.HistoricalInventory.id"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.id</span></code></a></li>
 <li><a class="reference internal" href="#inventory.models.HistoricalInventory.inventory"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.inventory</span></code></a></li>
 <li><a class="reference internal" href="#inventory.models.HistoricalInventory.inventory_id"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.inventory_id</span></code></a></li>
@@ -249,7 +249,7 @@
 <span id="inventory-models-module"></span><h2>inventory.models module<a class="headerlink" href="#module-inventory.models" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="inventory.models.HistoricalInventory">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.models.</span></span><span class="sig-name descname"><span class="pre">HistoricalInventory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stock_quantity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inventory</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/models.html#HistoricalInventory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.models.HistoricalInventory" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.models.</span></span><span class="sig-name descname"><span class="pre">HistoricalInventory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stock_quantity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inventory</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/models.html#HistoricalInventory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.models.HistoricalInventory" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="inventory.models.HistoricalInventory.DoesNotExist">
@@ -264,20 +264,20 @@
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="inventory.models.HistoricalInventory.date">
-<span class="sig-name descname"><span class="pre">date</span></span><a class="headerlink" href="#inventory.models.HistoricalInventory.date" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="inventory.models.HistoricalInventory.datetime">
+<span class="sig-name descname"><span class="pre">datetime</span></span><a class="headerlink" href="#inventory.models.HistoricalInventory.datetime" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="inventory.models.HistoricalInventory.get_next_by_date">
-<span class="sig-name descname"><span class="pre">get_next_by_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateField:</span> <span class="pre">date&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#inventory.models.HistoricalInventory.get_next_by_date" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="inventory.models.HistoricalInventory.get_next_by_datetime">
+<span class="sig-name descname"><span class="pre">get_next_by_datetime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">datetime&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#inventory.models.HistoricalInventory.get_next_by_datetime" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="inventory.models.HistoricalInventory.get_previous_by_date">
-<span class="sig-name descname"><span class="pre">get_previous_by_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateField:</span> <span class="pre">date&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#inventory.models.HistoricalInventory.get_previous_by_date" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="inventory.models.HistoricalInventory.get_previous_by_datetime">
+<span class="sig-name descname"><span class="pre">get_previous_by_datetime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">datetime&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#inventory.models.HistoricalInventory.get_previous_by_datetime" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">

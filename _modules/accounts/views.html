@@ -68,21 +68,23 @@
            <div itemprop="articleBody">
              
   <h1>Source code for accounts.views</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">rest_framework.response</span> <span class="kn">import</span> <span class="n">Response</span>
+<span></span><span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">generics</span><span class="p">,</span> <span class="n">exceptions</span><span class="p">,</span> <span class="n">serializers</span>
+<span class="kn">from</span> <span class="nn">rest_framework.response</span> <span class="kn">import</span> <span class="n">Response</span>
 <span class="kn">from</span> <span class="nn">rest_framework_simplejwt.views</span> <span class="kn">import</span> <span class="n">TokenObtainPairView</span>
-<span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">generics</span><span class="p">,</span> <span class="n">exceptions</span>
 <span class="kn">from</span> <span class="nn">rest_framework.permissions</span> <span class="kn">import</span> <span class="n">AllowAny</span><span class="p">,</span> <span class="n">IsAuthenticated</span><span class="p">,</span> <span class="n">IsAdminUser</span>
 <span class="kn">from</span> <span class="nn">rest_framework.decorators</span> <span class="kn">import</span> <span class="n">api_view</span><span class="p">,</span> <span class="n">permission_classes</span>
 <span class="kn">from</span> <span class="nn">django.contrib.auth.tokens</span> <span class="kn">import</span> <span class="n">default_token_generator</span>
 <span class="kn">from</span> <span class="nn">django.core.mail</span> <span class="kn">import</span> <span class="n">send_mail</span>
 <span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">reverse</span>
 <span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+<span class="kn">from</span> <span class="nn">drf_spectacular.utils</span> <span class="kn">import</span> <span class="n">extend_schema</span>
 <span class="kn">from</span> <span class="nn">.serializers</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">MyTokenObtainPairSerializer</span><span class="p">,</span>
     <span class="n">ChangePasswordSerializer</span><span class="p">,</span>
     <span class="n">PasswordResetSerializer</span><span class="p">,</span>
     <span class="n">PasswordResetConfirmSerializer</span><span class="p">,</span>
-    <span class="n">RegisterSerializer</span><span class="p">,</span>
+    <span class="n">ProcurementOfficerRegisterSerializer</span><span class="p">,</span>
+    <span class="n">VendorRegisterSerializer</span><span class="p">,</span>
     <span class="n">ProfileSerializer</span><span class="p">,</span>
     <span class="n">VendorSerializer</span><span class="p">,</span>
 <span class="p">)</span>
@@ -184,12 +186,21 @@
 
 
 
-<div class="viewcode-block" id="RegisterView">
-<a class="viewcode-back" href="../../modules/accounts.html#accounts.views.RegisterView">[docs]</a>
-<span class="k">class</span> <span class="nc">RegisterView</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">CreateAPIView</span><span class="p">):</span>
+<div class="viewcode-block" id="ProcurementOfficerRegisterView">
+<a class="viewcode-back" href="../../modules/accounts.html#accounts.views.ProcurementOfficerRegisterView">[docs]</a>
+<span class="k">class</span> <span class="nc">ProcurementOfficerRegisterView</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">CreateAPIView</span><span class="p">):</span>
     <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">AllowAny</span><span class="p">]</span>
     <span class="n">queryset</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
-    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">RegisterSerializer</span></div>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">ProcurementOfficerRegisterSerializer</span></div>
+
+
+
+<div class="viewcode-block" id="VendorRegisterView">
+<a class="viewcode-back" href="../../modules/accounts.html#accounts.views.VendorRegisterView">[docs]</a>
+<span class="k">class</span> <span class="nc">VendorRegisterView</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">CreateAPIView</span><span class="p">):</span>
+    <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">AllowAny</span><span class="p">]</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">VendorRegisterSerializer</span></div>
 
 
 
@@ -232,7 +243,10 @@
 <a class="viewcode-back" href="../../modules/accounts.html#accounts.views.DeleteUserProfileView">[docs]</a>
 <span class="k">class</span> <span class="nc">DeleteUserProfileView</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">DestroyAPIView</span><span class="p">):</span>
     <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">IsAuthenticated</span> <span class="o">|</span> <span class="n">IsAdminUser</span><span class="p">]</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span>
     <span class="n">queryset</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">User</span>
+    <span class="n">fields</span> <span class="o">=</span> <span class="s1">&#39;__all__&#39;</span>
 
 <div class="viewcode-block" id="DeleteUserProfileView.get_object">
 <a class="viewcode-back" href="../../modules/accounts.html#accounts.views.DeleteUserProfileView.get_object">[docs]</a>
@@ -253,6 +267,7 @@
 
 <div class="viewcode-block" id="getRoutes">
 <a class="viewcode-back" href="../../modules/accounts.html#accounts.views.getRoutes">[docs]</a>
+<span class="nd">@extend_schema</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nd">@api_view</span><span class="p">([</span><span class="s2">&quot;GET&quot;</span><span class="p">])</span>
 <span class="nd">@permission_classes</span><span class="p">([</span><span class="n">AllowAny</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">getRoutes</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
@@ -263,7 +278,8 @@
         <span class="s2">&quot;/change-password&quot;</span><span class="p">,</span>
         <span class="s2">&quot;/password-reset&quot;</span><span class="p">,</span>
         <span class="s2">&quot;/password-reset-confirm/&lt;int:pk&gt;/&lt;str:token&gt;/&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;/register&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/register/procurement-officer&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/register/vendor&quot;</span><span class="p">,</span>
         <span class="s2">&quot;/profile&quot;</span><span class="p">,</span>
         <span class="s2">&quot;/profile/update&quot;</span><span class="p">,</span>
         <span class="s2">&quot;/profile/delete&quot;</span><span class="p">,</span>

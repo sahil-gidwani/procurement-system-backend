@@ -187,31 +187,9 @@
 
 
 
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">{</span>
-<span class="sd">    &quot;first_name&quot;: &quot;John&quot;,</span>
-<span class="sd">    &quot;last_name&quot;: &quot;Doe&quot;,</span>
-<span class="sd">    &quot;username&quot;: &quot;johndoe&quot;,</span>
-<span class="sd">    &quot;email&quot;: &quot;johndoe@example.com&quot;,</span>
-<span class="sd">    &quot;phone_number&quot;: &quot;1234567890&quot;,</span>
-<span class="sd">    &quot;password1&quot;: &quot;yourpassword&quot;,</span>
-<span class="sd">    &quot;password2&quot;: &quot;yourpassword&quot;,</span>
-<span class="sd">    &quot;user_role&quot;: &quot;vendor&quot;,</span>
-<span class="sd">    &quot;vendor&quot;: {</span>
-<span class="sd">        &quot;vendor_name&quot;: &quot;ABC Corporation&quot;,</span>
-<span class="sd">        &quot;address&quot;: &quot;123 Main St, Cityville&quot;,</span>
-<span class="sd">        &quot;vendor_certified&quot;: true,</span>
-<span class="sd">        &quot;vendor_type&quot;: &quot;supplier&quot;,</span>
-<span class="sd">        &quot;contract_expiry_date&quot;: &quot;2023-12-31&quot;,</span>
-<span class="sd">        &quot;vendor_rating&quot;: 4.5</span>
-<span class="sd">    }</span>
-<span class="sd">}</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-
-<div class="viewcode-block" id="RegisterSerializer">
-<a class="viewcode-back" href="../../modules/accounts.html#accounts.serializers.RegisterSerializer">[docs]</a>
-<span class="k">class</span> <span class="nc">RegisterSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
+<div class="viewcode-block" id="ProcurementOfficerRegisterSerializer">
+<a class="viewcode-back" href="../../modules/accounts.html#accounts.serializers.ProcurementOfficerRegisterSerializer">[docs]</a>
+<span class="k">class</span> <span class="nc">ProcurementOfficerRegisterSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
     <span class="n">password1</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
         <span class="n">write_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -222,8 +200,8 @@
         <span class="n">write_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;input_type&quot;</span><span class="p">:</span> <span class="s2">&quot;password&quot;</span><span class="p">}</span>
     <span class="p">)</span>
 
-<div class="viewcode-block" id="RegisterSerializer.Meta">
-<a class="viewcode-back" href="../../modules/accounts.html#accounts.serializers.RegisterSerializer.Meta">[docs]</a>
+<div class="viewcode-block" id="ProcurementOfficerRegisterSerializer.Meta">
+<a class="viewcode-back" href="../../modules/accounts.html#accounts.serializers.ProcurementOfficerRegisterSerializer.Meta">[docs]</a>
     <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">User</span>
         <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span>
@@ -234,12 +212,11 @@
             <span class="s2">&quot;phone_number&quot;</span><span class="p">,</span>
             <span class="s2">&quot;password1&quot;</span><span class="p">,</span>
             <span class="s2">&quot;password2&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;user_role&quot;</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="RegisterSerializer.validate">
-<a class="viewcode-back" href="../../modules/accounts.html#accounts.serializers.RegisterSerializer.validate">[docs]</a>
+<div class="viewcode-block" id="ProcurementOfficerRegisterSerializer.validate">
+<a class="viewcode-back" href="../../modules/accounts.html#accounts.serializers.ProcurementOfficerRegisterSerializer.validate">[docs]</a>
     <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attrs</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;password1&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;password2&quot;</span><span class="p">]:</span>
             <span class="k">raise</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span>
@@ -249,8 +226,8 @@
         <span class="k">return</span> <span class="n">attrs</span></div>
 
 
-<div class="viewcode-block" id="RegisterSerializer.create">
-<a class="viewcode-back" href="../../modules/accounts.html#accounts.serializers.RegisterSerializer.create">[docs]</a>
+<div class="viewcode-block" id="ProcurementOfficerRegisterSerializer.create">
+<a class="viewcode-back" href="../../modules/accounts.html#accounts.serializers.ProcurementOfficerRegisterSerializer.create">[docs]</a>
     <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">validated_data</span><span class="p">):</span>
         <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span>
             <span class="n">username</span><span class="o">=</span><span class="n">validated_data</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">],</span>
@@ -259,21 +236,85 @@
             <span class="n">email</span><span class="o">=</span><span class="n">validated_data</span><span class="p">[</span><span class="s2">&quot;email&quot;</span><span class="p">],</span>
             <span class="n">phone_number</span><span class="o">=</span><span class="n">validated_data</span><span class="p">[</span><span class="s2">&quot;phone_number&quot;</span><span class="p">],</span>
             <span class="n">password</span><span class="o">=</span><span class="n">validated_data</span><span class="p">[</span><span class="s2">&quot;password1&quot;</span><span class="p">],</span>
-            <span class="n">user_role</span><span class="o">=</span><span class="n">validated_data</span><span class="p">[</span><span class="s2">&quot;user_role&quot;</span><span class="p">],</span>
+            <span class="n">user_role</span><span class="o">=</span><span class="s2">&quot;procurement_officer&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
-        <span class="c1"># Check if the user role is &#39;vendor&#39; and create additional vendor info</span>
-        <span class="k">if</span> <span class="n">validated_data</span><span class="p">[</span><span class="s2">&quot;user_role&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;vendor&quot;</span><span class="p">:</span>
-            <span class="n">vendor_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;vendor&quot;</span><span class="p">,</span> <span class="p">{})</span>
-            <span class="n">vendor</span> <span class="o">=</span> <span class="n">Vendor</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
-                <span class="n">vendor_name</span><span class="o">=</span><span class="n">vendor_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;vendor_name&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span>
-                <span class="n">address</span><span class="o">=</span><span class="n">vendor_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;address&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span>
-                <span class="n">vendor_certified</span><span class="o">=</span><span class="n">vendor_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;vendor_certified&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
-                <span class="n">vendor_type</span><span class="o">=</span><span class="n">vendor_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;vendor_type&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span>
-                <span class="n">contract_expiry_date</span><span class="o">=</span><span class="n">vendor_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;contract_expiry_date&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-                <span class="n">vendor_rating</span><span class="o">=</span><span class="n">vendor_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;vendor_rating&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
-                <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span>
+        <span class="k">return</span> <span class="n">user</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="VendorInfoSerializer">
+<a class="viewcode-back" href="../../modules/accounts.html#accounts.serializers.VendorInfoSerializer">[docs]</a>
+<span class="k">class</span> <span class="nc">VendorInfoSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
+<div class="viewcode-block" id="VendorInfoSerializer.Meta">
+<a class="viewcode-back" href="../../modules/accounts.html#accounts.serializers.VendorInfoSerializer.Meta">[docs]</a>
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Vendor</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;vendor_name&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;address&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;vendor_certified&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;vendor_type&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;contract_expiry_date&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;vendor_rating&quot;</span><span class="p">,</span>
+        <span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="VendorRegisterSerializer">
+<a class="viewcode-back" href="../../modules/accounts.html#accounts.serializers.VendorRegisterSerializer">[docs]</a>
+<span class="k">class</span> <span class="nc">VendorRegisterSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
+    <span class="n">password1</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">write_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;input_type&quot;</span><span class="p">:</span> <span class="s2">&quot;password&quot;</span><span class="p">},</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">validate_password</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="n">password2</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">write_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;input_type&quot;</span><span class="p">:</span> <span class="s2">&quot;password&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+
+    <span class="n">vendor_info</span> <span class="o">=</span> <span class="n">VendorInfoSerializer</span><span class="p">(</span><span class="n">write_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<div class="viewcode-block" id="VendorRegisterSerializer.Meta">
+<a class="viewcode-back" href="../../modules/accounts.html#accounts.serializers.VendorRegisterSerializer.Meta">[docs]</a>
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">User</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;username&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;email&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;phone_number&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;password1&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;password2&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;vendor_info&quot;</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="VendorRegisterSerializer.validate">
+<a class="viewcode-back" href="../../modules/accounts.html#accounts.serializers.VendorRegisterSerializer.validate">[docs]</a>
+    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attrs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;password1&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;password2&quot;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span>
+                <span class="p">{</span><span class="s2">&quot;password1&quot;</span><span class="p">:</span> <span class="s2">&quot;Password fields don&#39;t match.&quot;</span><span class="p">}</span>
             <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">attrs</span></div>
+
+
+<div class="viewcode-block" id="VendorRegisterSerializer.create">
+<a class="viewcode-back" href="../../modules/accounts.html#accounts.serializers.VendorRegisterSerializer.create">[docs]</a>
+    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">validated_data</span><span class="p">):</span>
+        <span class="n">vendor_data</span> <span class="o">=</span> <span class="n">validated_data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;vendor_info&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">password1</span> <span class="o">=</span> <span class="n">validated_data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;password1&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">password2</span> <span class="o">=</span> <span class="n">validated_data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;password2&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span><span class="n">user_role</span><span class="o">=</span><span class="s2">&quot;vendor&quot;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">password1</span><span class="p">,</span> <span class="o">**</span><span class="n">validated_data</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">vendor_data</span><span class="p">:</span>
+            <span class="n">Vendor</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span> <span class="o">**</span><span class="n">vendor_data</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">user</span></div>
 </div>

@@ -179,9 +179,11 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/accounts.html#accounts.serializers.RegisterSerializer.create">create() (accounts.serializers.RegisterSerializer method)</a>
+      <li><a href="modules/accounts.html#accounts.serializers.ProcurementOfficerRegisterSerializer.create">create() (accounts.serializers.ProcurementOfficerRegisterSerializer method)</a>
 
       <ul>
+        <li><a href="modules/accounts.html#accounts.serializers.VendorRegisterSerializer.create">(accounts.serializers.VendorRegisterSerializer method)</a>
+</li>
         <li><a href="modules/accounts.html#accounts.views.PasswordResetView.create">(accounts.views.PasswordResetView method)</a>
 </li>
       </ul></li>
@@ -195,11 +197,11 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/inventory.html#inventory.models.HistoricalInventory.date">date (inventory.models.HistoricalInventory attribute)</a>
-</li>
       <li><a href="modules/inventory.html#inventory.models.Inventory.date_added">date_added (inventory.models.Inventory attribute)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.models.User.date_joined">date_joined (accounts.models.User attribute)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.models.HistoricalInventory.datetime">datetime (inventory.models.HistoricalInventory attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -231,12 +233,18 @@
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/accounts.html#accounts.serializers.ProfileSerializer.Meta.fields">fields (accounts.serializers.ProfileSerializer.Meta attribute)</a>
+      <li><a href="modules/accounts.html#accounts.serializers.ProcurementOfficerRegisterSerializer.Meta.fields">fields (accounts.serializers.ProcurementOfficerRegisterSerializer.Meta attribute)</a>
 
       <ul>
-        <li><a href="modules/accounts.html#accounts.serializers.RegisterSerializer.Meta.fields">(accounts.serializers.RegisterSerializer.Meta attribute)</a>
+        <li><a href="modules/accounts.html#accounts.serializers.ProfileSerializer.Meta.fields">(accounts.serializers.ProfileSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/accounts.html#accounts.serializers.VendorInfoSerializer.Meta.fields">(accounts.serializers.VendorInfoSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/accounts.html#accounts.serializers.VendorRegisterSerializer.Meta.fields">(accounts.serializers.VendorRegisterSerializer.Meta attribute)</a>
 </li>
         <li><a href="modules/accounts.html#accounts.serializers.VendorSerializer.Meta.fields">(accounts.serializers.VendorSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/accounts.html#accounts.views.DeleteUserProfileView.fields">(accounts.views.DeleteUserProfileView attribute)</a>
 </li>
         <li><a href="modules/inventory.html#inventory.serializers.HistoricalInventorySerializer.Meta.fields">(inventory.serializers.HistoricalInventorySerializer.Meta attribute)</a>
 </li>
@@ -255,11 +263,11 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/accounts.html#accounts.models.Vendor.get_next_by_contract_expiry_date">get_next_by_contract_expiry_date() (accounts.models.Vendor method)</a>
 </li>
-      <li><a href="modules/inventory.html#inventory.models.HistoricalInventory.get_next_by_date">get_next_by_date() (inventory.models.HistoricalInventory method)</a>
-</li>
       <li><a href="modules/inventory.html#inventory.models.Inventory.get_next_by_date_added">get_next_by_date_added() (inventory.models.Inventory method)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.models.User.get_next_by_date_joined">get_next_by_date_joined() (accounts.models.User method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.models.HistoricalInventory.get_next_by_datetime">get_next_by_datetime() (inventory.models.HistoricalInventory method)</a>
 </li>
       <li><a href="modules/inventory.html#inventory.models.Inventory.get_next_by_last_updated">get_next_by_last_updated() (inventory.models.Inventory method)</a>
 </li>
@@ -277,13 +285,13 @@
       </ul></li>
       <li><a href="modules/accounts.html#accounts.models.Vendor.get_previous_by_contract_expiry_date">get_previous_by_contract_expiry_date() (accounts.models.Vendor method)</a>
 </li>
-      <li><a href="modules/inventory.html#inventory.models.HistoricalInventory.get_previous_by_date">get_previous_by_date() (inventory.models.HistoricalInventory method)</a>
-</li>
       <li><a href="modules/inventory.html#inventory.models.Inventory.get_previous_by_date_added">get_previous_by_date_added() (inventory.models.Inventory method)</a>
+</li>
+      <li><a href="modules/accounts.html#accounts.models.User.get_previous_by_date_joined">get_previous_by_date_joined() (accounts.models.User method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/accounts.html#accounts.models.User.get_previous_by_date_joined">get_previous_by_date_joined() (accounts.models.User method)</a>
+      <li><a href="modules/inventory.html#inventory.models.HistoricalInventory.get_previous_by_datetime">get_previous_by_datetime() (inventory.models.HistoricalInventory method)</a>
 </li>
       <li><a href="modules/inventory.html#inventory.models.Inventory.get_previous_by_last_updated">get_previous_by_last_updated() (inventory.models.Inventory method)</a>
 </li>
@@ -485,12 +493,18 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/accounts.html#accounts.serializers.ProfileSerializer.Meta.model">model (accounts.serializers.ProfileSerializer.Meta attribute)</a>
+      <li><a href="modules/accounts.html#accounts.serializers.ProcurementOfficerRegisterSerializer.Meta.model">model (accounts.serializers.ProcurementOfficerRegisterSerializer.Meta attribute)</a>
 
       <ul>
-        <li><a href="modules/accounts.html#accounts.serializers.RegisterSerializer.Meta.model">(accounts.serializers.RegisterSerializer.Meta attribute)</a>
+        <li><a href="modules/accounts.html#accounts.serializers.ProfileSerializer.Meta.model">(accounts.serializers.ProfileSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/accounts.html#accounts.serializers.VendorInfoSerializer.Meta.model">(accounts.serializers.VendorInfoSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/accounts.html#accounts.serializers.VendorRegisterSerializer.Meta.model">(accounts.serializers.VendorRegisterSerializer.Meta attribute)</a>
 </li>
         <li><a href="modules/accounts.html#accounts.serializers.VendorSerializer.Meta.model">(accounts.serializers.VendorSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/accounts.html#accounts.views.DeleteUserProfileView.model">(accounts.views.DeleteUserProfileView attribute)</a>
 </li>
         <li><a href="modules/inventory.html#inventory.serializers.HistoricalInventorySerializer.Meta.model">(inventory.serializers.HistoricalInventorySerializer.Meta attribute)</a>
 </li>
@@ -601,7 +615,9 @@
 </li>
         <li><a href="modules/accounts.html#accounts.views.PasswordResetView.permission_classes">(accounts.views.PasswordResetView attribute)</a>
 </li>
-        <li><a href="modules/accounts.html#accounts.views.RegisterView.permission_classes">(accounts.views.RegisterView attribute)</a>
+        <li><a href="modules/accounts.html#accounts.views.ProcurementOfficerRegisterView.permission_classes">(accounts.views.ProcurementOfficerRegisterView attribute)</a>
+</li>
+        <li><a href="modules/accounts.html#accounts.views.VendorRegisterView.permission_classes">(accounts.views.VendorRegisterView attribute)</a>
 </li>
         <li><a href="modules/accounts.html#accounts.views.VendorView.permission_classes">(accounts.views.VendorView attribute)</a>
 </li>
@@ -628,6 +644,12 @@
 </li>
       <li><a href="modules/inventory.html#inventory.models.Inventory.procurement_officer_id">procurement_officer_id (inventory.models.Inventory attribute)</a>
 </li>
+      <li><a href="modules/accounts.html#accounts.serializers.ProcurementOfficerRegisterSerializer">ProcurementOfficerRegisterSerializer (class in accounts.serializers)</a>
+</li>
+      <li><a href="modules/accounts.html#accounts.serializers.ProcurementOfficerRegisterSerializer.Meta">ProcurementOfficerRegisterSerializer.Meta (class in accounts.serializers)</a>
+</li>
+      <li><a href="modules/accounts.html#accounts.views.ProcurementOfficerRegisterView">ProcurementOfficerRegisterView (class in accounts.views)</a>
+</li>
       <li><a href="modules/accounts.html#accounts.serializers.ProfileSerializer">ProfileSerializer (class in accounts.serializers)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.serializers.ProfileSerializer.Meta">ProfileSerializer.Meta (class in accounts.serializers)</a>
@@ -643,11 +665,13 @@
       <ul>
         <li><a href="modules/accounts.html#accounts.views.DeleteUserProfileView.queryset">(accounts.views.DeleteUserProfileView attribute)</a>
 </li>
-        <li><a href="modules/accounts.html#accounts.views.RegisterView.queryset">(accounts.views.RegisterView attribute)</a>
+        <li><a href="modules/accounts.html#accounts.views.ProcurementOfficerRegisterView.queryset">(accounts.views.ProcurementOfficerRegisterView attribute)</a>
 </li>
         <li><a href="modules/accounts.html#accounts.views.UpdateUserProfileView.queryset">(accounts.views.UpdateUserProfileView attribute)</a>
 </li>
         <li><a href="modules/accounts.html#accounts.views.UserProfileView.queryset">(accounts.views.UserProfileView attribute)</a>
+</li>
+        <li><a href="modules/accounts.html#accounts.views.VendorRegisterView.queryset">(accounts.views.VendorRegisterView attribute)</a>
 </li>
         <li><a href="modules/accounts.html#accounts.views.VendorView.queryset">(accounts.views.VendorView attribute)</a>
 </li>
@@ -660,16 +684,10 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/accounts.html#accounts.serializers.RegisterSerializer">RegisterSerializer (class in accounts.serializers)</a>
-</li>
-      <li><a href="modules/accounts.html#accounts.serializers.RegisterSerializer.Meta">RegisterSerializer.Meta (class in accounts.serializers)</a>
+      <li><a href="modules/accounts.html#accounts.tests.RegisterViewTests">RegisterViewTests (class in accounts.tests)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/accounts.html#accounts.views.RegisterView">RegisterView (class in accounts.views)</a>
-</li>
-      <li><a href="modules/accounts.html#accounts.tests.RegisterViewTests">RegisterViewTests (class in accounts.tests)</a>
-</li>
       <li><a href="modules/inventory.html#inventory.models.Inventory.reorder_level">reorder_level (inventory.models.Inventory attribute)</a>
 </li>
   </ul></td>
@@ -681,17 +699,21 @@
       <li><a href="modules/accounts.html#accounts.views.ChangePasswordView.serializer_class">serializer_class (accounts.views.ChangePasswordView attribute)</a>
 
       <ul>
+        <li><a href="modules/accounts.html#accounts.views.DeleteUserProfileView.serializer_class">(accounts.views.DeleteUserProfileView attribute)</a>
+</li>
         <li><a href="modules/accounts.html#accounts.views.MyTokenObtainPairView.serializer_class">(accounts.views.MyTokenObtainPairView attribute)</a>
 </li>
         <li><a href="modules/accounts.html#accounts.views.PasswordResetConfirmView.serializer_class">(accounts.views.PasswordResetConfirmView attribute)</a>
 </li>
         <li><a href="modules/accounts.html#accounts.views.PasswordResetView.serializer_class">(accounts.views.PasswordResetView attribute)</a>
 </li>
-        <li><a href="modules/accounts.html#accounts.views.RegisterView.serializer_class">(accounts.views.RegisterView attribute)</a>
+        <li><a href="modules/accounts.html#accounts.views.ProcurementOfficerRegisterView.serializer_class">(accounts.views.ProcurementOfficerRegisterView attribute)</a>
 </li>
         <li><a href="modules/accounts.html#accounts.views.UpdateUserProfileView.serializer_class">(accounts.views.UpdateUserProfileView attribute)</a>
 </li>
         <li><a href="modules/accounts.html#accounts.views.UserProfileView.serializer_class">(accounts.views.UserProfileView attribute)</a>
+</li>
+        <li><a href="modules/accounts.html#accounts.views.VendorRegisterView.serializer_class">(accounts.views.VendorRegisterView attribute)</a>
 </li>
         <li><a href="modules/accounts.html#accounts.views.VendorView.serializer_class">(accounts.views.VendorView attribute)</a>
 </li>
@@ -895,7 +917,9 @@
       <ul>
         <li><a href="modules/accounts.html#accounts.serializers.PasswordResetConfirmSerializer.validate">(accounts.serializers.PasswordResetConfirmSerializer method)</a>
 </li>
-        <li><a href="modules/accounts.html#accounts.serializers.RegisterSerializer.validate">(accounts.serializers.RegisterSerializer method)</a>
+        <li><a href="modules/accounts.html#accounts.serializers.ProcurementOfficerRegisterSerializer.validate">(accounts.serializers.ProcurementOfficerRegisterSerializer method)</a>
+</li>
+        <li><a href="modules/accounts.html#accounts.serializers.VendorRegisterSerializer.validate">(accounts.serializers.VendorRegisterSerializer method)</a>
 </li>
       </ul></li>
       <li><a href="modules/accounts.html#accounts.serializers.PasswordResetSerializer.validate_email">validate_email() (accounts.serializers.PasswordResetSerializer method)</a>
@@ -910,19 +934,29 @@
 </li>
       <li><a href="modules/accounts.html#accounts.models.Vendor.MultipleObjectsReturned">Vendor.MultipleObjectsReturned</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/accounts.html#accounts.models.Vendor.vendor_certified">vendor_certified (accounts.models.Vendor attribute)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.models.Vendor.vendor_name">vendor_name (accounts.models.Vendor attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/accounts.html#accounts.models.Vendor.vendor_rating">vendor_rating (accounts.models.Vendor attribute)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.models.Vendor.vendor_type">vendor_type (accounts.models.Vendor attribute)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.models.Vendor.VENDOR_TYPE_CHOICES">VENDOR_TYPE_CHOICES (accounts.models.Vendor attribute)</a>
 </li>
+      <li><a href="modules/accounts.html#accounts.serializers.VendorInfoSerializer">VendorInfoSerializer (class in accounts.serializers)</a>
+</li>
+      <li><a href="modules/accounts.html#accounts.serializers.VendorInfoSerializer.Meta">VendorInfoSerializer.Meta (class in accounts.serializers)</a>
+</li>
       <li><a href="modules/accounts.html#accounts.tests.VendorListViewTests">VendorListViewTests (class in accounts.tests)</a>
+</li>
+      <li><a href="modules/accounts.html#accounts.serializers.VendorRegisterSerializer">VendorRegisterSerializer (class in accounts.serializers)</a>
+</li>
+      <li><a href="modules/accounts.html#accounts.serializers.VendorRegisterSerializer.Meta">VendorRegisterSerializer.Meta (class in accounts.serializers)</a>
+</li>
+      <li><a href="modules/accounts.html#accounts.views.VendorRegisterView">VendorRegisterView (class in accounts.views)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.serializers.VendorSerializer">VendorSerializer (class in accounts.serializers)</a>
 </li>
