@@ -229,22 +229,22 @@ paths:
               schema:
                 $ref: '#/components/schemas/Profile'
           description: ''
-  /accounts/register/:
+  /accounts/register/procurement-officer/:
     post:
-      operationId: accounts_register_create
+      operationId: accounts_register_procurement_officer_create
       tags:
       - accounts
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Register'
+              $ref: '#/components/schemas/ProcurementOfficerRegister'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/Register'
+              $ref: '#/components/schemas/ProcurementOfficerRegister'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/Register'
+              $ref: '#/components/schemas/ProcurementOfficerRegister'
         required: true
       security:
       - jwtAuth: []
@@ -254,7 +254,34 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Register'
+                $ref: '#/components/schemas/ProcurementOfficerRegister'
+          description: ''
+  /accounts/register/vendor/:
+    post:
+      operationId: accounts_register_vendor_create
+      tags:
+      - accounts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VendorRegister'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/VendorRegister'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/VendorRegister'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorRegister'
           description: ''
   /accounts/token/:
     post:
@@ -828,34 +855,7 @@ components:
           nullable: true
           pattern: ^\d{10}$
           maxLength: 10
-    Profile:
-      type: object
-      properties:
-        first_name:
-          type: string
-          maxLength: 150
-        last_name:
-          type: string
-          maxLength: 150
-        username:
-          type: string
-          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
-            only.
-          pattern: ^[\w.@+-]+$
-          maxLength: 150
-        email:
-          type: string
-          format: email
-          maxLength: 254
-        phone_number:
-          type: string
-          nullable: true
-          pattern: ^\d{10}$
-          maxLength: 10
-      required:
-      - email
-      - username
-    Register:
+    ProcurementOfficerRegister:
       type: object
       properties:
         first_name:
@@ -885,13 +885,37 @@ components:
         password2:
           type: string
           writeOnly: true
-        user_role:
-          $ref: '#/components/schemas/UserRoleEnum'
       required:
       - email
       - password1
       - password2
-      - user_role
+      - username
+    Profile:
+      type: object
+      properties:
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        phone_number:
+          type: string
+          nullable: true
+          pattern: ^\d{10}$
+          maxLength: 10
+      required:
+      - email
       - username
     TokenRefresh:
       type: object
@@ -912,14 +936,6 @@ components:
           writeOnly: true
       required:
       - token
-    UserRoleEnum:
-      enum:
-      - procurement_officer
-      - vendor
-      type: string
-      description: |-
-        * `procurement_officer` - Procurement Officer
-        * `vendor` - Vendor
     Vendor:
       type: object
       properties:
@@ -953,6 +969,72 @@ components:
       - vendor_name
       - vendor_rating
       - vendor_type
+    VendorInfo:
+      type: object
+      properties:
+        vendor_name:
+          type: string
+          maxLength: 255
+        address:
+          type: string
+        vendor_certified:
+          type: boolean
+        vendor_type:
+          $ref: '#/components/schemas/VendorTypeEnum'
+        contract_expiry_date:
+          type: string
+          format: date
+        vendor_rating:
+          type: number
+          format: double
+          maximum: 5.0
+          minimum: 0.0
+      required:
+      - address
+      - contract_expiry_date
+      - vendor_name
+      - vendor_rating
+      - vendor_type
+    VendorRegister:
+      type: object
+      properties:
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        phone_number:
+          type: string
+          nullable: true
+          pattern: ^\d{10}$
+          maxLength: 10
+        password1:
+          type: string
+          writeOnly: true
+        password2:
+          type: string
+          writeOnly: true
+        vendor_info:
+          allOf:
+          - $ref: '#/components/schemas/VendorInfo'
+          writeOnly: true
+      required:
+      - email
+      - password1
+      - password2
+      - username
+      - vendor_info
     VendorTypeEnum:
       enum:
       - supplier

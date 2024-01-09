@@ -170,7 +170,8 @@ class PasswordResetConfirmViewTests(APITestCase):
 class RegisterViewTests(TestCase):
     def setUp(self):
         self.client = APIClient()
-        self.register_url = reverse("user_register")
+        self.procurement_officer_register_url = reverse("procurement_officer_register")
+        self.vendor_register_url = reverse("vendor_register")
 
     def test_register_procurement_officer_user(self):
         data = {
@@ -181,9 +182,8 @@ class RegisterViewTests(TestCase):
             "phone_number": "1234567890",
             "password1": "yourpassword",
             "password2": "yourpassword",
-            "user_role": "procurement_officer",
         }
-        response = self.client.post(self.register_url, data, format="json")
+        response = self.client.post(self.procurement_officer_register_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(User.objects.count(), 1)
         user = User.objects.get()
@@ -202,8 +202,7 @@ class RegisterViewTests(TestCase):
             "phone_number": "9876543210",
             "password1": "yourpassword",
             "password2": "yourpassword",
-            "user_role": "vendor",
-            "vendor": {
+            "vendor_info": {
                 "vendor_name": "ABC Corporation",
                 "address": "123 Main St, Cityville",
                 "vendor_certified": True,
@@ -212,7 +211,7 @@ class RegisterViewTests(TestCase):
                 "vendor_rating": 4.5,
             },
         }
-        response = self.client.post(self.register_url, data, format="json")
+        response = self.client.post(self.vendor_register_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(User.objects.count(), 1)
         user = User.objects.get()
@@ -238,9 +237,8 @@ class RegisterViewTests(TestCase):
             "phone_number": "1234567890",
             "password1": "yourpassword",
             "password2": "mismatchedpassword",
-            "user_role": "procurement_officer",
         }
-        response = self.client.post(self.register_url, data, format="json")
+        response = self.client.post(self.procurement_officer_register_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(User.objects.count(), 0)
 
@@ -253,9 +251,8 @@ class RegisterViewTests(TestCase):
             "phone_number": "1234567890",
             "password1": "yourpassword",
             "password2": "yourpassword",
-            "user_role": "procurement_officer",
         }
-        response = self.client.post(self.register_url, data, format="json")
+        response = self.client.post(self.procurement_officer_register_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(User.objects.count(), 0)
 
@@ -268,9 +265,8 @@ class RegisterViewTests(TestCase):
             "phone_number": "invalidphonenumber",
             "password1": "yourpassword",
             "password2": "yourpassword",
-            "user_role": "procurement_officer",
         }
-        response = self.client.post(self.register_url, data, format="json")
+        response = self.client.post(self.procurement_officer_register_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(User.objects.count(), 0)
 

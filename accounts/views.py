@@ -13,7 +13,8 @@ from .serializers import (
     ChangePasswordSerializer,
     PasswordResetSerializer,
     PasswordResetConfirmSerializer,
-    RegisterSerializer,
+    ProcurementOfficerRegisterSerializer,
+    VendorRegisterSerializer,
     ProfileSerializer,
     VendorSerializer,
 )
@@ -91,10 +92,16 @@ class PasswordResetConfirmView(generics.UpdateAPIView):
         return Response({"detail": "Password reset successful"})
 
 
-class RegisterView(generics.CreateAPIView):
+class ProcurementOfficerRegisterView(generics.CreateAPIView):
     permission_classes = [AllowAny]
     queryset = User.objects.all()
-    serializer_class = RegisterSerializer
+    serializer_class = ProcurementOfficerRegisterSerializer
+
+
+class VendorRegisterView(generics.CreateAPIView):
+    permission_classes = [AllowAny]
+    queryset = User.objects.all()
+    serializer_class = VendorRegisterSerializer
 
 
 class UserProfileView(generics.RetrieveAPIView):
@@ -145,7 +152,8 @@ def getRoutes(request):
         "/change-password",
         "/password-reset",
         "/password-reset-confirm/<int:pk>/<str:token>/",
-        "/register",
+        "/register/procurement-officer",
+        "/register/vendor",
         "/profile",
         "/profile/update",
         "/profile/delete",

@@ -1,4 +1,5 @@
 from django.contrib.auth.password_validation import validate_password
+from django.core.validators import MaxValueValidator, MinValueValidator
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
 from .models import User, Vendor
@@ -87,29 +88,7 @@ class PasswordResetConfirmSerializer(serializers.Serializer):
         return value
 
 
-"""
-{
-    "first_name": "John",
-    "last_name": "Doe",
-    "username": "johndoe",
-    "email": "johndoe@example.com",
-    "phone_number": "1234567890",
-    "password1": "yourpassword",
-    "password2": "yourpassword",
-    "user_role": "vendor",
-    "vendor": {
-        "vendor_name": "ABC Corporation",
-        "address": "123 Main St, Cityville",
-        "vendor_certified": true,
-        "vendor_type": "supplier",
-        "contract_expiry_date": "2023-12-31",
-        "vendor_rating": 4.5
-    }
-}
-"""
-
-
-class RegisterSerializer(serializers.ModelSerializer):
+class ProcurementOfficerRegisterSerializer(serializers.ModelSerializer):
     password1 = serializers.CharField(
         write_only=True,
         required=True,
@@ -130,7 +109,6 @@ class RegisterSerializer(serializers.ModelSerializer):
             "phone_number",
             "password1",
             "password2",
-            "user_role",
         )
 
     def validate(self, attrs):
@@ -149,21 +127,67 @@ class RegisterSerializer(serializers.ModelSerializer):
             email=validated_data["email"],
             phone_number=validated_data["phone_number"],
             password=validated_data["password1"],
-            user_role=validated_data["user_role"],
+            user_role="procurement_officer",
         )
 
-        # Check if the user role is 'vendor' and create additional vendor info
-        if validated_data["user_role"] == "vendor":
-            vendor_data = self.initial_data.get("vendor", {})
-            vendor = Vendor.objects.create(
-                vendor_name=vendor_data.get("vendor_name", ""),
-                address=vendor_data.get("address", ""),
-                vendor_certified=vendor_data.get("vendor_certified", False),
-                vendor_type=vendor_data.get("vendor_type", ""),
-                contract_expiry_date=vendor_data.get("contract_expiry_date", None),
-                vendor_rating=vendor_data.get("vendor_rating", 0.0),
-                user=user,
+        return user
+
+
+class VendorInfoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Vendor
+        fields = (
+            "vendor_name",
+            "address",
+            "vendor_certified",
+            "vendor_type",
+            "contract_expiry_date",
+            "vendor_rating",
+        )
+
+
+class VendorRegisterSerializer(serializers.ModelSerializer):
+    password1 = serializers.CharField(
+        write_only=True,
+        required=True,
+        style={"input_type": "password"},
+        validators=[validate_password],
+    )
+    password2 = serializers.CharField(
+        write_only=True, required=True, style={"input_type": "password"}
+    )
+
+    vendor_info = VendorInfoSerializer(write_only=True, required=True)
+
+    class Meta:
+        model = User
+        fields = (
+            "first_name",
+            "last_name",
+            "username",
+            "email",
+            "phone_number",
+            "password1",
+            "password2",
+            "vendor_info",
+        )
+
+    def validate(self, attrs):
+        if attrs["password1"] != attrs["password2"]:
+            raise serializers.ValidationError(
+                {"password1": "Password fields don't match."}
             )
+
+        return attrs
+
+    def create(self, validated_data):
+        vendor_data = validated_data.pop("vendor_info", None)
+        password1 = validated_data.pop("password1", None)
+        password2 = validated_data.pop("password2", None)
+        user = User.objects.create_user(user_role="vendor", password=password1, **validated_data)
+
+        if vendor_data:
+            Vendor.objects.create(user=user, **vendor_data)
 
         return user
 
