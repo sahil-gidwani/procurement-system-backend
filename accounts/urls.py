@@ -16,8 +16,14 @@ urlpatterns = [
         views.PasswordResetConfirmView.as_view(),
         name="password_reset_confirm",
     ),
-    path("register/procurement-officer/", views.ProcurementOfficerRegisterView.as_view(), name="procurement_officer_register"),
-    path("register/vendor/", views.VendorRegisterView.as_view(), name="vendor_register"),
+    path(
+        "register/procurement-officer/",
+        views.ProcurementOfficerRegisterView.as_view(),
+        name="procurement_officer_register",
+    ),
+    path(
+        "register/vendor/", views.VendorRegisterView.as_view(), name="vendor_register"
+    ),
     path("profile/", views.UserProfileView.as_view(), name="user_profile"),
     path(
         "profile/update/",
