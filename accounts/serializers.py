@@ -183,7 +183,9 @@ class VendorRegisterSerializer(serializers.ModelSerializer):
         vendor_data = validated_data.pop("vendor_info", None)
         password1 = validated_data.pop("password1", None)
         password2 = validated_data.pop("password2", None)
-        user = User.objects.create_user(user_role="vendor", password=password1, **validated_data)
+        user = User.objects.create_user(
+            user_role="vendor", password=password1, **validated_data
+        )
 
         if vendor_data:
             Vendor.objects.create(user=user, **vendor_data)

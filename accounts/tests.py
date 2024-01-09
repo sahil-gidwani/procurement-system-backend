@@ -183,7 +183,9 @@ class RegisterViewTests(TestCase):
             "password1": "yourpassword",
             "password2": "yourpassword",
         }
-        response = self.client.post(self.procurement_officer_register_url, data, format="json")
+        response = self.client.post(
+            self.procurement_officer_register_url, data, format="json"
+        )
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(User.objects.count(), 1)
         user = User.objects.get()
@@ -238,7 +240,9 @@ class RegisterViewTests(TestCase):
             "password1": "yourpassword",
             "password2": "mismatchedpassword",
         }
-        response = self.client.post(self.procurement_officer_register_url, data, format="json")
+        response = self.client.post(
+            self.procurement_officer_register_url, data, format="json"
+        )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(User.objects.count(), 0)
 
@@ -252,7 +256,9 @@ class RegisterViewTests(TestCase):
             "password1": "yourpassword",
             "password2": "yourpassword",
         }
-        response = self.client.post(self.procurement_officer_register_url, data, format="json")
+        response = self.client.post(
+            self.procurement_officer_register_url, data, format="json"
+        )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(User.objects.count(), 0)
 
@@ -266,7 +272,9 @@ class RegisterViewTests(TestCase):
             "password1": "yourpassword",
             "password2": "yourpassword",
         }
-        response = self.client.post(self.procurement_officer_register_url, data, format="json")
+        response = self.client.post(
+            self.procurement_officer_register_url, data, format="json"
+        )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(User.objects.count(), 0)
 

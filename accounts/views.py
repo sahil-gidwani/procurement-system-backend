@@ -129,7 +129,7 @@ class DeleteUserProfileView(generics.DestroyAPIView):
     serializer_class = serializers.ModelSerializer
     queryset = User.objects.all()
     model = User
-    fields = '__all__'
+    fields = "__all__"
 
     def get_object(self):
         return self.request.user

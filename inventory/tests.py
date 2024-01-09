@@ -33,9 +33,7 @@ class InventoryModelsTestCase(TestCase):
         self.assertEqual(
             historical_inventory_item.stock_quantity, inventory_item.stock_quantity
         )
-        self.assertEqual(
-            historical_inventory_item.datetime, inventory_item.date_added
-        )
+        self.assertEqual(historical_inventory_item.datetime, inventory_item.date_added)
 
     def test_create_historical_inventory_on_update(self):
         inventory_item = Inventory.objects.create(
