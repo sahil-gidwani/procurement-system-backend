@@ -517,7 +517,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Inventory'
           description: ''
-  /inventory/historical/list/{inventory_id}/:
+  /inventory/historical/{inventory_id}/list/:
     get:
       operationId: inventory_historical_list_list
       parameters:
