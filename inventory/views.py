@@ -71,7 +71,7 @@ def getRoutes(request):
         "/<int:pk>",
         "/<int:pk>/update",
         "/<int:pk>/delete",
-        "/historical/list/<int:inventory_id>",
+        "/historical/<int:inventory_id>/list",
     ]
 
     return Response(routes)

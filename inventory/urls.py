@@ -13,7 +13,7 @@ urlpatterns = [
         "<int:pk>/delete/", views.InventoryDeleteView.as_view(), name="inventory_delete"
     ),
     path(
-        "historical/list/<int:inventory_id>/",
+        "historical/<int:inventory_id>/list/",
         views.HistoricalInventoryListView.as_view(),
         name="historical_inventory_list",
     ),
