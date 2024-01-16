@@ -9,6 +9,30 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from .models import User, Vendor
 
 
+# class ThrottleTestCase(TestCase):
+#     def setUp(self):
+#         self.test_user = User.objects.create_user(username='testuser', password='testpassword')
+#         self.client = APIClient()
+
+#     def test_anonymous_throttle(self):
+#         for _ in range(100):
+#             response = self.client.get(reverse('accounts_routes'))
+#             self.assertEqual(response.status_code, 200)
+
+#         response = self.client.get(reverse('accounts_routes'))
+#         self.assertEqual(response.status_code, 429)
+
+#     def test_authenticated_user_throttle(self):
+#         self.client.force_authenticate(user=self.test_user)
+
+#         for _ in range(1000):
+#             response = self.client.get(reverse('accounts_routes'))
+#             self.assertEqual(response.status_code, 200)
+
+#         response = self.client.get(reverse('accounts_routes'))
+#         self.assertEqual(response.status_code, 429)
+
+
 class TokenViewTests(APITestCase):
     def setUp(self):
         self.user = User.objects.create_user(
