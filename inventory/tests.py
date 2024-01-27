@@ -133,7 +133,6 @@ class InventoryViewsTestCase(TestCase):
             "stock_quantity": 100,
             "reorder_level": 20,
             "location": "Test Location",
-            "procurement_officer": self.procurement_officer.id,
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -148,7 +147,6 @@ class InventoryViewsTestCase(TestCase):
             "stock_quantity": 100,
             "reorder_level": 20,
             "location": "Test Location",
-            "procurement_officer": self.procurement_officer.id,
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)

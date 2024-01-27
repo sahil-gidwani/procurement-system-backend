@@ -23,6 +23,7 @@ class Inventory(models.Model):
 
 class HistoricalInventory(models.Model):
     stock_quantity = models.IntegerField()
+    demand = models.IntegerField(default=0)
     datetime = models.DateTimeField()
     inventory = models.ForeignKey(Inventory, on_delete=models.CASCADE)
 
@@ -33,7 +34,18 @@ class HistoricalInventory(models.Model):
 @receiver(post_save, sender=Inventory)
 def create_historical_inventory(sender, instance, created, **kwargs):
     timestamp = instance.last_updated if not created else instance.date_added
+    latest_historical_inventory = HistoricalInventory.objects.filter(
+        inventory=instance
+    ).order_by('-datetime').first()
+
+    if latest_historical_inventory:
+        demand = max(0, latest_historical_inventory.stock_quantity - instance.stock_quantity)
+    else:
+        demand = 0
 
     HistoricalInventory.objects.create(
-        stock_quantity=instance.stock_quantity, datetime=timestamp, inventory=instance
+        stock_quantity=instance.stock_quantity,
+        datetime=timestamp,
+        inventory=instance,
+        demand=demand
     )

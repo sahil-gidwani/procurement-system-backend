@@ -17,4 +17,9 @@ urlpatterns = [
         views.HistoricalInventoryListView.as_view(),
         name="historical_inventory_list",
     ),
+    path(
+        "forecast/<int:inventory_id>/",
+        views.arima_forecast,
+        name="arima_forecast",
+    ),
 ]
