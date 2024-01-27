@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.core.validators import MaxValueValidator, MinValueValidator
 from accounts.models import User
 
 
@@ -9,11 +10,9 @@ class Inventory(models.Model):
     description = models.TextField()
     unit_price = models.DecimalField(max_digits=10, decimal_places=2)
     stock_quantity = models.IntegerField()
-    reorder_level = models.IntegerField()
     location = models.CharField(max_length=255)
     date_added = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
-    expiration_date = models.DateField(null=True, blank=True)
     image = models.ImageField(upload_to="inventory", null=True, blank=True)
     procurement_officer = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -49,3 +48,20 @@ def create_historical_inventory(sender, instance, created, **kwargs):
         inventory=instance,
         demand=demand
     )
+
+
+class OptimizedInventory(models.Model):
+    demand = models.FloatField()
+    ordering_cost = models.FloatField()
+    holding_cost = models.FloatField()
+    lead_time = models.IntegerField(null=True, blank=True)
+    service_level = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(1.0)], null=True, blank=True)
+    safety_stock = models.FloatField(null=True, blank=True)
+    reorder_point = models.FloatField(null=True, blank=True)
+    shelf_life = models.IntegerField(null=True, blank=True)
+    storage_limit = models.IntegerField(null=True, blank=True)
+    eoq = models.FloatField(null=True, blank=True)
+    inventory = models.OneToOneField(Inventory, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.inventory.item_name)

@@ -576,6 +576,136 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedInventoryList'
           description: ''
+  /inventory/optimize/{inventory_id}/:
+    get:
+      operationId: inventory_optimize_retrieve
+      parameters:
+      - in: path
+        name: inventory_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - inventory
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OptimizedInventory'
+          description: ''
+  /inventory/optimize/{inventory_id}/create/:
+    post:
+      operationId: inventory_optimize_create_create
+      parameters:
+      - in: path
+        name: inventory_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - inventory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OptimizedInventory'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/OptimizedInventory'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/OptimizedInventory'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OptimizedInventory'
+          description: ''
+  /inventory/optimize/{inventory_id}/delete/:
+    delete:
+      operationId: inventory_optimize_delete_destroy
+      parameters:
+      - in: path
+        name: inventory_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - inventory
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /inventory/optimize/{inventory_id}/update/:
+    put:
+      operationId: inventory_optimize_update_update
+      parameters:
+      - in: path
+        name: inventory_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - inventory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OptimizedInventory'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/OptimizedInventory'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/OptimizedInventory'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OptimizedInventory'
+          description: ''
+    patch:
+      operationId: inventory_optimize_update_partial_update
+      parameters:
+      - in: path
+        name: inventory_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - inventory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedOptimizedInventory'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedOptimizedInventory'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedOptimizedInventory'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OptimizedInventory'
+          description: ''
 components:
   schemas:
     ChangePassword:
@@ -605,15 +735,17 @@ components:
           maximum: 9223372036854775807
           minimum: -9223372036854775808
           format: int64
+        demand:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
         datetime:
           type: string
           format: date-time
-        inventory:
-          type: integer
       required:
       - datetime
       - id
-      - inventory
       - stock_quantity
     Inventory:
       type: object
@@ -635,11 +767,6 @@ components:
           maximum: 9223372036854775807
           minimum: -9223372036854775808
           format: int64
-        reorder_level:
-          type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
         location:
           type: string
           maxLength: 255
@@ -651,16 +778,10 @@ components:
           type: string
           format: date-time
           readOnly: true
-        expiration_date:
-          type: string
-          format: date
-          nullable: true
         image:
           type: string
           format: uri
           nullable: true
-        procurement_officer:
-          type: integer
       required:
       - date_added
       - description
@@ -668,8 +789,6 @@ components:
       - item_name
       - last_updated
       - location
-      - procurement_officer
-      - reorder_level
       - stock_quantity
       - unit_price
     MyTokenObtainPair:
@@ -684,6 +803,68 @@ components:
       required:
       - password
       - username
+    OptimizedInventory:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        demand:
+          type: number
+          format: double
+        ordering_cost:
+          type: number
+          format: double
+        holding_cost:
+          type: number
+          format: double
+        lead_time:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+          nullable: true
+        service_level:
+          type: number
+          format: double
+          maximum: 1.0
+          minimum: 0.0
+          nullable: true
+        safety_stock:
+          type: number
+          format: double
+          readOnly: true
+          nullable: true
+        reorder_point:
+          type: number
+          format: double
+          readOnly: true
+          nullable: true
+        shelf_life:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+          nullable: true
+        storage_limit:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+          nullable: true
+        eoq:
+          type: number
+          format: double
+          readOnly: true
+          nullable: true
+      required:
+      - demand
+      - eoq
+      - holding_cost
+      - id
+      - ordering_cost
+      - reorder_point
+      - safety_stock
     PaginatedHistoricalInventoryList:
       type: object
       properties:
@@ -796,11 +977,6 @@ components:
           maximum: 9223372036854775807
           minimum: -9223372036854775808
           format: int64
-        reorder_level:
-          type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
         location:
           type: string
           maxLength: 255
@@ -812,16 +988,64 @@ components:
           type: string
           format: date-time
           readOnly: true
-        expiration_date:
-          type: string
-          format: date
-          nullable: true
         image:
           type: string
           format: uri
           nullable: true
-        procurement_officer:
+    PatchedOptimizedInventory:
+      type: object
+      properties:
+        id:
           type: integer
+          readOnly: true
+        demand:
+          type: number
+          format: double
+        ordering_cost:
+          type: number
+          format: double
+        holding_cost:
+          type: number
+          format: double
+        lead_time:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+          nullable: true
+        service_level:
+          type: number
+          format: double
+          maximum: 1.0
+          minimum: 0.0
+          nullable: true
+        safety_stock:
+          type: number
+          format: double
+          readOnly: true
+          nullable: true
+        reorder_point:
+          type: number
+          format: double
+          readOnly: true
+          nullable: true
+        shelf_life:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+          nullable: true
+        storage_limit:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+          nullable: true
+        eoq:
+          type: number
+          format: double
+          readOnly: true
+          nullable: true
     PatchedPasswordResetConfirm:
       type: object
       properties:

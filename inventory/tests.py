@@ -22,7 +22,6 @@ class InventoryModelsTestCase(TestCase):
             description="Test Description",
             unit_price=10.00,
             stock_quantity=100,
-            reorder_level=20,
             location="Test Location",
             procurement_officer=self.procurement_officer,
         )
@@ -41,7 +40,6 @@ class InventoryModelsTestCase(TestCase):
             description="Test Description",
             unit_price=10.00,
             stock_quantity=100,
-            reorder_level=20,
             location="Test Location",
             procurement_officer=self.procurement_officer,
         )
@@ -63,7 +61,6 @@ class InventoryModelsTestCase(TestCase):
             description="Test Description",
             unit_price=10.00,
             stock_quantity=100,
-            reorder_level=20,
             location="Test Location",
             procurement_officer=self.procurement_officer,
         )
@@ -131,7 +128,6 @@ class InventoryViewsTestCase(TestCase):
             "description": "Test Description",
             "unit_price": 10.00,
             "stock_quantity": 100,
-            "reorder_level": 20,
             "location": "Test Location",
         }
         response = self.client.post(url, data)
@@ -145,7 +141,6 @@ class InventoryViewsTestCase(TestCase):
             "description": "Test Description",
             "unit_price": 10.00,
             "stock_quantity": 100,
-            "reorder_level": 20,
             "location": "Test Location",
         }
         response = self.client.post(url, data)
@@ -157,7 +152,6 @@ class InventoryViewsTestCase(TestCase):
             description="Test Description",
             unit_price=10.00,
             stock_quantity=100,
-            reorder_level=20,
             location="Test Location",
             procurement_officer=self.procurement_officer,
         )
@@ -185,7 +179,6 @@ class InventoryViewsTestCase(TestCase):
             "description": "Updated Description",
             "unit_price": 15.00,
             "stock_quantity": 200,
-            "reorder_level": 30,
             "location": "Updated Location",
         }
         response = self.client.patch(url, data)
@@ -211,7 +204,6 @@ class InventoryViewsTestCase(TestCase):
             "description": "Updated Description",
             "unit_price": 15.00,
             "stock_quantity": 200,
-            "reorder_level": 30,
             "location": "Updated Location",
         }
         response = self.client.patch(url, data)
@@ -249,7 +241,6 @@ class InventoryViewsTestCase(TestCase):
             description="Test Description",
             unit_price=10.00,
             stock_quantity=100,
-            reorder_level=20,
             location="Test Location",
             procurement_officer=self.procurement_officer,
         )

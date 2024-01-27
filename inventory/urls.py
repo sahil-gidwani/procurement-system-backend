@@ -22,4 +22,24 @@ urlpatterns = [
         views.arima_forecast,
         name="arima_forecast",
     ),
+    path(
+        "optimize/<int:inventory_id>/",
+        views.OptimizedInventoryRetrieveAPIView.as_view(),
+        name="optimized_inventory_retrieve",
+    ),
+    path(
+        "optimize/<int:inventory_id>/create/",
+        views.OptimizedInventoryCreateAPIView.as_view(),
+        name="optimized_inventory_create",
+    ),
+    path(
+        "optimize/<int:inventory_id>/update/",
+        views.OptimizedInventoryUpdateAPIView.as_view(),
+        name="optimized_inventory_update"
+    ),
+    path(
+        "optimize/<int:inventory_id>/delete/",
+        views.OptimizedInventoryDestroyAPIView.as_view(),
+        name="optimized_inventory_delete"
+    ),
 ]
