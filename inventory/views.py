@@ -66,16 +66,7 @@ class HistoricalInventoryListView(generics.ListAPIView):
         return HistoricalInventory.objects.filter(inventory=inventory)
 
 
-def auto_arima(df):
-    # Resample the data to monthly frequency
-    monthly_demand = df.resample('M').sum()
-
-    # Check if there is enough data for forecasting (minimum 24 months, maximum 60 months)
-    if len(monthly_demand) < 24:
-        return JsonResponse({'error': 'Insufficient data for forecasting. Minimum 24 months of data required.'}, status=400)
-    elif len(monthly_demand) > 60:
-        monthly_demand = monthly_demand[-60:]  # Consider only the latest 60 months of data
-
+def calculate_auto_arima(monthly_demand):
     decomposed = seasonal_decompose(monthly_demand['demand'])
     data = monthly_demand['demand']
     trend = decomposed.trend
@@ -97,24 +88,24 @@ def auto_arima(df):
 
     forecast_results = model.predict(n_periods=12, return_conf_int=False)
 
-    trace1 = go.Scatter(x=monthly_demand.index, y=monthly_demand['demand'], mode='lines', name='Original Data')
+    trace1 = go.Scatter(x=monthly_demand.index, y=monthly_demand['demand'], mode='lines+markers', name='Original Data')
     forecast_dates = pd.date_range(start=monthly_demand.index[-1], periods=13, freq='M')[1:]  # Next 12 months
-    trace2 = go.Scatter(x=forecast_dates, y=forecast_results, mode='lines', name='Forecast Data')
+    trace2 = go.Scatter(x=forecast_dates, y=forecast_results, mode='lines+markers', name='Forecast Data')
     layout = go.Layout(title='Demand Forecast', xaxis=dict(title='Date'), yaxis=dict(title='Demand'), xaxis_rangeslider_visible=True)
     fig = go.Figure(data=[trace1, trace2], layout=layout)
     graph_json = pio.to_json(fig)
 
     forecast_data = {
+        'decomposed': decomposed_json,
         'forecast': list(forecast_results),
         'annual_forecast': sum(forecast_results),
-        'decomposed': decomposed_json,
         'graph': graph_json
     }
     return forecast_data
 
 
 # ! This decorator is used to exclude the endpoint from the OpenAPI schema
-@extend_schema(exclude=True)
+# @extend_schema(exclude=True)
 @api_view(["GET", "POST"])
 @permission_classes([IsAuthenticated, IsProcurementOfficer])
 def arima_forecast(request, inventory_id):
@@ -132,7 +123,16 @@ def arima_forecast(request, inventory_id):
         df['datetime'] = pd.to_datetime(df['datetime'])
         df.set_index('datetime', inplace=True)
 
-        forecast_data = auto_arima(df)
+        # Resample the data to monthly frequency
+        monthly_demand = df.resample('M').sum()
+
+        # Check if there is enough data for forecasting (minimum 24 months, maximum 60 months)
+        if len(monthly_demand) < 24:
+            return JsonResponse({'error': 'Insufficient data for forecasting. Minimum 24 months of data required.'}, status=400)
+        elif len(monthly_demand) > 60:
+            monthly_demand = monthly_demand[-60:]  # Consider only the latest 60 months of data
+
+        forecast_data = calculate_auto_arima(monthly_demand)
         return JsonResponse(forecast_data)
 
     elif request.method == "POST":
@@ -149,7 +149,16 @@ def arima_forecast(request, inventory_id):
         df['datetime'] = pd.to_datetime(df['datetime'])
         df.set_index('datetime', inplace=True)
 
-        forecast_data = auto_arima(df)
+        # Resample the data to monthly frequency
+        monthly_demand = df.resample('M').sum()
+
+        # Check if there is enough data for forecasting (minimum 24 months, maximum 60 months)
+        if len(monthly_demand) < 24:
+            return JsonResponse({'error': 'Insufficient data for forecasting. Minimum 24 months of data required.'}, status=400)
+        elif len(monthly_demand) > 60:
+            monthly_demand = monthly_demand[-60:]  # Consider only the latest 60 months of data
+
+        forecast_data = calculate_auto_arima(monthly_demand)
         return JsonResponse(forecast_data)
 
 
@@ -262,20 +271,20 @@ class OptimizedInventoryUpdateAPIView(generics.UpdateAPIView):
         shelf_life = validated_data.get('shelf_life')
         storage_limit = validated_data.get('storage_limit')
 
-        if demand is None:
-            demand = serializer.instance.demand
-        if ordering_cost is None:
-            ordering_cost = serializer.instance.ordering_cost
-        if holding_cost is None:
-            holding_cost = serializer.instance.holding_cost
-        if lead_time is None:
-            lead_time = serializer.instance.lead_time
-        if service_level is None:
-            service_level = serializer.instance.service_level
-        if shelf_life is None:
-            shelf_life = serializer.instance.shelf_life
-        if storage_limit is None:
-            storage_limit = serializer.instance.storage_limit
+        # if demand is None:
+        #     demand = serializer.instance.demand
+        # if ordering_cost is None:
+        #     ordering_cost = serializer.instance.ordering_cost
+        # if holding_cost is None:
+        #     holding_cost = serializer.instance.holding_cost
+        # if lead_time is None:
+        #     lead_time = serializer.instance.lead_time
+        # if service_level is None:
+        #     service_level = serializer.instance.service_level
+        # if shelf_life is None:
+        #     shelf_life = serializer.instance.shelf_life
+        # if storage_limit is None:
+        #     storage_limit = serializer.instance.storage_limit
 
         if lead_time is not None and service_level is not None:
             safety_stock, reorder_point = calculate_safety_stock_reorder_point(demand, lead_time, service_level)
@@ -303,6 +312,7 @@ class OptimizedInventoryUpdateAPIView(generics.UpdateAPIView):
 class BaseOptimizedInventoryAPIView(generics.GenericAPIView):
     permission_classes = [IsAuthenticated, IsProcurementOfficer]
     serializer_class = OptimizedInventorySerializer
+    lookup_field = 'inventory_id' 
 
     def get_queryset(self):
         inventory_id = self.kwargs.get("inventory_id")
