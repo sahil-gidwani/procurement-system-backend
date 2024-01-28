@@ -12,6 +12,7 @@ class InventoryModelsTestCase(TestCase):
         self.procurement_officer = User.objects.create_user(
             username="procurement_officer",
             email="procurement_officer@example.com",
+            gstin="12ABCDE1234F1Z5",
             password="testpassword",
             user_role="procurement_officer",
         )
@@ -87,12 +88,14 @@ class InventoryViewsTestCase(TestCase):
         self.procurement_officer = User.objects.create_user(
             username="procurement_officer",
             email="procurement_officer@example.com",
+            gstin="12ABCDE1234F1Z5",
             password="testpassword",
             user_role="procurement_officer",
         )
         self.vendor = User.objects.create_user(
             username="vendor",
             email="vendor@example.com",
+            gstin="22ABCDE1234F1Z5",
             password="testpassword",
             user_role="vendor",
         )
@@ -190,6 +193,7 @@ class InventoryViewsTestCase(TestCase):
         other_procurement_officer = User.objects.create_user(
             username="other_procurement_officer",
             email="other_procurement_officer@example.com",
+            gstin="32ABCDE1234F1Z5",
             password="testpassword",
             user_role="procurement_officer",
         )
@@ -221,6 +225,7 @@ class InventoryViewsTestCase(TestCase):
         other_procurement_officer = User.objects.create_user(
             username="other_procurement_officer",
             email="other_procurement_officer@example.com",
+            gstin="42ABCDE1234F1Z5",
             password="testpassword",
             user_role="procurement_officer",
         )

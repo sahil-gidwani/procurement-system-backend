@@ -39,6 +39,7 @@ class TokenViewTests(APITestCase):
             username="testuser",
             email="testuser@example.com",
             phone_number="1234567890",
+            gstin="12ABCDE1234F1Z5",
             password="testpassword",
         )
         self.token_obtain_url = reverse("token_obtain_pair")
@@ -79,6 +80,7 @@ class ChangePasswordViewTests(APITestCase):
             username="testuser",
             email="testuser@example.com",
             phone_number="1234567890",
+            gstin="12ABCDE1234F1Z5",
             password="testpassword",
         )
         self.change_password_url = reverse("change_password")
@@ -130,6 +132,7 @@ class PasswordResetViewTests(APITestCase):
             username="testuser",
             email="testuser@example.com",
             phone_number="1234567890",
+            gstin="12ABCDE1234F1Z5",
             password="testpassword",
         )
         self.password_reset_url = reverse("password_reset")
@@ -159,6 +162,7 @@ class PasswordResetConfirmViewTests(APITestCase):
             username="testuser",
             email="testuser@example.com",
             phone_number="1234567890",
+            gstin="12ABCDE1234F1Z5",
             password="testpassword",
         )
         self.password_reset_confirm_url = reverse(
@@ -204,6 +208,7 @@ class RegisterViewTests(TestCase):
             "username": "johndoe",
             "email": "johndoe@example.com",
             "phone_number": "1234567890",
+            "gstin": "12ABCDE1234F1Z5",
             "password1": "yourpassword",
             "password2": "yourpassword",
         }
@@ -226,6 +231,7 @@ class RegisterViewTests(TestCase):
             "username": "janesmith",
             "email": "janesmith@example.com",
             "phone_number": "9876543210",
+            "gstin": "42ABCDE1234F1Z5",
             "password1": "yourpassword",
             "password2": "yourpassword",
             "vendor_info": {
@@ -261,6 +267,7 @@ class RegisterViewTests(TestCase):
             "username": "johndoe",
             "email": "johndoe@example.com",
             "phone_number": "1234567890",
+            "gstin": "52ABCDE1234F1Z5",
             "password1": "yourpassword",
             "password2": "mismatchedpassword",
         }
@@ -277,6 +284,7 @@ class RegisterViewTests(TestCase):
             "username": "johndoe",
             "email": "invalidemail",
             "phone_number": "1234567890",
+            "gstin": "62ABCDE1234F1Z5",
             "password1": "yourpassword",
             "password2": "yourpassword",
         }
@@ -293,6 +301,7 @@ class RegisterViewTests(TestCase):
             "username": "johndoe",
             "email": "johndoe@example.com",
             "phone_number": "invalidphonenumber",
+            "gstin": "72ABCDE1234F1Z5",
             "password1": "yourpassword",
             "password2": "yourpassword",
         }
@@ -308,12 +317,14 @@ class SetUpUsers(APITestCase):
         self.procurement_officer = User.objects.create_user(
             username="procurement_officer",
             email="procurement_officer@example.com",
+            gstin="12ABCDE1234F1Z5",
             password="testpassword",
             user_role="procurement_officer",
         )
         self.vendor = User.objects.create_user(
             username="vendor",
             email="vendor@example.com",
+            gstin="42ABCDE1234F1Z5",
             password="testpassword",
             user_role="vendor",
         )
@@ -395,6 +406,7 @@ class VendorListViewTests(APITestCase):
         self.admin_user = User.objects.create_user(
             username="admin",
             email="admin@example.com",
+            gstin="12ABCDE1234F1Z5",
             password="testpassword",
             is_staff=True,
             is_superuser=True,
@@ -402,12 +414,14 @@ class VendorListViewTests(APITestCase):
         self.procurement_officer_user = User.objects.create_user(
             username="procurement_officer",
             email="procurement_officer@example.com",
+            gstin="42ABCDE1234F1Z5",
             password="testpassword",
             user_role="procurement_officer",
         )
         self.vendor_user = User.objects.create_user(
             username="vendor",
             email="vendor@example.com",
+            gstin="52ABCDE1234F1Z5",
             password="testpassword",
             user_role="vendor",
         )

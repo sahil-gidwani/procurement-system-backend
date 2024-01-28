@@ -14,6 +14,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token["username"] = user.username
         token["email"] = user.email
         token["phone_number"] = user.phone_number
+        token["gstin"] = user.gstin
         token["user_role"] = user.user_role
         token["is_superuser"] = user.is_superuser
         # ...
@@ -106,6 +107,7 @@ class ProcurementOfficerRegisterSerializer(serializers.ModelSerializer):
             "username",
             "email",
             "phone_number",
+            "gstin",
             "password1",
             "password2",
         )
@@ -125,6 +127,7 @@ class ProcurementOfficerRegisterSerializer(serializers.ModelSerializer):
             last_name=validated_data["last_name"],
             email=validated_data["email"],
             phone_number=validated_data["phone_number"],
+            gstin=validated_data["gstin"],
             password=validated_data["password1"],
             user_role="procurement_officer",
         )
@@ -166,6 +169,7 @@ class VendorRegisterSerializer(serializers.ModelSerializer):
             "username",
             "email",
             "phone_number",
+            "gstin",
             "password1",
             "password2",
             "vendor_info",
@@ -196,7 +200,7 @@ class VendorRegisterSerializer(serializers.ModelSerializer):
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ("first_name", "last_name", "username", "email", "phone_number")
+        fields = ("first_name", "last_name", "username", "email", "phone_number", "gstin")
 
     def update(self, instance, validated_data):
         # Update user fields
@@ -207,6 +211,7 @@ class ProfileSerializer(serializers.ModelSerializer):
         instance.phone_number = validated_data.get(
             "phone_number", instance.phone_number
         )
+        instance.gstin = validated_data.get("gstin", instance.gstin)
         instance.save()
 
         # Check if the user role is 'vendor' and update vendor info
