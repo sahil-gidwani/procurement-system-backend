@@ -8,6 +8,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
+from django.core.exceptions import PermissionDenied
 from drf_spectacular.utils import extend_schema
 import pandas as pd
 import numpy as np
@@ -20,7 +21,7 @@ from .models import Inventory, HistoricalInventory, OptimizedInventory
 from .serializers import InventorySerializer, HistoricalInventorySerializer, OptimizedInventorySerializer
 
 
-class InventoryListView(generics.ListAPIView):
+class BaseInventoryAPIView(generics.GenericAPIView):
     permission_classes = [IsAuthenticated, IsProcurementOfficer]
     serializer_class = InventorySerializer
 
@@ -28,37 +29,27 @@ class InventoryListView(generics.ListAPIView):
         return Inventory.objects.filter(procurement_officer=self.request.user)
 
 
-class InventoryCreateView(generics.CreateAPIView):
-    permission_classes = [IsAuthenticated, IsProcurementOfficer]
+class InventoryListView(BaseInventoryAPIView, generics.ListAPIView):
+    pass
+
+
+class InventoryCreateView(BaseInventoryAPIView, generics.CreateAPIView):
     queryset = Inventory.objects.all()
-    serializer_class = InventorySerializer
 
     def perform_create(self, serializer):
         serializer.save(procurement_officer=self.request.user)
 
 
-class InventoryRetrieveView(generics.RetrieveAPIView):
-    permission_classes = [IsAuthenticated, IsProcurementOfficer]
-    serializer_class = InventorySerializer
-
-    def get_queryset(self):
-        return Inventory.objects.filter(procurement_officer=self.request.user)
+class InventoryRetrieveView(BaseInventoryAPIView, generics.RetrieveAPIView):
+    pass
 
 
-class InventoryUpdateView(generics.UpdateAPIView):
-    permission_classes = [IsAuthenticated, IsProcurementOfficer]
-    serializer_class = InventorySerializer
-
-    def get_queryset(self):
-        return Inventory.objects.filter(procurement_officer=self.request.user)
+class InventoryUpdateView(BaseInventoryAPIView, generics.UpdateAPIView):
+    pass
 
 
-class InventoryDeleteView(generics.DestroyAPIView):
-    permission_classes = [IsAuthenticated, IsProcurementOfficer]
-    serializer_class = InventorySerializer
-
-    def get_queryset(self):
-        return Inventory.objects.filter(procurement_officer=self.request.user)
+class InventoryDeleteView(BaseInventoryAPIView, generics.DestroyAPIView):
+    pass
 
 
 class HistoricalInventoryListView(generics.ListAPIView):
@@ -128,7 +119,7 @@ def auto_arima(df):
 @permission_classes([IsAuthenticated, IsProcurementOfficer])
 def arima_forecast(request, inventory_id):
     if request.method == "GET":
-        historical_inventory = HistoricalInventory.objects.filter(inventory_id=inventory_id)
+        historical_inventory = HistoricalInventory.objects.filter(inventory_id=inventory_id, inventory__procurement_officer=request.user)
         if not historical_inventory.exists():
             return JsonResponse({'error': 'No historical inventory data found for the specified inventory_id'}, status=404)
 
@@ -209,6 +200,10 @@ class OptimizedInventoryCreateAPIView(generics.CreateAPIView):
         storage_limit = validated_data.get('storage_limit')
         inventory_id = self.kwargs.get('inventory_id')
 
+        inventory = get_object_or_404(Inventory, id=inventory_id)
+        if inventory.procurement_officer != self.request.user:
+            raise PermissionDenied("You don't have permission to create OptimizedInventory for this inventory.")
+
         if lead_time is not None and service_level is not None:
             safety_stock, reorder_point = calculate_safety_stock_reorder_point(demand, lead_time, service_level)
         else:
@@ -232,6 +227,7 @@ class OptimizedInventoryCreateAPIView(generics.CreateAPIView):
             inventory_id=inventory_id
         )
     
+
 class OptimizedInventoryUpdateAPIView(generics.UpdateAPIView):
     permission_classes = [IsAuthenticated, IsProcurementOfficer]
     serializer_class = OptimizedInventorySerializer
@@ -247,6 +243,11 @@ class OptimizedInventoryUpdateAPIView(generics.UpdateAPIView):
         partial = kwargs.pop('partial', False)
         serializer = self.get_serializer(optimized_inventory, data=request.data, partial=partial)
         serializer.is_valid(raise_exception=True)
+
+        inventory = get_object_or_404(Inventory, id=inventory_id)
+        if inventory.procurement_officer != self.request.user:
+            raise PermissionDenied("You don't have permission to update OptimizedInventory for this inventory.")
+        
         self.perform_update(serializer)
 
         return Response(serializer.data)
@@ -299,18 +300,26 @@ class OptimizedInventoryUpdateAPIView(generics.UpdateAPIView):
         )
 
 
-class OptimizedInventoryRetrieveAPIView(generics.RetrieveAPIView):
+class BaseOptimizedInventoryAPIView(generics.GenericAPIView):
     permission_classes = [IsAuthenticated, IsProcurementOfficer]
     serializer_class = OptimizedInventorySerializer
-    queryset = OptimizedInventory.objects.all()
-    lookup_url_kwarg = 'inventory_id'
+
+    def get_queryset(self):
+        inventory_id = self.kwargs.get("inventory_id")
+
+        inventory = get_object_or_404(
+            Inventory, id=inventory_id, procurement_officer=self.request.user
+        )
+
+        return OptimizedInventory.objects.filter(inventory=inventory)
 
 
-class OptimizedInventoryDestroyAPIView(generics.DestroyAPIView):
-    permission_classes = [IsAuthenticated, IsProcurementOfficer]
-    serializer_class = OptimizedInventorySerializer
-    queryset = OptimizedInventory.objects.all()
-    lookup_url_kwarg = 'inventory_id'
+class OptimizedInventoryRetrieveAPIView(BaseOptimizedInventoryAPIView, generics.RetrieveAPIView):
+    pass
+
+
+class OptimizedInventoryDestroyAPIView(BaseOptimizedInventoryAPIView, generics.DestroyAPIView):
+    pass
 
 
 @extend_schema(exclude=True)
@@ -324,7 +333,11 @@ def getRoutes(request):
         "/<int:pk>/update",
         "/<int:pk>/delete",
         "/historical/<int:inventory_id>/list",
-        "/forecast/<int:inventory_id>"
+        "/forecast/<int:inventory_id>",
+        "/optimize/<int:inventory_id>",
+        "/optimize/<int:inventory_id>/create",
+        "/optimize/<int:inventory_id>/update",
+        "/optimize/<int:inventory_id>/delete",
     ]
 
     return Response(routes)
