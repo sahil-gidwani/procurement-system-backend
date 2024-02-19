@@ -737,6 +737,163 @@ paths:
               schema:
                 $ref: '#/components/schemas/OptimizedInventory'
           description: ''
+  /purchase/purchase-requisitions/{id}/:
+    get:
+      operationId: purchase_purchase_requisitions_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - purchase
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseRequisition'
+          description: ''
+  /purchase/purchase-requisitions/{id}/delete/:
+    delete:
+      operationId: purchase_purchase_requisitions_delete_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - purchase
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /purchase/purchase-requisitions/{id}/update/:
+    put:
+      operationId: purchase_purchase_requisitions_update_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - purchase
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PurchaseRequisition'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PurchaseRequisition'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PurchaseRequisition'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseRequisition'
+          description: ''
+    patch:
+      operationId: purchase_purchase_requisitions_update_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - purchase
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedPurchaseRequisition'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedPurchaseRequisition'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedPurchaseRequisition'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseRequisition'
+          description: ''
+  /purchase/purchase-requisitions/create/{inventory_id}/:
+    post:
+      operationId: purchase_purchase_requisitions_create_create
+      parameters:
+      - in: path
+        name: inventory_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - purchase
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PurchaseRequisition'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PurchaseRequisition'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PurchaseRequisition'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseRequisition'
+          description: ''
+  /purchase/purchase-requisitions/list/:
+    get:
+      operationId: purchase_purchase_requisitions_list_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - purchase
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedPurchaseRequisitionList'
+          description: ''
 components:
   schemas:
     ChangePassword:
@@ -936,6 +1093,26 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Inventory'
+    PaginatedPurchaseRequisitionList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseRequisition'
     PaginatedVendorList:
       type: object
       properties:
@@ -1114,6 +1291,44 @@ components:
           type: string
           pattern: ^\d{2}[A-Z]{5}\d{4}[A-Z]{1}\d[Z]{1}[A-Z\d]{1}$
           maxLength: 15
+    PatchedPurchaseRequisition:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        requisition_number:
+          type: string
+          maxLength: 255
+        date_created:
+          type: string
+          format: date-time
+          readOnly: true
+        last_updated:
+          type: string
+          format: date-time
+          readOnly: true
+        quantity_requested:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        expected_delivery_date:
+          type: string
+          format: date
+        urgency_level:
+          $ref: '#/components/schemas/UrgencyLevelEnum'
+        comments:
+          type: string
+          nullable: true
+        attachments:
+          type: string
+          format: uri
+          nullable: true
+        report:
+          type: string
+          format: uri
+          nullable: true
     ProcurementOfficerRegister:
       type: object
       properties:
@@ -1186,6 +1401,51 @@ components:
       - email
       - gstin
       - username
+    PurchaseRequisition:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        requisition_number:
+          type: string
+          maxLength: 255
+        date_created:
+          type: string
+          format: date-time
+          readOnly: true
+        last_updated:
+          type: string
+          format: date-time
+          readOnly: true
+        quantity_requested:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        expected_delivery_date:
+          type: string
+          format: date
+        urgency_level:
+          $ref: '#/components/schemas/UrgencyLevelEnum'
+        comments:
+          type: string
+          nullable: true
+        attachments:
+          type: string
+          format: uri
+          nullable: true
+        report:
+          type: string
+          format: uri
+          nullable: true
+      required:
+      - date_created
+      - expected_delivery_date
+      - id
+      - last_updated
+      - quantity_requested
+      - requisition_number
     TokenRefresh:
       type: object
       properties:
@@ -1205,6 +1465,16 @@ components:
           writeOnly: true
       required:
       - token
+    UrgencyLevelEnum:
+      enum:
+      - low
+      - medium
+      - high
+      type: string
+      description: |-
+        * `low` - Low
+        * `medium` - Medium
+        * `high` - High
     Vendor:
       type: object
       properties:

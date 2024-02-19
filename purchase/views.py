@@ -16,6 +16,11 @@ class BasePurchaseRequisitionAPIView(generics.GenericAPIView):
 
     def get_object(self):
         inventory_id = self.kwargs.get("inventory_id")
+
+        # If inventory_id is None, then we are not creating a new purchase requisition
+        if inventory_id is None:
+            return get_object_or_404(self.get_queryset(), id=self.kwargs.get("pk"))
+        
         inventory = get_object_or_404(Inventory, id=inventory_id, procurement_officer=self.request.user)
         obj = get_object_or_404(self.get_queryset(), inventory=inventory)
         self.check_object_permissions(self.request, obj)
