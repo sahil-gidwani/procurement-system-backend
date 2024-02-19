@@ -19,7 +19,7 @@ urlpatterns = [
     ),
     path(
         "forecast/<int:inventory_id>/",
-        views.arima_forecast,
+        views.ARIMAForecastAPIView.as_view(),
         name="arima_forecast",
     ),
     path(
