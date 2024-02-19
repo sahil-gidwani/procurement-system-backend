@@ -5,16 +5,16 @@ from .models import PurchaseRequisition, SupplierBid, PurchaseOrder
 class PurchaseRequisitionSerializer(serializers.ModelSerializer):
     class Meta:
         model = PurchaseRequisition
-        exclude = ['status', 'inventory']
+        exclude = ["status", "inventory"]
 
 
 class SupplierBidSerializer(serializers.ModelSerializer):
     class Meta:
         model = SupplierBid
-        exclude = ['status', 'requisition']
+        exclude = ["status", "requisition"]
 
 
 class PurchaseOrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = PurchaseOrder
-        exclude = ['status', 'bid']
+        exclude = ["status", "bid"]

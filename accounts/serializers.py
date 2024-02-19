@@ -200,7 +200,14 @@ class VendorRegisterSerializer(serializers.ModelSerializer):
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ("first_name", "last_name", "username", "email", "phone_number", "gstin")
+        fields = (
+            "first_name",
+            "last_name",
+            "username",
+            "email",
+            "phone_number",
+            "gstin",
+        )
 
     def update(self, instance, validated_data):
         # Update user fields

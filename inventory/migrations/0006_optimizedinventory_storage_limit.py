@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('inventory', '0005_remove_inventory_expiration_date_and_more'),
+        ("inventory", "0005_remove_inventory_expiration_date_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='optimizedinventory',
-            name='storage_limit',
+            model_name="optimizedinventory",
+            name="storage_limit",
             field=models.IntegerField(blank=True, null=True),
         ),
     ]

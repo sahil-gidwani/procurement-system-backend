@@ -4,7 +4,7 @@ import numpy as np
 from datetime import timedelta
 
 # Set up Django environment
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'procurement_system_backend.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "procurement_system_backend.settings")
 django.setup()
 
 from django.utils import timezone
@@ -22,7 +22,7 @@ start_date = end_date - timedelta(weeks=num_weeks)
 
 # Define seasonal parameters
 amplitude = 50  # Amplitude of the seasonal variation
-frequency = 52   # Weekly frequency for seasonal variation (1 year)
+frequency = 52  # Weekly frequency for seasonal variation (1 year)
 
 # Define noise parameters
 noise_mean = 0
@@ -58,7 +58,9 @@ for i in range(num_weeks):
         stock_quantity=stock_quantity,
         demand=demand,
         datetime=current_date,
-        inventory=inventory_obj
+        inventory=inventory_obj,
     )
 
-print(f"{num_weeks} weeks of seasonal data with trend and randomness inserted into HistoricalInventory.")
+print(
+    f"{num_weeks} weeks of seasonal data with trend and randomness inserted into HistoricalInventory."
+)

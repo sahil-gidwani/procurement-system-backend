@@ -35,11 +35,11 @@ urlpatterns = [
     path(
         "optimize/<int:inventory_id>/update/",
         views.OptimizedInventoryUpdateAPIView.as_view(),
-        name="optimized_inventory_update"
+        name="optimized_inventory_update",
     ),
     path(
         "optimize/<int:inventory_id>/delete/",
         views.OptimizedInventoryDestroyAPIView.as_view(),
-        name="optimized_inventory_delete"
+        name="optimized_inventory_delete",
     ),
 ]

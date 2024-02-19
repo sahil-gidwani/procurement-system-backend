@@ -6,13 +6,21 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('purchase', '0001_initial'),
+        ("purchase", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='supplierbid',
-            name='status',
-            field=models.CharField(choices=[('submitted', 'Submitted'), ('accepted', 'Accepted'), ('rejected', 'Rejected')], default='submitted', max_length=20),
+            model_name="supplierbid",
+            name="status",
+            field=models.CharField(
+                choices=[
+                    ("submitted", "Submitted"),
+                    ("accepted", "Accepted"),
+                    ("rejected", "Rejected"),
+                ],
+                default="submitted",
+                max_length=20,
+            ),
         ),
     ]

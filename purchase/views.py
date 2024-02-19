@@ -12,7 +12,9 @@ class BasePurchaseRequisitionAPIView(generics.GenericAPIView):
     serializer_class = PurchaseRequisitionSerializer
 
     def get_queryset(self):
-        return PurchaseRequisition.objects.filter(inventory__procurement_officer=self.request.user)
+        return PurchaseRequisition.objects.filter(
+            inventory__procurement_officer=self.request.user
+        )
 
     def get_object(self):
         inventory_id = self.kwargs.get("inventory_id")
@@ -20,8 +22,10 @@ class BasePurchaseRequisitionAPIView(generics.GenericAPIView):
         # If inventory_id is None, then we are not creating a new purchase requisition
         if inventory_id is None:
             return get_object_or_404(self.get_queryset(), id=self.kwargs.get("pk"))
-        
-        inventory = get_object_or_404(Inventory, id=inventory_id, procurement_officer=self.request.user)
+
+        inventory = get_object_or_404(
+            Inventory, id=inventory_id, procurement_officer=self.request.user
+        )
         obj = get_object_or_404(self.get_queryset(), inventory=inventory)
         self.check_object_permissions(self.request, obj)
         return obj
@@ -31,22 +35,32 @@ class PurchaseRequisitionListView(BasePurchaseRequisitionAPIView, generics.ListA
     pass
 
 
-class PurchaseRequisitionCreateView(BasePurchaseRequisitionAPIView, generics.CreateAPIView):
+class PurchaseRequisitionCreateView(
+    BasePurchaseRequisitionAPIView, generics.CreateAPIView
+):
     queryset = PurchaseRequisition.objects.all()
 
     def perform_create(self, serializer):
         inventory_id = self.kwargs.get("inventory_id")
-        inventory = get_object_or_404(Inventory, pk=inventory_id, procurement_officer=self.request.user)
+        inventory = get_object_or_404(
+            Inventory, pk=inventory_id, procurement_officer=self.request.user
+        )
         serializer.save(inventory=inventory)
 
 
-class PurchaseRequisitionRetrieveView(BasePurchaseRequisitionAPIView, generics.RetrieveAPIView):
+class PurchaseRequisitionRetrieveView(
+    BasePurchaseRequisitionAPIView, generics.RetrieveAPIView
+):
     pass
 
 
-class PurchaseRequisitionUpdateView(BasePurchaseRequisitionAPIView, generics.UpdateAPIView):
+class PurchaseRequisitionUpdateView(
+    BasePurchaseRequisitionAPIView, generics.UpdateAPIView
+):
     pass
 
 
-class PurchaseRequisitionDeleteView(BasePurchaseRequisitionAPIView, generics.DestroyAPIView):
+class PurchaseRequisitionDeleteView(
+    BasePurchaseRequisitionAPIView, generics.DestroyAPIView
+):
     pass

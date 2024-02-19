@@ -8,20 +8,20 @@ class PurchaseRequisition(models.Model):
     last_updated = models.DateTimeField(auto_now=True)
     quantity_requested = models.IntegerField()
     expected_delivery_date = models.DateField()
-    URGENCY_LEVEL_CHOICES = [
-        ('low', 'Low'),
-        ('medium', 'Medium'),
-        ('high', 'High')
-    ]
-    urgency_level = models.CharField(max_length=10, choices=URGENCY_LEVEL_CHOICES, default='low')
+    URGENCY_LEVEL_CHOICES = [("low", "Low"), ("medium", "Medium"), ("high", "High")]
+    urgency_level = models.CharField(
+        max_length=10, choices=URGENCY_LEVEL_CHOICES, default="low"
+    )
     comments = models.TextField(null=True, blank=True)
-    attachments = models.ImageField(upload_to="requisition/attachments", null=True, blank=True)
+    attachments = models.ImageField(
+        upload_to="requisition/attachments", null=True, blank=True
+    )
     STATUS_CHOICES = [
-        ('pending', 'Pending'),
-        ('approved', 'Approved'),
-        ('rejected', 'Rejected')
+        ("pending", "Pending"),
+        ("approved", "Approved"),
+        ("rejected", "Rejected"),
     ]
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending')
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="pending")
     report = models.FileField(upload_to="requisition/reports", null=True, blank=True)
     inventory = models.OneToOneField(Inventory, on_delete=models.CASCADE)
 
@@ -34,11 +34,13 @@ class SupplierBid(models.Model):
     attachments = models.ImageField(upload_to="bid", null=True, blank=True)
     comments = models.TextField(null=True, blank=True)
     STATUS_CHOICES = [
-        ('submitted', 'Submitted'),
-        ('accepted', 'Accepted'),
-        ('rejected', 'Rejected')
+        ("submitted", "Submitted"),
+        ("accepted", "Accepted"),
+        ("rejected", "Rejected"),
     ]
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='submitted')
+    status = models.CharField(
+        max_length=20, choices=STATUS_CHOICES, default="submitted"
+    )
     requisition = models.ForeignKey(PurchaseRequisition, on_delete=models.CASCADE)
 
 
@@ -48,9 +50,9 @@ class PurchaseOrder(models.Model):
     quantity_ordered = models.IntegerField()
     unit_price = models.DecimalField(max_digits=10, decimal_places=2)
     STATUS_CHOICES = [
-        ('pending', 'Pending'),
-        ('shipped', 'Shipped'),
-        ('delivered', 'Delivered')
+        ("pending", "Pending"),
+        ("shipped", "Shipped"),
+        ("delivered", "Delivered"),
     ]
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="pending")
     bid = models.OneToOneField(SupplierBid, on_delete=models.CASCADE)

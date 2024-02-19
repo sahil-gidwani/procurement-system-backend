@@ -6,17 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('inventory', '0006_optimizedinventory_storage_limit'),
+        ("inventory", "0006_optimizedinventory_storage_limit"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='optimizedinventory',
-            name='annual_demand',
+            model_name="optimizedinventory",
+            name="annual_demand",
         ),
         migrations.AddField(
-            model_name='optimizedinventory',
-            name='demand',
+            model_name="optimizedinventory",
+            name="demand",
             field=models.FloatField(default=1),
             preserve_default=False,
         ),
