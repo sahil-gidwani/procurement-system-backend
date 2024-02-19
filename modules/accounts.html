@@ -68,6 +68,8 @@
 <li><a class="reference internal" href="#accounts.models.User.get_previous_by_date_joined"><code class="docutils literal notranslate"><span class="pre">User.get_previous_by_date_joined()</span></code></a></li>
 <li><a class="reference internal" href="#accounts.models.User.get_user_role_display"><code class="docutils literal notranslate"><span class="pre">User.get_user_role_display()</span></code></a></li>
 <li><a class="reference internal" href="#accounts.models.User.groups"><code class="docutils literal notranslate"><span class="pre">User.groups</span></code></a></li>
+<li><a class="reference internal" href="#accounts.models.User.gstin"><code class="docutils literal notranslate"><span class="pre">User.gstin</span></code></a></li>
+<li><a class="reference internal" href="#accounts.models.User.gstin_validator"><code class="docutils literal notranslate"><span class="pre">User.gstin_validator</span></code></a></li>
 <li><a class="reference internal" href="#accounts.models.User.id"><code class="docutils literal notranslate"><span class="pre">User.id</span></code></a></li>
 <li><a class="reference internal" href="#accounts.models.User.inventory_set"><code class="docutils literal notranslate"><span class="pre">User.inventory_set</span></code></a></li>
 <li><a class="reference internal" href="#accounts.models.User.is_active"><code class="docutils literal notranslate"><span class="pre">User.is_active</span></code></a></li>
@@ -383,7 +385,7 @@
 <span id="accounts-models-module"></span><h2>accounts.models module<a class="headerlink" href="#module-accounts.models" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="accounts.models.User">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accounts.models.</span></span><span class="sig-name descname"><span class="pre">User</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_login</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_superuser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_staff</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_active</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_joined</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phone_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_role</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/models.html#User"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.models.User" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accounts.models.</span></span><span class="sig-name descname"><span class="pre">User</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_login</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_superuser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_staff</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_active</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_joined</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phone_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gstin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_role</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/models.html#User"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.models.User" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractUser</span></code></p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="accounts.models.User.DoesNotExist">
@@ -453,6 +455,18 @@ instances.</p>
 <p>Most of the implementation is delegated to a dynamically defined manager
 class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
 </dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="accounts.models.User.gstin">
+<span class="sig-name descname"><span class="pre">gstin</span></span><a class="headerlink" href="#accounts.models.User.gstin" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="accounts.models.User.gstin_validator">
+<span class="sig-name descname"><span class="pre">gstin_validator</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.core.validators.RegexValidator</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#accounts.models.User.gstin_validator" title="Link to this definition"></a></dt>
+<dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="accounts.models.User.id">
@@ -808,7 +822,7 @@ object the first time, the query is executed.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="accounts.serializers.ProcurementOfficerRegisterSerializer.Meta.fields">
-<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('first_name',</span> <span class="pre">'last_name',</span> <span class="pre">'username',</span> <span class="pre">'email',</span> <span class="pre">'phone_number',</span> <span class="pre">'password1',</span> <span class="pre">'password2')</span></em><a class="headerlink" href="#accounts.serializers.ProcurementOfficerRegisterSerializer.Meta.fields" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('first_name',</span> <span class="pre">'last_name',</span> <span class="pre">'username',</span> <span class="pre">'email',</span> <span class="pre">'phone_number',</span> <span class="pre">'gstin',</span> <span class="pre">'password1',</span> <span class="pre">'password2')</span></em><a class="headerlink" href="#accounts.serializers.ProcurementOfficerRegisterSerializer.Meta.fields" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -859,7 +873,7 @@ to write an explicit <cite>.create()</cite> method.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="accounts.serializers.ProfileSerializer.Meta.fields">
-<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('first_name',</span> <span class="pre">'last_name',</span> <span class="pre">'username',</span> <span class="pre">'email',</span> <span class="pre">'phone_number')</span></em><a class="headerlink" href="#accounts.serializers.ProfileSerializer.Meta.fields" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('first_name',</span> <span class="pre">'last_name',</span> <span class="pre">'username',</span> <span class="pre">'email',</span> <span class="pre">'phone_number',</span> <span class="pre">'gstin')</span></em><a class="headerlink" href="#accounts.serializers.ProfileSerializer.Meta.fields" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -916,7 +930,7 @@ to write an explicit <cite>.create()</cite> method.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="accounts.serializers.VendorRegisterSerializer.Meta.fields">
-<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('first_name',</span> <span class="pre">'last_name',</span> <span class="pre">'username',</span> <span class="pre">'email',</span> <span class="pre">'phone_number',</span> <span class="pre">'password1',</span> <span class="pre">'password2',</span> <span class="pre">'vendor_info')</span></em><a class="headerlink" href="#accounts.serializers.VendorRegisterSerializer.Meta.fields" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('first_name',</span> <span class="pre">'last_name',</span> <span class="pre">'username',</span> <span class="pre">'email',</span> <span class="pre">'phone_number',</span> <span class="pre">'gstin',</span> <span class="pre">'password1',</span> <span class="pre">'password2',</span> <span class="pre">'vendor_info')</span></em><a class="headerlink" href="#accounts.serializers.VendorRegisterSerializer.Meta.fields" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">

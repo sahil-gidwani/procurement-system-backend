@@ -79,6 +79,30 @@
 <span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">User</span><span class="p">,</span> <span class="n">Vendor</span>
 
 
+<span class="c1"># class ThrottleTestCase(TestCase):</span>
+<span class="c1">#     def setUp(self):</span>
+<span class="c1">#         self.test_user = User.objects.create_user(username=&#39;testuser&#39;, password=&#39;testpassword&#39;)</span>
+<span class="c1">#         self.client = APIClient()</span>
+
+<span class="c1">#     def test_anonymous_throttle(self):</span>
+<span class="c1">#         for _ in range(100):</span>
+<span class="c1">#             response = self.client.get(reverse(&#39;accounts_routes&#39;))</span>
+<span class="c1">#             self.assertEqual(response.status_code, 200)</span>
+
+<span class="c1">#         response = self.client.get(reverse(&#39;accounts_routes&#39;))</span>
+<span class="c1">#         self.assertEqual(response.status_code, 429)</span>
+
+<span class="c1">#     def test_authenticated_user_throttle(self):</span>
+<span class="c1">#         self.client.force_authenticate(user=self.test_user)</span>
+
+<span class="c1">#         for _ in range(1000):</span>
+<span class="c1">#             response = self.client.get(reverse(&#39;accounts_routes&#39;))</span>
+<span class="c1">#             self.assertEqual(response.status_code, 200)</span>
+
+<span class="c1">#         response = self.client.get(reverse(&#39;accounts_routes&#39;))</span>
+<span class="c1">#         self.assertEqual(response.status_code, 429)</span>
+
+
 <div class="viewcode-block" id="TokenViewTests">
 <a class="viewcode-back" href="../../modules/accounts.html#accounts.tests.TokenViewTests">[docs]</a>
 <span class="k">class</span> <span class="nc">TokenViewTests</span><span class="p">(</span><span class="n">APITestCase</span><span class="p">):</span>
@@ -89,6 +113,7 @@
             <span class="n">username</span><span class="o">=</span><span class="s2">&quot;testuser&quot;</span><span class="p">,</span>
             <span class="n">email</span><span class="o">=</span><span class="s2">&quot;testuser@example.com&quot;</span><span class="p">,</span>
             <span class="n">phone_number</span><span class="o">=</span><span class="s2">&quot;1234567890&quot;</span><span class="p">,</span>
+            <span class="n">gstin</span><span class="o">=</span><span class="s2">&quot;12ABCDE1234F1Z5&quot;</span><span class="p">,</span>
             <span class="n">password</span><span class="o">=</span><span class="s2">&quot;testpassword&quot;</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">token_obtain_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;token_obtain_pair&quot;</span><span class="p">)</span>
@@ -144,6 +169,7 @@
             <span class="n">username</span><span class="o">=</span><span class="s2">&quot;testuser&quot;</span><span class="p">,</span>
             <span class="n">email</span><span class="o">=</span><span class="s2">&quot;testuser@example.com&quot;</span><span class="p">,</span>
             <span class="n">phone_number</span><span class="o">=</span><span class="s2">&quot;1234567890&quot;</span><span class="p">,</span>
+            <span class="n">gstin</span><span class="o">=</span><span class="s2">&quot;12ABCDE1234F1Z5&quot;</span><span class="p">,</span>
             <span class="n">password</span><span class="o">=</span><span class="s2">&quot;testpassword&quot;</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">change_password_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;change_password&quot;</span><span class="p">)</span>
@@ -207,6 +233,7 @@
             <span class="n">username</span><span class="o">=</span><span class="s2">&quot;testuser&quot;</span><span class="p">,</span>
             <span class="n">email</span><span class="o">=</span><span class="s2">&quot;testuser@example.com&quot;</span><span class="p">,</span>
             <span class="n">phone_number</span><span class="o">=</span><span class="s2">&quot;1234567890&quot;</span><span class="p">,</span>
+            <span class="n">gstin</span><span class="o">=</span><span class="s2">&quot;12ABCDE1234F1Z5&quot;</span><span class="p">,</span>
             <span class="n">password</span><span class="o">=</span><span class="s2">&quot;testpassword&quot;</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">password_reset_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;password_reset&quot;</span><span class="p">)</span></div>
@@ -248,6 +275,7 @@
             <span class="n">username</span><span class="o">=</span><span class="s2">&quot;testuser&quot;</span><span class="p">,</span>
             <span class="n">email</span><span class="o">=</span><span class="s2">&quot;testuser@example.com&quot;</span><span class="p">,</span>
             <span class="n">phone_number</span><span class="o">=</span><span class="s2">&quot;1234567890&quot;</span><span class="p">,</span>
+            <span class="n">gstin</span><span class="o">=</span><span class="s2">&quot;12ABCDE1234F1Z5&quot;</span><span class="p">,</span>
             <span class="n">password</span><span class="o">=</span><span class="s2">&quot;testpassword&quot;</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">password_reset_confirm_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
@@ -311,6 +339,7 @@
             <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;johndoe&quot;</span><span class="p">,</span>
             <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;johndoe@example.com&quot;</span><span class="p">,</span>
             <span class="s2">&quot;phone_number&quot;</span><span class="p">:</span> <span class="s2">&quot;1234567890&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;gstin&quot;</span><span class="p">:</span> <span class="s2">&quot;12ABCDE1234F1Z5&quot;</span><span class="p">,</span>
             <span class="s2">&quot;password1&quot;</span><span class="p">:</span> <span class="s2">&quot;yourpassword&quot;</span><span class="p">,</span>
             <span class="s2">&quot;password2&quot;</span><span class="p">:</span> <span class="s2">&quot;yourpassword&quot;</span><span class="p">,</span>
         <span class="p">}</span>
@@ -336,6 +365,7 @@
             <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;janesmith&quot;</span><span class="p">,</span>
             <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;janesmith@example.com&quot;</span><span class="p">,</span>
             <span class="s2">&quot;phone_number&quot;</span><span class="p">:</span> <span class="s2">&quot;9876543210&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;gstin&quot;</span><span class="p">:</span> <span class="s2">&quot;42ABCDE1234F1Z5&quot;</span><span class="p">,</span>
             <span class="s2">&quot;password1&quot;</span><span class="p">:</span> <span class="s2">&quot;yourpassword&quot;</span><span class="p">,</span>
             <span class="s2">&quot;password2&quot;</span><span class="p">:</span> <span class="s2">&quot;yourpassword&quot;</span><span class="p">,</span>
             <span class="s2">&quot;vendor_info&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -374,6 +404,7 @@
             <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;johndoe&quot;</span><span class="p">,</span>
             <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;johndoe@example.com&quot;</span><span class="p">,</span>
             <span class="s2">&quot;phone_number&quot;</span><span class="p">:</span> <span class="s2">&quot;1234567890&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;gstin&quot;</span><span class="p">:</span> <span class="s2">&quot;52ABCDE1234F1Z5&quot;</span><span class="p">,</span>
             <span class="s2">&quot;password1&quot;</span><span class="p">:</span> <span class="s2">&quot;yourpassword&quot;</span><span class="p">,</span>
             <span class="s2">&quot;password2&quot;</span><span class="p">:</span> <span class="s2">&quot;mismatchedpassword&quot;</span><span class="p">,</span>
         <span class="p">}</span>
@@ -393,6 +424,7 @@
             <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;johndoe&quot;</span><span class="p">,</span>
             <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;invalidemail&quot;</span><span class="p">,</span>
             <span class="s2">&quot;phone_number&quot;</span><span class="p">:</span> <span class="s2">&quot;1234567890&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;gstin&quot;</span><span class="p">:</span> <span class="s2">&quot;62ABCDE1234F1Z5&quot;</span><span class="p">,</span>
             <span class="s2">&quot;password1&quot;</span><span class="p">:</span> <span class="s2">&quot;yourpassword&quot;</span><span class="p">,</span>
             <span class="s2">&quot;password2&quot;</span><span class="p">:</span> <span class="s2">&quot;yourpassword&quot;</span><span class="p">,</span>
         <span class="p">}</span>
@@ -412,6 +444,7 @@
             <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;johndoe&quot;</span><span class="p">,</span>
             <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;johndoe@example.com&quot;</span><span class="p">,</span>
             <span class="s2">&quot;phone_number&quot;</span><span class="p">:</span> <span class="s2">&quot;invalidphonenumber&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;gstin&quot;</span><span class="p">:</span> <span class="s2">&quot;72ABCDE1234F1Z5&quot;</span><span class="p">,</span>
             <span class="s2">&quot;password1&quot;</span><span class="p">:</span> <span class="s2">&quot;yourpassword&quot;</span><span class="p">,</span>
             <span class="s2">&quot;password2&quot;</span><span class="p">:</span> <span class="s2">&quot;yourpassword&quot;</span><span class="p">,</span>
         <span class="p">}</span>
@@ -433,12 +466,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span>
             <span class="n">username</span><span class="o">=</span><span class="s2">&quot;procurement_officer&quot;</span><span class="p">,</span>
             <span class="n">email</span><span class="o">=</span><span class="s2">&quot;procurement_officer@example.com&quot;</span><span class="p">,</span>
+            <span class="n">gstin</span><span class="o">=</span><span class="s2">&quot;12ABCDE1234F1Z5&quot;</span><span class="p">,</span>
             <span class="n">password</span><span class="o">=</span><span class="s2">&quot;testpassword&quot;</span><span class="p">,</span>
             <span class="n">user_role</span><span class="o">=</span><span class="s2">&quot;procurement_officer&quot;</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">vendor</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span>
             <span class="n">username</span><span class="o">=</span><span class="s2">&quot;vendor&quot;</span><span class="p">,</span>
             <span class="n">email</span><span class="o">=</span><span class="s2">&quot;vendor@example.com&quot;</span><span class="p">,</span>
+            <span class="n">gstin</span><span class="o">=</span><span class="s2">&quot;42ABCDE1234F1Z5&quot;</span><span class="p">,</span>
             <span class="n">password</span><span class="o">=</span><span class="s2">&quot;testpassword&quot;</span><span class="p">,</span>
             <span class="n">user_role</span><span class="o">=</span><span class="s2">&quot;vendor&quot;</span><span class="p">,</span>
         <span class="p">)</span>
@@ -559,6 +594,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">admin_user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span>
             <span class="n">username</span><span class="o">=</span><span class="s2">&quot;admin&quot;</span><span class="p">,</span>
             <span class="n">email</span><span class="o">=</span><span class="s2">&quot;admin@example.com&quot;</span><span class="p">,</span>
+            <span class="n">gstin</span><span class="o">=</span><span class="s2">&quot;12ABCDE1234F1Z5&quot;</span><span class="p">,</span>
             <span class="n">password</span><span class="o">=</span><span class="s2">&quot;testpassword&quot;</span><span class="p">,</span>
             <span class="n">is_staff</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="n">is_superuser</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -566,12 +602,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer_user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span>
             <span class="n">username</span><span class="o">=</span><span class="s2">&quot;procurement_officer&quot;</span><span class="p">,</span>
             <span class="n">email</span><span class="o">=</span><span class="s2">&quot;procurement_officer@example.com&quot;</span><span class="p">,</span>
+            <span class="n">gstin</span><span class="o">=</span><span class="s2">&quot;42ABCDE1234F1Z5&quot;</span><span class="p">,</span>
             <span class="n">password</span><span class="o">=</span><span class="s2">&quot;testpassword&quot;</span><span class="p">,</span>
             <span class="n">user_role</span><span class="o">=</span><span class="s2">&quot;procurement_officer&quot;</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">vendor_user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span>
             <span class="n">username</span><span class="o">=</span><span class="s2">&quot;vendor&quot;</span><span class="p">,</span>
             <span class="n">email</span><span class="o">=</span><span class="s2">&quot;vendor@example.com&quot;</span><span class="p">,</span>
+            <span class="n">gstin</span><span class="o">=</span><span class="s2">&quot;52ABCDE1234F1Z5&quot;</span><span class="p">,</span>
             <span class="n">password</span><span class="o">=</span><span class="s2">&quot;testpassword&quot;</span><span class="p">,</span>
             <span class="n">user_role</span><span class="o">=</span><span class="s2">&quot;vendor&quot;</span><span class="p">,</span>
         <span class="p">)</span></div>

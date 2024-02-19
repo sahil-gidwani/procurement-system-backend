@@ -101,6 +101,8 @@
 <li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.get_previous_by_date_joined"><code class="docutils literal notranslate"><span class="pre">User.get_previous_by_date_joined()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.get_user_role_display"><code class="docutils literal notranslate"><span class="pre">User.get_user_role_display()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.groups"><code class="docutils literal notranslate"><span class="pre">User.groups</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.gstin"><code class="docutils literal notranslate"><span class="pre">User.gstin</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.gstin_validator"><code class="docutils literal notranslate"><span class="pre">User.gstin_validator</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.id"><code class="docutils literal notranslate"><span class="pre">User.id</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.inventory_set"><code class="docutils literal notranslate"><span class="pre">User.inventory_set</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="accounts.html#accounts.models.User.is_active"><code class="docutils literal notranslate"><span class="pre">User.is_active</span></code></a></li>
@@ -334,6 +336,7 @@
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#module-accounts">Module contents</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="forecast.html">forecast module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="inventory.html">inventory package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="inventory.html#subpackages">Subpackages</a><ul class="simple">
 </ul>
@@ -353,6 +356,7 @@
 <li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.HistoricalInventory.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.DoesNotExist</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.HistoricalInventory.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.MultipleObjectsReturned</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.HistoricalInventory.datetime"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.datetime</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.HistoricalInventory.demand"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.demand</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.HistoricalInventory.get_next_by_datetime"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.get_next_by_datetime()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.HistoricalInventory.get_previous_by_datetime"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.get_previous_by_datetime()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.HistoricalInventory.id"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.id</span></code></a></li>
@@ -367,7 +371,6 @@
 <li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Inventory.MultipleObjectsReturned</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.date_added"><code class="docutils literal notranslate"><span class="pre">Inventory.date_added</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.description"><code class="docutils literal notranslate"><span class="pre">Inventory.description</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.expiration_date"><code class="docutils literal notranslate"><span class="pre">Inventory.expiration_date</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.get_next_by_date_added"><code class="docutils literal notranslate"><span class="pre">Inventory.get_next_by_date_added()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.get_next_by_last_updated"><code class="docutils literal notranslate"><span class="pre">Inventory.get_next_by_last_updated()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.get_previous_by_date_added"><code class="docutils literal notranslate"><span class="pre">Inventory.get_previous_by_date_added()</span></code></a></li>
@@ -379,23 +382,48 @@
 <li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.last_updated"><code class="docutils literal notranslate"><span class="pre">Inventory.last_updated</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.location"><code class="docutils literal notranslate"><span class="pre">Inventory.location</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.objects"><code class="docutils literal notranslate"><span class="pre">Inventory.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.optimizedinventory"><code class="docutils literal notranslate"><span class="pre">Inventory.optimizedinventory</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.procurement_officer"><code class="docutils literal notranslate"><span class="pre">Inventory.procurement_officer</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.procurement_officer_id"><code class="docutils literal notranslate"><span class="pre">Inventory.procurement_officer_id</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.reorder_level"><code class="docutils literal notranslate"><span class="pre">Inventory.reorder_level</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.purchaserequisition"><code class="docutils literal notranslate"><span class="pre">Inventory.purchaserequisition</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.stock_quantity"><code class="docutils literal notranslate"><span class="pre">Inventory.stock_quantity</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.Inventory.unit_price"><code class="docutils literal notranslate"><span class="pre">Inventory.unit_price</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.models.OptimizedInventory"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.OptimizedInventory.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.OptimizedInventory.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.OptimizedInventory.demand"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.demand</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.OptimizedInventory.eoq"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.eoq</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.OptimizedInventory.holding_cost"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.holding_cost</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.OptimizedInventory.id"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.OptimizedInventory.inventory"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.inventory</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.OptimizedInventory.inventory_id"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.inventory_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.OptimizedInventory.lead_time"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.lead_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.OptimizedInventory.objects"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.OptimizedInventory.ordering_cost"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.ordering_cost</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.OptimizedInventory.reorder_point"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.reorder_point</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.OptimizedInventory.safety_stock"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.safety_stock</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.OptimizedInventory.service_level"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.service_level</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.OptimizedInventory.shelf_life"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.shelf_life</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.models.OptimizedInventory.storage_limit"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.storage_limit</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.models.create_historical_inventory"><code class="docutils literal notranslate"><span class="pre">create_historical_inventory()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="inventory.html#module-inventory.serializers">inventory.serializers module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.serializers.ARIMAForecastSerializer"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastSerializer</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.serializers.HistoricalInventorySerializer"><code class="docutils literal notranslate"><span class="pre">HistoricalInventorySerializer</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.serializers.HistoricalInventorySerializer.Meta"><code class="docutils literal notranslate"><span class="pre">HistoricalInventorySerializer.Meta</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.serializers.InventorySerializer"><code class="docutils literal notranslate"><span class="pre">InventorySerializer</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.serializers.InventorySerializer.Meta"><code class="docutils literal notranslate"><span class="pre">InventorySerializer.Meta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.serializers.OptimizedInventorySerializer"><code class="docutils literal notranslate"><span class="pre">OptimizedInventorySerializer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.serializers.OptimizedInventorySerializer.Meta"><code class="docutils literal notranslate"><span class="pre">OptimizedInventorySerializer.Meta</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -429,6 +457,27 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="inventory.html#module-inventory.urls">inventory.urls module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inventory.html#module-inventory.views">inventory.views module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.ARIMAForecastAPIView"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastAPIView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.ARIMAForecastAPIView.get"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastAPIView.get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.ARIMAForecastAPIView.get_queryset"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastAPIView.get_queryset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.ARIMAForecastAPIView.permission_classes"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastAPIView.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.ARIMAForecastAPIView.post"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastAPIView.post()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.ARIMAForecastAPIView.serializer_class"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastAPIView.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.BaseInventoryAPIView"><code class="docutils literal notranslate"><span class="pre">BaseInventoryAPIView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.BaseInventoryAPIView.get_queryset"><code class="docutils literal notranslate"><span class="pre">BaseInventoryAPIView.get_queryset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.BaseInventoryAPIView.permission_classes"><code class="docutils literal notranslate"><span class="pre">BaseInventoryAPIView.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.BaseInventoryAPIView.serializer_class"><code class="docutils literal notranslate"><span class="pre">BaseInventoryAPIView.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.BaseOptimizedInventoryAPIView"><code class="docutils literal notranslate"><span class="pre">BaseOptimizedInventoryAPIView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.BaseOptimizedInventoryAPIView.get_queryset"><code class="docutils literal notranslate"><span class="pre">BaseOptimizedInventoryAPIView.get_queryset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.BaseOptimizedInventoryAPIView.lookup_field"><code class="docutils literal notranslate"><span class="pre">BaseOptimizedInventoryAPIView.lookup_field</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.BaseOptimizedInventoryAPIView.permission_classes"><code class="docutils literal notranslate"><span class="pre">BaseOptimizedInventoryAPIView.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.BaseOptimizedInventoryAPIView.serializer_class"><code class="docutils literal notranslate"><span class="pre">BaseOptimizedInventoryAPIView.serializer_class</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.HistoricalInventoryListView"><code class="docutils literal notranslate"><span class="pre">HistoricalInventoryListView</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.HistoricalInventoryListView.get_queryset"><code class="docutils literal notranslate"><span class="pre">HistoricalInventoryListView.get_queryset()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.HistoricalInventoryListView.permission_classes"><code class="docutils literal notranslate"><span class="pre">HistoricalInventoryListView.permission_classes</span></code></a></li>
@@ -436,39 +485,164 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.InventoryCreateView"><code class="docutils literal notranslate"><span class="pre">InventoryCreateView</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryCreateView.permission_classes"><code class="docutils literal notranslate"><span class="pre">InventoryCreateView.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryCreateView.perform_create"><code class="docutils literal notranslate"><span class="pre">InventoryCreateView.perform_create()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryCreateView.queryset"><code class="docutils literal notranslate"><span class="pre">InventoryCreateView.queryset</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryCreateView.serializer_class"><code class="docutils literal notranslate"><span class="pre">InventoryCreateView.serializer_class</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.InventoryDeleteView"><code class="docutils literal notranslate"><span class="pre">InventoryDeleteView</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryDeleteView.get_queryset"><code class="docutils literal notranslate"><span class="pre">InventoryDeleteView.get_queryset()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryDeleteView.permission_classes"><code class="docutils literal notranslate"><span class="pre">InventoryDeleteView.permission_classes</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryDeleteView.serializer_class"><code class="docutils literal notranslate"><span class="pre">InventoryDeleteView.serializer_class</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.InventoryDeleteView"><code class="docutils literal notranslate"><span class="pre">InventoryDeleteView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.InventoryListView"><code class="docutils literal notranslate"><span class="pre">InventoryListView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.InventoryRetrieveView"><code class="docutils literal notranslate"><span class="pre">InventoryRetrieveView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.InventoryUpdateView"><code class="docutils literal notranslate"><span class="pre">InventoryUpdateView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.OptimizedInventoryCreateAPIView"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryCreateAPIView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.OptimizedInventoryCreateAPIView.perform_create"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryCreateAPIView.perform_create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.OptimizedInventoryCreateAPIView.permission_classes"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryCreateAPIView.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.OptimizedInventoryCreateAPIView.serializer_class"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryCreateAPIView.serializer_class</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.InventoryListView"><code class="docutils literal notranslate"><span class="pre">InventoryListView</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryListView.get_queryset"><code class="docutils literal notranslate"><span class="pre">InventoryListView.get_queryset()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryListView.permission_classes"><code class="docutils literal notranslate"><span class="pre">InventoryListView.permission_classes</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryListView.serializer_class"><code class="docutils literal notranslate"><span class="pre">InventoryListView.serializer_class</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.OptimizedInventoryDestroyAPIView"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryDestroyAPIView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.OptimizedInventoryRetrieveAPIView"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryRetrieveAPIView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.OptimizedInventoryUpdateAPIView"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryUpdateAPIView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.OptimizedInventoryUpdateAPIView.perform_update"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryUpdateAPIView.perform_update()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.OptimizedInventoryUpdateAPIView.permission_classes"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryUpdateAPIView.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.OptimizedInventoryUpdateAPIView.serializer_class"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryUpdateAPIView.serializer_class</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.OptimizedInventoryUpdateAPIView.update"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryUpdateAPIView.update()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.InventoryRetrieveView"><code class="docutils literal notranslate"><span class="pre">InventoryRetrieveView</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryRetrieveView.get_queryset"><code class="docutils literal notranslate"><span class="pre">InventoryRetrieveView.get_queryset()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryRetrieveView.permission_classes"><code class="docutils literal notranslate"><span class="pre">InventoryRetrieveView.permission_classes</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryRetrieveView.serializer_class"><code class="docutils literal notranslate"><span class="pre">InventoryRetrieveView.serializer_class</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.InventoryUpdateView"><code class="docutils literal notranslate"><span class="pre">InventoryUpdateView</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryUpdateView.get_queryset"><code class="docutils literal notranslate"><span class="pre">InventoryUpdateView.get_queryset()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryUpdateView.permission_classes"><code class="docutils literal notranslate"><span class="pre">InventoryUpdateView.permission_classes</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="inventory.html#inventory.views.InventoryUpdateView.serializer_class"><code class="docutils literal notranslate"><span class="pre">InventoryUpdateView.serializer_class</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.calculate_auto_arima"><code class="docutils literal notranslate"><span class="pre">calculate_auto_arima()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.calculate_eoq_classical"><code class="docutils literal notranslate"><span class="pre">calculate_eoq_classical()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.calculate_eoq_limited_storage"><code class="docutils literal notranslate"><span class="pre">calculate_eoq_limited_storage()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.calculate_eoq_perishable"><code class="docutils literal notranslate"><span class="pre">calculate_eoq_perishable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.calculate_eoq_with_rop"><code class="docutils literal notranslate"><span class="pre">calculate_eoq_with_rop()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.calculate_safety_stock_reorder_point"><code class="docutils literal notranslate"><span class="pre">calculate_safety_stock_reorder_point()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="inventory.html#inventory.views.getRoutes"><code class="docutils literal notranslate"><span class="pre">getRoutes()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="inventory.html#module-inventory">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="purchase.html">purchase package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="purchase.html#subpackages">Subpackages</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="purchase.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="purchase.html#module-purchase.admin">purchase.admin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="purchase.html#module-purchase.apps">purchase.apps module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="purchase.html#purchase.apps.PurchaseConfig"><code class="docutils literal notranslate"><span class="pre">PurchaseConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.apps.PurchaseConfig.default_auto_field"><code class="docutils literal notranslate"><span class="pre">PurchaseConfig.default_auto_field</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.apps.PurchaseConfig.name"><code class="docutils literal notranslate"><span class="pre">PurchaseConfig.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="purchase.html#module-purchase.models">purchase.models module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="purchase.html#purchase.models.PurchaseOrder"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseOrder.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseOrder.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseOrder.STATUS_CHOICES"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder.STATUS_CHOICES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseOrder.bid"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder.bid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseOrder.bid_id"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder.bid_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseOrder.date_ordered"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder.date_ordered</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseOrder.get_next_by_date_ordered"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder.get_next_by_date_ordered()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseOrder.get_previous_by_date_ordered"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder.get_previous_by_date_ordered()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseOrder.get_status_display"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder.get_status_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseOrder.id"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseOrder.objects"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseOrder.order_number"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder.order_number</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseOrder.quantity_ordered"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder.quantity_ordered</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseOrder.status"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder.status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseOrder.unit_price"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder.unit_price</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="purchase.html#purchase.models.PurchaseRequisition"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseRequisition.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseRequisition.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseRequisition.STATUS_CHOICES"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.STATUS_CHOICES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseRequisition.URGENCY_LEVEL_CHOICES"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.URGENCY_LEVEL_CHOICES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseRequisition.attachments"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.attachments</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseRequisition.comments"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.comments</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseRequisition.date_created"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.date_created</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseRequisition.expected_delivery_date"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.expected_delivery_date</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseRequisition.get_next_by_date_created"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.get_next_by_date_created()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseRequisition.get_next_by_expected_delivery_date"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.get_next_by_expected_delivery_date()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseRequisition.get_next_by_last_updated"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.get_next_by_last_updated()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseRequisition.get_previous_by_date_created"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.get_previous_by_date_created()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseRequisition.get_previous_by_expected_delivery_date"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.get_previous_by_expected_delivery_date()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseRequisition.get_previous_by_last_updated"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.get_previous_by_last_updated()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseRequisition.get_status_display"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.get_status_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseRequisition.get_urgency_level_display"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.get_urgency_level_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseRequisition.id"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseRequisition.inventory"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.inventory</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseRequisition.inventory_id"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.inventory_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseRequisition.last_updated"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.last_updated</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseRequisition.objects"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseRequisition.quantity_requested"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.quantity_requested</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseRequisition.report"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.report</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseRequisition.requisition_number"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.requisition_number</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseRequisition.status"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseRequisition.supplierbid_set"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.supplierbid_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.PurchaseRequisition.urgency_level"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.urgency_level</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="purchase.html#purchase.models.SupplierBid"><code class="docutils literal notranslate"><span class="pre">SupplierBid</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.SupplierBid.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">SupplierBid.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.SupplierBid.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">SupplierBid.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.SupplierBid.STATUS_CHOICES"><code class="docutils literal notranslate"><span class="pre">SupplierBid.STATUS_CHOICES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.SupplierBid.attachments"><code class="docutils literal notranslate"><span class="pre">SupplierBid.attachments</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.SupplierBid.comments"><code class="docutils literal notranslate"><span class="pre">SupplierBid.comments</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.SupplierBid.date_submitted"><code class="docutils literal notranslate"><span class="pre">SupplierBid.date_submitted</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.SupplierBid.days_delivery"><code class="docutils literal notranslate"><span class="pre">SupplierBid.days_delivery</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.SupplierBid.get_next_by_date_submitted"><code class="docutils literal notranslate"><span class="pre">SupplierBid.get_next_by_date_submitted()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.SupplierBid.get_previous_by_date_submitted"><code class="docutils literal notranslate"><span class="pre">SupplierBid.get_previous_by_date_submitted()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.SupplierBid.get_status_display"><code class="docutils literal notranslate"><span class="pre">SupplierBid.get_status_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.SupplierBid.id"><code class="docutils literal notranslate"><span class="pre">SupplierBid.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.SupplierBid.objects"><code class="docutils literal notranslate"><span class="pre">SupplierBid.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.SupplierBid.purchaseorder"><code class="docutils literal notranslate"><span class="pre">SupplierBid.purchaseorder</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.SupplierBid.quantity_fulfilled"><code class="docutils literal notranslate"><span class="pre">SupplierBid.quantity_fulfilled</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.SupplierBid.requisition"><code class="docutils literal notranslate"><span class="pre">SupplierBid.requisition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.SupplierBid.requisition_id"><code class="docutils literal notranslate"><span class="pre">SupplierBid.requisition_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.SupplierBid.status"><code class="docutils literal notranslate"><span class="pre">SupplierBid.status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.models.SupplierBid.unit_price"><code class="docutils literal notranslate"><span class="pre">SupplierBid.unit_price</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="purchase.html#module-purchase.serializers">purchase.serializers module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="purchase.html#purchase.serializers.PurchaseOrderSerializer"><code class="docutils literal notranslate"><span class="pre">PurchaseOrderSerializer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.serializers.PurchaseOrderSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">PurchaseOrderSerializer.Meta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="purchase.html#purchase.serializers.PurchaseRequisitionSerializer"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionSerializer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.serializers.PurchaseRequisitionSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionSerializer.Meta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="purchase.html#purchase.serializers.SupplierBidSerializer"><code class="docutils literal notranslate"><span class="pre">SupplierBidSerializer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.serializers.SupplierBidSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">SupplierBidSerializer.Meta</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="purchase.html#module-purchase.tests">purchase.tests module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="purchase.html#module-purchase.urls">purchase.urls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="purchase.html#module-purchase.views">purchase.views module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="purchase.html#purchase.views.BasePurchaseRequisitionAPIView"><code class="docutils literal notranslate"><span class="pre">BasePurchaseRequisitionAPIView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.views.BasePurchaseRequisitionAPIView.get_object"><code class="docutils literal notranslate"><span class="pre">BasePurchaseRequisitionAPIView.get_object()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.views.BasePurchaseRequisitionAPIView.get_queryset"><code class="docutils literal notranslate"><span class="pre">BasePurchaseRequisitionAPIView.get_queryset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.views.BasePurchaseRequisitionAPIView.permission_classes"><code class="docutils literal notranslate"><span class="pre">BasePurchaseRequisitionAPIView.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.views.BasePurchaseRequisitionAPIView.serializer_class"><code class="docutils literal notranslate"><span class="pre">BasePurchaseRequisitionAPIView.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="purchase.html#purchase.views.PurchaseRequisitionCreateView"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionCreateView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.views.PurchaseRequisitionCreateView.perform_create"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionCreateView.perform_create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="purchase.html#purchase.views.PurchaseRequisitionCreateView.queryset"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionCreateView.queryset</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="purchase.html#purchase.views.PurchaseRequisitionDeleteView"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionDeleteView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="purchase.html#purchase.views.PurchaseRequisitionListView"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionListView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="purchase.html#purchase.views.PurchaseRequisitionRetrieveView"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionRetrieveView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="purchase.html#purchase.views.PurchaseRequisitionUpdateView"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionUpdateView</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="purchase.html#module-purchase">Module contents</a></li>
 </ul>
 </li>
 </ul>

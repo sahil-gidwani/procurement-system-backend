@@ -1,0 +1,77 @@
+purchase package
+================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   purchase.migrations
+
+Submodules
+----------
+
+purchase.admin module
+---------------------
+
+.. automodule:: purchase.admin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+purchase.apps module
+--------------------
+
+.. automodule:: purchase.apps
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+purchase.models module
+----------------------
+
+.. automodule:: purchase.models
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+purchase.serializers module
+---------------------------
+
+.. automodule:: purchase.serializers
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+purchase.tests module
+---------------------
+
+.. automodule:: purchase.tests
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+purchase.urls module
+--------------------
+
+.. automodule:: purchase.urls
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+purchase.views module
+---------------------
+
+.. automodule:: purchase.views
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: purchase
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -61,6 +61,7 @@
 <li><a class="reference internal" href="#inventory.models.HistoricalInventory.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.DoesNotExist</span></code></a></li>
 <li><a class="reference internal" href="#inventory.models.HistoricalInventory.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.MultipleObjectsReturned</span></code></a></li>
 <li><a class="reference internal" href="#inventory.models.HistoricalInventory.datetime"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.datetime</span></code></a></li>
+<li><a class="reference internal" href="#inventory.models.HistoricalInventory.demand"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.demand</span></code></a></li>
 <li><a class="reference internal" href="#inventory.models.HistoricalInventory.get_next_by_datetime"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.get_next_by_datetime()</span></code></a></li>
 <li><a class="reference internal" href="#inventory.models.HistoricalInventory.get_previous_by_datetime"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.get_previous_by_datetime()</span></code></a></li>
 <li><a class="reference internal" href="#inventory.models.HistoricalInventory.id"><code class="docutils literal notranslate"><span class="pre">HistoricalInventory.id</span></code></a></li>
@@ -75,7 +76,6 @@
 <li><a class="reference internal" href="#inventory.models.Inventory.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Inventory.MultipleObjectsReturned</span></code></a></li>
 <li><a class="reference internal" href="#inventory.models.Inventory.date_added"><code class="docutils literal notranslate"><span class="pre">Inventory.date_added</span></code></a></li>
 <li><a class="reference internal" href="#inventory.models.Inventory.description"><code class="docutils literal notranslate"><span class="pre">Inventory.description</span></code></a></li>
-<li><a class="reference internal" href="#inventory.models.Inventory.expiration_date"><code class="docutils literal notranslate"><span class="pre">Inventory.expiration_date</span></code></a></li>
 <li><a class="reference internal" href="#inventory.models.Inventory.get_next_by_date_added"><code class="docutils literal notranslate"><span class="pre">Inventory.get_next_by_date_added()</span></code></a></li>
 <li><a class="reference internal" href="#inventory.models.Inventory.get_next_by_last_updated"><code class="docutils literal notranslate"><span class="pre">Inventory.get_next_by_last_updated()</span></code></a></li>
 <li><a class="reference internal" href="#inventory.models.Inventory.get_previous_by_date_added"><code class="docutils literal notranslate"><span class="pre">Inventory.get_previous_by_date_added()</span></code></a></li>
@@ -87,20 +87,41 @@
 <li><a class="reference internal" href="#inventory.models.Inventory.last_updated"><code class="docutils literal notranslate"><span class="pre">Inventory.last_updated</span></code></a></li>
 <li><a class="reference internal" href="#inventory.models.Inventory.location"><code class="docutils literal notranslate"><span class="pre">Inventory.location</span></code></a></li>
 <li><a class="reference internal" href="#inventory.models.Inventory.objects"><code class="docutils literal notranslate"><span class="pre">Inventory.objects</span></code></a></li>
+<li><a class="reference internal" href="#inventory.models.Inventory.optimizedinventory"><code class="docutils literal notranslate"><span class="pre">Inventory.optimizedinventory</span></code></a></li>
 <li><a class="reference internal" href="#inventory.models.Inventory.procurement_officer"><code class="docutils literal notranslate"><span class="pre">Inventory.procurement_officer</span></code></a></li>
 <li><a class="reference internal" href="#inventory.models.Inventory.procurement_officer_id"><code class="docutils literal notranslate"><span class="pre">Inventory.procurement_officer_id</span></code></a></li>
-<li><a class="reference internal" href="#inventory.models.Inventory.reorder_level"><code class="docutils literal notranslate"><span class="pre">Inventory.reorder_level</span></code></a></li>
+<li><a class="reference internal" href="#inventory.models.Inventory.purchaserequisition"><code class="docutils literal notranslate"><span class="pre">Inventory.purchaserequisition</span></code></a></li>
 <li><a class="reference internal" href="#inventory.models.Inventory.stock_quantity"><code class="docutils literal notranslate"><span class="pre">Inventory.stock_quantity</span></code></a></li>
 <li><a class="reference internal" href="#inventory.models.Inventory.unit_price"><code class="docutils literal notranslate"><span class="pre">Inventory.unit_price</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#inventory.models.OptimizedInventory"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory</span></code></a><ul>
+<li><a class="reference internal" href="#inventory.models.OptimizedInventory.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.DoesNotExist</span></code></a></li>
+<li><a class="reference internal" href="#inventory.models.OptimizedInventory.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.MultipleObjectsReturned</span></code></a></li>
+<li><a class="reference internal" href="#inventory.models.OptimizedInventory.demand"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.demand</span></code></a></li>
+<li><a class="reference internal" href="#inventory.models.OptimizedInventory.eoq"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.eoq</span></code></a></li>
+<li><a class="reference internal" href="#inventory.models.OptimizedInventory.holding_cost"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.holding_cost</span></code></a></li>
+<li><a class="reference internal" href="#inventory.models.OptimizedInventory.id"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.id</span></code></a></li>
+<li><a class="reference internal" href="#inventory.models.OptimizedInventory.inventory"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.inventory</span></code></a></li>
+<li><a class="reference internal" href="#inventory.models.OptimizedInventory.inventory_id"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.inventory_id</span></code></a></li>
+<li><a class="reference internal" href="#inventory.models.OptimizedInventory.lead_time"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.lead_time</span></code></a></li>
+<li><a class="reference internal" href="#inventory.models.OptimizedInventory.objects"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.objects</span></code></a></li>
+<li><a class="reference internal" href="#inventory.models.OptimizedInventory.ordering_cost"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.ordering_cost</span></code></a></li>
+<li><a class="reference internal" href="#inventory.models.OptimizedInventory.reorder_point"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.reorder_point</span></code></a></li>
+<li><a class="reference internal" href="#inventory.models.OptimizedInventory.safety_stock"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.safety_stock</span></code></a></li>
+<li><a class="reference internal" href="#inventory.models.OptimizedInventory.service_level"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.service_level</span></code></a></li>
+<li><a class="reference internal" href="#inventory.models.OptimizedInventory.shelf_life"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.shelf_life</span></code></a></li>
+<li><a class="reference internal" href="#inventory.models.OptimizedInventory.storage_limit"><code class="docutils literal notranslate"><span class="pre">OptimizedInventory.storage_limit</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#inventory.models.create_historical_inventory"><code class="docutils literal notranslate"><span class="pre">create_historical_inventory()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-inventory.serializers">inventory.serializers module</a><ul>
+<li><a class="reference internal" href="#inventory.serializers.ARIMAForecastSerializer"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastSerializer</span></code></a></li>
 <li><a class="reference internal" href="#inventory.serializers.HistoricalInventorySerializer"><code class="docutils literal notranslate"><span class="pre">HistoricalInventorySerializer</span></code></a><ul>
 <li><a class="reference internal" href="#inventory.serializers.HistoricalInventorySerializer.Meta"><code class="docutils literal notranslate"><span class="pre">HistoricalInventorySerializer.Meta</span></code></a><ul>
-<li><a class="reference internal" href="#inventory.serializers.HistoricalInventorySerializer.Meta.fields"><code class="docutils literal notranslate"><span class="pre">HistoricalInventorySerializer.Meta.fields</span></code></a></li>
+<li><a class="reference internal" href="#inventory.serializers.HistoricalInventorySerializer.Meta.exclude"><code class="docutils literal notranslate"><span class="pre">HistoricalInventorySerializer.Meta.exclude</span></code></a></li>
 <li><a class="reference internal" href="#inventory.serializers.HistoricalInventorySerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">HistoricalInventorySerializer.Meta.model</span></code></a></li>
 </ul>
 </li>
@@ -108,8 +129,17 @@
 </li>
 <li><a class="reference internal" href="#inventory.serializers.InventorySerializer"><code class="docutils literal notranslate"><span class="pre">InventorySerializer</span></code></a><ul>
 <li><a class="reference internal" href="#inventory.serializers.InventorySerializer.Meta"><code class="docutils literal notranslate"><span class="pre">InventorySerializer.Meta</span></code></a><ul>
-<li><a class="reference internal" href="#inventory.serializers.InventorySerializer.Meta.fields"><code class="docutils literal notranslate"><span class="pre">InventorySerializer.Meta.fields</span></code></a></li>
+<li><a class="reference internal" href="#inventory.serializers.InventorySerializer.Meta.exclude"><code class="docutils literal notranslate"><span class="pre">InventorySerializer.Meta.exclude</span></code></a></li>
 <li><a class="reference internal" href="#inventory.serializers.InventorySerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">InventorySerializer.Meta.model</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#inventory.serializers.OptimizedInventorySerializer"><code class="docutils literal notranslate"><span class="pre">OptimizedInventorySerializer</span></code></a><ul>
+<li><a class="reference internal" href="#inventory.serializers.OptimizedInventorySerializer.Meta"><code class="docutils literal notranslate"><span class="pre">OptimizedInventorySerializer.Meta</span></code></a><ul>
+<li><a class="reference internal" href="#inventory.serializers.OptimizedInventorySerializer.Meta.exclude"><code class="docutils literal notranslate"><span class="pre">OptimizedInventorySerializer.Meta.exclude</span></code></a></li>
+<li><a class="reference internal" href="#inventory.serializers.OptimizedInventorySerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">OptimizedInventorySerializer.Meta.model</span></code></a></li>
+<li><a class="reference internal" href="#inventory.serializers.OptimizedInventorySerializer.Meta.read_only_fields"><code class="docutils literal notranslate"><span class="pre">OptimizedInventorySerializer.Meta.read_only_fields</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -145,6 +175,27 @@
 </li>
 <li><a class="reference internal" href="#module-inventory.urls">inventory.urls module</a></li>
 <li><a class="reference internal" href="#module-inventory.views">inventory.views module</a><ul>
+<li><a class="reference internal" href="#inventory.views.ARIMAForecastAPIView"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastAPIView</span></code></a><ul>
+<li><a class="reference internal" href="#inventory.views.ARIMAForecastAPIView.get"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastAPIView.get()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.views.ARIMAForecastAPIView.get_queryset"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastAPIView.get_queryset()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.views.ARIMAForecastAPIView.permission_classes"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastAPIView.permission_classes</span></code></a></li>
+<li><a class="reference internal" href="#inventory.views.ARIMAForecastAPIView.post"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastAPIView.post()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.views.ARIMAForecastAPIView.serializer_class"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastAPIView.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#inventory.views.BaseInventoryAPIView"><code class="docutils literal notranslate"><span class="pre">BaseInventoryAPIView</span></code></a><ul>
+<li><a class="reference internal" href="#inventory.views.BaseInventoryAPIView.get_queryset"><code class="docutils literal notranslate"><span class="pre">BaseInventoryAPIView.get_queryset()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.views.BaseInventoryAPIView.permission_classes"><code class="docutils literal notranslate"><span class="pre">BaseInventoryAPIView.permission_classes</span></code></a></li>
+<li><a class="reference internal" href="#inventory.views.BaseInventoryAPIView.serializer_class"><code class="docutils literal notranslate"><span class="pre">BaseInventoryAPIView.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#inventory.views.BaseOptimizedInventoryAPIView"><code class="docutils literal notranslate"><span class="pre">BaseOptimizedInventoryAPIView</span></code></a><ul>
+<li><a class="reference internal" href="#inventory.views.BaseOptimizedInventoryAPIView.get_queryset"><code class="docutils literal notranslate"><span class="pre">BaseOptimizedInventoryAPIView.get_queryset()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.views.BaseOptimizedInventoryAPIView.lookup_field"><code class="docutils literal notranslate"><span class="pre">BaseOptimizedInventoryAPIView.lookup_field</span></code></a></li>
+<li><a class="reference internal" href="#inventory.views.BaseOptimizedInventoryAPIView.permission_classes"><code class="docutils literal notranslate"><span class="pre">BaseOptimizedInventoryAPIView.permission_classes</span></code></a></li>
+<li><a class="reference internal" href="#inventory.views.BaseOptimizedInventoryAPIView.serializer_class"><code class="docutils literal notranslate"><span class="pre">BaseOptimizedInventoryAPIView.serializer_class</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#inventory.views.HistoricalInventoryListView"><code class="docutils literal notranslate"><span class="pre">HistoricalInventoryListView</span></code></a><ul>
 <li><a class="reference internal" href="#inventory.views.HistoricalInventoryListView.get_queryset"><code class="docutils literal notranslate"><span class="pre">HistoricalInventoryListView.get_queryset()</span></code></a></li>
 <li><a class="reference internal" href="#inventory.views.HistoricalInventoryListView.permission_classes"><code class="docutils literal notranslate"><span class="pre">HistoricalInventoryListView.permission_classes</span></code></a></li>
@@ -152,35 +203,35 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#inventory.views.InventoryCreateView"><code class="docutils literal notranslate"><span class="pre">InventoryCreateView</span></code></a><ul>
-<li><a class="reference internal" href="#inventory.views.InventoryCreateView.permission_classes"><code class="docutils literal notranslate"><span class="pre">InventoryCreateView.permission_classes</span></code></a></li>
+<li><a class="reference internal" href="#inventory.views.InventoryCreateView.perform_create"><code class="docutils literal notranslate"><span class="pre">InventoryCreateView.perform_create()</span></code></a></li>
 <li><a class="reference internal" href="#inventory.views.InventoryCreateView.queryset"><code class="docutils literal notranslate"><span class="pre">InventoryCreateView.queryset</span></code></a></li>
-<li><a class="reference internal" href="#inventory.views.InventoryCreateView.serializer_class"><code class="docutils literal notranslate"><span class="pre">InventoryCreateView.serializer_class</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#inventory.views.InventoryDeleteView"><code class="docutils literal notranslate"><span class="pre">InventoryDeleteView</span></code></a><ul>
-<li><a class="reference internal" href="#inventory.views.InventoryDeleteView.get_queryset"><code class="docutils literal notranslate"><span class="pre">InventoryDeleteView.get_queryset()</span></code></a></li>
-<li><a class="reference internal" href="#inventory.views.InventoryDeleteView.permission_classes"><code class="docutils literal notranslate"><span class="pre">InventoryDeleteView.permission_classes</span></code></a></li>
-<li><a class="reference internal" href="#inventory.views.InventoryDeleteView.serializer_class"><code class="docutils literal notranslate"><span class="pre">InventoryDeleteView.serializer_class</span></code></a></li>
+<li><a class="reference internal" href="#inventory.views.InventoryDeleteView"><code class="docutils literal notranslate"><span class="pre">InventoryDeleteView</span></code></a></li>
+<li><a class="reference internal" href="#inventory.views.InventoryListView"><code class="docutils literal notranslate"><span class="pre">InventoryListView</span></code></a></li>
+<li><a class="reference internal" href="#inventory.views.InventoryRetrieveView"><code class="docutils literal notranslate"><span class="pre">InventoryRetrieveView</span></code></a></li>
+<li><a class="reference internal" href="#inventory.views.InventoryUpdateView"><code class="docutils literal notranslate"><span class="pre">InventoryUpdateView</span></code></a></li>
+<li><a class="reference internal" href="#inventory.views.OptimizedInventoryCreateAPIView"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryCreateAPIView</span></code></a><ul>
+<li><a class="reference internal" href="#inventory.views.OptimizedInventoryCreateAPIView.perform_create"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryCreateAPIView.perform_create()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.views.OptimizedInventoryCreateAPIView.permission_classes"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryCreateAPIView.permission_classes</span></code></a></li>
+<li><a class="reference internal" href="#inventory.views.OptimizedInventoryCreateAPIView.serializer_class"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryCreateAPIView.serializer_class</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#inventory.views.InventoryListView"><code class="docutils literal notranslate"><span class="pre">InventoryListView</span></code></a><ul>
-<li><a class="reference internal" href="#inventory.views.InventoryListView.get_queryset"><code class="docutils literal notranslate"><span class="pre">InventoryListView.get_queryset()</span></code></a></li>
-<li><a class="reference internal" href="#inventory.views.InventoryListView.permission_classes"><code class="docutils literal notranslate"><span class="pre">InventoryListView.permission_classes</span></code></a></li>
-<li><a class="reference internal" href="#inventory.views.InventoryListView.serializer_class"><code class="docutils literal notranslate"><span class="pre">InventoryListView.serializer_class</span></code></a></li>
+<li><a class="reference internal" href="#inventory.views.OptimizedInventoryDestroyAPIView"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryDestroyAPIView</span></code></a></li>
+<li><a class="reference internal" href="#inventory.views.OptimizedInventoryRetrieveAPIView"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryRetrieveAPIView</span></code></a></li>
+<li><a class="reference internal" href="#inventory.views.OptimizedInventoryUpdateAPIView"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryUpdateAPIView</span></code></a><ul>
+<li><a class="reference internal" href="#inventory.views.OptimizedInventoryUpdateAPIView.perform_update"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryUpdateAPIView.perform_update()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.views.OptimizedInventoryUpdateAPIView.permission_classes"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryUpdateAPIView.permission_classes</span></code></a></li>
+<li><a class="reference internal" href="#inventory.views.OptimizedInventoryUpdateAPIView.serializer_class"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryUpdateAPIView.serializer_class</span></code></a></li>
+<li><a class="reference internal" href="#inventory.views.OptimizedInventoryUpdateAPIView.update"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryUpdateAPIView.update()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#inventory.views.InventoryRetrieveView"><code class="docutils literal notranslate"><span class="pre">InventoryRetrieveView</span></code></a><ul>
-<li><a class="reference internal" href="#inventory.views.InventoryRetrieveView.get_queryset"><code class="docutils literal notranslate"><span class="pre">InventoryRetrieveView.get_queryset()</span></code></a></li>
-<li><a class="reference internal" href="#inventory.views.InventoryRetrieveView.permission_classes"><code class="docutils literal notranslate"><span class="pre">InventoryRetrieveView.permission_classes</span></code></a></li>
-<li><a class="reference internal" href="#inventory.views.InventoryRetrieveView.serializer_class"><code class="docutils literal notranslate"><span class="pre">InventoryRetrieveView.serializer_class</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#inventory.views.InventoryUpdateView"><code class="docutils literal notranslate"><span class="pre">InventoryUpdateView</span></code></a><ul>
-<li><a class="reference internal" href="#inventory.views.InventoryUpdateView.get_queryset"><code class="docutils literal notranslate"><span class="pre">InventoryUpdateView.get_queryset()</span></code></a></li>
-<li><a class="reference internal" href="#inventory.views.InventoryUpdateView.permission_classes"><code class="docutils literal notranslate"><span class="pre">InventoryUpdateView.permission_classes</span></code></a></li>
-<li><a class="reference internal" href="#inventory.views.InventoryUpdateView.serializer_class"><code class="docutils literal notranslate"><span class="pre">InventoryUpdateView.serializer_class</span></code></a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#inventory.views.calculate_auto_arima"><code class="docutils literal notranslate"><span class="pre">calculate_auto_arima()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.views.calculate_eoq_classical"><code class="docutils literal notranslate"><span class="pre">calculate_eoq_classical()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.views.calculate_eoq_limited_storage"><code class="docutils literal notranslate"><span class="pre">calculate_eoq_limited_storage()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.views.calculate_eoq_perishable"><code class="docutils literal notranslate"><span class="pre">calculate_eoq_perishable()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.views.calculate_eoq_with_rop"><code class="docutils literal notranslate"><span class="pre">calculate_eoq_with_rop()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.views.calculate_safety_stock_reorder_point"><code class="docutils literal notranslate"><span class="pre">calculate_safety_stock_reorder_point()</span></code></a></li>
 <li><a class="reference internal" href="#inventory.views.getRoutes"><code class="docutils literal notranslate"><span class="pre">getRoutes()</span></code></a></li>
 </ul>
 </li>
@@ -249,7 +300,7 @@
 <span id="inventory-models-module"></span><h2>inventory.models module<a class="headerlink" href="#module-inventory.models" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="inventory.models.HistoricalInventory">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.models.</span></span><span class="sig-name descname"><span class="pre">HistoricalInventory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stock_quantity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inventory</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/models.html#HistoricalInventory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.models.HistoricalInventory" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.models.</span></span><span class="sig-name descname"><span class="pre">HistoricalInventory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stock_quantity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">demand</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inventory</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/models.html#HistoricalInventory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.models.HistoricalInventory" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="inventory.models.HistoricalInventory.DoesNotExist">
@@ -266,6 +317,13 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="inventory.models.HistoricalInventory.datetime">
 <span class="sig-name descname"><span class="pre">datetime</span></span><a class="headerlink" href="#inventory.models.HistoricalInventory.datetime" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="inventory.models.HistoricalInventory.demand">
+<span class="sig-name descname"><span class="pre">demand</span></span><a class="headerlink" href="#inventory.models.HistoricalInventory.demand" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
@@ -321,7 +379,7 @@ object the first time, the query is executed.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="inventory.models.Inventory">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.models.</span></span><span class="sig-name descname"><span class="pre">Inventory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stock_quantity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reorder_level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_added</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_updated</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expiration_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">procurement_officer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/models.html#Inventory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.models.Inventory" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.models.</span></span><span class="sig-name descname"><span class="pre">Inventory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stock_quantity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_added</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_updated</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">procurement_officer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/models.html#Inventory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.models.Inventory" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="inventory.models.Inventory.DoesNotExist">
@@ -345,13 +403,6 @@ object the first time, the query is executed.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="inventory.models.Inventory.description">
 <span class="sig-name descname"><span class="pre">description</span></span><a class="headerlink" href="#inventory.models.Inventory.description" title="Link to this definition"></a></dt>
-<dd><p>A wrapper for a deferred-loading field. When the value is read from this
-object the first time, the query is executed.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="inventory.models.Inventory.expiration_date">
-<span class="sig-name descname"><span class="pre">expiration_date</span></span><a class="headerlink" href="#inventory.models.Inventory.expiration_date" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
@@ -432,6 +483,19 @@ object the first time, the query is executed.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="inventory.models.Inventory.optimizedinventory">
+<span class="sig-name descname"><span class="pre">optimizedinventory</span></span><a class="headerlink" href="#inventory.models.Inventory.optimizedinventory" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related object on the reverse side of a one-to-one
+relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Restaurant</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">place</span> <span class="o">=</span> <span class="n">OneToOneField</span><span class="p">(</span><span class="n">Place</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;restaurant&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Place.restaurant</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseOneToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="inventory.models.Inventory.procurement_officer">
 <span class="sig-name descname"><span class="pre">procurement_officer</span></span><a class="headerlink" href="#inventory.models.Inventory.procurement_officer" title="Link to this definition"></a></dt>
 <dd><p>Accessor to the related object on the forward side of a many-to-one or
@@ -450,10 +514,16 @@ one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="inventory.models.Inventory.reorder_level">
-<span class="sig-name descname"><span class="pre">reorder_level</span></span><a class="headerlink" href="#inventory.models.Inventory.reorder_level" title="Link to this definition"></a></dt>
-<dd><p>A wrapper for a deferred-loading field. When the value is read from this
-object the first time, the query is executed.</p>
+<dt class="sig sig-object py" id="inventory.models.Inventory.purchaserequisition">
+<span class="sig-name descname"><span class="pre">purchaserequisition</span></span><a class="headerlink" href="#inventory.models.Inventory.purchaserequisition" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related object on the reverse side of a one-to-one
+relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Restaurant</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">place</span> <span class="o">=</span> <span class="n">OneToOneField</span><span class="p">(</span><span class="n">Place</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;restaurant&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Place.restaurant</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseOneToOneDescriptor</span></code> instance.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -472,6 +542,123 @@ object the first time, the query is executed.</p>
 
 </dd></dl>
 
+<dl class="py class">
+<dt class="sig sig-object py" id="inventory.models.OptimizedInventory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.models.</span></span><span class="sig-name descname"><span class="pre">OptimizedInventory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">demand</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ordering_cost</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">holding_cost</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lead_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service_level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">safety_stock</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reorder_point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shelf_life</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_limit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eoq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inventory</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/models.html#OptimizedInventory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.models.OptimizedInventory" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="inventory.models.OptimizedInventory.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#inventory.models.OptimizedInventory.DoesNotExist" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="inventory.models.OptimizedInventory.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#inventory.models.OptimizedInventory.MultipleObjectsReturned" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="inventory.models.OptimizedInventory.demand">
+<span class="sig-name descname"><span class="pre">demand</span></span><a class="headerlink" href="#inventory.models.OptimizedInventory.demand" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="inventory.models.OptimizedInventory.eoq">
+<span class="sig-name descname"><span class="pre">eoq</span></span><a class="headerlink" href="#inventory.models.OptimizedInventory.eoq" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="inventory.models.OptimizedInventory.holding_cost">
+<span class="sig-name descname"><span class="pre">holding_cost</span></span><a class="headerlink" href="#inventory.models.OptimizedInventory.holding_cost" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="inventory.models.OptimizedInventory.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#inventory.models.OptimizedInventory.id" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="inventory.models.OptimizedInventory.inventory">
+<span class="sig-name descname"><span class="pre">inventory</span></span><a class="headerlink" href="#inventory.models.OptimizedInventory.inventory" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a one-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Restaurant</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">place</span> <span class="o">=</span> <span class="n">OneToOneField</span><span class="p">(</span><span class="n">Place</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;restaurant&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Restaurant.place</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardOneToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="inventory.models.OptimizedInventory.inventory_id">
+<span class="sig-name descname"><span class="pre">inventory_id</span></span><a class="headerlink" href="#inventory.models.OptimizedInventory.inventory_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="inventory.models.OptimizedInventory.lead_time">
+<span class="sig-name descname"><span class="pre">lead_time</span></span><a class="headerlink" href="#inventory.models.OptimizedInventory.lead_time" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="inventory.models.OptimizedInventory.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#inventory.models.OptimizedInventory.objects" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="inventory.models.OptimizedInventory.ordering_cost">
+<span class="sig-name descname"><span class="pre">ordering_cost</span></span><a class="headerlink" href="#inventory.models.OptimizedInventory.ordering_cost" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="inventory.models.OptimizedInventory.reorder_point">
+<span class="sig-name descname"><span class="pre">reorder_point</span></span><a class="headerlink" href="#inventory.models.OptimizedInventory.reorder_point" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="inventory.models.OptimizedInventory.safety_stock">
+<span class="sig-name descname"><span class="pre">safety_stock</span></span><a class="headerlink" href="#inventory.models.OptimizedInventory.safety_stock" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="inventory.models.OptimizedInventory.service_level">
+<span class="sig-name descname"><span class="pre">service_level</span></span><a class="headerlink" href="#inventory.models.OptimizedInventory.service_level" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="inventory.models.OptimizedInventory.shelf_life">
+<span class="sig-name descname"><span class="pre">shelf_life</span></span><a class="headerlink" href="#inventory.models.OptimizedInventory.shelf_life" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="inventory.models.OptimizedInventory.storage_limit">
+<span class="sig-name descname"><span class="pre">storage_limit</span></span><a class="headerlink" href="#inventory.models.OptimizedInventory.storage_limit" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="inventory.models.create_historical_inventory">
 <span class="sig-prename descclassname"><span class="pre">inventory.models.</span></span><span class="sig-name descname"><span class="pre">create_historical_inventory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sender</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">created</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/models.html#create_historical_inventory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.models.create_historical_inventory" title="Link to this definition"></a></dt>
@@ -481,6 +668,12 @@ object the first time, the query is executed.</p>
 <section id="module-inventory.serializers">
 <span id="inventory-serializers-module"></span><h2>inventory.serializers module<a class="headerlink" href="#module-inventory.serializers" title="Link to this heading"></a></h2>
 <dl class="py class">
+<dt class="sig sig-object py" id="inventory.serializers.ARIMAForecastSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.serializers.</span></span><span class="sig-name descname"><span class="pre">ARIMAForecastSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/serializers.html#ARIMAForecastSerializer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.serializers.ARIMAForecastSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Serializer</span></code></p>
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="inventory.serializers.HistoricalInventorySerializer">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.serializers.</span></span><span class="sig-name descname"><span class="pre">HistoricalInventorySerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/serializers.html#HistoricalInventorySerializer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.serializers.HistoricalInventorySerializer" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
@@ -489,8 +682,8 @@ object the first time, the query is executed.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="reference internal" href="../_modules/inventory/serializers.html#HistoricalInventorySerializer.Meta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.serializers.HistoricalInventorySerializer.Meta" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="inventory.serializers.HistoricalInventorySerializer.Meta.fields">
-<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'__all__'</span></em><a class="headerlink" href="#inventory.serializers.HistoricalInventorySerializer.Meta.fields" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="inventory.serializers.HistoricalInventorySerializer.Meta.exclude">
+<span class="sig-name descname"><span class="pre">exclude</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['inventory']</span></em><a class="headerlink" href="#inventory.serializers.HistoricalInventorySerializer.Meta.exclude" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -512,8 +705,8 @@ object the first time, the query is executed.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="reference internal" href="../_modules/inventory/serializers.html#InventorySerializer.Meta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.serializers.InventorySerializer.Meta" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="inventory.serializers.InventorySerializer.Meta.fields">
-<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'__all__'</span></em><a class="headerlink" href="#inventory.serializers.InventorySerializer.Meta.fields" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="inventory.serializers.InventorySerializer.Meta.exclude">
+<span class="sig-name descname"><span class="pre">exclude</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['procurement_officer']</span></em><a class="headerlink" href="#inventory.serializers.InventorySerializer.Meta.exclude" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -521,6 +714,34 @@ object the first time, the query is executed.</p>
 <span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#inventory.serializers.InventorySerializer.Meta.model" title="Link to this definition"></a></dt>
 <dd><p>alias of <a class="reference internal" href="#inventory.models.Inventory" title="inventory.models.Inventory"><code class="xref py py-class docutils literal notranslate"><span class="pre">Inventory</span></code></a></p>
 </dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="inventory.serializers.OptimizedInventorySerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.serializers.</span></span><span class="sig-name descname"><span class="pre">OptimizedInventorySerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/serializers.html#OptimizedInventorySerializer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.serializers.OptimizedInventorySerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="inventory.serializers.OptimizedInventorySerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="reference internal" href="../_modules/inventory/serializers.html#OptimizedInventorySerializer.Meta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.serializers.OptimizedInventorySerializer.Meta" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="inventory.serializers.OptimizedInventorySerializer.Meta.exclude">
+<span class="sig-name descname"><span class="pre">exclude</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['inventory']</span></em><a class="headerlink" href="#inventory.serializers.OptimizedInventorySerializer.Meta.exclude" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="inventory.serializers.OptimizedInventorySerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#inventory.serializers.OptimizedInventorySerializer.Meta.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#inventory.models.OptimizedInventory" title="inventory.models.OptimizedInventory"><code class="xref py py-class docutils literal notranslate"><span class="pre">OptimizedInventory</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="inventory.serializers.OptimizedInventorySerializer.Meta.read_only_fields">
+<span class="sig-name descname"><span class="pre">read_only_fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['eoq',</span> <span class="pre">'safety_stock',</span> <span class="pre">'reorder_point']</span></em><a class="headerlink" href="#inventory.serializers.OptimizedInventorySerializer.Meta.read_only_fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -640,6 +861,114 @@ object the first time, the query is executed.</p>
 <section id="module-inventory.views">
 <span id="inventory-views-module"></span><h2>inventory.views module<a class="headerlink" href="#module-inventory.views" title="Link to this heading"></a></h2>
 <dl class="py class">
+<dt class="sig sig-object py" id="inventory.views.ARIMAForecastAPIView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.views.</span></span><span class="sig-name descname"><span class="pre">ARIMAForecastAPIView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#ARIMAForecastAPIView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.ARIMAForecastAPIView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">GenericAPIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.views.ARIMAForecastAPIView.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inventory_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#ARIMAForecastAPIView.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.ARIMAForecastAPIView.get" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.views.ARIMAForecastAPIView.get_queryset">
+<span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inventory_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#ARIMAForecastAPIView.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.ARIMAForecastAPIView.get_queryset" title="Link to this definition"></a></dt>
+<dd><p>Get the list of items for this view.
+This must be an iterable, and may be a queryset.
+Defaults to using <cite>self.queryset</cite>.</p>
+<p>This method should always be used rather than accessing <cite>self.queryset</cite>
+directly, as <cite>self.queryset</cite> gets evaluated only once, and those results
+are cached for all subsequent requests.</p>
+<p>You may want to override this if you need to provide different
+querysets depending on the incoming request.</p>
+<p>(Eg. return a list of items that is specific to the user)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="inventory.views.ARIMAForecastAPIView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'accounts.permissions.IsProcurementOfficer'&gt;]</span></em><a class="headerlink" href="#inventory.views.ARIMAForecastAPIView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.views.ARIMAForecastAPIView.post">
+<span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#ARIMAForecastAPIView.post"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.ARIMAForecastAPIView.post" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="inventory.views.ARIMAForecastAPIView.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#inventory.views.ARIMAForecastAPIView.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#inventory.serializers.ARIMAForecastSerializer" title="inventory.serializers.ARIMAForecastSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">ARIMAForecastSerializer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="inventory.views.BaseInventoryAPIView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.views.</span></span><span class="sig-name descname"><span class="pre">BaseInventoryAPIView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#BaseInventoryAPIView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.BaseInventoryAPIView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">GenericAPIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.views.BaseInventoryAPIView.get_queryset">
+<span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#BaseInventoryAPIView.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.BaseInventoryAPIView.get_queryset" title="Link to this definition"></a></dt>
+<dd><p>Get the list of items for this view.
+This must be an iterable, and may be a queryset.
+Defaults to using <cite>self.queryset</cite>.</p>
+<p>This method should always be used rather than accessing <cite>self.queryset</cite>
+directly, as <cite>self.queryset</cite> gets evaluated only once, and those results
+are cached for all subsequent requests.</p>
+<p>You may want to override this if you need to provide different
+querysets depending on the incoming request.</p>
+<p>(Eg. return a list of items that is specific to the user)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="inventory.views.BaseInventoryAPIView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'accounts.permissions.IsProcurementOfficer'&gt;]</span></em><a class="headerlink" href="#inventory.views.BaseInventoryAPIView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="inventory.views.BaseInventoryAPIView.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#inventory.views.BaseInventoryAPIView.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#inventory.serializers.InventorySerializer" title="inventory.serializers.InventorySerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">InventorySerializer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="inventory.views.BaseOptimizedInventoryAPIView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.views.</span></span><span class="sig-name descname"><span class="pre">BaseOptimizedInventoryAPIView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#BaseOptimizedInventoryAPIView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.BaseOptimizedInventoryAPIView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">GenericAPIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.views.BaseOptimizedInventoryAPIView.get_queryset">
+<span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#BaseOptimizedInventoryAPIView.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.BaseOptimizedInventoryAPIView.get_queryset" title="Link to this definition"></a></dt>
+<dd><p>Get the list of items for this view.
+This must be an iterable, and may be a queryset.
+Defaults to using <cite>self.queryset</cite>.</p>
+<p>This method should always be used rather than accessing <cite>self.queryset</cite>
+directly, as <cite>self.queryset</cite> gets evaluated only once, and those results
+are cached for all subsequent requests.</p>
+<p>You may want to override this if you need to provide different
+querysets depending on the incoming request.</p>
+<p>(Eg. return a list of items that is specific to the user)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="inventory.views.BaseOptimizedInventoryAPIView.lookup_field">
+<span class="sig-name descname"><span class="pre">lookup_field</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'inventory_id'</span></em><a class="headerlink" href="#inventory.views.BaseOptimizedInventoryAPIView.lookup_field" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="inventory.views.BaseOptimizedInventoryAPIView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'accounts.permissions.IsProcurementOfficer'&gt;]</span></em><a class="headerlink" href="#inventory.views.BaseOptimizedInventoryAPIView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="inventory.views.BaseOptimizedInventoryAPIView.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#inventory.views.BaseOptimizedInventoryAPIView.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#inventory.serializers.OptimizedInventorySerializer" title="inventory.serializers.OptimizedInventorySerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">OptimizedInventorySerializer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="inventory.views.HistoricalInventoryListView">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.views.</span></span><span class="sig-name descname"><span class="pre">HistoricalInventoryListView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#HistoricalInventoryListView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.HistoricalInventoryListView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ListAPIView</span></code></p>
@@ -673,10 +1002,10 @@ querysets depending on the incoming request.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="inventory.views.InventoryCreateView">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.views.</span></span><span class="sig-name descname"><span class="pre">InventoryCreateView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#InventoryCreateView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.InventoryCreateView" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">CreateAPIView</span></code></p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="inventory.views.InventoryCreateView.permission_classes">
-<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'accounts.permissions.IsProcurementOfficer'&gt;]</span></em><a class="headerlink" href="#inventory.views.InventoryCreateView.permission_classes" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#inventory.views.BaseInventoryAPIView" title="inventory.views.BaseInventoryAPIView"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseInventoryAPIView</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CreateAPIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.views.InventoryCreateView.perform_create">
+<span class="sig-name descname"><span class="pre">perform_create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">serializer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#InventoryCreateView.perform_create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.InventoryCreateView.perform_create" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -684,137 +1013,122 @@ querysets depending on the incoming request.</p>
 <span class="sig-name descname"><span class="pre">queryset</span></span><a class="headerlink" href="#inventory.views.InventoryCreateView.queryset" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="inventory.views.InventoryCreateView.serializer_class">
-<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#inventory.views.InventoryCreateView.serializer_class" title="Link to this definition"></a></dt>
-<dd><p>alias of <a class="reference internal" href="#inventory.serializers.InventorySerializer" title="inventory.serializers.InventorySerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">InventorySerializer</span></code></a></p>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="inventory.views.InventoryDeleteView">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.views.</span></span><span class="sig-name descname"><span class="pre">InventoryDeleteView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#InventoryDeleteView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.InventoryDeleteView" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">DestroyAPIView</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="inventory.views.InventoryDeleteView.get_queryset">
-<span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#InventoryDeleteView.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.InventoryDeleteView.get_queryset" title="Link to this definition"></a></dt>
-<dd><p>Get the list of items for this view.
-This must be an iterable, and may be a queryset.
-Defaults to using <cite>self.queryset</cite>.</p>
-<p>This method should always be used rather than accessing <cite>self.queryset</cite>
-directly, as <cite>self.queryset</cite> gets evaluated only once, and those results
-are cached for all subsequent requests.</p>
-<p>You may want to override this if you need to provide different
-querysets depending on the incoming request.</p>
-<p>(Eg. return a list of items that is specific to the user)</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="inventory.views.InventoryDeleteView.permission_classes">
-<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'accounts.permissions.IsProcurementOfficer'&gt;]</span></em><a class="headerlink" href="#inventory.views.InventoryDeleteView.permission_classes" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="inventory.views.InventoryDeleteView.serializer_class">
-<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#inventory.views.InventoryDeleteView.serializer_class" title="Link to this definition"></a></dt>
-<dd><p>alias of <a class="reference internal" href="#inventory.serializers.InventorySerializer" title="inventory.serializers.InventorySerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">InventorySerializer</span></code></a></p>
-</dd></dl>
-
+<dd><p>Bases: <a class="reference internal" href="#inventory.views.BaseInventoryAPIView" title="inventory.views.BaseInventoryAPIView"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseInventoryAPIView</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DestroyAPIView</span></code></p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="inventory.views.InventoryListView">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.views.</span></span><span class="sig-name descname"><span class="pre">InventoryListView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#InventoryListView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.InventoryListView" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ListAPIView</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="inventory.views.InventoryListView.get_queryset">
-<span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#InventoryListView.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.InventoryListView.get_queryset" title="Link to this definition"></a></dt>
-<dd><p>Get the list of items for this view.
-This must be an iterable, and may be a queryset.
-Defaults to using <cite>self.queryset</cite>.</p>
-<p>This method should always be used rather than accessing <cite>self.queryset</cite>
-directly, as <cite>self.queryset</cite> gets evaluated only once, and those results
-are cached for all subsequent requests.</p>
-<p>You may want to override this if you need to provide different
-querysets depending on the incoming request.</p>
-<p>(Eg. return a list of items that is specific to the user)</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="inventory.views.InventoryListView.permission_classes">
-<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'accounts.permissions.IsProcurementOfficer'&gt;]</span></em><a class="headerlink" href="#inventory.views.InventoryListView.permission_classes" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="inventory.views.InventoryListView.serializer_class">
-<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#inventory.views.InventoryListView.serializer_class" title="Link to this definition"></a></dt>
-<dd><p>alias of <a class="reference internal" href="#inventory.serializers.InventorySerializer" title="inventory.serializers.InventorySerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">InventorySerializer</span></code></a></p>
-</dd></dl>
-
+<dd><p>Bases: <a class="reference internal" href="#inventory.views.BaseInventoryAPIView" title="inventory.views.BaseInventoryAPIView"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseInventoryAPIView</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ListAPIView</span></code></p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="inventory.views.InventoryRetrieveView">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.views.</span></span><span class="sig-name descname"><span class="pre">InventoryRetrieveView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#InventoryRetrieveView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.InventoryRetrieveView" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">RetrieveAPIView</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="inventory.views.InventoryRetrieveView.get_queryset">
-<span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#InventoryRetrieveView.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.InventoryRetrieveView.get_queryset" title="Link to this definition"></a></dt>
-<dd><p>Get the list of items for this view.
-This must be an iterable, and may be a queryset.
-Defaults to using <cite>self.queryset</cite>.</p>
-<p>This method should always be used rather than accessing <cite>self.queryset</cite>
-directly, as <cite>self.queryset</cite> gets evaluated only once, and those results
-are cached for all subsequent requests.</p>
-<p>You may want to override this if you need to provide different
-querysets depending on the incoming request.</p>
-<p>(Eg. return a list of items that is specific to the user)</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="inventory.views.InventoryRetrieveView.permission_classes">
-<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'accounts.permissions.IsProcurementOfficer'&gt;]</span></em><a class="headerlink" href="#inventory.views.InventoryRetrieveView.permission_classes" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="inventory.views.InventoryRetrieveView.serializer_class">
-<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#inventory.views.InventoryRetrieveView.serializer_class" title="Link to this definition"></a></dt>
-<dd><p>alias of <a class="reference internal" href="#inventory.serializers.InventorySerializer" title="inventory.serializers.InventorySerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">InventorySerializer</span></code></a></p>
-</dd></dl>
-
+<dd><p>Bases: <a class="reference internal" href="#inventory.views.BaseInventoryAPIView" title="inventory.views.BaseInventoryAPIView"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseInventoryAPIView</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">RetrieveAPIView</span></code></p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="inventory.views.InventoryUpdateView">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.views.</span></span><span class="sig-name descname"><span class="pre">InventoryUpdateView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#InventoryUpdateView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.InventoryUpdateView" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateAPIView</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="inventory.views.InventoryUpdateView.get_queryset">
-<span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#InventoryUpdateView.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.InventoryUpdateView.get_queryset" title="Link to this definition"></a></dt>
-<dd><p>Get the list of items for this view.
-This must be an iterable, and may be a queryset.
-Defaults to using <cite>self.queryset</cite>.</p>
-<p>This method should always be used rather than accessing <cite>self.queryset</cite>
-directly, as <cite>self.queryset</cite> gets evaluated only once, and those results
-are cached for all subsequent requests.</p>
-<p>You may want to override this if you need to provide different
-querysets depending on the incoming request.</p>
-<p>(Eg. return a list of items that is specific to the user)</p>
+<dd><p>Bases: <a class="reference internal" href="#inventory.views.BaseInventoryAPIView" title="inventory.views.BaseInventoryAPIView"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseInventoryAPIView</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateAPIView</span></code></p>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="inventory.views.InventoryUpdateView.permission_classes">
-<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'accounts.permissions.IsProcurementOfficer'&gt;]</span></em><a class="headerlink" href="#inventory.views.InventoryUpdateView.permission_classes" title="Link to this definition"></a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="inventory.views.OptimizedInventoryCreateAPIView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.views.</span></span><span class="sig-name descname"><span class="pre">OptimizedInventoryCreateAPIView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#OptimizedInventoryCreateAPIView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.OptimizedInventoryCreateAPIView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">CreateAPIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.views.OptimizedInventoryCreateAPIView.perform_create">
+<span class="sig-name descname"><span class="pre">perform_create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">serializer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#OptimizedInventoryCreateAPIView.perform_create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.OptimizedInventoryCreateAPIView.perform_create" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="inventory.views.InventoryUpdateView.serializer_class">
-<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#inventory.views.InventoryUpdateView.serializer_class" title="Link to this definition"></a></dt>
-<dd><p>alias of <a class="reference internal" href="#inventory.serializers.InventorySerializer" title="inventory.serializers.InventorySerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">InventorySerializer</span></code></a></p>
+<dt class="sig sig-object py" id="inventory.views.OptimizedInventoryCreateAPIView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'accounts.permissions.IsProcurementOfficer'&gt;]</span></em><a class="headerlink" href="#inventory.views.OptimizedInventoryCreateAPIView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="inventory.views.OptimizedInventoryCreateAPIView.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#inventory.views.OptimizedInventoryCreateAPIView.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#inventory.serializers.OptimizedInventorySerializer" title="inventory.serializers.OptimizedInventorySerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">OptimizedInventorySerializer</span></code></a></p>
 </dd></dl>
 
 </dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="inventory.views.OptimizedInventoryDestroyAPIView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.views.</span></span><span class="sig-name descname"><span class="pre">OptimizedInventoryDestroyAPIView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#OptimizedInventoryDestroyAPIView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.OptimizedInventoryDestroyAPIView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#inventory.views.BaseOptimizedInventoryAPIView" title="inventory.views.BaseOptimizedInventoryAPIView"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseOptimizedInventoryAPIView</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DestroyAPIView</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="inventory.views.OptimizedInventoryRetrieveAPIView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.views.</span></span><span class="sig-name descname"><span class="pre">OptimizedInventoryRetrieveAPIView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#OptimizedInventoryRetrieveAPIView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.OptimizedInventoryRetrieveAPIView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#inventory.views.BaseOptimizedInventoryAPIView" title="inventory.views.BaseOptimizedInventoryAPIView"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseOptimizedInventoryAPIView</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">RetrieveAPIView</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="inventory.views.OptimizedInventoryUpdateAPIView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.views.</span></span><span class="sig-name descname"><span class="pre">OptimizedInventoryUpdateAPIView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#OptimizedInventoryUpdateAPIView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.OptimizedInventoryUpdateAPIView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateAPIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.views.OptimizedInventoryUpdateAPIView.perform_update">
+<span class="sig-name descname"><span class="pre">perform_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">serializer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#OptimizedInventoryUpdateAPIView.perform_update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.OptimizedInventoryUpdateAPIView.perform_update" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="inventory.views.OptimizedInventoryUpdateAPIView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'accounts.permissions.IsProcurementOfficer'&gt;]</span></em><a class="headerlink" href="#inventory.views.OptimizedInventoryUpdateAPIView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="inventory.views.OptimizedInventoryUpdateAPIView.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#inventory.views.OptimizedInventoryUpdateAPIView.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#inventory.serializers.OptimizedInventorySerializer" title="inventory.serializers.OptimizedInventorySerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">OptimizedInventorySerializer</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.views.OptimizedInventoryUpdateAPIView.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#OptimizedInventoryUpdateAPIView.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.OptimizedInventoryUpdateAPIView.update" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="inventory.views.calculate_auto_arima">
+<span class="sig-prename descclassname"><span class="pre">inventory.views.</span></span><span class="sig-name descname"><span class="pre">calculate_auto_arima</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">monthly_demand</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#calculate_auto_arima"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.calculate_auto_arima" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="inventory.views.calculate_eoq_classical">
+<span class="sig-prename descclassname"><span class="pre">inventory.views.</span></span><span class="sig-name descname"><span class="pre">calculate_eoq_classical</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">demand</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ordering_cost</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">holding_cost</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#calculate_eoq_classical"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.calculate_eoq_classical" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="inventory.views.calculate_eoq_limited_storage">
+<span class="sig-prename descclassname"><span class="pre">inventory.views.</span></span><span class="sig-name descname"><span class="pre">calculate_eoq_limited_storage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">demand</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ordering_cost</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">holding_cost</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_capacity</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#calculate_eoq_limited_storage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.calculate_eoq_limited_storage" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="inventory.views.calculate_eoq_perishable">
+<span class="sig-prename descclassname"><span class="pre">inventory.views.</span></span><span class="sig-name descname"><span class="pre">calculate_eoq_perishable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">demand</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ordering_cost</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">holding_cost</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shelf_life</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#calculate_eoq_perishable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.calculate_eoq_perishable" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="inventory.views.calculate_eoq_with_rop">
+<span class="sig-prename descclassname"><span class="pre">inventory.views.</span></span><span class="sig-name descname"><span class="pre">calculate_eoq_with_rop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">demand</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ordering_cost</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">holding_cost</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lead_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service_level</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#calculate_eoq_with_rop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.calculate_eoq_with_rop" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="inventory.views.calculate_safety_stock_reorder_point">
+<span class="sig-prename descclassname"><span class="pre">inventory.views.</span></span><span class="sig-name descname"><span class="pre">calculate_safety_stock_reorder_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">demand</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lead_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service_level</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#calculate_safety_stock_reorder_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.calculate_safety_stock_reorder_point" title="Link to this definition"></a></dt>
+<dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="inventory.views.getRoutes">

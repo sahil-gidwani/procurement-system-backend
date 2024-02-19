@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>purchase package &mdash; Smart Procurement System 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Smart Procurement System
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">purchase package</a><ul>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-purchase.admin">purchase.admin module</a></li>
+<li><a class="reference internal" href="#module-purchase.apps">purchase.apps module</a><ul>
+<li><a class="reference internal" href="#purchase.apps.PurchaseConfig"><code class="docutils literal notranslate"><span class="pre">PurchaseConfig</span></code></a><ul>
+<li><a class="reference internal" href="#purchase.apps.PurchaseConfig.default_auto_field"><code class="docutils literal notranslate"><span class="pre">PurchaseConfig.default_auto_field</span></code></a></li>
+<li><a class="reference internal" href="#purchase.apps.PurchaseConfig.name"><code class="docutils literal notranslate"><span class="pre">PurchaseConfig.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-purchase.models">purchase.models module</a><ul>
+<li><a class="reference internal" href="#purchase.models.PurchaseOrder"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder</span></code></a><ul>
+<li><a class="reference internal" href="#purchase.models.PurchaseOrder.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder.DoesNotExist</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseOrder.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder.MultipleObjectsReturned</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseOrder.STATUS_CHOICES"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder.STATUS_CHOICES</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseOrder.bid"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder.bid</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseOrder.bid_id"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder.bid_id</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseOrder.date_ordered"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder.date_ordered</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseOrder.get_next_by_date_ordered"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder.get_next_by_date_ordered()</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseOrder.get_previous_by_date_ordered"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder.get_previous_by_date_ordered()</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseOrder.get_status_display"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder.get_status_display()</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseOrder.id"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder.id</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseOrder.objects"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder.objects</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseOrder.order_number"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder.order_number</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseOrder.quantity_ordered"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder.quantity_ordered</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseOrder.status"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder.status</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseOrder.unit_price"><code class="docutils literal notranslate"><span class="pre">PurchaseOrder.unit_price</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#purchase.models.PurchaseRequisition"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition</span></code></a><ul>
+<li><a class="reference internal" href="#purchase.models.PurchaseRequisition.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.DoesNotExist</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseRequisition.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.MultipleObjectsReturned</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseRequisition.STATUS_CHOICES"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.STATUS_CHOICES</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseRequisition.URGENCY_LEVEL_CHOICES"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.URGENCY_LEVEL_CHOICES</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseRequisition.attachments"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.attachments</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseRequisition.comments"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.comments</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseRequisition.date_created"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.date_created</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseRequisition.expected_delivery_date"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.expected_delivery_date</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseRequisition.get_next_by_date_created"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.get_next_by_date_created()</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseRequisition.get_next_by_expected_delivery_date"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.get_next_by_expected_delivery_date()</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseRequisition.get_next_by_last_updated"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.get_next_by_last_updated()</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseRequisition.get_previous_by_date_created"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.get_previous_by_date_created()</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseRequisition.get_previous_by_expected_delivery_date"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.get_previous_by_expected_delivery_date()</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseRequisition.get_previous_by_last_updated"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.get_previous_by_last_updated()</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseRequisition.get_status_display"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.get_status_display()</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseRequisition.get_urgency_level_display"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.get_urgency_level_display()</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseRequisition.id"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.id</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseRequisition.inventory"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.inventory</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseRequisition.inventory_id"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.inventory_id</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseRequisition.last_updated"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.last_updated</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseRequisition.objects"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.objects</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseRequisition.quantity_requested"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.quantity_requested</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseRequisition.report"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.report</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseRequisition.requisition_number"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.requisition_number</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseRequisition.status"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.status</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseRequisition.supplierbid_set"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.supplierbid_set</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.PurchaseRequisition.urgency_level"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisition.urgency_level</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#purchase.models.SupplierBid"><code class="docutils literal notranslate"><span class="pre">SupplierBid</span></code></a><ul>
+<li><a class="reference internal" href="#purchase.models.SupplierBid.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">SupplierBid.DoesNotExist</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.SupplierBid.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">SupplierBid.MultipleObjectsReturned</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.SupplierBid.STATUS_CHOICES"><code class="docutils literal notranslate"><span class="pre">SupplierBid.STATUS_CHOICES</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.SupplierBid.attachments"><code class="docutils literal notranslate"><span class="pre">SupplierBid.attachments</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.SupplierBid.comments"><code class="docutils literal notranslate"><span class="pre">SupplierBid.comments</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.SupplierBid.date_submitted"><code class="docutils literal notranslate"><span class="pre">SupplierBid.date_submitted</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.SupplierBid.days_delivery"><code class="docutils literal notranslate"><span class="pre">SupplierBid.days_delivery</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.SupplierBid.get_next_by_date_submitted"><code class="docutils literal notranslate"><span class="pre">SupplierBid.get_next_by_date_submitted()</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.SupplierBid.get_previous_by_date_submitted"><code class="docutils literal notranslate"><span class="pre">SupplierBid.get_previous_by_date_submitted()</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.SupplierBid.get_status_display"><code class="docutils literal notranslate"><span class="pre">SupplierBid.get_status_display()</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.SupplierBid.id"><code class="docutils literal notranslate"><span class="pre">SupplierBid.id</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.SupplierBid.objects"><code class="docutils literal notranslate"><span class="pre">SupplierBid.objects</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.SupplierBid.purchaseorder"><code class="docutils literal notranslate"><span class="pre">SupplierBid.purchaseorder</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.SupplierBid.quantity_fulfilled"><code class="docutils literal notranslate"><span class="pre">SupplierBid.quantity_fulfilled</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.SupplierBid.requisition"><code class="docutils literal notranslate"><span class="pre">SupplierBid.requisition</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.SupplierBid.requisition_id"><code class="docutils literal notranslate"><span class="pre">SupplierBid.requisition_id</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.SupplierBid.status"><code class="docutils literal notranslate"><span class="pre">SupplierBid.status</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.SupplierBid.unit_price"><code class="docutils literal notranslate"><span class="pre">SupplierBid.unit_price</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-purchase.serializers">purchase.serializers module</a><ul>
+<li><a class="reference internal" href="#purchase.serializers.PurchaseOrderSerializer"><code class="docutils literal notranslate"><span class="pre">PurchaseOrderSerializer</span></code></a><ul>
+<li><a class="reference internal" href="#purchase.serializers.PurchaseOrderSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">PurchaseOrderSerializer.Meta</span></code></a><ul>
+<li><a class="reference internal" href="#purchase.serializers.PurchaseOrderSerializer.Meta.exclude"><code class="docutils literal notranslate"><span class="pre">PurchaseOrderSerializer.Meta.exclude</span></code></a></li>
+<li><a class="reference internal" href="#purchase.serializers.PurchaseOrderSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">PurchaseOrderSerializer.Meta.model</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#purchase.serializers.PurchaseRequisitionSerializer"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionSerializer</span></code></a><ul>
+<li><a class="reference internal" href="#purchase.serializers.PurchaseRequisitionSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionSerializer.Meta</span></code></a><ul>
+<li><a class="reference internal" href="#purchase.serializers.PurchaseRequisitionSerializer.Meta.exclude"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionSerializer.Meta.exclude</span></code></a></li>
+<li><a class="reference internal" href="#purchase.serializers.PurchaseRequisitionSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionSerializer.Meta.model</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#purchase.serializers.SupplierBidSerializer"><code class="docutils literal notranslate"><span class="pre">SupplierBidSerializer</span></code></a><ul>
+<li><a class="reference internal" href="#purchase.serializers.SupplierBidSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">SupplierBidSerializer.Meta</span></code></a><ul>
+<li><a class="reference internal" href="#purchase.serializers.SupplierBidSerializer.Meta.exclude"><code class="docutils literal notranslate"><span class="pre">SupplierBidSerializer.Meta.exclude</span></code></a></li>
+<li><a class="reference internal" href="#purchase.serializers.SupplierBidSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">SupplierBidSerializer.Meta.model</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-purchase.tests">purchase.tests module</a></li>
+<li><a class="reference internal" href="#module-purchase.urls">purchase.urls module</a></li>
+<li><a class="reference internal" href="#module-purchase.views">purchase.views module</a><ul>
+<li><a class="reference internal" href="#purchase.views.BasePurchaseRequisitionAPIView"><code class="docutils literal notranslate"><span class="pre">BasePurchaseRequisitionAPIView</span></code></a><ul>
+<li><a class="reference internal" href="#purchase.views.BasePurchaseRequisitionAPIView.get_object"><code class="docutils literal notranslate"><span class="pre">BasePurchaseRequisitionAPIView.get_object()</span></code></a></li>
+<li><a class="reference internal" href="#purchase.views.BasePurchaseRequisitionAPIView.get_queryset"><code class="docutils literal notranslate"><span class="pre">BasePurchaseRequisitionAPIView.get_queryset()</span></code></a></li>
+<li><a class="reference internal" href="#purchase.views.BasePurchaseRequisitionAPIView.permission_classes"><code class="docutils literal notranslate"><span class="pre">BasePurchaseRequisitionAPIView.permission_classes</span></code></a></li>
+<li><a class="reference internal" href="#purchase.views.BasePurchaseRequisitionAPIView.serializer_class"><code class="docutils literal notranslate"><span class="pre">BasePurchaseRequisitionAPIView.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#purchase.views.PurchaseRequisitionCreateView"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionCreateView</span></code></a><ul>
+<li><a class="reference internal" href="#purchase.views.PurchaseRequisitionCreateView.perform_create"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionCreateView.perform_create()</span></code></a></li>
+<li><a class="reference internal" href="#purchase.views.PurchaseRequisitionCreateView.queryset"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionCreateView.queryset</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#purchase.views.PurchaseRequisitionDeleteView"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionDeleteView</span></code></a></li>
+<li><a class="reference internal" href="#purchase.views.PurchaseRequisitionListView"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionListView</span></code></a></li>
+<li><a class="reference internal" href="#purchase.views.PurchaseRequisitionRetrieveView"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionRetrieveView</span></code></a></li>
+<li><a class="reference internal" href="#purchase.views.PurchaseRequisitionUpdateView"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionUpdateView</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-purchase">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Smart Procurement System</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">purchase package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/purchase.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="purchase-package">
+<h1>purchase package<a class="headerlink" href="#purchase-package" title="Link to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-purchase.admin">
+<span id="purchase-admin-module"></span><h2>purchase.admin module<a class="headerlink" href="#module-purchase.admin" title="Link to this heading"></a></h2>
+</section>
+<section id="module-purchase.apps">
+<span id="purchase-apps-module"></span><h2>purchase.apps module<a class="headerlink" href="#module-purchase.apps" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="purchase.apps.PurchaseConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">purchase.apps.</span></span><span class="sig-name descname"><span class="pre">PurchaseConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_module</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/apps.html#PurchaseConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.apps.PurchaseConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AppConfig</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.apps.PurchaseConfig.default_auto_field">
+<span class="sig-name descname"><span class="pre">default_auto_field</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'django.db.models.BigAutoField'</span></em><a class="headerlink" href="#purchase.apps.PurchaseConfig.default_auto_field" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.apps.PurchaseConfig.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'purchase'</span></em><a class="headerlink" href="#purchase.apps.PurchaseConfig.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-purchase.models">
+<span id="purchase-models-module"></span><h2>purchase.models module<a class="headerlink" href="#module-purchase.models" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="purchase.models.PurchaseOrder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">purchase.models.</span></span><span class="sig-name descname"><span class="pre">PurchaseOrder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_ordered</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quantity_ordered</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bid</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/models.html#PurchaseOrder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.models.PurchaseOrder" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="purchase.models.PurchaseOrder.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#purchase.models.PurchaseOrder.DoesNotExist" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="purchase.models.PurchaseOrder.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#purchase.models.PurchaseOrder.MultipleObjectsReturned" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.PurchaseOrder.STATUS_CHOICES">
+<span class="sig-name descname"><span class="pre">STATUS_CHOICES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('pending',</span> <span class="pre">'Pending'),</span> <span class="pre">('shipped',</span> <span class="pre">'Shipped'),</span> <span class="pre">('delivered',</span> <span class="pre">'Delivered')]</span></em><a class="headerlink" href="#purchase.models.PurchaseOrder.STATUS_CHOICES" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.PurchaseOrder.bid">
+<span class="sig-name descname"><span class="pre">bid</span></span><a class="headerlink" href="#purchase.models.PurchaseOrder.bid" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a one-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Restaurant</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">place</span> <span class="o">=</span> <span class="n">OneToOneField</span><span class="p">(</span><span class="n">Place</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;restaurant&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Restaurant.place</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardOneToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.PurchaseOrder.bid_id">
+<span class="sig-name descname"><span class="pre">bid_id</span></span><a class="headerlink" href="#purchase.models.PurchaseOrder.bid_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.PurchaseOrder.date_ordered">
+<span class="sig-name descname"><span class="pre">date_ordered</span></span><a class="headerlink" href="#purchase.models.PurchaseOrder.date_ordered" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="purchase.models.PurchaseOrder.get_next_by_date_ordered">
+<span class="sig-name descname"><span class="pre">get_next_by_date_ordered</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateField:</span> <span class="pre">date_ordered&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#purchase.models.PurchaseOrder.get_next_by_date_ordered" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="purchase.models.PurchaseOrder.get_previous_by_date_ordered">
+<span class="sig-name descname"><span class="pre">get_previous_by_date_ordered</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateField:</span> <span class="pre">date_ordered&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#purchase.models.PurchaseOrder.get_previous_by_date_ordered" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="purchase.models.PurchaseOrder.get_status_display">
+<span class="sig-name descname"><span class="pre">get_status_display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.CharField:</span> <span class="pre">status&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#purchase.models.PurchaseOrder.get_status_display" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.PurchaseOrder.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#purchase.models.PurchaseOrder.id" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.PurchaseOrder.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#purchase.models.PurchaseOrder.objects" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.PurchaseOrder.order_number">
+<span class="sig-name descname"><span class="pre">order_number</span></span><a class="headerlink" href="#purchase.models.PurchaseOrder.order_number" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.PurchaseOrder.quantity_ordered">
+<span class="sig-name descname"><span class="pre">quantity_ordered</span></span><a class="headerlink" href="#purchase.models.PurchaseOrder.quantity_ordered" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.PurchaseOrder.status">
+<span class="sig-name descname"><span class="pre">status</span></span><a class="headerlink" href="#purchase.models.PurchaseOrder.status" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.PurchaseOrder.unit_price">
+<span class="sig-name descname"><span class="pre">unit_price</span></span><a class="headerlink" href="#purchase.models.PurchaseOrder.unit_price" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="purchase.models.PurchaseRequisition">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">purchase.models.</span></span><span class="sig-name descname"><span class="pre">PurchaseRequisition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">requisition_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_created</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_updated</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quantity_requested</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expected_delivery_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">urgency_level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attachments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inventory</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/models.html#PurchaseRequisition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.models.PurchaseRequisition" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="purchase.models.PurchaseRequisition.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#purchase.models.PurchaseRequisition.DoesNotExist" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="purchase.models.PurchaseRequisition.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#purchase.models.PurchaseRequisition.MultipleObjectsReturned" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.PurchaseRequisition.STATUS_CHOICES">
+<span class="sig-name descname"><span class="pre">STATUS_CHOICES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('pending',</span> <span class="pre">'Pending'),</span> <span class="pre">('approved',</span> <span class="pre">'Approved'),</span> <span class="pre">('rejected',</span> <span class="pre">'Rejected')]</span></em><a class="headerlink" href="#purchase.models.PurchaseRequisition.STATUS_CHOICES" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.PurchaseRequisition.URGENCY_LEVEL_CHOICES">
+<span class="sig-name descname"><span class="pre">URGENCY_LEVEL_CHOICES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('low',</span> <span class="pre">'Low'),</span> <span class="pre">('medium',</span> <span class="pre">'Medium'),</span> <span class="pre">('high',</span> <span class="pre">'High')]</span></em><a class="headerlink" href="#purchase.models.PurchaseRequisition.URGENCY_LEVEL_CHOICES" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.PurchaseRequisition.attachments">
+<span class="sig-name descname"><span class="pre">attachments</span></span><a class="headerlink" href="#purchase.models.PurchaseRequisition.attachments" title="Link to this definition"></a></dt>
+<dd><p>Just like the FileDescriptor, but for ImageFields. The only difference is
+assigning the width/height to the width_field/height_field, if appropriate.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.PurchaseRequisition.comments">
+<span class="sig-name descname"><span class="pre">comments</span></span><a class="headerlink" href="#purchase.models.PurchaseRequisition.comments" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.PurchaseRequisition.date_created">
+<span class="sig-name descname"><span class="pre">date_created</span></span><a class="headerlink" href="#purchase.models.PurchaseRequisition.date_created" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.PurchaseRequisition.expected_delivery_date">
+<span class="sig-name descname"><span class="pre">expected_delivery_date</span></span><a class="headerlink" href="#purchase.models.PurchaseRequisition.expected_delivery_date" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="purchase.models.PurchaseRequisition.get_next_by_date_created">
+<span class="sig-name descname"><span class="pre">get_next_by_date_created</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">date_created&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#purchase.models.PurchaseRequisition.get_next_by_date_created" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="purchase.models.PurchaseRequisition.get_next_by_expected_delivery_date">
+<span class="sig-name descname"><span class="pre">get_next_by_expected_delivery_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateField:</span> <span class="pre">expected_delivery_date&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#purchase.models.PurchaseRequisition.get_next_by_expected_delivery_date" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="purchase.models.PurchaseRequisition.get_next_by_last_updated">
+<span class="sig-name descname"><span class="pre">get_next_by_last_updated</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">last_updated&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#purchase.models.PurchaseRequisition.get_next_by_last_updated" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="purchase.models.PurchaseRequisition.get_previous_by_date_created">
+<span class="sig-name descname"><span class="pre">get_previous_by_date_created</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">date_created&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#purchase.models.PurchaseRequisition.get_previous_by_date_created" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="purchase.models.PurchaseRequisition.get_previous_by_expected_delivery_date">
+<span class="sig-name descname"><span class="pre">get_previous_by_expected_delivery_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateField:</span> <span class="pre">expected_delivery_date&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#purchase.models.PurchaseRequisition.get_previous_by_expected_delivery_date" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="purchase.models.PurchaseRequisition.get_previous_by_last_updated">
+<span class="sig-name descname"><span class="pre">get_previous_by_last_updated</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">last_updated&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#purchase.models.PurchaseRequisition.get_previous_by_last_updated" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="purchase.models.PurchaseRequisition.get_status_display">
+<span class="sig-name descname"><span class="pre">get_status_display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.CharField:</span> <span class="pre">status&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#purchase.models.PurchaseRequisition.get_status_display" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="purchase.models.PurchaseRequisition.get_urgency_level_display">
+<span class="sig-name descname"><span class="pre">get_urgency_level_display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.CharField:</span> <span class="pre">urgency_level&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#purchase.models.PurchaseRequisition.get_urgency_level_display" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.PurchaseRequisition.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#purchase.models.PurchaseRequisition.id" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.PurchaseRequisition.inventory">
+<span class="sig-name descname"><span class="pre">inventory</span></span><a class="headerlink" href="#purchase.models.PurchaseRequisition.inventory" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a one-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Restaurant</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">place</span> <span class="o">=</span> <span class="n">OneToOneField</span><span class="p">(</span><span class="n">Place</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;restaurant&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Restaurant.place</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardOneToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.PurchaseRequisition.inventory_id">
+<span class="sig-name descname"><span class="pre">inventory_id</span></span><a class="headerlink" href="#purchase.models.PurchaseRequisition.inventory_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.PurchaseRequisition.last_updated">
+<span class="sig-name descname"><span class="pre">last_updated</span></span><a class="headerlink" href="#purchase.models.PurchaseRequisition.last_updated" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.PurchaseRequisition.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#purchase.models.PurchaseRequisition.objects" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.PurchaseRequisition.quantity_requested">
+<span class="sig-name descname"><span class="pre">quantity_requested</span></span><a class="headerlink" href="#purchase.models.PurchaseRequisition.quantity_requested" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.PurchaseRequisition.report">
+<span class="sig-name descname"><span class="pre">report</span></span><a class="headerlink" href="#purchase.models.PurchaseRequisition.report" title="Link to this definition"></a></dt>
+<dd><p>The descriptor for the file attribute on the model instance. Return a
+FieldFile when accessed so you can write code like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">myapp.models</span> <span class="kn">import</span> <span class="n">MyModel</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">instance</span> <span class="o">=</span> <span class="n">MyModel</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">instance</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">size</span>
+</pre></div>
+</div>
+<p>Assign a file object on assignment so you can do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/path/to/hello.world&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">instance</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.PurchaseRequisition.requisition_number">
+<span class="sig-name descname"><span class="pre">requisition_number</span></span><a class="headerlink" href="#purchase.models.PurchaseRequisition.requisition_number" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.PurchaseRequisition.status">
+<span class="sig-name descname"><span class="pre">status</span></span><a class="headerlink" href="#purchase.models.PurchaseRequisition.status" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.PurchaseRequisition.supplierbid_set">
+<span class="sig-name descname"><span class="pre">supplierbid_set</span></span><a class="headerlink" href="#purchase.models.PurchaseRequisition.supplierbid_set" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.PurchaseRequisition.urgency_level">
+<span class="sig-name descname"><span class="pre">urgency_level</span></span><a class="headerlink" href="#purchase.models.PurchaseRequisition.urgency_level" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="purchase.models.SupplierBid">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">purchase.models.</span></span><span class="sig-name descname"><span class="pre">SupplierBid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quantity_fulfilled</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_submitted</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days_delivery</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attachments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">requisition</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/models.html#SupplierBid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.models.SupplierBid" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="purchase.models.SupplierBid.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#purchase.models.SupplierBid.DoesNotExist" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="purchase.models.SupplierBid.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#purchase.models.SupplierBid.MultipleObjectsReturned" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.SupplierBid.STATUS_CHOICES">
+<span class="sig-name descname"><span class="pre">STATUS_CHOICES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('submitted',</span> <span class="pre">'Submitted'),</span> <span class="pre">('accepted',</span> <span class="pre">'Accepted'),</span> <span class="pre">('rejected',</span> <span class="pre">'Rejected')]</span></em><a class="headerlink" href="#purchase.models.SupplierBid.STATUS_CHOICES" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.SupplierBid.attachments">
+<span class="sig-name descname"><span class="pre">attachments</span></span><a class="headerlink" href="#purchase.models.SupplierBid.attachments" title="Link to this definition"></a></dt>
+<dd><p>Just like the FileDescriptor, but for ImageFields. The only difference is
+assigning the width/height to the width_field/height_field, if appropriate.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.SupplierBid.comments">
+<span class="sig-name descname"><span class="pre">comments</span></span><a class="headerlink" href="#purchase.models.SupplierBid.comments" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.SupplierBid.date_submitted">
+<span class="sig-name descname"><span class="pre">date_submitted</span></span><a class="headerlink" href="#purchase.models.SupplierBid.date_submitted" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.SupplierBid.days_delivery">
+<span class="sig-name descname"><span class="pre">days_delivery</span></span><a class="headerlink" href="#purchase.models.SupplierBid.days_delivery" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="purchase.models.SupplierBid.get_next_by_date_submitted">
+<span class="sig-name descname"><span class="pre">get_next_by_date_submitted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">date_submitted&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#purchase.models.SupplierBid.get_next_by_date_submitted" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="purchase.models.SupplierBid.get_previous_by_date_submitted">
+<span class="sig-name descname"><span class="pre">get_previous_by_date_submitted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">date_submitted&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#purchase.models.SupplierBid.get_previous_by_date_submitted" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="purchase.models.SupplierBid.get_status_display">
+<span class="sig-name descname"><span class="pre">get_status_display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.CharField:</span> <span class="pre">status&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#purchase.models.SupplierBid.get_status_display" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.SupplierBid.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#purchase.models.SupplierBid.id" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.SupplierBid.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#purchase.models.SupplierBid.objects" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.SupplierBid.purchaseorder">
+<span class="sig-name descname"><span class="pre">purchaseorder</span></span><a class="headerlink" href="#purchase.models.SupplierBid.purchaseorder" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related object on the reverse side of a one-to-one
+relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Restaurant</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">place</span> <span class="o">=</span> <span class="n">OneToOneField</span><span class="p">(</span><span class="n">Place</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;restaurant&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Place.restaurant</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseOneToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.SupplierBid.quantity_fulfilled">
+<span class="sig-name descname"><span class="pre">quantity_fulfilled</span></span><a class="headerlink" href="#purchase.models.SupplierBid.quantity_fulfilled" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.SupplierBid.requisition">
+<span class="sig-name descname"><span class="pre">requisition</span></span><a class="headerlink" href="#purchase.models.SupplierBid.requisition" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.SupplierBid.requisition_id">
+<span class="sig-name descname"><span class="pre">requisition_id</span></span><a class="headerlink" href="#purchase.models.SupplierBid.requisition_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.SupplierBid.status">
+<span class="sig-name descname"><span class="pre">status</span></span><a class="headerlink" href="#purchase.models.SupplierBid.status" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.SupplierBid.unit_price">
+<span class="sig-name descname"><span class="pre">unit_price</span></span><a class="headerlink" href="#purchase.models.SupplierBid.unit_price" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-purchase.serializers">
+<span id="purchase-serializers-module"></span><h2>purchase.serializers module<a class="headerlink" href="#module-purchase.serializers" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="purchase.serializers.PurchaseOrderSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">purchase.serializers.</span></span><span class="sig-name descname"><span class="pre">PurchaseOrderSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/serializers.html#PurchaseOrderSerializer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.serializers.PurchaseOrderSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="purchase.serializers.PurchaseOrderSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="reference internal" href="../_modules/purchase/serializers.html#PurchaseOrderSerializer.Meta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.serializers.PurchaseOrderSerializer.Meta" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.serializers.PurchaseOrderSerializer.Meta.exclude">
+<span class="sig-name descname"><span class="pre">exclude</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['status',</span> <span class="pre">'bid']</span></em><a class="headerlink" href="#purchase.serializers.PurchaseOrderSerializer.Meta.exclude" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.serializers.PurchaseOrderSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#purchase.serializers.PurchaseOrderSerializer.Meta.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#purchase.models.PurchaseOrder" title="purchase.models.PurchaseOrder"><code class="xref py py-class docutils literal notranslate"><span class="pre">PurchaseOrder</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="purchase.serializers.PurchaseRequisitionSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">purchase.serializers.</span></span><span class="sig-name descname"><span class="pre">PurchaseRequisitionSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/serializers.html#PurchaseRequisitionSerializer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.serializers.PurchaseRequisitionSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="purchase.serializers.PurchaseRequisitionSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="reference internal" href="../_modules/purchase/serializers.html#PurchaseRequisitionSerializer.Meta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.serializers.PurchaseRequisitionSerializer.Meta" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.serializers.PurchaseRequisitionSerializer.Meta.exclude">
+<span class="sig-name descname"><span class="pre">exclude</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['status',</span> <span class="pre">'inventory']</span></em><a class="headerlink" href="#purchase.serializers.PurchaseRequisitionSerializer.Meta.exclude" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.serializers.PurchaseRequisitionSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#purchase.serializers.PurchaseRequisitionSerializer.Meta.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#purchase.models.PurchaseRequisition" title="purchase.models.PurchaseRequisition"><code class="xref py py-class docutils literal notranslate"><span class="pre">PurchaseRequisition</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="purchase.serializers.SupplierBidSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">purchase.serializers.</span></span><span class="sig-name descname"><span class="pre">SupplierBidSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/serializers.html#SupplierBidSerializer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.serializers.SupplierBidSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="purchase.serializers.SupplierBidSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="reference internal" href="../_modules/purchase/serializers.html#SupplierBidSerializer.Meta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.serializers.SupplierBidSerializer.Meta" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.serializers.SupplierBidSerializer.Meta.exclude">
+<span class="sig-name descname"><span class="pre">exclude</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['status',</span> <span class="pre">'requisition']</span></em><a class="headerlink" href="#purchase.serializers.SupplierBidSerializer.Meta.exclude" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.serializers.SupplierBidSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#purchase.serializers.SupplierBidSerializer.Meta.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#purchase.models.SupplierBid" title="purchase.models.SupplierBid"><code class="xref py py-class docutils literal notranslate"><span class="pre">SupplierBid</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-purchase.tests">
+<span id="purchase-tests-module"></span><h2>purchase.tests module<a class="headerlink" href="#module-purchase.tests" title="Link to this heading"></a></h2>
+</section>
+<section id="module-purchase.urls">
+<span id="purchase-urls-module"></span><h2>purchase.urls module<a class="headerlink" href="#module-purchase.urls" title="Link to this heading"></a></h2>
+</section>
+<section id="module-purchase.views">
+<span id="purchase-views-module"></span><h2>purchase.views module<a class="headerlink" href="#module-purchase.views" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="purchase.views.BasePurchaseRequisitionAPIView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">purchase.views.</span></span><span class="sig-name descname"><span class="pre">BasePurchaseRequisitionAPIView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/views.html#BasePurchaseRequisitionAPIView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.views.BasePurchaseRequisitionAPIView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">GenericAPIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="purchase.views.BasePurchaseRequisitionAPIView.get_object">
+<span class="sig-name descname"><span class="pre">get_object</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/views.html#BasePurchaseRequisitionAPIView.get_object"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.views.BasePurchaseRequisitionAPIView.get_object" title="Link to this definition"></a></dt>
+<dd><p>Returns the object the view is displaying.</p>
+<p>You may want to override this if you need to provide non-standard
+queryset lookups.  Eg if objects are referenced using multiple
+keyword arguments in the url conf.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="purchase.views.BasePurchaseRequisitionAPIView.get_queryset">
+<span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/views.html#BasePurchaseRequisitionAPIView.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.views.BasePurchaseRequisitionAPIView.get_queryset" title="Link to this definition"></a></dt>
+<dd><p>Get the list of items for this view.
+This must be an iterable, and may be a queryset.
+Defaults to using <cite>self.queryset</cite>.</p>
+<p>This method should always be used rather than accessing <cite>self.queryset</cite>
+directly, as <cite>self.queryset</cite> gets evaluated only once, and those results
+are cached for all subsequent requests.</p>
+<p>You may want to override this if you need to provide different
+querysets depending on the incoming request.</p>
+<p>(Eg. return a list of items that is specific to the user)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.views.BasePurchaseRequisitionAPIView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'accounts.permissions.IsProcurementOfficer'&gt;]</span></em><a class="headerlink" href="#purchase.views.BasePurchaseRequisitionAPIView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.views.BasePurchaseRequisitionAPIView.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#purchase.views.BasePurchaseRequisitionAPIView.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#purchase.serializers.PurchaseRequisitionSerializer" title="purchase.serializers.PurchaseRequisitionSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">PurchaseRequisitionSerializer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="purchase.views.PurchaseRequisitionCreateView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">purchase.views.</span></span><span class="sig-name descname"><span class="pre">PurchaseRequisitionCreateView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/views.html#PurchaseRequisitionCreateView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.views.PurchaseRequisitionCreateView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#purchase.views.BasePurchaseRequisitionAPIView" title="purchase.views.BasePurchaseRequisitionAPIView"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePurchaseRequisitionAPIView</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CreateAPIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="purchase.views.PurchaseRequisitionCreateView.perform_create">
+<span class="sig-name descname"><span class="pre">perform_create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">serializer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/views.html#PurchaseRequisitionCreateView.perform_create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.views.PurchaseRequisitionCreateView.perform_create" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.views.PurchaseRequisitionCreateView.queryset">
+<span class="sig-name descname"><span class="pre">queryset</span></span><a class="headerlink" href="#purchase.views.PurchaseRequisitionCreateView.queryset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="purchase.views.PurchaseRequisitionDeleteView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">purchase.views.</span></span><span class="sig-name descname"><span class="pre">PurchaseRequisitionDeleteView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/views.html#PurchaseRequisitionDeleteView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.views.PurchaseRequisitionDeleteView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#purchase.views.BasePurchaseRequisitionAPIView" title="purchase.views.BasePurchaseRequisitionAPIView"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePurchaseRequisitionAPIView</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DestroyAPIView</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="purchase.views.PurchaseRequisitionListView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">purchase.views.</span></span><span class="sig-name descname"><span class="pre">PurchaseRequisitionListView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/views.html#PurchaseRequisitionListView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.views.PurchaseRequisitionListView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#purchase.views.BasePurchaseRequisitionAPIView" title="purchase.views.BasePurchaseRequisitionAPIView"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePurchaseRequisitionAPIView</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ListAPIView</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="purchase.views.PurchaseRequisitionRetrieveView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">purchase.views.</span></span><span class="sig-name descname"><span class="pre">PurchaseRequisitionRetrieveView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/views.html#PurchaseRequisitionRetrieveView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.views.PurchaseRequisitionRetrieveView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#purchase.views.BasePurchaseRequisitionAPIView" title="purchase.views.BasePurchaseRequisitionAPIView"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePurchaseRequisitionAPIView</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">RetrieveAPIView</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="purchase.views.PurchaseRequisitionUpdateView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">purchase.views.</span></span><span class="sig-name descname"><span class="pre">PurchaseRequisitionUpdateView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/views.html#PurchaseRequisitionUpdateView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.views.PurchaseRequisitionUpdateView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#purchase.views.BasePurchaseRequisitionAPIView" title="purchase.views.BasePurchaseRequisitionAPIView"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePurchaseRequisitionAPIView</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateAPIView</span></code></p>
+</dd></dl>
+
+</section>
+<section id="module-purchase">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-purchase" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sahil Gidwani.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
