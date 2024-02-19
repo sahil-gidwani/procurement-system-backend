@@ -134,7 +134,7 @@ class ARIMAForecastAPIView(APIView):
         forecast_data = calculate_auto_arima(monthly_demand)
         return JsonResponse(forecast_data)
 
-    def post(self, request, inventory_id):
+    def post(self, request):
         file = request.FILES.get('file')
         if not file:
             return JsonResponse({'error': 'No file provided'}, status=status.HTTP_400_BAD_REQUEST)
