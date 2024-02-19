@@ -19,3 +19,7 @@ class OptimizedInventorySerializer(serializers.ModelSerializer):
         model = OptimizedInventory
         exclude = ['inventory']
         read_only_fields = ['eoq', 'safety_stock', 'reorder_point']
+
+
+class ARIMAForecastSerializer(serializers.Serializer):
+    pass

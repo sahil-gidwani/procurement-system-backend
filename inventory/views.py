@@ -6,9 +6,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
-from django.http import JsonResponse
 from django.core.exceptions import PermissionDenied
 from drf_spectacular.utils import extend_schema
 import pandas as pd
@@ -19,7 +17,7 @@ import plotly.io as pio
 from statsmodels.tsa.seasonal import seasonal_decompose
 from accounts.permissions import IsProcurementOfficer
 from .models import Inventory, HistoricalInventory, OptimizedInventory
-from .serializers import InventorySerializer, HistoricalInventorySerializer, OptimizedInventorySerializer
+from .serializers import InventorySerializer, HistoricalInventorySerializer, OptimizedInventorySerializer, ARIMAForecastSerializer
 
 
 class BaseInventoryAPIView(generics.GenericAPIView):
@@ -105,13 +103,23 @@ def calculate_auto_arima(monthly_demand):
     return forecast_data
 
 
-class ARIMAForecastAPIView(APIView):
+class ARIMAForecastAPIView(generics.GenericAPIView):
     permission_classes = [IsAuthenticated, IsProcurementOfficer]
+    serializer_class = ARIMAForecastSerializer
+
+    def get_queryset(self, inventory_id):
+        return HistoricalInventory.objects.filter(
+            inventory_id=inventory_id, 
+            inventory__procurement_officer=self.request.user
+        )
 
     def get(self, request, inventory_id):
-        historical_inventory = HistoricalInventory.objects.filter(inventory_id=inventory_id, inventory__procurement_officer=request.user)
+        historical_inventory = self.get_queryset(inventory_id)
         if not historical_inventory.exists():
-            return JsonResponse({'error': 'No historical inventory data found for the specified inventory_id'}, status=status.HTTP_404_NOT_FOUND)
+            return Response(
+                {'error': 'No historical inventory data found for the specified inventory_id'},
+                status=status.HTTP_404_NOT_FOUND
+            )
 
         data = {
             'datetime': [item.datetime for item in historical_inventory],
@@ -127,22 +135,25 @@ class ARIMAForecastAPIView(APIView):
 
         # Check if there is enough data for forecasting (minimum 24 months, maximum 60 months)
         if len(monthly_demand) < 24:
-            return JsonResponse({'error': 'Insufficient data for forecasting. Minimum 24 months of data required.'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {'error': 'Insufficient data for forecasting. Minimum 24 months of data required.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
         elif len(monthly_demand) > 60:
             monthly_demand = monthly_demand[-60:]  # Consider only the latest 60 months of data
 
         forecast_data = calculate_auto_arima(monthly_demand)
-        return JsonResponse(forecast_data)
+        return Response(forecast_data)
 
     def post(self, request):
         file = request.FILES.get('file')
         if not file:
-            return JsonResponse({'error': 'No file provided'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'No file provided'}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
             df = pd.read_csv(io.StringIO(file.read().decode('utf-8')))
         except Exception as e:
-            return JsonResponse({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
         df.columns = ['datetime', 'demand']
         df['datetime'] = pd.to_datetime(df['datetime'])
@@ -153,12 +164,15 @@ class ARIMAForecastAPIView(APIView):
 
         # Check if there is enough data for forecasting (minimum 24 months, maximum 60 months)
         if len(monthly_demand) < 24:
-            return JsonResponse({'error': 'Insufficient data for forecasting. Minimum 24 months of data required.'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {'error': 'Insufficient data for forecasting. Minimum 24 months of data required.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
         elif len(monthly_demand) > 60:
             monthly_demand = monthly_demand[-60:]  # Consider only the latest 60 months of data
 
         forecast_data = calculate_auto_arima(monthly_demand)
-        return JsonResponse(forecast_data)
+        return Response(forecast_data)
 
 
 def calculate_eoq_classical(demand, ordering_cost, holding_cost):

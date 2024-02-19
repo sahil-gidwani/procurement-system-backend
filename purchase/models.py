@@ -35,7 +35,6 @@ class SupplierBid(models.Model):
     comments = models.TextField(null=True, blank=True)
     STATUS_CHOICES = [
         ('submitted', 'Submitted'),
-        ('under_review', 'Under Review'),
         ('accepted', 'Accepted'),
         ('rejected', 'Rejected')
     ]
