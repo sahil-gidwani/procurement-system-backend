@@ -1,5 +1,6 @@
 from django.db import models
 from inventory.models import Inventory
+from accounts.models import User
 
 
 class PurchaseRequisition(models.Model):
@@ -25,6 +26,9 @@ class PurchaseRequisition(models.Model):
     report = models.FileField(upload_to="requisition/reports", null=True, blank=True)
     inventory = models.OneToOneField(Inventory, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.requisition_number
+
 
 class SupplierBid(models.Model):
     quantity_fulfilled = models.IntegerField()
@@ -39,7 +43,14 @@ class SupplierBid(models.Model):
         ('rejected', 'Rejected')
     ]
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='submitted')
+    supplier = models.ForeignKey(User, on_delete=models.CASCADE)
     requisition = models.ForeignKey(PurchaseRequisition, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ['supplier', 'requisition']
+    
+    def __str__(self):
+        return f"{self.requisition.requisition_number} - {self.supplier.username}"
 
 
 class PurchaseOrder(models.Model):
@@ -54,3 +65,6 @@ class PurchaseOrder(models.Model):
     ]
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
     bid = models.OneToOneField(SupplierBid, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.order_number

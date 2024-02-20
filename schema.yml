@@ -737,6 +737,33 @@ paths:
               schema:
                 $ref: '#/components/schemas/OptimizedInventory'
           description: ''
+  /purchase/purcase-requisitions/vendor/list/:
+    get:
+      operationId: purchase_purcase_requisitions_vendor_list_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - purchase
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedPurchaseRequisitionVendorList'
+          description: ''
   /purchase/purchase-requisitions/{id}/:
     get:
       operationId: purchase_purchase_requisitions_retrieve
@@ -893,6 +920,195 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaginatedPurchaseRequisitionList'
+          description: ''
+  /purchase/supplier-bids/{id}/:
+    get:
+      operationId: purchase_supplier_bids_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - purchase
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupplierBid'
+          description: ''
+  /purchase/supplier-bids/{id}/delete/:
+    delete:
+      operationId: purchase_supplier_bids_delete_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - purchase
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /purchase/supplier-bids/{id}/update/:
+    put:
+      operationId: purchase_supplier_bids_update_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - purchase
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupplierBid'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SupplierBid'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SupplierBid'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupplierBid'
+          description: ''
+    patch:
+      operationId: purchase_supplier_bids_update_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - purchase
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedSupplierBid'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedSupplierBid'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedSupplierBid'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupplierBid'
+          description: ''
+  /purchase/supplier-bids/create/{requisition_id}/:
+    post:
+      operationId: purchase_supplier_bids_create_create
+      parameters:
+      - in: path
+        name: requisition_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - purchase
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupplierBid'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SupplierBid'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SupplierBid'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupplierBid'
+          description: ''
+  /purchase/supplier-bids/list/:
+    get:
+      operationId: purchase_supplier_bids_list_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - purchase
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedSupplierBidList'
+          description: ''
+  /purchase/supplier-bids/procurement-officer/list/{requisition_id}/:
+    get:
+      operationId: purchase_supplier_bids_procurement_officer_list_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - in: path
+        name: requisition_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - purchase
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedSupplierBidProcurementOfficerList'
           description: ''
 components:
   schemas:
@@ -1113,6 +1329,66 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PurchaseRequisition'
+    PaginatedPurchaseRequisitionVendorList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseRequisitionVendor'
+    PaginatedSupplierBidList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SupplierBid'
+    PaginatedSupplierBidProcurementOfficerList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SupplierBidProcurementOfficer'
     PaginatedVendorList:
       type: object
       properties:
@@ -1329,6 +1605,37 @@ components:
           type: string
           format: uri
           nullable: true
+    PatchedSupplierBid:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        quantity_fulfilled:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        unit_price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        date_submitted:
+          type: string
+          format: date-time
+          readOnly: true
+        days_delivery:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        attachments:
+          type: string
+          format: uri
+          nullable: true
+        comments:
+          type: string
+          nullable: true
     ProcurementOfficerRegister:
       type: object
       properties:
@@ -1446,6 +1753,147 @@ components:
       - last_updated
       - quantity_requested
       - requisition_number
+    PurchaseRequisitionVendor:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        procurement_officer:
+          type: string
+          readOnly: true
+        requisition_number:
+          type: string
+          maxLength: 255
+        date_created:
+          type: string
+          format: date-time
+          readOnly: true
+        last_updated:
+          type: string
+          format: date-time
+          readOnly: true
+        quantity_requested:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        expected_delivery_date:
+          type: string
+          format: date
+        urgency_level:
+          $ref: '#/components/schemas/UrgencyLevelEnum'
+        comments:
+          type: string
+          nullable: true
+        attachments:
+          type: string
+          format: uri
+          nullable: true
+        report:
+          type: string
+          format: uri
+          nullable: true
+      required:
+      - date_created
+      - expected_delivery_date
+      - id
+      - last_updated
+      - procurement_officer
+      - quantity_requested
+      - requisition_number
+    StatusEnum:
+      enum:
+      - submitted
+      - accepted
+      - rejected
+      type: string
+      description: |-
+        * `submitted` - Submitted
+        * `accepted` - Accepted
+        * `rejected` - Rejected
+    SupplierBid:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        quantity_fulfilled:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        unit_price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        date_submitted:
+          type: string
+          format: date-time
+          readOnly: true
+        days_delivery:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        attachments:
+          type: string
+          format: uri
+          nullable: true
+        comments:
+          type: string
+          nullable: true
+      required:
+      - date_submitted
+      - days_delivery
+      - id
+      - quantity_fulfilled
+      - unit_price
+    SupplierBidProcurementOfficer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        quantity_fulfilled:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        unit_price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        date_submitted:
+          type: string
+          format: date-time
+          readOnly: true
+        days_delivery:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        attachments:
+          type: string
+          format: uri
+          nullable: true
+        comments:
+          type: string
+          nullable: true
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        supplier:
+          type: integer
+        requisition:
+          type: integer
+      required:
+      - date_submitted
+      - days_delivery
+      - id
+      - quantity_fulfilled
+      - requisition
+      - supplier
+      - unit_price
     TokenRefresh:
       type: object
       properties:
