@@ -8,7 +8,6 @@ class PurchaseRequisitionSerializer(serializers.ModelSerializer):
         exclude = ['status', 'inventory']
 
 
-
 class PurchaseRequisitionVendorSerializer(serializers.ModelSerializer):
     procurement_officer = serializers.StringRelatedField(source='inventory.procurement_officer')
 
