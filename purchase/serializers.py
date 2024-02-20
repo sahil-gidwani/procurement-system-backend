@@ -24,9 +24,13 @@ class SupplierBidSerializer(serializers.ModelSerializer):
 
 
 class SupplierBidProcurementOfficerSerializer(serializers.ModelSerializer):
+    supplier_rating = serializers.SerializerMethodField()
     class Meta:
         model = SupplierBid
-        fields = '__all__'
+        exclude = ['requisition']
+
+    def get_supplier_rating(self, instance):
+        return instance.supplier.vendor.vendor_rating
 
 
 class PurchaseOrderSerializer(serializers.ModelSerializer):
