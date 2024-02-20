@@ -28,7 +28,7 @@ class SupplierBidProcurementOfficerSerializer(serializers.ModelSerializer):
         model = SupplierBid
         exclude = ['requisition']
 
-    def get_supplier_rating(self, instance):
+    def get_supplier_rating(self, instance) -> float:
         return instance.supplier.vendor.vendor_rating
 
 

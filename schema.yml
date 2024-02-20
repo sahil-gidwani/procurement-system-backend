@@ -1110,6 +1110,26 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedSupplierBidProcurementOfficerList'
           description: ''
+  /purchase/supplier-bids/procurement-officer/list/{requisition_id}/ranking/:
+    get:
+      operationId: purchase_supplier_bids_procurement_officer_list_ranking_retrieve
+      parameters:
+      - in: path
+        name: requisition_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - purchase
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupplierBidProcurementOfficer'
+          description: ''
 components:
   schemas:
     ChangePassword:
@@ -1855,6 +1875,10 @@ components:
         id:
           type: integer
           readOnly: true
+        supplier_rating:
+          type: number
+          format: double
+          readOnly: true
         quantity_fulfilled:
           type: integer
           maximum: 9223372036854775807
@@ -1884,15 +1908,13 @@ components:
           $ref: '#/components/schemas/StatusEnum'
         supplier:
           type: integer
-        requisition:
-          type: integer
       required:
       - date_submitted
       - days_delivery
       - id
       - quantity_fulfilled
-      - requisition
       - supplier
+      - supplier_rating
       - unit_price
     TokenRefresh:
       type: object

@@ -15,4 +15,5 @@ urlpatterns = [
     path('supplier-bids/<int:pk>/update/', views.SupplierBidUpdateView.as_view(), name='supplier_bid_update'),
     path('supplier-bids/<int:pk>/delete/', views.SupplierBidDeleteView.as_view(), name='supplier_bid_delete'),
     path('supplier-bids/procurement-officer/list/<int:requisition_id>/', views.SupplierBidProcurementOfficerListView.as_view(), name='supplier_bid_procurement_officer_list'),
+    path('supplier-bids/procurement-officer/list/<int:requisition_id>/ranking/', views.SupplierBidProcurementOfficerRankingView.as_view(), name='supplier_bid_procurement_officer_ranking'),
 ]
