@@ -189,17 +189,6 @@ class SupplierBidProcurementOfficerRankingView(generics.GenericAPIView):
 
         df_json = df.to_json(orient='records')
 
-        # Create a parallel coordinates plot
-        fig = px.parallel_coordinates(df, color='rank', color_continuous_scale=px.colors.sequential.Viridis,
-                                    labels={'rank': 'Rank'},
-                                    dimensions=['unit_price', 'days_delivery', 'supplier_rating', 'total_cost'])
-        fig.update_layout(
-            title="Multi-Criteria Evaluation: Parallel Coordinates of Bids Ranking",
-            title_x=0.5,
-            title_y=0.05
-        )
-        parallel_plot_json = pio.to_json(fig)
-
         # Create the radar chart
         criteria = ['unit_price', 'days_delivery', 'supplier_rating', 'total_cost']
         norm_values = norm_df.values.tolist()
@@ -222,10 +211,21 @@ class SupplierBidProcurementOfficerRankingView(generics.GenericAPIView):
         )
         radar_plot_json = pio.to_json(fig)
 
+        # Create a parallel coordinates plot
+        fig = px.parallel_coordinates(df, color='rank', color_continuous_scale=px.colors.sequential.Viridis,
+                                    labels={'rank': 'Rank'},
+                                    dimensions=['unit_price', 'days_delivery', 'supplier_rating', 'total_cost'])
+        fig.update_layout(
+            title="Multi-Criteria Evaluation: Parallel Coordinates of Bids Ranking",
+            title_x=0.5,
+            title_y=0.05
+        )
+        parallel_plot_json = pio.to_json(fig)
+
         response_data = {
             'dataframe': df_json,
-            'parallel_plot': parallel_plot_json,
-            'radar_plot': radar_plot_json
+            'radar_plot': radar_plot_json,
+            'parallel_plot': parallel_plot_json
         }
         return Response(response_data, content_type='application/json')
         
@@ -247,6 +247,7 @@ def getRoutes(request):
         "/supplier-bids/<int:pk>/update",
         "/supplier-bids/<int:pk>/delete",
         "/supplier-bids/procurement-officer/list/<int:requisition_id>",
+        "/supplier-bids/procurement-officer/list/<int:requisition_id>/ranking",
     ]
 
     return Response(routes)
