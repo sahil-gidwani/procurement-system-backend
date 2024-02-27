@@ -15,10 +15,16 @@ jobs:
       DEBUG: ${{ secrets.DEBUG }}
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
       ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
+      FRONTEND_URL: ${{ secrets.FRONTEND_URL }}
       DB_ENGINE: ${{ secrets.DB_ENGINE }}
       DB_NAME: ${{ secrets.DB_NAME }}
+      CLOUD_NAME: ${{ secrets.CLOUD_NAME }}
+      API_KEY: ${{ secrets.API_KEY }}
+      API_SECRET: ${{ secrets.API_SECRET }}
       CORS_ALLOWED_ORIGINS: ${{ secrets.CORS_ALLOWED_ORIGINS }}
       CSRF_TRUSTED_ORIGINS: ${{ secrets.CSRF_TRUSTED_ORIGINS }}
+      REDIS_URL: ${{ secrets.REDIS_URL }}
+      REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
       EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
       EMAIL_PORT: ${{ secrets.EMAIL_PORT }}
       EMAIL_USE_TLS: ${{ secrets.EMAIL_USE_TLS }}

@@ -20,6 +20,8 @@ DEBUG = os.getenv("DEBUG")
 
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(" ")
 
+FRONTEND_URL = os.getenv("FRONTEND_URL")
+
 
 # Application definition
 
@@ -88,6 +90,16 @@ DATABASES = {
     }
 }
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': os.getenv("REDIS_URL"),
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            'PASSWORD': os.getenv("REDIS_PASSWORD"),
+        }
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -205,3 +217,7 @@ SPECTACULAR_SETTINGS = {
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
 }
+
+# Celery settings
+CELERY_BROKER_URL = f'redis://default:{os.getenv("REDIS_PASSWORD")}@{os.getenv("REDIS_URL").replace("redis://", "")}'
+CELERY_RESULT_BACKEND = f'redis://default:{os.getenv("REDIS_PASSWORD")}@{os.getenv("REDIS_URL").replace("redis://", "")}'

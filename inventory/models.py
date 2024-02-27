@@ -30,6 +30,23 @@ class HistoricalInventory(models.Model):
         return f"{self.inventory.item_name} - {self.datetime}"
 
 
+class OptimizedInventory(models.Model):
+    demand = models.FloatField()
+    ordering_cost = models.FloatField()
+    holding_cost = models.FloatField()
+    lead_time = models.IntegerField(null=True, blank=True)
+    service_level = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(1.0)], null=True, blank=True)
+    safety_stock = models.FloatField(null=True, blank=True)
+    reorder_point = models.FloatField(null=True, blank=True)
+    shelf_life = models.IntegerField(null=True, blank=True)
+    storage_limit = models.IntegerField(null=True, blank=True)
+    eoq = models.FloatField(null=True, blank=True)
+    inventory = models.OneToOneField(Inventory, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.inventory.item_name)
+
+
 @receiver(post_save, sender=Inventory)
 def create_historical_inventory(sender, instance, created, **kwargs):
     timestamp = instance.last_updated if not created else instance.date_added
@@ -48,20 +65,3 @@ def create_historical_inventory(sender, instance, created, **kwargs):
         inventory=instance,
         demand=demand
     )
-
-
-class OptimizedInventory(models.Model):
-    demand = models.FloatField()
-    ordering_cost = models.FloatField()
-    holding_cost = models.FloatField()
-    lead_time = models.IntegerField(null=True, blank=True)
-    service_level = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(1.0)], null=True, blank=True)
-    safety_stock = models.FloatField(null=True, blank=True)
-    reorder_point = models.FloatField(null=True, blank=True)
-    shelf_life = models.IntegerField(null=True, blank=True)
-    storage_limit = models.IntegerField(null=True, blank=True)
-    eoq = models.FloatField(null=True, blank=True)
-    inventory = models.OneToOneField(Inventory, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return str(self.inventory.item_name)

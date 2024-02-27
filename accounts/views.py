@@ -4,7 +4,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework.decorators import api_view, permission_classes
 from django.contrib.auth.tokens import default_token_generator
-from django.core.mail import send_mail
+from django.core.cache import cache
 from django.urls import reverse
 from django.conf import settings
 from drf_spectacular.utils import extend_schema
@@ -20,6 +20,7 @@ from .serializers import (
 )
 from .models import User, Vendor
 from .permissions import IsProcurementOfficer
+from .tasks import send_password_reset_email
 
 
 class MyTokenObtainPairView(TokenObtainPairView):
@@ -50,17 +51,11 @@ class PasswordResetView(generics.CreateAPIView):
         password_reset_url = reverse(
             "password_reset_confirm", kwargs={"pk": pk, "token": token}
         )
+        
+        password_reset_url = settings.FRONTEND_URL + password_reset_url
 
-        print(password_reset_url)
-
-        # Send password reset email
-        send_mail(
-            subject="Password Reset Request",
-            message=f"Click the link to reset your password: {password_reset_url}",
-            from_email=settings.EMAIL_HOST_USER,
-            recipient_list=[user.email],
-            fail_silently=False,
-        )
+        # Send password reset email asynchronously
+        send_password_reset_email.delay(user.email, password_reset_url)
 
         return Response({"success": "Password reset email sent."})
 
@@ -139,6 +134,20 @@ class VendorView(generics.ListAPIView):
     permission_classes = [IsAuthenticated, IsAdminUser | IsProcurementOfficer]
     queryset = Vendor.objects.all()
     serializer_class = VendorSerializer
+
+    def list(self, request, *args, **kwargs):
+        cache_key = 'vendor_list'
+
+        # Attempt to retrieve data from cache
+        cached_data = cache.get(cache_key)
+
+        if cached_data is not None:
+            return Response(cached_data)
+
+        # If data not found in cache, retrieve it and cache it
+        response = super().list(request, *args, **kwargs)
+        cache.set(cache_key, response.data, timeout=60)  # Cache for 60 seconds
+        return response
 
 
 @extend_schema(exclude=True)
