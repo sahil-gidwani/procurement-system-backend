@@ -9,4 +9,4 @@
 [![Migrations Workflow Status](https://github.com/sahil-gidwani/procurement-system-backend/workflows/migrations/badge.svg)](https://github.com/sahil-gidwani/procurement-system-backend/actions)
 [![Schema Workflow Status](https://github.com/sahil-gidwani/procurement-system-backend/workflows/schema/badge.svg)](https://github.com/sahil-gidwani/procurement-system-backend/actions)
 [![Security Workflow Status](https://github.com/sahil-gidwani/procurement-system-backend/workflows/security/badge.svg)](https://github.com/sahil-gidwani/procurement-system-backend/actions)
-[![codecov](https://codecov.io/gh/sahil-gidwani/procurement-system-backend/branch/main/graph/badge.svg)](https://codecov.io/gh/sahil-gidwani/procurement-system-backend)
+[![codecov](https://codecov.io/gh/sahil-gidwani/procurement-system-backend/graph/badge.svg)](https://codecov.io/gh/sahil-gidwani/procurement-system-backend)
