@@ -86,7 +86,9 @@
 <div class="viewcode-block" id="BasePurchaseRequisitionAPIView.get_queryset">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.views.BasePurchaseRequisitionAPIView.get_queryset">[docs]</a>
     <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">PurchaseRequisition</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">inventory__procurement_officer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">PurchaseRequisition</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+            <span class="n">inventory__procurement_officer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="BasePurchaseRequisitionAPIView.get_object">
@@ -97,8 +99,10 @@
         <span class="c1"># If inventory_id is None, then we are not creating a new purchase requisition</span>
         <span class="k">if</span> <span class="n">inventory_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(),</span> <span class="nb">id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;pk&quot;</span><span class="p">))</span>
-        
-        <span class="n">inventory</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Inventory</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">inventory_id</span><span class="p">,</span> <span class="n">procurement_officer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+
+        <span class="n">inventory</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span>
+            <span class="n">Inventory</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">inventory_id</span><span class="p">,</span> <span class="n">procurement_officer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
+        <span class="p">)</span>
         <span class="n">obj</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(),</span> <span class="n">inventory</span><span class="o">=</span><span class="n">inventory</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">check_object_permissions</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">obj</span></div>
@@ -115,14 +119,18 @@
 
 <div class="viewcode-block" id="PurchaseRequisitionCreateView">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.views.PurchaseRequisitionCreateView">[docs]</a>
-<span class="k">class</span> <span class="nc">PurchaseRequisitionCreateView</span><span class="p">(</span><span class="n">BasePurchaseRequisitionAPIView</span><span class="p">,</span> <span class="n">generics</span><span class="o">.</span><span class="n">CreateAPIView</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">PurchaseRequisitionCreateView</span><span class="p">(</span>
+    <span class="n">BasePurchaseRequisitionAPIView</span><span class="p">,</span> <span class="n">generics</span><span class="o">.</span><span class="n">CreateAPIView</span>
+<span class="p">):</span>
     <span class="n">queryset</span> <span class="o">=</span> <span class="n">PurchaseRequisition</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
 
 <div class="viewcode-block" id="PurchaseRequisitionCreateView.perform_create">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.views.PurchaseRequisitionCreateView.perform_create">[docs]</a>
     <span class="k">def</span> <span class="nf">perform_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serializer</span><span class="p">):</span>
         <span class="n">inventory_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;inventory_id&quot;</span><span class="p">)</span>
-        <span class="n">inventory</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Inventory</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="n">inventory_id</span><span class="p">,</span> <span class="n">procurement_officer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+        <span class="n">inventory</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span>
+            <span class="n">Inventory</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="n">inventory_id</span><span class="p">,</span> <span class="n">procurement_officer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
+        <span class="p">)</span>
         <span class="n">serializer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">inventory</span><span class="o">=</span><span class="n">inventory</span><span class="p">)</span></div>
 </div>
 
@@ -130,21 +138,27 @@
 
 <div class="viewcode-block" id="PurchaseRequisitionRetrieveView">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.views.PurchaseRequisitionRetrieveView">[docs]</a>
-<span class="k">class</span> <span class="nc">PurchaseRequisitionRetrieveView</span><span class="p">(</span><span class="n">BasePurchaseRequisitionAPIView</span><span class="p">,</span> <span class="n">generics</span><span class="o">.</span><span class="n">RetrieveAPIView</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">PurchaseRequisitionRetrieveView</span><span class="p">(</span>
+    <span class="n">BasePurchaseRequisitionAPIView</span><span class="p">,</span> <span class="n">generics</span><span class="o">.</span><span class="n">RetrieveAPIView</span>
+<span class="p">):</span>
     <span class="k">pass</span></div>
 
 
 
 <div class="viewcode-block" id="PurchaseRequisitionUpdateView">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.views.PurchaseRequisitionUpdateView">[docs]</a>
-<span class="k">class</span> <span class="nc">PurchaseRequisitionUpdateView</span><span class="p">(</span><span class="n">BasePurchaseRequisitionAPIView</span><span class="p">,</span> <span class="n">generics</span><span class="o">.</span><span class="n">UpdateAPIView</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">PurchaseRequisitionUpdateView</span><span class="p">(</span>
+    <span class="n">BasePurchaseRequisitionAPIView</span><span class="p">,</span> <span class="n">generics</span><span class="o">.</span><span class="n">UpdateAPIView</span>
+<span class="p">):</span>
     <span class="k">pass</span></div>
 
 
 
 <div class="viewcode-block" id="PurchaseRequisitionDeleteView">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.views.PurchaseRequisitionDeleteView">[docs]</a>
-<span class="k">class</span> <span class="nc">PurchaseRequisitionDeleteView</span><span class="p">(</span><span class="n">BasePurchaseRequisitionAPIView</span><span class="p">,</span> <span class="n">generics</span><span class="o">.</span><span class="n">DestroyAPIView</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">PurchaseRequisitionDeleteView</span><span class="p">(</span>
+    <span class="n">BasePurchaseRequisitionAPIView</span><span class="p">,</span> <span class="n">generics</span><span class="o">.</span><span class="n">DestroyAPIView</span>
+<span class="p">):</span>
     <span class="k">pass</span></div>
 
 </pre></div>
