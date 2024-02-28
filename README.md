@@ -9,3 +9,4 @@
 [![Schema Workflow Status](https://github.com/sahil-gidwani/procurement-system-backend/actions/workflows/schema.yml/badge.svg)](https://github.com/sahil-gidwani/procurement-system-backend/actions/workflows/schema.yml)
 [![Security Workflow Status](https://github.com/sahil-gidwani/procurement-system-backend/actions/workflows/security.yml/badge.svg)](https://github.com/sahil-gidwani/procurement-system-backend/actions/workflows/security.yml)
 [![Codecov](https://codecov.io/gh/sahil-gidwani/procurement-system-backend/graph/badge.svg?token=MZM7MS1JEJ)](https://codecov.io/gh/sahil-gidwani/procurement-system-backend)
+[![view - Documentation](https://img.shields.io/badge/view-Documentation-blue?style=for-the-badge)](https://sahil-gidwani.github.io/procurement-system-backend/ "Go to project documentation")
