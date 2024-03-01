@@ -52,6 +52,14 @@ accounts.serializers module
    :undoc-members:
    :show-inheritance:
 
+accounts.tasks module
+---------------------
+
+.. automodule:: accounts.tasks
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 accounts.tests module
 ---------------------
 

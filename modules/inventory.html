@@ -146,6 +146,7 @@
 </li>
 </ul>
 </li>
+<li><a class="reference internal" href="#module-inventory.tasks">inventory.tasks module</a></li>
 <li><a class="reference internal" href="#module-inventory.tests">inventory.tests module</a><ul>
 <li><a class="reference internal" href="#inventory.tests.InventoryModelsTestCase"><code class="docutils literal notranslate"><span class="pre">InventoryModelsTestCase</span></code></a><ul>
 <li><a class="reference internal" href="#inventory.tests.InventoryModelsTestCase.setUp"><code class="docutils literal notranslate"><span class="pre">InventoryModelsTestCase.setUp()</span></code></a></li>
@@ -176,6 +177,7 @@
 <li><a class="reference internal" href="#module-inventory.urls">inventory.urls module</a></li>
 <li><a class="reference internal" href="#module-inventory.views">inventory.views module</a><ul>
 <li><a class="reference internal" href="#inventory.views.ARIMAForecastAPIView"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastAPIView</span></code></a><ul>
+<li><a class="reference internal" href="#inventory.views.ARIMAForecastAPIView.dispatch"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastAPIView.dispatch()</span></code></a></li>
 <li><a class="reference internal" href="#inventory.views.ARIMAForecastAPIView.get"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastAPIView.get()</span></code></a></li>
 <li><a class="reference internal" href="#inventory.views.ARIMAForecastAPIView.get_queryset"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastAPIView.get_queryset()</span></code></a></li>
 <li><a class="reference internal" href="#inventory.views.ARIMAForecastAPIView.permission_classes"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastAPIView.permission_classes</span></code></a></li>
@@ -197,6 +199,7 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#inventory.views.HistoricalInventoryListView"><code class="docutils literal notranslate"><span class="pre">HistoricalInventoryListView</span></code></a><ul>
+<li><a class="reference internal" href="#inventory.views.HistoricalInventoryListView.dispatch"><code class="docutils literal notranslate"><span class="pre">HistoricalInventoryListView.dispatch()</span></code></a></li>
 <li><a class="reference internal" href="#inventory.views.HistoricalInventoryListView.get_queryset"><code class="docutils literal notranslate"><span class="pre">HistoricalInventoryListView.get_queryset()</span></code></a></li>
 <li><a class="reference internal" href="#inventory.views.HistoricalInventoryListView.permission_classes"><code class="docutils literal notranslate"><span class="pre">HistoricalInventoryListView.permission_classes</span></code></a></li>
 <li><a class="reference internal" href="#inventory.views.HistoricalInventoryListView.serializer_class"><code class="docutils literal notranslate"><span class="pre">HistoricalInventoryListView.serializer_class</span></code></a></li>
@@ -207,10 +210,19 @@
 <li><a class="reference internal" href="#inventory.views.InventoryCreateView.queryset"><code class="docutils literal notranslate"><span class="pre">InventoryCreateView.queryset</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#inventory.views.InventoryDeleteView"><code class="docutils literal notranslate"><span class="pre">InventoryDeleteView</span></code></a></li>
-<li><a class="reference internal" href="#inventory.views.InventoryListView"><code class="docutils literal notranslate"><span class="pre">InventoryListView</span></code></a></li>
+<li><a class="reference internal" href="#inventory.views.InventoryDeleteView"><code class="docutils literal notranslate"><span class="pre">InventoryDeleteView</span></code></a><ul>
+<li><a class="reference internal" href="#inventory.views.InventoryDeleteView.destroy"><code class="docutils literal notranslate"><span class="pre">InventoryDeleteView.destroy()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#inventory.views.InventoryListView"><code class="docutils literal notranslate"><span class="pre">InventoryListView</span></code></a><ul>
+<li><a class="reference internal" href="#inventory.views.InventoryListView.list"><code class="docutils literal notranslate"><span class="pre">InventoryListView.list()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#inventory.views.InventoryRetrieveView"><code class="docutils literal notranslate"><span class="pre">InventoryRetrieveView</span></code></a></li>
-<li><a class="reference internal" href="#inventory.views.InventoryUpdateView"><code class="docutils literal notranslate"><span class="pre">InventoryUpdateView</span></code></a></li>
+<li><a class="reference internal" href="#inventory.views.InventoryUpdateView"><code class="docutils literal notranslate"><span class="pre">InventoryUpdateView</span></code></a><ul>
+<li><a class="reference internal" href="#inventory.views.InventoryUpdateView.update"><code class="docutils literal notranslate"><span class="pre">InventoryUpdateView.update()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#inventory.views.OptimizedInventoryCreateAPIView"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryCreateAPIView</span></code></a><ul>
 <li><a class="reference internal" href="#inventory.views.OptimizedInventoryCreateAPIView.perform_create"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryCreateAPIView.perform_create()</span></code></a></li>
 <li><a class="reference internal" href="#inventory.views.OptimizedInventoryCreateAPIView.permission_classes"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryCreateAPIView.permission_classes</span></code></a></li>
@@ -748,6 +760,9 @@ object the first time, the query is executed.</p>
 </dd></dl>
 
 </section>
+<section id="module-inventory.tasks">
+<span id="inventory-tasks-module"></span><h2>inventory.tasks module<a class="headerlink" href="#module-inventory.tasks" title="Link to this heading"></a></h2>
+</section>
 <section id="module-inventory.tests">
 <span id="inventory-tests-module"></span><h2>inventory.tests module<a class="headerlink" href="#module-inventory.tests" title="Link to this heading"></a></h2>
 <dl class="py class">
@@ -865,6 +880,13 @@ object the first time, the query is executed.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.views.</span></span><span class="sig-name descname"><span class="pre">ARIMAForecastAPIView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#ARIMAForecastAPIView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.ARIMAForecastAPIView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">GenericAPIView</span></code></p>
 <dl class="py method">
+<dt class="sig sig-object py" id="inventory.views.ARIMAForecastAPIView.dispatch">
+<span class="sig-name descname"><span class="pre">dispatch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#inventory.views.ARIMAForecastAPIView.dispatch" title="Link to this definition"></a></dt>
+<dd><p><cite>.dispatch()</cite> is pretty much the same as Django’s regular dispatch,
+but with extra hooks for startup, finalize, and exception handling.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="inventory.views.ARIMAForecastAPIView.get">
 <span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inventory_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#ARIMAForecastAPIView.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.ARIMAForecastAPIView.get" title="Link to this definition"></a></dt>
 <dd></dd></dl>
@@ -890,7 +912,7 @@ querysets depending on the incoming request.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="inventory.views.ARIMAForecastAPIView.post">
-<span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#ARIMAForecastAPIView.post"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.ARIMAForecastAPIView.post" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inventory_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#ARIMAForecastAPIView.post"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.ARIMAForecastAPIView.post" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -973,6 +995,13 @@ querysets depending on the incoming request.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.views.</span></span><span class="sig-name descname"><span class="pre">HistoricalInventoryListView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#HistoricalInventoryListView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.HistoricalInventoryListView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ListAPIView</span></code></p>
 <dl class="py method">
+<dt class="sig sig-object py" id="inventory.views.HistoricalInventoryListView.dispatch">
+<span class="sig-name descname"><span class="pre">dispatch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#inventory.views.HistoricalInventoryListView.dispatch" title="Link to this definition"></a></dt>
+<dd><p><cite>.dispatch()</cite> is pretty much the same as Django’s regular dispatch,
+but with extra hooks for startup, finalize, and exception handling.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="inventory.views.HistoricalInventoryListView.get_queryset">
 <span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#HistoricalInventoryListView.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.HistoricalInventoryListView.get_queryset" title="Link to this definition"></a></dt>
 <dd><p>Get the list of items for this view.
@@ -1019,12 +1048,22 @@ querysets depending on the incoming request.</p>
 <dt class="sig sig-object py" id="inventory.views.InventoryDeleteView">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.views.</span></span><span class="sig-name descname"><span class="pre">InventoryDeleteView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#InventoryDeleteView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.InventoryDeleteView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#inventory.views.BaseInventoryAPIView" title="inventory.views.BaseInventoryAPIView"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseInventoryAPIView</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DestroyAPIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.views.InventoryDeleteView.destroy">
+<span class="sig-name descname"><span class="pre">destroy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#InventoryDeleteView.destroy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.InventoryDeleteView.destroy" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="inventory.views.InventoryListView">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.views.</span></span><span class="sig-name descname"><span class="pre">InventoryListView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#InventoryListView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.InventoryListView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#inventory.views.BaseInventoryAPIView" title="inventory.views.BaseInventoryAPIView"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseInventoryAPIView</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ListAPIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.views.InventoryListView.list">
+<span class="sig-name descname"><span class="pre">list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#InventoryListView.list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.InventoryListView.list" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -1037,6 +1076,11 @@ querysets depending on the incoming request.</p>
 <dt class="sig sig-object py" id="inventory.views.InventoryUpdateView">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.views.</span></span><span class="sig-name descname"><span class="pre">InventoryUpdateView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#InventoryUpdateView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.InventoryUpdateView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#inventory.views.BaseInventoryAPIView" title="inventory.views.BaseInventoryAPIView"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseInventoryAPIView</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateAPIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.views.InventoryUpdateView.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#InventoryUpdateView.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.InventoryUpdateView.update" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">

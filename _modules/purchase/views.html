@@ -68,13 +68,21 @@
            <div itemprop="articleBody">
              
   <h1>Source code for purchase.views</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">generics</span>
-<span class="kn">from</span> <span class="nn">rest_framework.permissions</span> <span class="kn">import</span> <span class="n">IsAuthenticated</span>
-<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">get_object_or_404</span>
-<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">PurchaseRequisition</span>
-<span class="kn">from</span> <span class="nn">.serializers</span> <span class="kn">import</span> <span class="n">PurchaseRequisitionSerializer</span>
+<span></span><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">get_object_or_404</span>
+<span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">generics</span>
+<span class="kn">from</span> <span class="nn">rest_framework.permissions</span> <span class="kn">import</span> <span class="n">IsAuthenticated</span><span class="p">,</span> <span class="n">AllowAny</span>
+<span class="kn">from</span> <span class="nn">rest_framework.decorators</span> <span class="kn">import</span> <span class="n">api_view</span><span class="p">,</span> <span class="n">permission_classes</span>
+<span class="kn">from</span> <span class="nn">rest_framework.response</span> <span class="kn">import</span> <span class="n">Response</span>
+<span class="kn">from</span> <span class="nn">drf_spectacular.utils</span> <span class="kn">import</span> <span class="n">extend_schema</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">plotly.io</span> <span class="k">as</span> <span class="nn">pio</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">PurchaseRequisition</span><span class="p">,</span> <span class="n">SupplierBid</span><span class="p">,</span> <span class="n">PurchaseOrder</span>
+<span class="kn">from</span> <span class="nn">.serializers</span> <span class="kn">import</span> <span class="n">PurchaseRequisitionSerializer</span><span class="p">,</span> <span class="n">PurchaseRequisitionVendorSerializer</span><span class="p">,</span> <span class="n">SupplierBidSerializer</span><span class="p">,</span> <span class="n">SupplierBidProcurementOfficerSerializer</span><span class="p">,</span> <span class="n">PurchaseOrderSerializer</span>
 <span class="kn">from</span> <span class="nn">inventory.models</span> <span class="kn">import</span> <span class="n">Inventory</span>
-<span class="kn">from</span> <span class="nn">accounts.permissions</span> <span class="kn">import</span> <span class="n">IsProcurementOfficer</span>
+<span class="kn">from</span> <span class="nn">accounts.permissions</span> <span class="kn">import</span> <span class="n">IsProcurementOfficer</span><span class="p">,</span> <span class="n">IsVendor</span>
 
 
 <div class="viewcode-block" id="BasePurchaseRequisitionAPIView">
@@ -160,6 +168,244 @@
     <span class="n">BasePurchaseRequisitionAPIView</span><span class="p">,</span> <span class="n">generics</span><span class="o">.</span><span class="n">DestroyAPIView</span>
 <span class="p">):</span>
     <span class="k">pass</span></div>
+
+
+
+<div class="viewcode-block" id="PurchaseRequisitionVendorListView">
+<a class="viewcode-back" href="../../modules/purchase.html#purchase.views.PurchaseRequisitionVendorListView">[docs]</a>
+<span class="k">class</span> <span class="nc">PurchaseRequisitionVendorListView</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">ListAPIView</span><span class="p">):</span>
+    <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">IsAuthenticated</span><span class="p">,</span> <span class="n">IsVendor</span><span class="p">]</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">PurchaseRequisitionVendorSerializer</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">PurchaseRequisition</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="BaseSupplierAPIView">
+<a class="viewcode-back" href="../../modules/purchase.html#purchase.views.BaseSupplierAPIView">[docs]</a>
+<span class="k">class</span> <span class="nc">BaseSupplierAPIView</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">GenericAPIView</span><span class="p">):</span>
+    <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">IsAuthenticated</span><span class="p">,</span> <span class="n">IsVendor</span><span class="p">]</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">SupplierBidSerializer</span>
+
+<div class="viewcode-block" id="BaseSupplierAPIView.get_queryset">
+<a class="viewcode-back" href="../../modules/purchase.html#purchase.views.BaseSupplierAPIView.get_queryset">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">SupplierBid</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">supplier</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BaseSupplierAPIView.get_object">
+<a class="viewcode-back" href="../../modules/purchase.html#purchase.views.BaseSupplierAPIView.get_object">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_object</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">requisition_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;requisition_id&quot;</span><span class="p">)</span>
+
+        <span class="c1"># If requisition_id is None, then we are not creating a new supplier bid</span>
+        <span class="k">if</span> <span class="n">requisition_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(),</span> <span class="nb">id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;pk&quot;</span><span class="p">))</span>
+        
+        <span class="n">requisition</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">PurchaseRequisition</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">requisition_id</span><span class="p">)</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(),</span> <span class="n">requisition</span><span class="o">=</span><span class="n">requisition</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_object_permissions</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">obj</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="SupplierBidListView">
+<a class="viewcode-back" href="../../modules/purchase.html#purchase.views.SupplierBidListView">[docs]</a>
+<span class="k">class</span> <span class="nc">SupplierBidListView</span><span class="p">(</span><span class="n">BaseSupplierAPIView</span><span class="p">,</span> <span class="n">generics</span><span class="o">.</span><span class="n">ListAPIView</span><span class="p">):</span>
+    <span class="k">pass</span></div>
+
+
+
+<div class="viewcode-block" id="SupplierBidCreateView">
+<a class="viewcode-back" href="../../modules/purchase.html#purchase.views.SupplierBidCreateView">[docs]</a>
+<span class="k">class</span> <span class="nc">SupplierBidCreateView</span><span class="p">(</span><span class="n">BaseSupplierAPIView</span><span class="p">,</span> <span class="n">generics</span><span class="o">.</span><span class="n">CreateAPIView</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">SupplierBid</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+
+<div class="viewcode-block" id="SupplierBidCreateView.perform_create">
+<a class="viewcode-back" href="../../modules/purchase.html#purchase.views.SupplierBidCreateView.perform_create">[docs]</a>
+    <span class="k">def</span> <span class="nf">perform_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serializer</span><span class="p">):</span>
+        <span class="n">requisition_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;requisition_id&quot;</span><span class="p">)</span>
+        <span class="n">requisition</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">PurchaseRequisition</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="n">requisition_id</span><span class="p">)</span>
+        <span class="n">serializer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">requisition</span><span class="o">=</span><span class="n">requisition</span><span class="p">,</span> <span class="n">supplier</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="SupplierBidRetrieveView">
+<a class="viewcode-back" href="../../modules/purchase.html#purchase.views.SupplierBidRetrieveView">[docs]</a>
+<span class="k">class</span> <span class="nc">SupplierBidRetrieveView</span><span class="p">(</span><span class="n">BaseSupplierAPIView</span><span class="p">,</span> <span class="n">generics</span><span class="o">.</span><span class="n">RetrieveAPIView</span><span class="p">):</span>
+    <span class="k">pass</span></div>
+
+
+
+<div class="viewcode-block" id="SupplierBidUpdateView">
+<a class="viewcode-back" href="../../modules/purchase.html#purchase.views.SupplierBidUpdateView">[docs]</a>
+<span class="k">class</span> <span class="nc">SupplierBidUpdateView</span><span class="p">(</span><span class="n">BaseSupplierAPIView</span><span class="p">,</span> <span class="n">generics</span><span class="o">.</span><span class="n">UpdateAPIView</span><span class="p">):</span>
+    <span class="k">pass</span></div>
+
+
+
+<div class="viewcode-block" id="SupplierBidDeleteView">
+<a class="viewcode-back" href="../../modules/purchase.html#purchase.views.SupplierBidDeleteView">[docs]</a>
+<span class="k">class</span> <span class="nc">SupplierBidDeleteView</span><span class="p">(</span><span class="n">BaseSupplierAPIView</span><span class="p">,</span> <span class="n">generics</span><span class="o">.</span><span class="n">DestroyAPIView</span><span class="p">):</span>
+    <span class="k">pass</span></div>
+
+
+
+<div class="viewcode-block" id="SupplierBidProcurementOfficerListView">
+<a class="viewcode-back" href="../../modules/purchase.html#purchase.views.SupplierBidProcurementOfficerListView">[docs]</a>
+<span class="k">class</span> <span class="nc">SupplierBidProcurementOfficerListView</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">ListAPIView</span><span class="p">):</span>
+    <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">IsAuthenticated</span><span class="p">,</span> <span class="n">IsProcurementOfficer</span><span class="p">]</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">SupplierBidProcurementOfficerSerializer</span>
+
+<div class="viewcode-block" id="SupplierBidProcurementOfficerListView.get_queryset">
+<a class="viewcode-back" href="../../modules/purchase.html#purchase.views.SupplierBidProcurementOfficerListView.get_queryset">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">SupplierBid</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">requisition__inventory__procurement_officer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="n">requisition__id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;requisition_id&quot;</span><span class="p">))</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="SupplierBidProcurementOfficerRankingView">
+<a class="viewcode-back" href="../../modules/purchase.html#purchase.views.SupplierBidProcurementOfficerRankingView">[docs]</a>
+<span class="k">class</span> <span class="nc">SupplierBidProcurementOfficerRankingView</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">GenericAPIView</span><span class="p">):</span>
+    <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">IsAuthenticated</span><span class="p">,</span> <span class="n">IsProcurementOfficer</span><span class="p">]</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">SupplierBidProcurementOfficerSerializer</span>
+
+<div class="viewcode-block" id="SupplierBidProcurementOfficerRankingView.get">
+<a class="viewcode-back" href="../../modules/purchase.html#purchase.views.SupplierBidProcurementOfficerRankingView.get">[docs]</a>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">requisition_id</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">requisition</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">PurchaseRequisition</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">requisition_id</span><span class="p">,</span> <span class="n">inventory__procurement_officer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+        <span class="n">bids</span> <span class="o">=</span> <span class="n">SupplierBid</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">requisition</span><span class="o">=</span><span class="n">requisition</span><span class="p">)</span>
+        <span class="n">serializer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serializer_class</span><span class="p">(</span><span class="n">bids</span><span class="p">,</span> <span class="n">many</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">serializer</span><span class="o">.</span><span class="n">data</span>
+
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;unit_price&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;unit_price&#39;</span><span class="p">])</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;quantity_fulfilled&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;quantity_fulfilled&#39;</span><span class="p">])</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;days_delivery&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;days_delivery&#39;</span><span class="p">])</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;supplier_rating&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;supplier_rating&#39;</span><span class="p">])</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;total_cost&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;unit_price&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;quantity_fulfilled&#39;</span><span class="p">]</span>
+
+        <span class="c1"># Multi-Criteria Evaluation using TOPSIS - Technique for Order of Preference by Similarity to Ideal Solution</span>
+
+        <span class="c1"># 1. Normalize the Decision Matrix</span>
+        <span class="n">norm_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">norm_df</span> <span class="o">=</span> <span class="n">norm_df</span><span class="p">[[</span><span class="s1">&#39;unit_price&#39;</span><span class="p">,</span> <span class="s1">&#39;total_cost&#39;</span><span class="p">,</span> <span class="s1">&#39;days_delivery&#39;</span><span class="p">,</span> <span class="s1">&#39;supplier_rating&#39;</span><span class="p">]]</span>
+        <span class="n">norm_df</span> <span class="o">=</span> <span class="p">(</span><span class="n">norm_df</span> <span class="o">-</span> <span class="n">norm_df</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="n">norm_df</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">norm_df</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+
+        <span class="c1"># 2. Define weights for each criterion</span>
+        <span class="n">weights</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;unit_price&#39;</span><span class="p">:</span> <span class="mf">0.125</span><span class="p">,</span>
+            <span class="s1">&#39;days_delivery&#39;</span><span class="p">:</span> <span class="mf">0.125</span><span class="p">,</span>
+            <span class="s1">&#39;supplier_rating&#39;</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span>
+            <span class="s1">&#39;total_cost&#39;</span><span class="p">:</span> <span class="mf">0.5</span>
+        <span class="p">}</span>
+
+        <span class="c1"># 3. Multiply the normalized decision matrix by the weights to get the weighted normalized decision matrix</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">norm_df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">norm_df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">*=</span> <span class="n">weights</span><span class="p">[</span><span class="n">col</span><span class="p">]</span>
+        
+        <span class="c1"># 4. Determine the positive ideal solution (PIS) and negative ideal solution (NIS)</span>
+        <span class="n">PIS</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span>
+            <span class="s1">&#39;unit_price&#39;</span><span class="p">:</span> <span class="n">norm_df</span><span class="p">[</span><span class="s1">&#39;unit_price&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+            <span class="s1">&#39;days_delivery&#39;</span><span class="p">:</span> <span class="n">norm_df</span><span class="p">[</span><span class="s1">&#39;days_delivery&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+            <span class="s1">&#39;supplier_rating&#39;</span><span class="p">:</span> <span class="n">norm_df</span><span class="p">[</span><span class="s1">&#39;supplier_rating&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+            <span class="s1">&#39;total_cost&#39;</span><span class="p">:</span> <span class="n">norm_df</span><span class="p">[</span><span class="s1">&#39;total_cost&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+        <span class="p">})</span>
+
+        <span class="n">NIS</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span>
+            <span class="s1">&#39;unit_price&#39;</span><span class="p">:</span> <span class="n">norm_df</span><span class="p">[</span><span class="s1">&#39;unit_price&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+            <span class="s1">&#39;days_delivery&#39;</span><span class="p">:</span> <span class="n">norm_df</span><span class="p">[</span><span class="s1">&#39;days_delivery&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+            <span class="s1">&#39;supplier_rating&#39;</span><span class="p">:</span> <span class="n">norm_df</span><span class="p">[</span><span class="s1">&#39;supplier_rating&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+            <span class="s1">&#39;total_cost&#39;</span><span class="p">:</span> <span class="n">norm_df</span><span class="p">[</span><span class="s1">&#39;total_cost&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+        <span class="p">})</span>
+
+        <span class="c1"># 5. Calculate euclidean distances from PIS and NIS</span>
+        <span class="n">dist_PIS</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(((</span><span class="n">norm_df</span> <span class="o">-</span> <span class="n">PIS</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">dist_NIS</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(((</span><span class="n">norm_df</span> <span class="o">-</span> <span class="n">NIS</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+
+        <span class="c1"># 6. Calculate relative closeness</span>
+        <span class="n">closeness</span> <span class="o">=</span> <span class="n">dist_NIS</span> <span class="o">/</span> <span class="p">(</span><span class="n">dist_PIS</span> <span class="o">+</span> <span class="n">dist_NIS</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;closeness&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">closeness</span>
+        <span class="n">norm_df</span><span class="p">[</span><span class="s1">&#39;closeness&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">closeness</span>
+
+        <span class="c1"># 7. Rank the alternatives based on closeness values</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;rank&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;closeness&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">norm_df</span><span class="p">[</span><span class="s1">&#39;rank&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">norm_df</span><span class="p">[</span><span class="s1">&#39;closeness&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># Sort the dataframes by rank</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;rank&#39;</span><span class="p">)</span>
+        <span class="n">norm_df</span> <span class="o">=</span> <span class="n">norm_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;rank&#39;</span><span class="p">)</span>
+
+        <span class="n">df_json</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Create the radar chart</span>
+        <span class="n">criteria</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;unit_price&#39;</span><span class="p">,</span> <span class="s1">&#39;days_delivery&#39;</span><span class="p">,</span> <span class="s1">&#39;supplier_rating&#39;</span><span class="p">,</span> <span class="s1">&#39;total_cost&#39;</span><span class="p">]</span>
+        <span class="n">norm_values</span> <span class="o">=</span> <span class="n">norm_df</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="n">alternative_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">norm_df</span><span class="p">[</span><span class="s1">&#39;rank&#39;</span><span class="p">])</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">alternative_names</span><span class="p">,</span> <span class="n">norm_values</span><span class="p">):</span>
+            <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatterpolar</span><span class="p">(</span>
+                <span class="n">r</span><span class="o">=</span><span class="n">values</span><span class="p">,</span>
+                <span class="n">theta</span><span class="o">=</span><span class="n">criteria</span><span class="p">,</span>
+                <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;toself&#39;</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="n">name</span>
+            <span class="p">))</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+            <span class="n">polar</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+                <span class="n">radialaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+                    <span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="p">)),</span>
+            <span class="n">showlegend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Multi-Criteria Evaluation of Bids: Radar Chart Ranking&#39;</span>
+        <span class="p">)</span>
+        <span class="n">radar_plot_json</span> <span class="o">=</span> <span class="n">pio</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+
+        <span class="c1"># Create a parallel coordinates plot</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">parallel_coordinates</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;rank&#39;</span><span class="p">,</span> <span class="n">color_continuous_scale</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">sequential</span><span class="o">.</span><span class="n">Viridis</span><span class="p">,</span>
+                                    <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;rank&#39;</span><span class="p">:</span> <span class="s1">&#39;Rank&#39;</span><span class="p">},</span>
+                                    <span class="n">dimensions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;unit_price&#39;</span><span class="p">,</span> <span class="s1">&#39;days_delivery&#39;</span><span class="p">,</span> <span class="s1">&#39;supplier_rating&#39;</span><span class="p">,</span> <span class="s1">&#39;total_cost&#39;</span><span class="p">])</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Multi-Criteria Evaluation: Parallel Coordinates of Bids Ranking&quot;</span><span class="p">,</span>
+            <span class="n">title_x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+            <span class="n">title_y</span><span class="o">=</span><span class="mf">0.05</span>
+        <span class="p">)</span>
+        <span class="n">parallel_plot_json</span> <span class="o">=</span> <span class="n">pio</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+
+        <span class="n">response_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;dataframe&#39;</span><span class="p">:</span> <span class="n">df_json</span><span class="p">,</span>
+            <span class="s1">&#39;radar_plot&#39;</span><span class="p">:</span> <span class="n">radar_plot_json</span><span class="p">,</span>
+            <span class="s1">&#39;parallel_plot&#39;</span><span class="p">:</span> <span class="n">parallel_plot_json</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">response_data</span><span class="p">,</span> <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;application/json&#39;</span><span class="p">)</span></div>
+</div>
+
+        
+
+<div class="viewcode-block" id="getRoutes">
+<a class="viewcode-back" href="../../modules/purchase.html#purchase.views.getRoutes">[docs]</a>
+<span class="nd">@extend_schema</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@api_view</span><span class="p">([</span><span class="s2">&quot;GET&quot;</span><span class="p">])</span>
+<span class="nd">@permission_classes</span><span class="p">([</span><span class="n">AllowAny</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">getRoutes</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">routes</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;/purchase-requisitions/list&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/purchase-requisitions/create/&lt;int:inventory_id&gt;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/purchase-requisitions/&lt;int:pk&gt;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/purchase-requisitions/&lt;int:pk&gt;/update&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/purchase-requisitions/&lt;int:pk&gt;/delete&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/purcase-requisitions/vendor/list&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/supplier-bids/list&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/supplier-bids/create/&lt;int:requisition_id&gt;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/supplier-bids/&lt;int:pk&gt;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/supplier-bids/&lt;int:pk&gt;/update&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/supplier-bids/&lt;int:pk&gt;/delete&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/supplier-bids/procurement-officer/list/&lt;int:requisition_id&gt;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/supplier-bids/procurement-officer/list/&lt;int:requisition_id&gt;/ranking&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">routes</span><span class="p">)</span></div>
 
 </pre></div>
 

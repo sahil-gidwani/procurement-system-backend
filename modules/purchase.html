@@ -123,6 +123,8 @@
 <li><a class="reference internal" href="#purchase.models.SupplierBid.requisition"><code class="docutils literal notranslate"><span class="pre">SupplierBid.requisition</span></code></a></li>
 <li><a class="reference internal" href="#purchase.models.SupplierBid.requisition_id"><code class="docutils literal notranslate"><span class="pre">SupplierBid.requisition_id</span></code></a></li>
 <li><a class="reference internal" href="#purchase.models.SupplierBid.status"><code class="docutils literal notranslate"><span class="pre">SupplierBid.status</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.SupplierBid.supplier"><code class="docutils literal notranslate"><span class="pre">SupplierBid.supplier</span></code></a></li>
+<li><a class="reference internal" href="#purchase.models.SupplierBid.supplier_id"><code class="docutils literal notranslate"><span class="pre">SupplierBid.supplier_id</span></code></a></li>
 <li><a class="reference internal" href="#purchase.models.SupplierBid.unit_price"><code class="docutils literal notranslate"><span class="pre">SupplierBid.unit_price</span></code></a></li>
 </ul>
 </li>
@@ -145,6 +147,23 @@
 </li>
 </ul>
 </li>
+<li><a class="reference internal" href="#purchase.serializers.PurchaseRequisitionVendorSerializer"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionVendorSerializer</span></code></a><ul>
+<li><a class="reference internal" href="#purchase.serializers.PurchaseRequisitionVendorSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionVendorSerializer.Meta</span></code></a><ul>
+<li><a class="reference internal" href="#purchase.serializers.PurchaseRequisitionVendorSerializer.Meta.exclude"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionVendorSerializer.Meta.exclude</span></code></a></li>
+<li><a class="reference internal" href="#purchase.serializers.PurchaseRequisitionVendorSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionVendorSerializer.Meta.model</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#purchase.serializers.SupplierBidProcurementOfficerSerializer"><code class="docutils literal notranslate"><span class="pre">SupplierBidProcurementOfficerSerializer</span></code></a><ul>
+<li><a class="reference internal" href="#purchase.serializers.SupplierBidProcurementOfficerSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">SupplierBidProcurementOfficerSerializer.Meta</span></code></a><ul>
+<li><a class="reference internal" href="#purchase.serializers.SupplierBidProcurementOfficerSerializer.Meta.exclude"><code class="docutils literal notranslate"><span class="pre">SupplierBidProcurementOfficerSerializer.Meta.exclude</span></code></a></li>
+<li><a class="reference internal" href="#purchase.serializers.SupplierBidProcurementOfficerSerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">SupplierBidProcurementOfficerSerializer.Meta.model</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#purchase.serializers.SupplierBidProcurementOfficerSerializer.get_supplier_rating"><code class="docutils literal notranslate"><span class="pre">SupplierBidProcurementOfficerSerializer.get_supplier_rating()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#purchase.serializers.SupplierBidSerializer"><code class="docutils literal notranslate"><span class="pre">SupplierBidSerializer</span></code></a><ul>
 <li><a class="reference internal" href="#purchase.serializers.SupplierBidSerializer.Meta"><code class="docutils literal notranslate"><span class="pre">SupplierBidSerializer.Meta</span></code></a><ul>
 <li><a class="reference internal" href="#purchase.serializers.SupplierBidSerializer.Meta.exclude"><code class="docutils literal notranslate"><span class="pre">SupplierBidSerializer.Meta.exclude</span></code></a></li>
@@ -165,6 +184,13 @@
 <li><a class="reference internal" href="#purchase.views.BasePurchaseRequisitionAPIView.serializer_class"><code class="docutils literal notranslate"><span class="pre">BasePurchaseRequisitionAPIView.serializer_class</span></code></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#purchase.views.BaseSupplierAPIView"><code class="docutils literal notranslate"><span class="pre">BaseSupplierAPIView</span></code></a><ul>
+<li><a class="reference internal" href="#purchase.views.BaseSupplierAPIView.get_object"><code class="docutils literal notranslate"><span class="pre">BaseSupplierAPIView.get_object()</span></code></a></li>
+<li><a class="reference internal" href="#purchase.views.BaseSupplierAPIView.get_queryset"><code class="docutils literal notranslate"><span class="pre">BaseSupplierAPIView.get_queryset()</span></code></a></li>
+<li><a class="reference internal" href="#purchase.views.BaseSupplierAPIView.permission_classes"><code class="docutils literal notranslate"><span class="pre">BaseSupplierAPIView.permission_classes</span></code></a></li>
+<li><a class="reference internal" href="#purchase.views.BaseSupplierAPIView.serializer_class"><code class="docutils literal notranslate"><span class="pre">BaseSupplierAPIView.serializer_class</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#purchase.views.PurchaseRequisitionCreateView"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionCreateView</span></code></a><ul>
 <li><a class="reference internal" href="#purchase.views.PurchaseRequisitionCreateView.perform_create"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionCreateView.perform_create()</span></code></a></li>
 <li><a class="reference internal" href="#purchase.views.PurchaseRequisitionCreateView.queryset"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionCreateView.queryset</span></code></a></li>
@@ -174,6 +200,34 @@
 <li><a class="reference internal" href="#purchase.views.PurchaseRequisitionListView"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionListView</span></code></a></li>
 <li><a class="reference internal" href="#purchase.views.PurchaseRequisitionRetrieveView"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionRetrieveView</span></code></a></li>
 <li><a class="reference internal" href="#purchase.views.PurchaseRequisitionUpdateView"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionUpdateView</span></code></a></li>
+<li><a class="reference internal" href="#purchase.views.PurchaseRequisitionVendorListView"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionVendorListView</span></code></a><ul>
+<li><a class="reference internal" href="#purchase.views.PurchaseRequisitionVendorListView.permission_classes"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionVendorListView.permission_classes</span></code></a></li>
+<li><a class="reference internal" href="#purchase.views.PurchaseRequisitionVendorListView.queryset"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionVendorListView.queryset</span></code></a></li>
+<li><a class="reference internal" href="#purchase.views.PurchaseRequisitionVendorListView.serializer_class"><code class="docutils literal notranslate"><span class="pre">PurchaseRequisitionVendorListView.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#purchase.views.SupplierBidCreateView"><code class="docutils literal notranslate"><span class="pre">SupplierBidCreateView</span></code></a><ul>
+<li><a class="reference internal" href="#purchase.views.SupplierBidCreateView.perform_create"><code class="docutils literal notranslate"><span class="pre">SupplierBidCreateView.perform_create()</span></code></a></li>
+<li><a class="reference internal" href="#purchase.views.SupplierBidCreateView.queryset"><code class="docutils literal notranslate"><span class="pre">SupplierBidCreateView.queryset</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#purchase.views.SupplierBidDeleteView"><code class="docutils literal notranslate"><span class="pre">SupplierBidDeleteView</span></code></a></li>
+<li><a class="reference internal" href="#purchase.views.SupplierBidListView"><code class="docutils literal notranslate"><span class="pre">SupplierBidListView</span></code></a></li>
+<li><a class="reference internal" href="#purchase.views.SupplierBidProcurementOfficerListView"><code class="docutils literal notranslate"><span class="pre">SupplierBidProcurementOfficerListView</span></code></a><ul>
+<li><a class="reference internal" href="#purchase.views.SupplierBidProcurementOfficerListView.get_queryset"><code class="docutils literal notranslate"><span class="pre">SupplierBidProcurementOfficerListView.get_queryset()</span></code></a></li>
+<li><a class="reference internal" href="#purchase.views.SupplierBidProcurementOfficerListView.permission_classes"><code class="docutils literal notranslate"><span class="pre">SupplierBidProcurementOfficerListView.permission_classes</span></code></a></li>
+<li><a class="reference internal" href="#purchase.views.SupplierBidProcurementOfficerListView.serializer_class"><code class="docutils literal notranslate"><span class="pre">SupplierBidProcurementOfficerListView.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#purchase.views.SupplierBidProcurementOfficerRankingView"><code class="docutils literal notranslate"><span class="pre">SupplierBidProcurementOfficerRankingView</span></code></a><ul>
+<li><a class="reference internal" href="#purchase.views.SupplierBidProcurementOfficerRankingView.get"><code class="docutils literal notranslate"><span class="pre">SupplierBidProcurementOfficerRankingView.get()</span></code></a></li>
+<li><a class="reference internal" href="#purchase.views.SupplierBidProcurementOfficerRankingView.permission_classes"><code class="docutils literal notranslate"><span class="pre">SupplierBidProcurementOfficerRankingView.permission_classes</span></code></a></li>
+<li><a class="reference internal" href="#purchase.views.SupplierBidProcurementOfficerRankingView.serializer_class"><code class="docutils literal notranslate"><span class="pre">SupplierBidProcurementOfficerRankingView.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#purchase.views.SupplierBidRetrieveView"><code class="docutils literal notranslate"><span class="pre">SupplierBidRetrieveView</span></code></a></li>
+<li><a class="reference internal" href="#purchase.views.SupplierBidUpdateView"><code class="docutils literal notranslate"><span class="pre">SupplierBidUpdateView</span></code></a></li>
+<li><a class="reference internal" href="#purchase.views.getRoutes"><code class="docutils literal notranslate"><span class="pre">getRoutes()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-purchase">Module contents</a></li>
@@ -535,7 +589,7 @@ object the first time, the query is executed.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="purchase.models.SupplierBid">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">purchase.models.</span></span><span class="sig-name descname"><span class="pre">SupplierBid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quantity_fulfilled</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_submitted</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days_delivery</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attachments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">requisition</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/models.html#SupplierBid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.models.SupplierBid" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">purchase.models.</span></span><span class="sig-name descname"><span class="pre">SupplierBid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quantity_fulfilled</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_submitted</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days_delivery</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attachments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comments</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supplier</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">requisition</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/models.html#SupplierBid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.models.SupplierBid" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="purchase.models.SupplierBid.DoesNotExist">
@@ -655,6 +709,24 @@ object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.SupplierBid.supplier">
+<span class="sig-name descname"><span class="pre">supplier</span></span><a class="headerlink" href="#purchase.models.SupplierBid.supplier" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.models.SupplierBid.supplier_id">
+<span class="sig-name descname"><span class="pre">supplier_id</span></span><a class="headerlink" href="#purchase.models.SupplierBid.supplier_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="purchase.models.SupplierBid.unit_price">
 <span class="sig-name descname"><span class="pre">unit_price</span></span><a class="headerlink" href="#purchase.models.SupplierBid.unit_price" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
@@ -713,6 +785,57 @@ object the first time, the query is executed.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="purchase.serializers.PurchaseRequisitionVendorSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">purchase.serializers.</span></span><span class="sig-name descname"><span class="pre">PurchaseRequisitionVendorSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/serializers.html#PurchaseRequisitionVendorSerializer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.serializers.PurchaseRequisitionVendorSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="purchase.serializers.PurchaseRequisitionVendorSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="reference internal" href="../_modules/purchase/serializers.html#PurchaseRequisitionVendorSerializer.Meta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.serializers.PurchaseRequisitionVendorSerializer.Meta" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.serializers.PurchaseRequisitionVendorSerializer.Meta.exclude">
+<span class="sig-name descname"><span class="pre">exclude</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['status',</span> <span class="pre">'inventory']</span></em><a class="headerlink" href="#purchase.serializers.PurchaseRequisitionVendorSerializer.Meta.exclude" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.serializers.PurchaseRequisitionVendorSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#purchase.serializers.PurchaseRequisitionVendorSerializer.Meta.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#purchase.models.PurchaseRequisition" title="purchase.models.PurchaseRequisition"><code class="xref py py-class docutils literal notranslate"><span class="pre">PurchaseRequisition</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="purchase.serializers.SupplierBidProcurementOfficerSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">purchase.serializers.</span></span><span class="sig-name descname"><span class="pre">SupplierBidProcurementOfficerSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/serializers.html#SupplierBidProcurementOfficerSerializer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.serializers.SupplierBidProcurementOfficerSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="purchase.serializers.SupplierBidProcurementOfficerSerializer.Meta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="reference internal" href="../_modules/purchase/serializers.html#SupplierBidProcurementOfficerSerializer.Meta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.serializers.SupplierBidProcurementOfficerSerializer.Meta" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.serializers.SupplierBidProcurementOfficerSerializer.Meta.exclude">
+<span class="sig-name descname"><span class="pre">exclude</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['requisition']</span></em><a class="headerlink" href="#purchase.serializers.SupplierBidProcurementOfficerSerializer.Meta.exclude" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.serializers.SupplierBidProcurementOfficerSerializer.Meta.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#purchase.serializers.SupplierBidProcurementOfficerSerializer.Meta.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#purchase.models.SupplierBid" title="purchase.models.SupplierBid"><code class="xref py py-class docutils literal notranslate"><span class="pre">SupplierBid</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="purchase.serializers.SupplierBidProcurementOfficerSerializer.get_supplier_rating">
+<span class="sig-name descname"><span class="pre">get_supplier_rating</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="../_modules/purchase/serializers.html#SupplierBidProcurementOfficerSerializer.get_supplier_rating"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.serializers.SupplierBidProcurementOfficerSerializer.get_supplier_rating" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="purchase.serializers.SupplierBidSerializer">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">purchase.serializers.</span></span><span class="sig-name descname"><span class="pre">SupplierBidSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/serializers.html#SupplierBidSerializer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.serializers.SupplierBidSerializer" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSerializer</span></code></p>
@@ -722,7 +845,7 @@ object the first time, the query is executed.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="purchase.serializers.SupplierBidSerializer.Meta.exclude">
-<span class="sig-name descname"><span class="pre">exclude</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['status',</span> <span class="pre">'requisition']</span></em><a class="headerlink" href="#purchase.serializers.SupplierBidSerializer.Meta.exclude" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">exclude</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['status',</span> <span class="pre">'requisition',</span> <span class="pre">'supplier']</span></em><a class="headerlink" href="#purchase.serializers.SupplierBidSerializer.Meta.exclude" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -785,6 +908,46 @@ querysets depending on the incoming request.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="purchase.views.BaseSupplierAPIView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">purchase.views.</span></span><span class="sig-name descname"><span class="pre">BaseSupplierAPIView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/views.html#BaseSupplierAPIView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.views.BaseSupplierAPIView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">GenericAPIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="purchase.views.BaseSupplierAPIView.get_object">
+<span class="sig-name descname"><span class="pre">get_object</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/views.html#BaseSupplierAPIView.get_object"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.views.BaseSupplierAPIView.get_object" title="Link to this definition"></a></dt>
+<dd><p>Returns the object the view is displaying.</p>
+<p>You may want to override this if you need to provide non-standard
+queryset lookups.  Eg if objects are referenced using multiple
+keyword arguments in the url conf.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="purchase.views.BaseSupplierAPIView.get_queryset">
+<span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/views.html#BaseSupplierAPIView.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.views.BaseSupplierAPIView.get_queryset" title="Link to this definition"></a></dt>
+<dd><p>Get the list of items for this view.
+This must be an iterable, and may be a queryset.
+Defaults to using <cite>self.queryset</cite>.</p>
+<p>This method should always be used rather than accessing <cite>self.queryset</cite>
+directly, as <cite>self.queryset</cite> gets evaluated only once, and those results
+are cached for all subsequent requests.</p>
+<p>You may want to override this if you need to provide different
+querysets depending on the incoming request.</p>
+<p>(Eg. return a list of items that is specific to the user)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.views.BaseSupplierAPIView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'accounts.permissions.IsVendor'&gt;]</span></em><a class="headerlink" href="#purchase.views.BaseSupplierAPIView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.views.BaseSupplierAPIView.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#purchase.views.BaseSupplierAPIView.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#purchase.serializers.SupplierBidSerializer" title="purchase.serializers.SupplierBidSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">SupplierBidSerializer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="purchase.views.PurchaseRequisitionCreateView">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">purchase.views.</span></span><span class="sig-name descname"><span class="pre">PurchaseRequisitionCreateView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/views.html#PurchaseRequisitionCreateView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.views.PurchaseRequisitionCreateView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#purchase.views.BasePurchaseRequisitionAPIView" title="purchase.views.BasePurchaseRequisitionAPIView"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePurchaseRequisitionAPIView</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CreateAPIView</span></code></p>
@@ -823,6 +986,126 @@ querysets depending on the incoming request.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">purchase.views.</span></span><span class="sig-name descname"><span class="pre">PurchaseRequisitionUpdateView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/views.html#PurchaseRequisitionUpdateView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.views.PurchaseRequisitionUpdateView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#purchase.views.BasePurchaseRequisitionAPIView" title="purchase.views.BasePurchaseRequisitionAPIView"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePurchaseRequisitionAPIView</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateAPIView</span></code></p>
 </dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="purchase.views.PurchaseRequisitionVendorListView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">purchase.views.</span></span><span class="sig-name descname"><span class="pre">PurchaseRequisitionVendorListView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/views.html#PurchaseRequisitionVendorListView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.views.PurchaseRequisitionVendorListView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ListAPIView</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.views.PurchaseRequisitionVendorListView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'accounts.permissions.IsVendor'&gt;]</span></em><a class="headerlink" href="#purchase.views.PurchaseRequisitionVendorListView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.views.PurchaseRequisitionVendorListView.queryset">
+<span class="sig-name descname"><span class="pre">queryset</span></span><a class="headerlink" href="#purchase.views.PurchaseRequisitionVendorListView.queryset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.views.PurchaseRequisitionVendorListView.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#purchase.views.PurchaseRequisitionVendorListView.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#purchase.serializers.PurchaseRequisitionVendorSerializer" title="purchase.serializers.PurchaseRequisitionVendorSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">PurchaseRequisitionVendorSerializer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="purchase.views.SupplierBidCreateView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">purchase.views.</span></span><span class="sig-name descname"><span class="pre">SupplierBidCreateView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/views.html#SupplierBidCreateView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.views.SupplierBidCreateView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#purchase.views.BaseSupplierAPIView" title="purchase.views.BaseSupplierAPIView"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSupplierAPIView</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CreateAPIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="purchase.views.SupplierBidCreateView.perform_create">
+<span class="sig-name descname"><span class="pre">perform_create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">serializer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/views.html#SupplierBidCreateView.perform_create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.views.SupplierBidCreateView.perform_create" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.views.SupplierBidCreateView.queryset">
+<span class="sig-name descname"><span class="pre">queryset</span></span><a class="headerlink" href="#purchase.views.SupplierBidCreateView.queryset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="purchase.views.SupplierBidDeleteView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">purchase.views.</span></span><span class="sig-name descname"><span class="pre">SupplierBidDeleteView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/views.html#SupplierBidDeleteView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.views.SupplierBidDeleteView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#purchase.views.BaseSupplierAPIView" title="purchase.views.BaseSupplierAPIView"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSupplierAPIView</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DestroyAPIView</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="purchase.views.SupplierBidListView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">purchase.views.</span></span><span class="sig-name descname"><span class="pre">SupplierBidListView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/views.html#SupplierBidListView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.views.SupplierBidListView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#purchase.views.BaseSupplierAPIView" title="purchase.views.BaseSupplierAPIView"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSupplierAPIView</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ListAPIView</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="purchase.views.SupplierBidProcurementOfficerListView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">purchase.views.</span></span><span class="sig-name descname"><span class="pre">SupplierBidProcurementOfficerListView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/views.html#SupplierBidProcurementOfficerListView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.views.SupplierBidProcurementOfficerListView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ListAPIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="purchase.views.SupplierBidProcurementOfficerListView.get_queryset">
+<span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/views.html#SupplierBidProcurementOfficerListView.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.views.SupplierBidProcurementOfficerListView.get_queryset" title="Link to this definition"></a></dt>
+<dd><p>Get the list of items for this view.
+This must be an iterable, and may be a queryset.
+Defaults to using <cite>self.queryset</cite>.</p>
+<p>This method should always be used rather than accessing <cite>self.queryset</cite>
+directly, as <cite>self.queryset</cite> gets evaluated only once, and those results
+are cached for all subsequent requests.</p>
+<p>You may want to override this if you need to provide different
+querysets depending on the incoming request.</p>
+<p>(Eg. return a list of items that is specific to the user)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.views.SupplierBidProcurementOfficerListView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'accounts.permissions.IsProcurementOfficer'&gt;]</span></em><a class="headerlink" href="#purchase.views.SupplierBidProcurementOfficerListView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.views.SupplierBidProcurementOfficerListView.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#purchase.views.SupplierBidProcurementOfficerListView.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#purchase.serializers.SupplierBidProcurementOfficerSerializer" title="purchase.serializers.SupplierBidProcurementOfficerSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">SupplierBidProcurementOfficerSerializer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="purchase.views.SupplierBidProcurementOfficerRankingView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">purchase.views.</span></span><span class="sig-name descname"><span class="pre">SupplierBidProcurementOfficerRankingView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/views.html#SupplierBidProcurementOfficerRankingView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.views.SupplierBidProcurementOfficerRankingView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">GenericAPIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="purchase.views.SupplierBidProcurementOfficerRankingView.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">requisition_id</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/views.html#SupplierBidProcurementOfficerRankingView.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.views.SupplierBidProcurementOfficerRankingView.get" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.views.SupplierBidProcurementOfficerRankingView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'accounts.permissions.IsProcurementOfficer'&gt;]</span></em><a class="headerlink" href="#purchase.views.SupplierBidProcurementOfficerRankingView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="purchase.views.SupplierBidProcurementOfficerRankingView.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#purchase.views.SupplierBidProcurementOfficerRankingView.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#purchase.serializers.SupplierBidProcurementOfficerSerializer" title="purchase.serializers.SupplierBidProcurementOfficerSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">SupplierBidProcurementOfficerSerializer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="purchase.views.SupplierBidRetrieveView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">purchase.views.</span></span><span class="sig-name descname"><span class="pre">SupplierBidRetrieveView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/views.html#SupplierBidRetrieveView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.views.SupplierBidRetrieveView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#purchase.views.BaseSupplierAPIView" title="purchase.views.BaseSupplierAPIView"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSupplierAPIView</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">RetrieveAPIView</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="purchase.views.SupplierBidUpdateView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">purchase.views.</span></span><span class="sig-name descname"><span class="pre">SupplierBidUpdateView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/views.html#SupplierBidUpdateView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.views.SupplierBidUpdateView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#purchase.views.BaseSupplierAPIView" title="purchase.views.BaseSupplierAPIView"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSupplierAPIView</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateAPIView</span></code></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="purchase.views.getRoutes">
+<span class="sig-prename descclassname"><span class="pre">purchase.views.</span></span><span class="sig-name descname"><span class="pre">getRoutes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/purchase/views.html#getRoutes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#purchase.views.getRoutes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
 
 </section>
 <section id="module-purchase">

@@ -1,0 +1,21 @@
+test\_scripts package
+=====================
+
+Submodules
+----------
+
+test\_scripts.forecast module
+-----------------------------
+
+.. automodule:: test_scripts.forecast
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: test_scripts
+   :members:
+   :undoc-members:
+   :show-inheritance:

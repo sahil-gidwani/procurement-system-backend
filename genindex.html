@@ -137,6 +137,13 @@
         <li><a href="modules/accounts.html#module-accounts.serializers">module</a>
 </li>
       </ul></li>
+      <li>
+    accounts.tasks
+
+      <ul>
+        <li><a href="modules/accounts.html#module-accounts.tasks">module</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
@@ -184,9 +191,11 @@
 </li>
       <li><a href="modules/inventory.html#inventory.views.BaseOptimizedInventoryAPIView">BaseOptimizedInventoryAPIView (class in inventory.views)</a>
 </li>
+      <li><a href="modules/purchase.html#purchase.views.BasePurchaseRequisitionAPIView">BasePurchaseRequisitionAPIView (class in purchase.views)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/purchase.html#purchase.views.BasePurchaseRequisitionAPIView">BasePurchaseRequisitionAPIView (class in purchase.views)</a>
+      <li><a href="modules/purchase.html#purchase.views.BaseSupplierAPIView">BaseSupplierAPIView (class in purchase.views)</a>
 </li>
       <li><a href="modules/purchase.html#purchase.models.PurchaseOrder.bid">bid (purchase.models.PurchaseOrder attribute)</a>
 </li>
@@ -258,8 +267,6 @@
 </li>
       <li><a href="modules/purchase.html#purchase.models.SupplierBid.days_delivery">days_delivery (purchase.models.SupplierBid attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/accounts.html#accounts.apps.AccountsConfig.default_auto_field">default_auto_field (accounts.apps.AccountsConfig attribute)</a>
 
       <ul>
@@ -268,6 +275,8 @@
         <li><a href="modules/purchase.html#purchase.apps.PurchaseConfig.default_auto_field">(purchase.apps.PurchaseConfig attribute)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/accounts.html#accounts.views.DeleteUserProfileView">DeleteUserProfileView (class in accounts.views)</a>
 </li>
       <li><a href="modules/inventory.html#inventory.models.HistoricalInventory.demand">demand (inventory.models.HistoricalInventory attribute)</a>
@@ -278,6 +287,14 @@
       </ul></li>
       <li><a href="modules/inventory.html#inventory.models.Inventory.description">description (inventory.models.Inventory attribute)</a>
 </li>
+      <li><a href="modules/inventory.html#inventory.views.InventoryDeleteView.destroy">destroy() (inventory.views.InventoryDeleteView method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.views.ARIMAForecastAPIView.dispatch">dispatch() (inventory.views.ARIMAForecastAPIView method)</a>
+
+      <ul>
+        <li><a href="modules/inventory.html#inventory.views.HistoricalInventoryListView.dispatch">(inventory.views.HistoricalInventoryListView method)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -298,6 +315,10 @@
         <li><a href="modules/purchase.html#purchase.serializers.PurchaseOrderSerializer.Meta.exclude">(purchase.serializers.PurchaseOrderSerializer.Meta attribute)</a>
 </li>
         <li><a href="modules/purchase.html#purchase.serializers.PurchaseRequisitionSerializer.Meta.exclude">(purchase.serializers.PurchaseRequisitionSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.serializers.PurchaseRequisitionVendorSerializer.Meta.exclude">(purchase.serializers.PurchaseRequisitionVendorSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.serializers.SupplierBidProcurementOfficerSerializer.Meta.exclude">(purchase.serializers.SupplierBidProcurementOfficerSerializer.Meta attribute)</a>
 </li>
         <li><a href="modules/purchase.html#purchase.serializers.SupplierBidSerializer.Meta.exclude">(purchase.serializers.SupplierBidSerializer.Meta attribute)</a>
 </li>
@@ -337,7 +358,11 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/inventory.html#inventory.views.ARIMAForecastAPIView.get">get() (inventory.views.ARIMAForecastAPIView method)</a>
+
+      <ul>
+        <li><a href="modules/purchase.html#purchase.views.SupplierBidProcurementOfficerRankingView.get">(purchase.views.SupplierBidProcurementOfficerRankingView method)</a>
 </li>
+      </ul></li>
       <li><a href="modules/accounts.html#accounts.models.Vendor.get_next_by_contract_expiry_date">get_next_by_contract_expiry_date() (accounts.models.Vendor method)</a>
 </li>
       <li><a href="modules/inventory.html#inventory.models.Inventory.get_next_by_date_added">get_next_by_date_added() (inventory.models.Inventory method)</a>
@@ -373,6 +398,8 @@
 </li>
         <li><a href="modules/purchase.html#purchase.views.BasePurchaseRequisitionAPIView.get_object">(purchase.views.BasePurchaseRequisitionAPIView method)</a>
 </li>
+        <li><a href="modules/purchase.html#purchase.views.BaseSupplierAPIView.get_object">(purchase.views.BaseSupplierAPIView method)</a>
+</li>
       </ul></li>
       <li><a href="modules/accounts.html#accounts.models.Vendor.get_previous_by_contract_expiry_date">get_previous_by_contract_expiry_date() (accounts.models.Vendor method)</a>
 </li>
@@ -384,10 +411,10 @@
 </li>
       <li><a href="modules/purchase.html#purchase.models.PurchaseOrder.get_previous_by_date_ordered">get_previous_by_date_ordered() (purchase.models.PurchaseOrder method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/purchase.html#purchase.models.SupplierBid.get_previous_by_date_submitted">get_previous_by_date_submitted() (purchase.models.SupplierBid method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/inventory.html#inventory.models.HistoricalInventory.get_previous_by_datetime">get_previous_by_datetime() (inventory.models.HistoricalInventory method)</a>
 </li>
       <li><a href="modules/purchase.html#purchase.models.PurchaseRequisition.get_previous_by_expected_delivery_date">get_previous_by_expected_delivery_date() (purchase.models.PurchaseRequisition method)</a>
@@ -409,6 +436,10 @@
 </li>
         <li><a href="modules/purchase.html#purchase.views.BasePurchaseRequisitionAPIView.get_queryset">(purchase.views.BasePurchaseRequisitionAPIView method)</a>
 </li>
+        <li><a href="modules/purchase.html#purchase.views.BaseSupplierAPIView.get_queryset">(purchase.views.BaseSupplierAPIView method)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.SupplierBidProcurementOfficerListView.get_queryset">(purchase.views.SupplierBidProcurementOfficerListView method)</a>
+</li>
       </ul></li>
       <li><a href="modules/purchase.html#purchase.models.PurchaseOrder.get_status_display">get_status_display() (purchase.models.PurchaseOrder method)</a>
 
@@ -418,6 +449,8 @@
         <li><a href="modules/purchase.html#purchase.models.SupplierBid.get_status_display">(purchase.models.SupplierBid method)</a>
 </li>
       </ul></li>
+      <li><a href="modules/purchase.html#purchase.serializers.SupplierBidProcurementOfficerSerializer.get_supplier_rating">get_supplier_rating() (purchase.serializers.SupplierBidProcurementOfficerSerializer method)</a>
+</li>
       <li><a href="modules/accounts.html#accounts.serializers.MyTokenObtainPairSerializer.get_token">get_token() (accounts.serializers.MyTokenObtainPairSerializer class method)</a>
 </li>
       <li><a href="modules/purchase.html#purchase.models.PurchaseRequisition.get_urgency_level_display">get_urgency_level_display() (purchase.models.PurchaseRequisition method)</a>
@@ -430,6 +463,8 @@
 
       <ul>
         <li><a href="modules/inventory.html#inventory.views.getRoutes">(in module inventory.views)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.getRoutes">(in module purchase.views)</a>
 </li>
       </ul></li>
       <li><a href="modules/accounts.html#accounts.models.User.groups">groups (accounts.models.User attribute)</a>
@@ -543,6 +578,13 @@
         <li><a href="modules/inventory.html#module-inventory.serializers">module</a>
 </li>
       </ul></li>
+      <li>
+    inventory.tasks
+
+      <ul>
+        <li><a href="modules/inventory.html#module-inventory.tasks">module</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
@@ -624,10 +666,16 @@
         <li><a href="modules/purchase.html#purchase.models.PurchaseRequisition.last_updated">(purchase.models.PurchaseRequisition attribute)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/inventory.html#inventory.models.OptimizedInventory.lead_time">lead_time (inventory.models.OptimizedInventory attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/accounts.html#accounts.views.VendorView.list">list() (accounts.views.VendorView method)</a>
+
+      <ul>
+        <li><a href="modules/inventory.html#inventory.views.InventoryListView.list">(inventory.views.InventoryListView method)</a>
+</li>
+      </ul></li>
       <li><a href="modules/inventory.html#inventory.models.Inventory.location">location (inventory.models.Inventory attribute)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.models.User.logentry_set">logentry_set (accounts.models.User attribute)</a>
@@ -663,6 +711,10 @@
 </li>
         <li><a href="modules/purchase.html#purchase.serializers.PurchaseRequisitionSerializer.Meta.model">(purchase.serializers.PurchaseRequisitionSerializer.Meta attribute)</a>
 </li>
+        <li><a href="modules/purchase.html#purchase.serializers.PurchaseRequisitionVendorSerializer.Meta.model">(purchase.serializers.PurchaseRequisitionVendorSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.serializers.SupplierBidProcurementOfficerSerializer.Meta.model">(purchase.serializers.SupplierBidProcurementOfficerSerializer.Meta attribute)</a>
+</li>
         <li><a href="modules/purchase.html#purchase.serializers.SupplierBidSerializer.Meta.model">(purchase.serializers.SupplierBidSerializer.Meta attribute)</a>
 </li>
       </ul></li>
@@ -682,6 +734,8 @@
 </li>
         <li><a href="modules/accounts.html#module-accounts.serializers">accounts.serializers</a>
 </li>
+        <li><a href="modules/accounts.html#module-accounts.tasks">accounts.tasks</a>
+</li>
         <li><a href="modules/accounts.html#module-accounts.tests">accounts.tests</a>
 </li>
         <li><a href="modules/accounts.html#module-accounts.urls">accounts.urls</a>
@@ -697,6 +751,8 @@
         <li><a href="modules/inventory.html#module-inventory.models">inventory.models</a>
 </li>
         <li><a href="modules/inventory.html#module-inventory.serializers">inventory.serializers</a>
+</li>
+        <li><a href="modules/inventory.html#module-inventory.tasks">inventory.tasks</a>
 </li>
         <li><a href="modules/inventory.html#module-inventory.tests">inventory.tests</a>
 </li>
@@ -719,6 +775,8 @@
         <li><a href="modules/purchase.html#module-purchase.urls">purchase.urls</a>
 </li>
         <li><a href="modules/purchase.html#module-purchase.views">purchase.views</a>
+</li>
+        <li><a href="modules/test_scripts.html#module-test_scripts">test_scripts</a>
 </li>
       </ul></li>
   </ul></td>
@@ -811,12 +869,18 @@
 </li>
       <li><a href="modules/accounts.html#accounts.tests.PasswordResetViewTests">PasswordResetViewTests (class in accounts.tests)</a>
 </li>
-      <li><a href="modules/inventory.html#inventory.views.InventoryCreateView.perform_create">perform_create() (inventory.views.InventoryCreateView method)</a>
+      <li><a href="modules/accounts.html#accounts.views.ProcurementOfficerRegisterView.perform_create">perform_create() (accounts.views.ProcurementOfficerRegisterView method)</a>
 
       <ul>
+        <li><a href="modules/accounts.html#accounts.views.VendorRegisterView.perform_create">(accounts.views.VendorRegisterView method)</a>
+</li>
+        <li><a href="modules/inventory.html#inventory.views.InventoryCreateView.perform_create">(inventory.views.InventoryCreateView method)</a>
+</li>
         <li><a href="modules/inventory.html#inventory.views.OptimizedInventoryCreateAPIView.perform_create">(inventory.views.OptimizedInventoryCreateAPIView method)</a>
 </li>
         <li><a href="modules/purchase.html#purchase.views.PurchaseRequisitionCreateView.perform_create">(purchase.views.PurchaseRequisitionCreateView method)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.SupplierBidCreateView.perform_create">(purchase.views.SupplierBidCreateView method)</a>
 </li>
       </ul></li>
       <li><a href="modules/inventory.html#inventory.views.OptimizedInventoryUpdateAPIView.perform_update">perform_update() (inventory.views.OptimizedInventoryUpdateAPIView method)</a>
@@ -850,6 +914,14 @@
 </li>
         <li><a href="modules/purchase.html#purchase.views.BasePurchaseRequisitionAPIView.permission_classes">(purchase.views.BasePurchaseRequisitionAPIView attribute)</a>
 </li>
+        <li><a href="modules/purchase.html#purchase.views.BaseSupplierAPIView.permission_classes">(purchase.views.BaseSupplierAPIView attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.PurchaseRequisitionVendorListView.permission_classes">(purchase.views.PurchaseRequisitionVendorListView attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.SupplierBidProcurementOfficerListView.permission_classes">(purchase.views.SupplierBidProcurementOfficerListView attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.SupplierBidProcurementOfficerRankingView.permission_classes">(purchase.views.SupplierBidProcurementOfficerRankingView attribute)</a>
+</li>
       </ul></li>
       <li><a href="modules/accounts.html#accounts.models.User.phone_number">phone_number (accounts.models.User attribute)</a>
 </li>
@@ -865,12 +937,12 @@
 </li>
       <li><a href="modules/accounts.html#accounts.serializers.ProcurementOfficerRegisterSerializer.Meta">ProcurementOfficerRegisterSerializer.Meta (class in accounts.serializers)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/accounts.html#accounts.views.ProcurementOfficerRegisterView">ProcurementOfficerRegisterView (class in accounts.views)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.serializers.ProfileSerializer">ProfileSerializer (class in accounts.serializers)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/accounts.html#accounts.serializers.ProfileSerializer.Meta">ProfileSerializer.Meta (class in accounts.serializers)</a>
 </li>
       <li>
@@ -965,6 +1037,12 @@
 </li>
       <li><a href="modules/purchase.html#purchase.views.PurchaseRequisitionUpdateView">PurchaseRequisitionUpdateView (class in purchase.views)</a>
 </li>
+      <li><a href="modules/purchase.html#purchase.views.PurchaseRequisitionVendorListView">PurchaseRequisitionVendorListView (class in purchase.views)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.serializers.PurchaseRequisitionVendorSerializer">PurchaseRequisitionVendorSerializer (class in purchase.serializers)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.serializers.PurchaseRequisitionVendorSerializer.Meta">PurchaseRequisitionVendorSerializer.Meta (class in purchase.serializers)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -995,6 +1073,10 @@
         <li><a href="modules/inventory.html#inventory.views.InventoryCreateView.queryset">(inventory.views.InventoryCreateView attribute)</a>
 </li>
         <li><a href="modules/purchase.html#purchase.views.PurchaseRequisitionCreateView.queryset">(purchase.views.PurchaseRequisitionCreateView attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.PurchaseRequisitionVendorListView.queryset">(purchase.views.PurchaseRequisitionVendorListView attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.SupplierBidCreateView.queryset">(purchase.views.SupplierBidCreateView attribute)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -1062,6 +1144,14 @@
 </li>
         <li><a href="modules/purchase.html#purchase.views.BasePurchaseRequisitionAPIView.serializer_class">(purchase.views.BasePurchaseRequisitionAPIView attribute)</a>
 </li>
+        <li><a href="modules/purchase.html#purchase.views.BaseSupplierAPIView.serializer_class">(purchase.views.BaseSupplierAPIView attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.PurchaseRequisitionVendorListView.serializer_class">(purchase.views.PurchaseRequisitionVendorListView attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.SupplierBidProcurementOfficerListView.serializer_class">(purchase.views.SupplierBidProcurementOfficerListView attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.SupplierBidProcurementOfficerRankingView.serializer_class">(purchase.views.SupplierBidProcurementOfficerRankingView attribute)</a>
+</li>
       </ul></li>
       <li><a href="modules/inventory.html#inventory.models.OptimizedInventory.service_level">service_level (inventory.models.OptimizedInventory attribute)</a>
 </li>
@@ -1117,17 +1207,43 @@
       </ul></li>
       <li><a href="modules/inventory.html#inventory.models.OptimizedInventory.storage_limit">storage_limit (inventory.models.OptimizedInventory attribute)</a>
 </li>
+      <li><a href="modules/purchase.html#purchase.models.SupplierBid.supplier">supplier (purchase.models.SupplierBid attribute)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.models.SupplierBid.supplier_id">supplier_id (purchase.models.SupplierBid attribute)</a>
+</li>
       <li><a href="modules/purchase.html#purchase.models.SupplierBid">SupplierBid (class in purchase.models)</a>
 </li>
       <li><a href="modules/purchase.html#purchase.models.SupplierBid.DoesNotExist">SupplierBid.DoesNotExist</a>
 </li>
       <li><a href="modules/purchase.html#purchase.models.SupplierBid.MultipleObjectsReturned">SupplierBid.MultipleObjectsReturned</a>
 </li>
-      <li><a href="modules/purchase.html#purchase.models.PurchaseRequisition.supplierbid_set">supplierbid_set (purchase.models.PurchaseRequisition attribute)</a>
+      <li><a href="modules/accounts.html#accounts.models.User.supplierbid_set">supplierbid_set (accounts.models.User attribute)</a>
+
+      <ul>
+        <li><a href="modules/purchase.html#purchase.models.PurchaseRequisition.supplierbid_set">(purchase.models.PurchaseRequisition attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/purchase.html#purchase.views.SupplierBidCreateView">SupplierBidCreateView (class in purchase.views)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.views.SupplierBidDeleteView">SupplierBidDeleteView (class in purchase.views)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.views.SupplierBidListView">SupplierBidListView (class in purchase.views)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.views.SupplierBidProcurementOfficerListView">SupplierBidProcurementOfficerListView (class in purchase.views)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.views.SupplierBidProcurementOfficerRankingView">SupplierBidProcurementOfficerRankingView (class in purchase.views)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.serializers.SupplierBidProcurementOfficerSerializer">SupplierBidProcurementOfficerSerializer (class in purchase.serializers)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.serializers.SupplierBidProcurementOfficerSerializer.Meta">SupplierBidProcurementOfficerSerializer.Meta (class in purchase.serializers)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.views.SupplierBidRetrieveView">SupplierBidRetrieveView (class in purchase.views)</a>
 </li>
       <li><a href="modules/purchase.html#purchase.serializers.SupplierBidSerializer">SupplierBidSerializer (class in purchase.serializers)</a>
 </li>
       <li><a href="modules/purchase.html#purchase.serializers.SupplierBidSerializer.Meta">SupplierBidSerializer.Meta (class in purchase.serializers)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.views.SupplierBidUpdateView">SupplierBidUpdateView (class in purchase.views)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1195,8 +1311,6 @@
 </li>
       <li><a href="modules/accounts.html#accounts.tests.PasswordResetConfirmViewTests.test_password_reset_confirm_with_mismatched_passwords">test_password_reset_confirm_with_mismatched_passwords() (accounts.tests.PasswordResetConfirmViewTests method)</a>
 </li>
-      <li><a href="modules/accounts.html#accounts.tests.PasswordResetViewTests.test_password_reset_email_sent">test_password_reset_email_sent() (accounts.tests.PasswordResetViewTests method)</a>
-</li>
       <li><a href="modules/accounts.html#accounts.tests.PasswordResetViewTests.test_password_reset_with_invalid_email">test_password_reset_with_invalid_email() (accounts.tests.PasswordResetViewTests method)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.tests.TokenViewTests.test_refresh_token">test_refresh_token() (accounts.tests.TokenViewTests method)</a>
@@ -1211,6 +1325,13 @@
 </li>
       <li><a href="modules/accounts.html#accounts.tests.RegisterViewTests.test_register_vendor_user">test_register_vendor_user() (accounts.tests.RegisterViewTests method)</a>
 </li>
+      <li>
+    test_scripts
+
+      <ul>
+        <li><a href="modules/test_scripts.html#module-test_scripts">module</a>
+</li>
+      </ul></li>
       <li><a href="modules/accounts.html#accounts.tests.VendorListViewTests.test_sufficient_permissions_admin">test_sufficient_permissions_admin() (accounts.tests.VendorListViewTests method)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.tests.VendorListViewTests.test_sufficient_permissions_procurement_officer">test_sufficient_permissions_procurement_officer() (accounts.tests.VendorListViewTests method)</a>
@@ -1248,9 +1369,13 @@
       <ul>
         <li><a href="modules/accounts.html#accounts.serializers.ProfileSerializer.update">(accounts.serializers.ProfileSerializer method)</a>
 </li>
+        <li><a href="modules/accounts.html#accounts.views.ChangePasswordView.update">(accounts.views.ChangePasswordView method)</a>
+</li>
         <li><a href="modules/accounts.html#accounts.views.PasswordResetConfirmView.update">(accounts.views.PasswordResetConfirmView method)</a>
 </li>
         <li><a href="modules/accounts.html#accounts.views.UpdateUserProfileView.update">(accounts.views.UpdateUserProfileView method)</a>
+</li>
+        <li><a href="modules/inventory.html#inventory.views.InventoryUpdateView.update">(inventory.views.InventoryUpdateView method)</a>
 </li>
         <li><a href="modules/inventory.html#inventory.views.OptimizedInventoryUpdateAPIView.update">(inventory.views.OptimizedInventoryUpdateAPIView method)</a>
 </li>
@@ -1259,10 +1384,10 @@
 </li>
       <li><a href="modules/purchase.html#purchase.models.PurchaseRequisition.urgency_level">urgency_level (purchase.models.PurchaseRequisition attribute)</a>
 </li>
-      <li><a href="modules/purchase.html#purchase.models.PurchaseRequisition.URGENCY_LEVEL_CHOICES">URGENCY_LEVEL_CHOICES (purchase.models.PurchaseRequisition attribute)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/purchase.html#purchase.models.PurchaseRequisition.URGENCY_LEVEL_CHOICES">URGENCY_LEVEL_CHOICES (purchase.models.PurchaseRequisition attribute)</a>
+</li>
       <li><a href="modules/accounts.html#accounts.models.Vendor.user">user (accounts.models.Vendor attribute)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.models.User">User (class in accounts.models)</a>

@@ -44,6 +44,14 @@ inventory.serializers module
    :undoc-members:
    :show-inheritance:
 
+inventory.tasks module
+----------------------
+
+.. automodule:: inventory.tasks
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 inventory.tests module
 ----------------------
 

@@ -82,6 +82,7 @@
 <li><a class="reference internal" href="#accounts.models.User.password"><code class="docutils literal notranslate"><span class="pre">User.password</span></code></a></li>
 <li><a class="reference internal" href="#accounts.models.User.phone_number"><code class="docutils literal notranslate"><span class="pre">User.phone_number</span></code></a></li>
 <li><a class="reference internal" href="#accounts.models.User.phone_number_regex"><code class="docutils literal notranslate"><span class="pre">User.phone_number_regex</span></code></a></li>
+<li><a class="reference internal" href="#accounts.models.User.supplierbid_set"><code class="docutils literal notranslate"><span class="pre">User.supplierbid_set</span></code></a></li>
 <li><a class="reference internal" href="#accounts.models.User.user_permissions"><code class="docutils literal notranslate"><span class="pre">User.user_permissions</span></code></a></li>
 <li><a class="reference internal" href="#accounts.models.User.user_role"><code class="docutils literal notranslate"><span class="pre">User.user_role</span></code></a></li>
 <li><a class="reference internal" href="#accounts.models.User.username"><code class="docutils literal notranslate"><span class="pre">User.username</span></code></a></li>
@@ -187,6 +188,7 @@
 </li>
 </ul>
 </li>
+<li><a class="reference internal" href="#module-accounts.tasks">accounts.tasks module</a></li>
 <li><a class="reference internal" href="#module-accounts.tests">accounts.tests module</a><ul>
 <li><a class="reference internal" href="#accounts.tests.ChangePasswordViewTests"><code class="docutils literal notranslate"><span class="pre">ChangePasswordViewTests</span></code></a><ul>
 <li><a class="reference internal" href="#accounts.tests.ChangePasswordViewTests.setUp"><code class="docutils literal notranslate"><span class="pre">ChangePasswordViewTests.setUp()</span></code></a></li>
@@ -203,7 +205,6 @@
 </li>
 <li><a class="reference internal" href="#accounts.tests.PasswordResetViewTests"><code class="docutils literal notranslate"><span class="pre">PasswordResetViewTests</span></code></a><ul>
 <li><a class="reference internal" href="#accounts.tests.PasswordResetViewTests.setUp"><code class="docutils literal notranslate"><span class="pre">PasswordResetViewTests.setUp()</span></code></a></li>
-<li><a class="reference internal" href="#accounts.tests.PasswordResetViewTests.test_password_reset_email_sent"><code class="docutils literal notranslate"><span class="pre">PasswordResetViewTests.test_password_reset_email_sent()</span></code></a></li>
 <li><a class="reference internal" href="#accounts.tests.PasswordResetViewTests.test_password_reset_with_invalid_email"><code class="docutils literal notranslate"><span class="pre">PasswordResetViewTests.test_password_reset_with_invalid_email()</span></code></a></li>
 </ul>
 </li>
@@ -257,6 +258,7 @@
 <li><a class="reference internal" href="#accounts.views.ChangePasswordView.get_object"><code class="docutils literal notranslate"><span class="pre">ChangePasswordView.get_object()</span></code></a></li>
 <li><a class="reference internal" href="#accounts.views.ChangePasswordView.queryset"><code class="docutils literal notranslate"><span class="pre">ChangePasswordView.queryset</span></code></a></li>
 <li><a class="reference internal" href="#accounts.views.ChangePasswordView.serializer_class"><code class="docutils literal notranslate"><span class="pre">ChangePasswordView.serializer_class</span></code></a></li>
+<li><a class="reference internal" href="#accounts.views.ChangePasswordView.update"><code class="docutils literal notranslate"><span class="pre">ChangePasswordView.update()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#accounts.views.DeleteUserProfileView"><code class="docutils literal notranslate"><span class="pre">DeleteUserProfileView</span></code></a><ul>
@@ -287,6 +289,7 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#accounts.views.ProcurementOfficerRegisterView"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerRegisterView</span></code></a><ul>
+<li><a class="reference internal" href="#accounts.views.ProcurementOfficerRegisterView.perform_create"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerRegisterView.perform_create()</span></code></a></li>
 <li><a class="reference internal" href="#accounts.views.ProcurementOfficerRegisterView.permission_classes"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerRegisterView.permission_classes</span></code></a></li>
 <li><a class="reference internal" href="#accounts.views.ProcurementOfficerRegisterView.queryset"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerRegisterView.queryset</span></code></a></li>
 <li><a class="reference internal" href="#accounts.views.ProcurementOfficerRegisterView.serializer_class"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerRegisterView.serializer_class</span></code></a></li>
@@ -306,12 +309,14 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#accounts.views.VendorRegisterView"><code class="docutils literal notranslate"><span class="pre">VendorRegisterView</span></code></a><ul>
+<li><a class="reference internal" href="#accounts.views.VendorRegisterView.perform_create"><code class="docutils literal notranslate"><span class="pre">VendorRegisterView.perform_create()</span></code></a></li>
 <li><a class="reference internal" href="#accounts.views.VendorRegisterView.permission_classes"><code class="docutils literal notranslate"><span class="pre">VendorRegisterView.permission_classes</span></code></a></li>
 <li><a class="reference internal" href="#accounts.views.VendorRegisterView.queryset"><code class="docutils literal notranslate"><span class="pre">VendorRegisterView.queryset</span></code></a></li>
 <li><a class="reference internal" href="#accounts.views.VendorRegisterView.serializer_class"><code class="docutils literal notranslate"><span class="pre">VendorRegisterView.serializer_class</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#accounts.views.VendorView"><code class="docutils literal notranslate"><span class="pre">VendorView</span></code></a><ul>
+<li><a class="reference internal" href="#accounts.views.VendorView.list"><code class="docutils literal notranslate"><span class="pre">VendorView.list()</span></code></a></li>
 <li><a class="reference internal" href="#accounts.views.VendorView.permission_classes"><code class="docutils literal notranslate"><span class="pre">VendorView.permission_classes</span></code></a></li>
 <li><a class="reference internal" href="#accounts.views.VendorView.queryset"><code class="docutils literal notranslate"><span class="pre">VendorView.queryset</span></code></a></li>
 <li><a class="reference internal" href="#accounts.views.VendorView.serializer_class"><code class="docutils literal notranslate"><span class="pre">VendorView.serializer_class</span></code></a></li>
@@ -573,6 +578,21 @@ object the first time, the query is executed.</p>
 <dt class="sig sig-object py" id="accounts.models.User.phone_number_regex">
 <span class="sig-name descname"><span class="pre">phone_number_regex</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.core.validators.RegexValidator</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#accounts.models.User.phone_number_regex" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="accounts.models.User.supplierbid_set">
+<span class="sig-name descname"><span class="pre">supplierbid_set</span></span><a class="headerlink" href="#accounts.models.User.supplierbid_set" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="accounts.models.User.user_permissions">
@@ -995,6 +1015,9 @@ to write an explicit <cite>.create()</cite> method.</p>
 </dd></dl>
 
 </section>
+<section id="module-accounts.tasks">
+<span id="accounts-tasks-module"></span><h2>accounts.tasks module<a class="headerlink" href="#module-accounts.tasks" title="Link to this heading"></a></h2>
+</section>
 <section id="module-accounts.tests">
 <span id="accounts-tests-module"></span><h2>accounts.tests module<a class="headerlink" href="#module-accounts.tests" title="Link to this heading"></a></h2>
 <dl class="py class">
@@ -1055,11 +1078,6 @@ to write an explicit <cite>.create()</cite> method.</p>
 <span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#PasswordResetViewTests.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.PasswordResetViewTests.setUp" title="Link to this definition"></a></dt>
 <dd><p>Hook method for setting up the test fixture before exercising it.</p>
 </dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="accounts.tests.PasswordResetViewTests.test_password_reset_email_sent">
-<span class="sig-name descname"><span class="pre">test_password_reset_email_sent</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#PasswordResetViewTests.test_password_reset_email_sent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.PasswordResetViewTests.test_password_reset_email_sent" title="Link to this definition"></a></dt>
-<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="accounts.tests.PasswordResetViewTests.test_password_reset_with_invalid_email">
@@ -1268,6 +1286,11 @@ keyword arguments in the url conf.</p>
 <dd><p>alias of <a class="reference internal" href="#accounts.serializers.ChangePasswordSerializer" title="accounts.serializers.ChangePasswordSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChangePasswordSerializer</span></code></a></p>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.views.ChangePasswordView.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/views.html#ChangePasswordView.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.views.ChangePasswordView.update" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -1386,6 +1409,11 @@ keyword arguments in the url conf.</p>
 <dt class="sig sig-object py" id="accounts.views.ProcurementOfficerRegisterView">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accounts.views.</span></span><span class="sig-name descname"><span class="pre">ProcurementOfficerRegisterView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/views.html#ProcurementOfficerRegisterView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.views.ProcurementOfficerRegisterView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">CreateAPIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.views.ProcurementOfficerRegisterView.perform_create">
+<span class="sig-name descname"><span class="pre">perform_create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">serializer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/views.html#ProcurementOfficerRegisterView.perform_create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.views.ProcurementOfficerRegisterView.perform_create" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="accounts.views.ProcurementOfficerRegisterView.permission_classes">
 <span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.AllowAny'&gt;]</span></em><a class="headerlink" href="#accounts.views.ProcurementOfficerRegisterView.permission_classes" title="Link to this definition"></a></dt>
@@ -1465,6 +1493,11 @@ keyword arguments in the url conf.</p>
 <dt class="sig sig-object py" id="accounts.views.VendorRegisterView">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accounts.views.</span></span><span class="sig-name descname"><span class="pre">VendorRegisterView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/views.html#VendorRegisterView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.views.VendorRegisterView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">CreateAPIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.views.VendorRegisterView.perform_create">
+<span class="sig-name descname"><span class="pre">perform_create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">serializer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/views.html#VendorRegisterView.perform_create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.views.VendorRegisterView.perform_create" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="accounts.views.VendorRegisterView.permission_classes">
 <span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.AllowAny'&gt;]</span></em><a class="headerlink" href="#accounts.views.VendorRegisterView.permission_classes" title="Link to this definition"></a></dt>
@@ -1487,6 +1520,11 @@ keyword arguments in the url conf.</p>
 <dt class="sig sig-object py" id="accounts.views.VendorView">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accounts.views.</span></span><span class="sig-name descname"><span class="pre">VendorView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/views.html#VendorView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.views.VendorView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ListAPIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.views.VendorView.list">
+<span class="sig-name descname"><span class="pre">list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/views.html#VendorView.list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.views.VendorView.list" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="accounts.views.VendorView.permission_classes">
 <span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;,</span> <span class="pre">&lt;rest_framework.permissions.OperandHolder</span> <span class="pre">object&gt;]</span></em><a class="headerlink" href="#accounts.views.VendorView.permission_classes" title="Link to this definition"></a></dt>

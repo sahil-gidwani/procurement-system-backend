@@ -77,20 +77,21 @@
 <a class="viewcode-back" href="../../modules/accounts.html#accounts.models.User">[docs]</a>
 <span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">AbstractUser</span><span class="p">):</span>
     <span class="n">email</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">EmailField</span><span class="p">(</span><span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
     <span class="n">phone_number_regex</span> <span class="o">=</span> <span class="n">RegexValidator</span><span class="p">(</span>
         <span class="n">regex</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;^\d</span><span class="si">{10}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Phone number must be 10 digits.&quot;</span>
     <span class="p">)</span>
     <span class="n">phone_number</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
         <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">phone_number_regex</span><span class="p">],</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span>
     <span class="p">)</span>
-
     <span class="n">gstin_validator</span> <span class="o">=</span> <span class="n">RegexValidator</span><span class="p">(</span>
         <span class="n">regex</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;^\d</span><span class="si">{2}</span><span class="s2">[A-Z]</span><span class="si">{5}</span><span class="s2">\d</span><span class="si">{4}</span><span class="s2">[A-Z]</span><span class="si">{1}</span><span class="s2">\d[Z]</span><span class="si">{1}</span><span class="s2">[A-Z\d]</span><span class="si">{1}</span><span class="s2">$&quot;</span><span class="p">,</span>
-        <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Enter a valid GSTIN (Goods and Services Tax Identification Number).&quot;</span><span class="p">,</span>
+        <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Enter a valid GSTIN (Goods and Services Tax Identification Number).&#39;</span>
     <span class="p">)</span>
-    <span class="n">gstin</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">gstin_validator</span><span class="p">],</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
+    <span class="n">gstin</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">gstin_validator</span><span class="p">],</span>
+        <span class="n">unique</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
     <span class="n">USER_ROLE_CHOICES</span> <span class="o">=</span> <span class="p">[</span>
         <span class="p">(</span><span class="s2">&quot;procurement_officer&quot;</span><span class="p">,</span> <span class="s2">&quot;Procurement Officer&quot;</span><span class="p">),</span>
         <span class="p">(</span><span class="s2">&quot;vendor&quot;</span><span class="p">,</span> <span class="s2">&quot;Vendor&quot;</span><span class="p">),</span>
@@ -108,15 +109,14 @@
     <span class="n">vendor_name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
     <span class="n">address</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">()</span>
     <span class="n">vendor_certified</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
     <span class="n">VENDOR_TYPE_CHOICES</span> <span class="o">=</span> <span class="p">[</span>
         <span class="p">(</span><span class="s2">&quot;supplier&quot;</span><span class="p">,</span> <span class="s2">&quot;Supplier&quot;</span><span class="p">),</span>
         <span class="p">(</span><span class="s2">&quot;manufacturer&quot;</span><span class="p">,</span> <span class="s2">&quot;Manufacturer&quot;</span><span class="p">),</span>
         <span class="p">(</span><span class="s2">&quot;service_provider&quot;</span><span class="p">,</span> <span class="s2">&quot;Service Provider&quot;</span><span class="p">),</span>
     <span class="p">]</span>
     <span class="n">vendor_type</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">VENDOR_TYPE_CHOICES</span><span class="p">)</span>
-
     <span class="n">contract_expiry_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">()</span>
+    <span class="c1"># rating_count = models.PositiveIntegerField(default=0)</span>
     <span class="n">vendor_rating</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
         <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">MinValueValidator</span><span class="p">(</span><span class="mf">0.0</span><span class="p">),</span> <span class="n">MaxValueValidator</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)]</span>
     <span class="p">)</span>
