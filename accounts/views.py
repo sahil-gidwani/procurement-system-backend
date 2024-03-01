@@ -20,7 +20,7 @@ from .serializers import (
 )
 from .models import User, Vendor
 from .permissions import IsProcurementOfficer
-from .tasks import send_password_reset_email
+from .tasks import send_password_reset_email, send_password_reset_confirm_email, send_register_email
 
 
 class MyTokenObtainPairView(TokenObtainPairView):
@@ -74,7 +74,7 @@ class PasswordResetConfirmView(generics.UpdateAPIView):
 
         if not default_token_generator.check_token(user, token):
             raise exceptions.NotFound("Invalid token")
-
+        
         return user
 
     def update(self, request, *args, **kwargs):
@@ -84,6 +84,10 @@ class PasswordResetConfirmView(generics.UpdateAPIView):
         password = serializer.validated_data["password"]
         user.set_password(password)
         user.save()
+
+        # Send password reset email confirmation asynchronously
+        send_password_reset_confirm_email.delay(user.email)
+
         return Response({"detail": "Password reset successful"})
 
 
@@ -92,11 +96,19 @@ class ProcurementOfficerRegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = ProcurementOfficerRegisterSerializer
 
+    def perform_create(self, serializer):
+        user = serializer.save()
+        send_register_email.delay(user.email)
+
 
 class VendorRegisterView(generics.CreateAPIView):
     permission_classes = [AllowAny]
     queryset = User.objects.all()
     serializer_class = VendorRegisterSerializer
+
+    def perform_create(self, serializer):
+        user = serializer.save()
+        send_register_email.delay(user.email)
 
 
 class UserProfileView(generics.RetrieveAPIView):
