@@ -7,15 +7,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accounts', '0007_alter_user_gstin'),
-        ('purchase', '0002_alter_supplierbid_status'),
+        ("accounts", "0007_alter_user_gstin"),
+        ("purchase", "0002_alter_supplierbid_status"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='supplierbid',
-            name='supplier',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='accounts.vendor'),
+            model_name="supplierbid",
+            name="supplier",
+            field=models.ForeignKey(
+                default=1,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="accounts.vendor",
+            ),
             preserve_default=False,
         ),
     ]

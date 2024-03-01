@@ -20,7 +20,13 @@ from .serializers import (
 )
 from .models import User, Vendor
 from .permissions import IsProcurementOfficer
-from .tasks import (send_password_change_email, send_password_reset_email, send_password_reset_confirm_email, send_register_email, send_update_profile_email)
+from .tasks import (
+    send_password_change_email,
+    send_password_reset_email,
+    send_password_reset_confirm_email,
+    send_register_email,
+    send_update_profile_email,
+)
 
 
 class MyTokenObtainPairView(TokenObtainPairView):
@@ -59,7 +65,7 @@ class PasswordResetView(generics.CreateAPIView):
         password_reset_url = reverse(
             "password_reset_confirm", kwargs={"pk": pk, "token": token}
         )
-        
+
         password_reset_url = settings.FRONTEND_URL + password_reset_url
 
         # Send password reset email asynchronously
@@ -82,7 +88,7 @@ class PasswordResetConfirmView(generics.UpdateAPIView):
 
         if not default_token_generator.check_token(user, token):
             raise exceptions.NotFound("Invalid token")
-        
+
         return user
 
     def update(self, request, *args, **kwargs):
@@ -117,7 +123,7 @@ class VendorRegisterView(generics.CreateAPIView):
     def perform_create(self, serializer):
         user = serializer.save()
         send_register_email.delay(user.email)
-        cache_key = 'vendor_list'
+        cache_key = "vendor_list"
         cache.delete(cache_key)
 
 
@@ -162,14 +168,14 @@ class VendorView(generics.ListAPIView):
     serializer_class = VendorSerializer
 
     def list(self, request, *args, **kwargs):
-        cache_key = 'vendor_list'
+        cache_key = "vendor_list"
         cached_data = cache.get(cache_key)
 
         if cached_data is not None:
             return Response(cached_data)
 
         response = super().list(request, *args, **kwargs)
-        cache.set(cache_key, response.data, timeout=60*60*24*7)
+        cache.set(cache_key, response.data, timeout=60 * 60 * 24 * 7)
         return response
 
 

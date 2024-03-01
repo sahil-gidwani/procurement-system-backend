@@ -7,13 +7,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('purchase', '0004_alter_supplierbid_supplier'),
+        ("purchase", "0004_alter_supplierbid_supplier"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.AlterUniqueTogether(
-            name='supplierbid',
-            unique_together={('supplier', 'requisition')},
+            name="supplierbid",
+            unique_together={("supplier", "requisition")},
         ),
     ]

@@ -35,7 +35,11 @@ class OptimizedInventory(models.Model):
     ordering_cost = models.FloatField()
     holding_cost = models.FloatField()
     lead_time = models.IntegerField(null=True, blank=True)
-    service_level = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(1.0)], null=True, blank=True)
+    service_level = models.FloatField(
+        validators=[MinValueValidator(0.0), MaxValueValidator(1.0)],
+        null=True,
+        blank=True,
+    )
     safety_stock = models.FloatField(null=True, blank=True)
     reorder_point = models.FloatField(null=True, blank=True)
     shelf_life = models.IntegerField(null=True, blank=True)
@@ -50,12 +54,16 @@ class OptimizedInventory(models.Model):
 @receiver(post_save, sender=Inventory)
 def create_historical_inventory(sender, instance, created, **kwargs):
     timestamp = instance.last_updated if not created else instance.date_added
-    latest_historical_inventory = HistoricalInventory.objects.filter(
-        inventory=instance
-    ).order_by('-datetime').first()
+    latest_historical_inventory = (
+        HistoricalInventory.objects.filter(inventory=instance)
+        .order_by("-datetime")
+        .first()
+    )
 
     if latest_historical_inventory:
-        demand = max(0, latest_historical_inventory.stock_quantity - instance.stock_quantity)
+        demand = max(
+            0, latest_historical_inventory.stock_quantity - instance.stock_quantity
+        )
     else:
         demand = 0
 
@@ -63,5 +71,5 @@ def create_historical_inventory(sender, instance, created, **kwargs):
         stock_quantity=instance.stock_quantity,
         datetime=timestamp,
         inventory=instance,
-        demand=demand
+        demand=demand,
     )

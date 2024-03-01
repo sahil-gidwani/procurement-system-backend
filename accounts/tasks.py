@@ -42,8 +42,8 @@ def send_password_reset_confirm_email(user_email):
 @shared_task
 def send_register_email(user_email):
     send_mail(
-        subject = 'Welcome to Our Platform',
-        message = 'Thank you for registering with us.',
+        subject="Welcome to Our Platform",
+        message="Thank you for registering with us.",
         from_email=settings.EMAIL_HOST_USER,
         recipient_list=[user_email],
         fail_silently=True,
@@ -54,8 +54,8 @@ def send_register_email(user_email):
 @shared_task
 def send_update_profile_email(user_email):
     send_mail(
-        subject = 'Profile Update Confirmation',
-        message = 'Your profile has been updated successfully.',
+        subject="Profile Update Confirmation",
+        message="Your profile has been updated successfully.",
         from_email=settings.EMAIL_HOST_USER,
         recipient_list=[user_email],
         fail_silently=True,

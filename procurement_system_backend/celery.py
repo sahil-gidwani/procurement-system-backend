@@ -12,9 +12,9 @@ app.config_from_object("django.conf:settings", namespace="CELERY")
 
 # Celery Beat Schedule
 app.conf.beat_schedule = {
-    'send-inventory-notifications': {
-        'task': 'inventory.tasks.send_inventory_notifications',
-        'schedule': crontab(hour=10, minute=0, day_of_week=1),
+    "send-inventory-notifications": {
+        "task": "inventory.tasks.send_inventory_notifications",
+        "schedule": crontab(hour=10, minute=0, day_of_week=1),
     },
 }
 
