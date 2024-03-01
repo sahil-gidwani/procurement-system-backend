@@ -19,7 +19,7 @@
 
 <div align="center">
 
-[![codecov](https://codecov.io/gh/sahil-gidwani/procurement-system-backend/graph/badge.svg?token=MZM7MS1JEJ)](https://codecov.io/gh/sahil-gidwani/procurement-system-backend)
+[![codecov](https://codecov.io/gh/sahil-gidwani/procurement-system-backend/graph/badge.svg?token=MZM7MS1JEJ)](https://codecov.io/gh/sahil-gidwani/procurement-system-backend "Check out the codecov report")
 
 </div>
 
@@ -27,6 +27,24 @@
 
 <div align="center">
 
-[![view - Documentation](https://img.shields.io/badge/view-Documentation-blue?style=for-the-badge)](https://sahil-gidwani.github.io/procurement-system-backend/ "Go to project documentation")
+[![Github Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white)](https://sahil-gidwani.github.io/procurement-system-backend/ "Go to documentation")
 
 </div>
+
+## Docker Image
+
+<div align="center">
+
+[![](https://custom-icon-badges.demolab.com/badge/Docker-latest-white?style=flat&logo=docker&logoColor=blue)](https://hub.docker.com/repository/docker/sahilgidwani/procurement-system-backend "Link to Docker Hub")
+
+</div>
+
+## Error and Performance Monitoring
+
+<div align="center">
+
+[![](https://custom-icon-badges.demolab.com/badge/Sentry-Status-green?style=flat&logo=sentry&logoColor=purple)](https://sahil-gidwani.sentry.io/projects/procurement-system-backend/?project=4506820636573696 "Link to Sentry dashboard")
+
+</div>
+
+![Lines of code](https://img.shields.io/tokei/lines/github/sahil-gidwani/procurement-system-backend)
