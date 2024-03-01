@@ -27,7 +27,7 @@
 
 <div align="center">
 
-[![Github Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white)](https://sahil-gidwani.github.io/procurement-system-backend/ "Go to documentation")
+[![](https://custom-icon-badges.demolab.com/badge/Documentation-deployed-default?style=flat&logo=github pages&logoColor=default)](https://sahil-gidwani.github.io/procurement-system-backend/ "Go to documentation")
 
 </div>
 
