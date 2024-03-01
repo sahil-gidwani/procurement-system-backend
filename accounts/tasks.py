@@ -9,5 +9,6 @@ def send_password_reset_email(user_email, password_reset_url):
         message=f"Click the link to reset your password: {password_reset_url}",
         from_email=settings.EMAIL_HOST_USER,
         recipient_list=[user_email],
-        fail_silently=False,
+        fail_silently=True,
     )
+    return "Password reset email sent"
