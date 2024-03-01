@@ -117,6 +117,8 @@ class VendorRegisterView(generics.CreateAPIView):
     def perform_create(self, serializer):
         user = serializer.save()
         send_register_email.delay(user.email)
+        cache_key = 'vendor_list'
+        cache.delete(cache_key)
 
 
 class UserProfileView(generics.RetrieveAPIView):
@@ -161,16 +163,13 @@ class VendorView(generics.ListAPIView):
 
     def list(self, request, *args, **kwargs):
         cache_key = 'vendor_list'
-
-        # Attempt to retrieve data from cache
         cached_data = cache.get(cache_key)
 
         if cached_data is not None:
             return Response(cached_data)
 
-        # If data not found in cache, retrieve it and cache it
         response = super().list(request, *args, **kwargs)
-        cache.set(cache_key, response.data, timeout=60)  # Cache for 60 seconds
+        cache.set(cache_key, response.data, timeout=60*60*24*7)
         return response
 
 

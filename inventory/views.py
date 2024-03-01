@@ -7,7 +7,10 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
 from django.shortcuts import get_object_or_404
+from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from drf_spectacular.utils import extend_schema
 import pandas as pd
 import numpy as np
@@ -17,7 +20,7 @@ import plotly.io as pio
 from statsmodels.tsa.seasonal import seasonal_decompose
 from accounts.permissions import IsProcurementOfficer
 from .models import Inventory, HistoricalInventory, OptimizedInventory
-from .serializers import InventorySerializer, HistoricalInventorySerializer, OptimizedInventorySerializer, ARIMAForecastSerializer
+from .serializers import (InventorySerializer, HistoricalInventorySerializer, OptimizedInventorySerializer, ARIMAForecastSerializer)
 
 
 class BaseInventoryAPIView(generics.GenericAPIView):
@@ -29,7 +32,16 @@ class BaseInventoryAPIView(generics.GenericAPIView):
 
 
 class InventoryListView(BaseInventoryAPIView, generics.ListAPIView):
-    pass
+    def list(self, request, *args, **kwargs):
+        cache_key = f"{request.user.id}_inventory_list"
+        cached_data = cache.get(cache_key)
+
+        if cached_data is not None:
+            return Response(cached_data)
+
+        response = super().list(request, *args, **kwargs)
+        cache.set(cache_key, response.data, timeout=60*60*24)
+        return response
 
 
 class InventoryCreateView(BaseInventoryAPIView, generics.CreateAPIView):
@@ -37,6 +49,8 @@ class InventoryCreateView(BaseInventoryAPIView, generics.CreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(procurement_officer=self.request.user)
+        cache_key = f"{self.request.user.id}_inventory_list"
+        cache.delete(cache_key)
 
 
 class InventoryRetrieveView(BaseInventoryAPIView, generics.RetrieveAPIView):
@@ -44,13 +58,22 @@ class InventoryRetrieveView(BaseInventoryAPIView, generics.RetrieveAPIView):
 
 
 class InventoryUpdateView(BaseInventoryAPIView, generics.UpdateAPIView):
-    pass
+    def update(self, request, *args, **kwargs):
+        response = super().update(request, *args, **kwargs)
+        cache_key = f"{request.user.id}_inventory_list"
+        cache.delete(cache_key)
+        return response
 
 
 class InventoryDeleteView(BaseInventoryAPIView, generics.DestroyAPIView):
-    pass
+    def destroy(self, request, *args, **kwargs):
+        response = super().destroy(request, *args, **kwargs)
+        cache_key = f"{request.user.id}_inventory_list"
+        cache.delete(cache_key)
+        return response
 
 
+@method_decorator(cache_page(60 * 15), name='dispatch')
 class HistoricalInventoryListView(generics.ListAPIView):
     permission_classes = [IsAuthenticated, IsProcurementOfficer]
     serializer_class = HistoricalInventorySerializer
@@ -103,6 +126,7 @@ def calculate_auto_arima(monthly_demand):
     return forecast_data
 
 
+@method_decorator(cache_page(60 * 15), name='dispatch')
 class ARIMAForecastAPIView(generics.GenericAPIView):
     permission_classes = [IsAuthenticated, IsProcurementOfficer]
     serializer_class = ARIMAForecastSerializer
@@ -145,7 +169,7 @@ class ARIMAForecastAPIView(generics.GenericAPIView):
         forecast_data = calculate_auto_arima(monthly_demand)
         return Response(forecast_data)
 
-    def post(self, request):
+    def post(self, request, inventory_id):
         file = request.FILES.get('file')
         if not file:
             return Response({'error': 'No file provided'}, status=status.HTTP_400_BAD_REQUEST)
