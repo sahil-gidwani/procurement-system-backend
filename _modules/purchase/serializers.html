@@ -79,7 +79,7 @@
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.serializers.PurchaseRequisitionSerializer.Meta">[docs]</a>
     <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">PurchaseRequisition</span>
-        <span class="n">exclude</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;inventory&#39;</span><span class="p">]</span></div>
+        <span class="n">exclude</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="s2">&quot;inventory&quot;</span><span class="p">]</span></div>
 </div>
 
 
@@ -87,13 +87,15 @@
 <div class="viewcode-block" id="PurchaseRequisitionVendorSerializer">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.serializers.PurchaseRequisitionVendorSerializer">[docs]</a>
 <span class="k">class</span> <span class="nc">PurchaseRequisitionVendorSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
-    <span class="n">procurement_officer</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">StringRelatedField</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s1">&#39;inventory.procurement_officer&#39;</span><span class="p">)</span>
+    <span class="n">procurement_officer</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">StringRelatedField</span><span class="p">(</span>
+        <span class="n">source</span><span class="o">=</span><span class="s2">&quot;inventory.procurement_officer&quot;</span>
+    <span class="p">)</span>
 
 <div class="viewcode-block" id="PurchaseRequisitionVendorSerializer.Meta">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.serializers.PurchaseRequisitionVendorSerializer.Meta">[docs]</a>
     <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">PurchaseRequisition</span>
-        <span class="n">exclude</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;inventory&#39;</span><span class="p">]</span></div>
+        <span class="n">exclude</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="s2">&quot;inventory&quot;</span><span class="p">]</span></div>
 </div>
 
 
@@ -105,7 +107,7 @@
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.serializers.SupplierBidSerializer.Meta">[docs]</a>
     <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">SupplierBid</span>
-        <span class="n">exclude</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;requisition&#39;</span><span class="p">,</span> <span class="s1">&#39;supplier&#39;</span><span class="p">]</span></div>
+        <span class="n">exclude</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="s2">&quot;requisition&quot;</span><span class="p">,</span> <span class="s2">&quot;supplier&quot;</span><span class="p">]</span></div>
 </div>
 
 
@@ -114,11 +116,12 @@
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.serializers.SupplierBidProcurementOfficerSerializer">[docs]</a>
 <span class="k">class</span> <span class="nc">SupplierBidProcurementOfficerSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
     <span class="n">supplier_rating</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">SerializerMethodField</span><span class="p">()</span>
+
 <div class="viewcode-block" id="SupplierBidProcurementOfficerSerializer.Meta">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.serializers.SupplierBidProcurementOfficerSerializer.Meta">[docs]</a>
     <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">SupplierBid</span>
-        <span class="n">exclude</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;requisition&#39;</span><span class="p">]</span></div>
+        <span class="n">exclude</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;requisition&quot;</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="SupplierBidProcurementOfficerSerializer.get_supplier_rating">
@@ -136,7 +139,7 @@
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.serializers.PurchaseOrderSerializer.Meta">[docs]</a>
     <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">PurchaseOrder</span>
-        <span class="n">exclude</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;bid&#39;</span><span class="p">]</span></div>
+        <span class="n">exclude</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="s2">&quot;bid&quot;</span><span class="p">]</span></div>
 </div>
 
 </pre></div>

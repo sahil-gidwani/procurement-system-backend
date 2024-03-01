@@ -90,7 +90,13 @@
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">User</span><span class="p">,</span> <span class="n">Vendor</span>
 <span class="kn">from</span> <span class="nn">.permissions</span> <span class="kn">import</span> <span class="n">IsProcurementOfficer</span>
-<span class="kn">from</span> <span class="nn">.tasks</span> <span class="kn">import</span> <span class="p">(</span><span class="n">send_password_change_email</span><span class="p">,</span> <span class="n">send_password_reset_email</span><span class="p">,</span> <span class="n">send_password_reset_confirm_email</span><span class="p">,</span> <span class="n">send_register_email</span><span class="p">,</span> <span class="n">send_update_profile_email</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">.tasks</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">send_password_change_email</span><span class="p">,</span>
+    <span class="n">send_password_reset_email</span><span class="p">,</span>
+    <span class="n">send_password_reset_confirm_email</span><span class="p">,</span>
+    <span class="n">send_register_email</span><span class="p">,</span>
+    <span class="n">send_update_profile_email</span><span class="p">,</span>
+<span class="p">)</span>
 
 
 <div class="viewcode-block" id="MyTokenObtainPairView">
@@ -145,7 +151,7 @@
         <span class="n">password_reset_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
             <span class="s2">&quot;password_reset_confirm&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="n">pk</span><span class="p">,</span> <span class="s2">&quot;token&quot;</span><span class="p">:</span> <span class="n">token</span><span class="p">}</span>
         <span class="p">)</span>
-        
+
         <span class="n">password_reset_url</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">FRONTEND_URL</span> <span class="o">+</span> <span class="n">password_reset_url</span>
 
         <span class="c1"># Send password reset email asynchronously</span>
@@ -174,7 +180,7 @@
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">default_token_generator</span><span class="o">.</span><span class="n">check_token</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">NotFound</span><span class="p">(</span><span class="s2">&quot;Invalid token&quot;</span><span class="p">)</span>
-        
+
         <span class="k">return</span> <span class="n">user</span></div>
 
 
@@ -224,7 +230,7 @@
     <span class="k">def</span> <span class="nf">perform_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serializer</span><span class="p">):</span>
         <span class="n">user</span> <span class="o">=</span> <span class="n">serializer</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
         <span class="n">send_register_email</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
-        <span class="n">cache_key</span> <span class="o">=</span> <span class="s1">&#39;vendor_list&#39;</span>
+        <span class="n">cache_key</span> <span class="o">=</span> <span class="s2">&quot;vendor_list&quot;</span>
         <span class="n">cache</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">cache_key</span><span class="p">)</span></div>
 </div>
 
@@ -296,14 +302,14 @@
 <div class="viewcode-block" id="VendorView.list">
 <a class="viewcode-back" href="../../modules/accounts.html#accounts.views.VendorView.list">[docs]</a>
     <span class="k">def</span> <span class="nf">list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">cache_key</span> <span class="o">=</span> <span class="s1">&#39;vendor_list&#39;</span>
+        <span class="n">cache_key</span> <span class="o">=</span> <span class="s2">&quot;vendor_list&quot;</span>
         <span class="n">cached_data</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cache_key</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">cached_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">cached_data</span><span class="p">)</span>
 
         <span class="n">response</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">cache_key</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">24</span><span class="o">*</span><span class="mi">7</span><span class="p">)</span>
+        <span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">cache_key</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">7</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span></div>
 </div>
 

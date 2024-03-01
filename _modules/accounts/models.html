@@ -85,13 +85,9 @@
     <span class="p">)</span>
     <span class="n">gstin_validator</span> <span class="o">=</span> <span class="n">RegexValidator</span><span class="p">(</span>
         <span class="n">regex</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;^\d</span><span class="si">{2}</span><span class="s2">[A-Z]</span><span class="si">{5}</span><span class="s2">\d</span><span class="si">{4}</span><span class="s2">[A-Z]</span><span class="si">{1}</span><span class="s2">\d[Z]</span><span class="si">{1}</span><span class="s2">[A-Z\d]</span><span class="si">{1}</span><span class="s2">$&quot;</span><span class="p">,</span>
-        <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Enter a valid GSTIN (Goods and Services Tax Identification Number).&#39;</span>
+        <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Enter a valid GSTIN (Goods and Services Tax Identification Number).&quot;</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">gstin</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
-        <span class="n">max_length</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
-        <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">gstin_validator</span><span class="p">],</span>
-        <span class="n">unique</span><span class="o">=</span><span class="kc">True</span>
-    <span class="p">)</span>
+    <span class="n">gstin</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">gstin_validator</span><span class="p">],</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">USER_ROLE_CHOICES</span> <span class="o">=</span> <span class="p">[</span>
         <span class="p">(</span><span class="s2">&quot;procurement_officer&quot;</span><span class="p">,</span> <span class="s2">&quot;Procurement Officer&quot;</span><span class="p">),</span>
         <span class="p">(</span><span class="s2">&quot;vendor&quot;</span><span class="p">,</span> <span class="s2">&quot;Vendor&quot;</span><span class="p">),</span>

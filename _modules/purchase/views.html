@@ -80,7 +80,13 @@
 <span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
 <span class="kn">import</span> <span class="nn">plotly.io</span> <span class="k">as</span> <span class="nn">pio</span>
 <span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">PurchaseRequisition</span><span class="p">,</span> <span class="n">SupplierBid</span><span class="p">,</span> <span class="n">PurchaseOrder</span>
-<span class="kn">from</span> <span class="nn">.serializers</span> <span class="kn">import</span> <span class="n">PurchaseRequisitionSerializer</span><span class="p">,</span> <span class="n">PurchaseRequisitionVendorSerializer</span><span class="p">,</span> <span class="n">SupplierBidSerializer</span><span class="p">,</span> <span class="n">SupplierBidProcurementOfficerSerializer</span><span class="p">,</span> <span class="n">PurchaseOrderSerializer</span>
+<span class="kn">from</span> <span class="nn">.serializers</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">PurchaseRequisitionSerializer</span><span class="p">,</span>
+    <span class="n">PurchaseRequisitionVendorSerializer</span><span class="p">,</span>
+    <span class="n">SupplierBidSerializer</span><span class="p">,</span>
+    <span class="n">SupplierBidProcurementOfficerSerializer</span><span class="p">,</span>
+    <span class="n">PurchaseOrderSerializer</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="kn">from</span> <span class="nn">inventory.models</span> <span class="kn">import</span> <span class="n">Inventory</span>
 <span class="kn">from</span> <span class="nn">accounts.permissions</span> <span class="kn">import</span> <span class="n">IsProcurementOfficer</span><span class="p">,</span> <span class="n">IsVendor</span>
 
@@ -200,7 +206,7 @@
         <span class="c1"># If requisition_id is None, then we are not creating a new supplier bid</span>
         <span class="k">if</span> <span class="n">requisition_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(),</span> <span class="nb">id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;pk&quot;</span><span class="p">))</span>
-        
+
         <span class="n">requisition</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">PurchaseRequisition</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">requisition_id</span><span class="p">)</span>
         <span class="n">obj</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(),</span> <span class="n">requisition</span><span class="o">=</span><span class="n">requisition</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">check_object_permissions</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span>
@@ -261,7 +267,10 @@
 <div class="viewcode-block" id="SupplierBidProcurementOfficerListView.get_queryset">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.views.SupplierBidProcurementOfficerListView.get_queryset">[docs]</a>
     <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">SupplierBid</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">requisition__inventory__procurement_officer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="n">requisition__id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;requisition_id&quot;</span><span class="p">))</span></div>
+        <span class="k">return</span> <span class="n">SupplierBid</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+            <span class="n">requisition__inventory__procurement_officer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+            <span class="n">requisition__id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;requisition_id&quot;</span><span class="p">),</span>
+        <span class="p">)</span></div>
 </div>
 
 
@@ -275,51 +284,61 @@
 <div class="viewcode-block" id="SupplierBidProcurementOfficerRankingView.get">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.views.SupplierBidProcurementOfficerRankingView.get">[docs]</a>
     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">requisition_id</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">requisition</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">PurchaseRequisition</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">requisition_id</span><span class="p">,</span> <span class="n">inventory__procurement_officer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+        <span class="n">requisition</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span>
+            <span class="n">PurchaseRequisition</span><span class="p">,</span>
+            <span class="nb">id</span><span class="o">=</span><span class="n">requisition_id</span><span class="p">,</span>
+            <span class="n">inventory__procurement_officer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="n">bids</span> <span class="o">=</span> <span class="n">SupplierBid</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">requisition</span><span class="o">=</span><span class="n">requisition</span><span class="p">)</span>
         <span class="n">serializer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serializer_class</span><span class="p">(</span><span class="n">bids</span><span class="p">,</span> <span class="n">many</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">serializer</span><span class="o">.</span><span class="n">data</span>
 
         <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;unit_price&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;unit_price&#39;</span><span class="p">])</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;quantity_fulfilled&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;quantity_fulfilled&#39;</span><span class="p">])</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;days_delivery&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;days_delivery&#39;</span><span class="p">])</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;supplier_rating&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;supplier_rating&#39;</span><span class="p">])</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;total_cost&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;unit_price&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;quantity_fulfilled&#39;</span><span class="p">]</span>
+        <span class="n">df</span><span class="p">[</span><span class="s2">&quot;unit_price&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;unit_price&quot;</span><span class="p">])</span>
+        <span class="n">df</span><span class="p">[</span><span class="s2">&quot;quantity_fulfilled&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;quantity_fulfilled&quot;</span><span class="p">])</span>
+        <span class="n">df</span><span class="p">[</span><span class="s2">&quot;days_delivery&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;days_delivery&quot;</span><span class="p">])</span>
+        <span class="n">df</span><span class="p">[</span><span class="s2">&quot;supplier_rating&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;supplier_rating&quot;</span><span class="p">])</span>
+        <span class="n">df</span><span class="p">[</span><span class="s2">&quot;total_cost&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;unit_price&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;quantity_fulfilled&quot;</span><span class="p">]</span>
 
         <span class="c1"># Multi-Criteria Evaluation using TOPSIS - Technique for Order of Preference by Similarity to Ideal Solution</span>
 
         <span class="c1"># 1. Normalize the Decision Matrix</span>
         <span class="n">norm_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-        <span class="n">norm_df</span> <span class="o">=</span> <span class="n">norm_df</span><span class="p">[[</span><span class="s1">&#39;unit_price&#39;</span><span class="p">,</span> <span class="s1">&#39;total_cost&#39;</span><span class="p">,</span> <span class="s1">&#39;days_delivery&#39;</span><span class="p">,</span> <span class="s1">&#39;supplier_rating&#39;</span><span class="p">]]</span>
+        <span class="n">norm_df</span> <span class="o">=</span> <span class="n">norm_df</span><span class="p">[</span>
+            <span class="p">[</span><span class="s2">&quot;unit_price&quot;</span><span class="p">,</span> <span class="s2">&quot;total_cost&quot;</span><span class="p">,</span> <span class="s2">&quot;days_delivery&quot;</span><span class="p">,</span> <span class="s2">&quot;supplier_rating&quot;</span><span class="p">]</span>
+        <span class="p">]</span>
         <span class="n">norm_df</span> <span class="o">=</span> <span class="p">(</span><span class="n">norm_df</span> <span class="o">-</span> <span class="n">norm_df</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="n">norm_df</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">norm_df</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
 
         <span class="c1"># 2. Define weights for each criterion</span>
         <span class="n">weights</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s1">&#39;unit_price&#39;</span><span class="p">:</span> <span class="mf">0.125</span><span class="p">,</span>
-            <span class="s1">&#39;days_delivery&#39;</span><span class="p">:</span> <span class="mf">0.125</span><span class="p">,</span>
-            <span class="s1">&#39;supplier_rating&#39;</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span>
-            <span class="s1">&#39;total_cost&#39;</span><span class="p">:</span> <span class="mf">0.5</span>
+            <span class="s2">&quot;unit_price&quot;</span><span class="p">:</span> <span class="mf">0.125</span><span class="p">,</span>
+            <span class="s2">&quot;days_delivery&quot;</span><span class="p">:</span> <span class="mf">0.125</span><span class="p">,</span>
+            <span class="s2">&quot;supplier_rating&quot;</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span>
+            <span class="s2">&quot;total_cost&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
         <span class="p">}</span>
 
         <span class="c1"># 3. Multiply the normalized decision matrix by the weights to get the weighted normalized decision matrix</span>
         <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">norm_df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
             <span class="n">norm_df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">*=</span> <span class="n">weights</span><span class="p">[</span><span class="n">col</span><span class="p">]</span>
-        
-        <span class="c1"># 4. Determine the positive ideal solution (PIS) and negative ideal solution (NIS)</span>
-        <span class="n">PIS</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span>
-            <span class="s1">&#39;unit_price&#39;</span><span class="p">:</span> <span class="n">norm_df</span><span class="p">[</span><span class="s1">&#39;unit_price&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
-            <span class="s1">&#39;days_delivery&#39;</span><span class="p">:</span> <span class="n">norm_df</span><span class="p">[</span><span class="s1">&#39;days_delivery&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
-            <span class="s1">&#39;supplier_rating&#39;</span><span class="p">:</span> <span class="n">norm_df</span><span class="p">[</span><span class="s1">&#39;supplier_rating&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
-            <span class="s1">&#39;total_cost&#39;</span><span class="p">:</span> <span class="n">norm_df</span><span class="p">[</span><span class="s1">&#39;total_cost&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
-        <span class="p">})</span>
 
-        <span class="n">NIS</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span>
-            <span class="s1">&#39;unit_price&#39;</span><span class="p">:</span> <span class="n">norm_df</span><span class="p">[</span><span class="s1">&#39;unit_price&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
-            <span class="s1">&#39;days_delivery&#39;</span><span class="p">:</span> <span class="n">norm_df</span><span class="p">[</span><span class="s1">&#39;days_delivery&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
-            <span class="s1">&#39;supplier_rating&#39;</span><span class="p">:</span> <span class="n">norm_df</span><span class="p">[</span><span class="s1">&#39;supplier_rating&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
-            <span class="s1">&#39;total_cost&#39;</span><span class="p">:</span> <span class="n">norm_df</span><span class="p">[</span><span class="s1">&#39;total_cost&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
-        <span class="p">})</span>
+        <span class="c1"># 4. Determine the positive ideal solution (PIS) and negative ideal solution (NIS)</span>
+        <span class="n">PIS</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;unit_price&quot;</span><span class="p">:</span> <span class="n">norm_df</span><span class="p">[</span><span class="s2">&quot;unit_price&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+                <span class="s2">&quot;days_delivery&quot;</span><span class="p">:</span> <span class="n">norm_df</span><span class="p">[</span><span class="s2">&quot;days_delivery&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+                <span class="s2">&quot;supplier_rating&quot;</span><span class="p">:</span> <span class="n">norm_df</span><span class="p">[</span><span class="s2">&quot;supplier_rating&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+                <span class="s2">&quot;total_cost&quot;</span><span class="p">:</span> <span class="n">norm_df</span><span class="p">[</span><span class="s2">&quot;total_cost&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+
+        <span class="n">NIS</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;unit_price&quot;</span><span class="p">:</span> <span class="n">norm_df</span><span class="p">[</span><span class="s2">&quot;unit_price&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+                <span class="s2">&quot;days_delivery&quot;</span><span class="p">:</span> <span class="n">norm_df</span><span class="p">[</span><span class="s2">&quot;days_delivery&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+                <span class="s2">&quot;supplier_rating&quot;</span><span class="p">:</span> <span class="n">norm_df</span><span class="p">[</span><span class="s2">&quot;supplier_rating&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+                <span class="s2">&quot;total_cost&quot;</span><span class="p">:</span> <span class="n">norm_df</span><span class="p">[</span><span class="s2">&quot;total_cost&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
 
         <span class="c1"># 5. Calculate euclidean distances from PIS and NIS</span>
         <span class="n">dist_PIS</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(((</span><span class="n">norm_df</span> <span class="o">-</span> <span class="n">PIS</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
@@ -327,61 +346,63 @@
 
         <span class="c1"># 6. Calculate relative closeness</span>
         <span class="n">closeness</span> <span class="o">=</span> <span class="n">dist_NIS</span> <span class="o">/</span> <span class="p">(</span><span class="n">dist_PIS</span> <span class="o">+</span> <span class="n">dist_NIS</span><span class="p">)</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;closeness&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">closeness</span>
-        <span class="n">norm_df</span><span class="p">[</span><span class="s1">&#39;closeness&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">closeness</span>
+        <span class="n">df</span><span class="p">[</span><span class="s2">&quot;closeness&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">closeness</span>
+        <span class="n">norm_df</span><span class="p">[</span><span class="s2">&quot;closeness&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">closeness</span>
 
         <span class="c1"># 7. Rank the alternatives based on closeness values</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;rank&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;closeness&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-        <span class="n">norm_df</span><span class="p">[</span><span class="s1">&#39;rank&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">norm_df</span><span class="p">[</span><span class="s1">&#39;closeness&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s2">&quot;rank&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;closeness&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">norm_df</span><span class="p">[</span><span class="s2">&quot;rank&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">norm_df</span><span class="p">[</span><span class="s2">&quot;closeness&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
         <span class="c1"># Sort the dataframes by rank</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;rank&#39;</span><span class="p">)</span>
-        <span class="n">norm_df</span> <span class="o">=</span> <span class="n">norm_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;rank&#39;</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;rank&quot;</span><span class="p">)</span>
+        <span class="n">norm_df</span> <span class="o">=</span> <span class="n">norm_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;rank&quot;</span><span class="p">)</span>
 
-        <span class="n">df_json</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
+        <span class="n">df_json</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">&quot;records&quot;</span><span class="p">)</span>
 
         <span class="c1"># Create the radar chart</span>
-        <span class="n">criteria</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;unit_price&#39;</span><span class="p">,</span> <span class="s1">&#39;days_delivery&#39;</span><span class="p">,</span> <span class="s1">&#39;supplier_rating&#39;</span><span class="p">,</span> <span class="s1">&#39;total_cost&#39;</span><span class="p">]</span>
+        <span class="n">criteria</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;unit_price&quot;</span><span class="p">,</span> <span class="s2">&quot;days_delivery&quot;</span><span class="p">,</span> <span class="s2">&quot;supplier_rating&quot;</span><span class="p">,</span> <span class="s2">&quot;total_cost&quot;</span><span class="p">]</span>
         <span class="n">norm_values</span> <span class="o">=</span> <span class="n">norm_df</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-        <span class="n">alternative_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">norm_df</span><span class="p">[</span><span class="s1">&#39;rank&#39;</span><span class="p">])</span>
+        <span class="n">alternative_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">norm_df</span><span class="p">[</span><span class="s2">&quot;rank&quot;</span><span class="p">])</span>
         <span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">alternative_names</span><span class="p">,</span> <span class="n">norm_values</span><span class="p">):</span>
-            <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatterpolar</span><span class="p">(</span>
-                <span class="n">r</span><span class="o">=</span><span class="n">values</span><span class="p">,</span>
-                <span class="n">theta</span><span class="o">=</span><span class="n">criteria</span><span class="p">,</span>
-                <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;toself&#39;</span><span class="p">,</span>
-                <span class="n">name</span><span class="o">=</span><span class="n">name</span>
-            <span class="p">))</span>
+            <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span>
+                <span class="n">go</span><span class="o">.</span><span class="n">Scatterpolar</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="n">values</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="n">criteria</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;toself&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+            <span class="p">)</span>
         <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
             <span class="n">polar</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
                 <span class="n">radialaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
                     <span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                <span class="p">)),</span>
+                <span class="p">)</span>
+            <span class="p">),</span>
             <span class="n">showlegend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Multi-Criteria Evaluation of Bids: Radar Chart Ranking&#39;</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Multi-Criteria Evaluation of Bids: Radar Chart Ranking&quot;</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">radar_plot_json</span> <span class="o">=</span> <span class="n">pio</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
 
         <span class="c1"># Create a parallel coordinates plot</span>
-        <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">parallel_coordinates</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;rank&#39;</span><span class="p">,</span> <span class="n">color_continuous_scale</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">sequential</span><span class="o">.</span><span class="n">Viridis</span><span class="p">,</span>
-                                    <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;rank&#39;</span><span class="p">:</span> <span class="s1">&#39;Rank&#39;</span><span class="p">},</span>
-                                    <span class="n">dimensions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;unit_price&#39;</span><span class="p">,</span> <span class="s1">&#39;days_delivery&#39;</span><span class="p">,</span> <span class="s1">&#39;supplier_rating&#39;</span><span class="p">,</span> <span class="s1">&#39;total_cost&#39;</span><span class="p">])</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">parallel_coordinates</span><span class="p">(</span>
+            <span class="n">df</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s2">&quot;rank&quot;</span><span class="p">,</span>
+            <span class="n">color_continuous_scale</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">sequential</span><span class="o">.</span><span class="n">Viridis</span><span class="p">,</span>
+            <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;rank&quot;</span><span class="p">:</span> <span class="s2">&quot;Rank&quot;</span><span class="p">},</span>
+            <span class="n">dimensions</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;unit_price&quot;</span><span class="p">,</span> <span class="s2">&quot;days_delivery&quot;</span><span class="p">,</span> <span class="s2">&quot;supplier_rating&quot;</span><span class="p">,</span> <span class="s2">&quot;total_cost&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
         <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
             <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Multi-Criteria Evaluation: Parallel Coordinates of Bids Ranking&quot;</span><span class="p">,</span>
             <span class="n">title_x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-            <span class="n">title_y</span><span class="o">=</span><span class="mf">0.05</span>
+            <span class="n">title_y</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">parallel_plot_json</span> <span class="o">=</span> <span class="n">pio</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
 
         <span class="n">response_data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s1">&#39;dataframe&#39;</span><span class="p">:</span> <span class="n">df_json</span><span class="p">,</span>
-            <span class="s1">&#39;radar_plot&#39;</span><span class="p">:</span> <span class="n">radar_plot_json</span><span class="p">,</span>
-            <span class="s1">&#39;parallel_plot&#39;</span><span class="p">:</span> <span class="n">parallel_plot_json</span>
+            <span class="s2">&quot;dataframe&quot;</span><span class="p">:</span> <span class="n">df_json</span><span class="p">,</span>
+            <span class="s2">&quot;radar_plot&quot;</span><span class="p">:</span> <span class="n">radar_plot_json</span><span class="p">,</span>
+            <span class="s2">&quot;parallel_plot&quot;</span><span class="p">:</span> <span class="n">parallel_plot_json</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">response_data</span><span class="p">,</span> <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;application/json&#39;</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">response_data</span><span class="p">,</span> <span class="n">content_type</span><span class="o">=</span><span class="s2">&quot;application/json&quot;</span><span class="p">)</span></div>
 </div>
 
-        
+
 
 <div class="viewcode-block" id="getRoutes">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.views.getRoutes">[docs]</a>
