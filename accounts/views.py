@@ -4,7 +4,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework.decorators import api_view, permission_classes
 from django.contrib.auth.tokens import default_token_generator
-from django.core.mail import send_mail
+from django.core.cache import cache
 from django.urls import reverse
 from django.conf import settings
 from drf_spectacular.utils import extend_schema
@@ -20,6 +20,7 @@ from .serializers import (
 )
 from .models import User, Vendor
 from .permissions import IsProcurementOfficer
+from .tasks import (send_password_change_email, send_password_reset_email, send_password_reset_confirm_email, send_register_email, send_update_profile_email)
 
 
 class MyTokenObtainPairView(TokenObtainPairView):
@@ -33,6 +34,14 @@ class ChangePasswordView(generics.UpdateAPIView):
 
     def get_object(self):
         return self.request.user
+
+    def update(self, request, *args, **kwargs):
+        response = super().update(request, *args, **kwargs)
+
+        # Send password change email confirmation asynchronously
+        send_password_change_email.delay(request.user.email)
+
+        return response
 
 
 class PasswordResetView(generics.CreateAPIView):
@@ -50,17 +59,11 @@ class PasswordResetView(generics.CreateAPIView):
         password_reset_url = reverse(
             "password_reset_confirm", kwargs={"pk": pk, "token": token}
         )
+        
+        password_reset_url = settings.FRONTEND_URL + password_reset_url
 
-        print(password_reset_url)
-
-        # Send password reset email
-        send_mail(
-            subject="Password Reset Request",
-            message=f"Click the link to reset your password: {password_reset_url}",
-            from_email=settings.EMAIL_HOST_USER,
-            recipient_list=[user.email],
-            fail_silently=False,
-        )
+        # Send password reset email asynchronously
+        send_password_reset_email.delay(user.email, password_reset_url)
 
         return Response({"success": "Password reset email sent."})
 
@@ -79,7 +82,7 @@ class PasswordResetConfirmView(generics.UpdateAPIView):
 
         if not default_token_generator.check_token(user, token):
             raise exceptions.NotFound("Invalid token")
-
+        
         return user
 
     def update(self, request, *args, **kwargs):
@@ -89,6 +92,10 @@ class PasswordResetConfirmView(generics.UpdateAPIView):
         password = serializer.validated_data["password"]
         user.set_password(password)
         user.save()
+
+        # Send password reset email confirmation asynchronously
+        send_password_reset_confirm_email.delay(user.email)
+
         return Response({"detail": "Password reset successful"})
 
 
@@ -97,11 +104,21 @@ class ProcurementOfficerRegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = ProcurementOfficerRegisterSerializer
 
+    def perform_create(self, serializer):
+        user = serializer.save()
+        send_register_email.delay(user.email)
+
 
 class VendorRegisterView(generics.CreateAPIView):
     permission_classes = [AllowAny]
     queryset = User.objects.all()
     serializer_class = VendorRegisterSerializer
+
+    def perform_create(self, serializer):
+        user = serializer.save()
+        send_register_email.delay(user.email)
+        cache_key = 'vendor_list'
+        cache.delete(cache_key)
 
 
 class UserProfileView(generics.RetrieveAPIView):
@@ -121,6 +138,10 @@ class UpdateUserProfileView(generics.UpdateAPIView):
 
     def update(self, request, *args, **kwargs):
         response = super().update(request, *args, **kwargs)
+
+        # Send updated profile email confirmation asynchronously
+        send_update_profile_email.delay(request.user.email)
+
         return response
 
 
@@ -139,6 +160,17 @@ class VendorView(generics.ListAPIView):
     permission_classes = [IsAuthenticated, IsAdminUser | IsProcurementOfficer]
     queryset = Vendor.objects.all()
     serializer_class = VendorSerializer
+
+    def list(self, request, *args, **kwargs):
+        cache_key = 'vendor_list'
+        cached_data = cache.get(cache_key)
+
+        if cached_data is not None:
+            return Response(cached_data)
+
+        response = super().list(request, *args, **kwargs)
+        cache.set(cache_key, response.data, timeout=60*60*24*7)
+        return response
 
 
 @extend_schema(exclude=True)

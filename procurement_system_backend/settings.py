@@ -2,6 +2,8 @@ import os
 from pathlib import Path
 from datetime import timedelta
 from dotenv import load_dotenv
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 load_dotenv()
 
@@ -19,6 +21,19 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG")
 
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(" ")
+
+FRONTEND_URL = os.getenv("FRONTEND_URL")
+
+sentry_sdk.init(
+    dsn=os.getenv("SENTRY_DSN"),
+    integrations=[DjangoIntegration()],
+    # Set traces_sample_rate to 1.0 to capture 100% of transactions for performance monitoring.
+    traces_sample_rate=1.0,
+    # Set profiles_sample_rate to 1.0 to profile 100% of sampled transactions.
+    profiles_sample_rate=1.0,
+    # Set send_default_pii to True to send personally identifiable information (PII) like the user's IP address.
+    send_default_pii=True,
+)
 
 
 # Application definition
@@ -39,6 +54,8 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     "rest_framework_simplejwt.token_blacklist",
     "drf_spectacular",
+    "django_celery_results",
+    "django_celery_beat",
     # Internal
     "accounts",
     "inventory",
@@ -88,6 +105,16 @@ DATABASES = {
     }
 }
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': os.getenv("REDIS_URL"),
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            'PASSWORD': os.getenv("REDIS_PASSWORD"),
+        }
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -205,3 +232,12 @@ SPECTACULAR_SETTINGS = {
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
 }
+
+# Celery settings
+CELERY_BROKER_URL = f'redis://default:{os.getenv("REDIS_PASSWORD")}@{os.getenv("REDIS_URL").replace("redis://", "")}'
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_RESULT_EXTENDED = True
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
