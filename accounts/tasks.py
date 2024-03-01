@@ -4,6 +4,18 @@ from django.conf import settings
 
 
 @shared_task
+def send_password_change_email(user_email):
+    send_mail(
+        subject="Password Change Confirmation",
+        message="Your password has been changed successfully.",
+        from_email=settings.EMAIL_HOST_USER,
+        recipient_list=[user_email],
+        fail_silently=True,
+    )
+    return "Password change confirmation email sent"
+
+
+@shared_task
 def send_password_reset_email(user_email, password_reset_url):
     send_mail(
         subject="Password Reset Request",
@@ -37,3 +49,15 @@ def send_register_email(user_email):
         fail_silently=True,
     )
     return "Registration confirmation email sent"
+
+
+@shared_task
+def send_update_profile_email(user_email):
+    send_mail(
+        subject = 'Profile Update Confirmation',
+        message = 'Your profile has been updated successfully.',
+        from_email=settings.EMAIL_HOST_USER,
+        recipient_list=[user_email],
+        fail_silently=True,
+    )
+    return "Profile update confirmation email sent"

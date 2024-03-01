@@ -20,7 +20,7 @@ from .serializers import (
 )
 from .models import User, Vendor
 from .permissions import IsProcurementOfficer
-from .tasks import send_password_reset_email, send_password_reset_confirm_email, send_register_email
+from .tasks import (send_password_change_email, send_password_reset_email, send_password_reset_confirm_email, send_register_email, send_update_profile_email)
 
 
 class MyTokenObtainPairView(TokenObtainPairView):
@@ -34,6 +34,14 @@ class ChangePasswordView(generics.UpdateAPIView):
 
     def get_object(self):
         return self.request.user
+
+    def update(self, request, *args, **kwargs):
+        response = super().update(request, *args, **kwargs)
+
+        # Send password change email confirmation asynchronously
+        send_password_change_email.delay(request.user.email)
+
+        return response
 
 
 class PasswordResetView(generics.CreateAPIView):
@@ -128,6 +136,10 @@ class UpdateUserProfileView(generics.UpdateAPIView):
 
     def update(self, request, *args, **kwargs):
         response = super().update(request, *args, **kwargs)
+
+        # Send updated profile email confirmation asynchronously
+        send_update_profile_email.delay(request.user.email)
+
         return response
 
 
