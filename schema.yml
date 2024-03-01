@@ -1156,14 +1156,8 @@ components:
           readOnly: true
         stock_quantity:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
         demand:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
         datetime:
           type: string
           format: date-time
@@ -1188,9 +1182,6 @@ components:
           pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
         stock_quantity:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
         location:
           type: string
           maxLength: 255
@@ -1244,9 +1235,6 @@ components:
           format: double
         lead_time:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
           nullable: true
         service_level:
           type: number
@@ -1266,15 +1254,9 @@ components:
           nullable: true
         shelf_life:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
           nullable: true
         storage_limit:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
           nullable: true
         eoq:
           type: number
@@ -1478,9 +1460,6 @@ components:
           pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
         stock_quantity:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
         location:
           type: string
           maxLength: 255
@@ -1513,9 +1492,6 @@ components:
           format: double
         lead_time:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
           nullable: true
         service_level:
           type: number
@@ -1535,15 +1511,9 @@ components:
           nullable: true
         shelf_life:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
           nullable: true
         storage_limit:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
           nullable: true
         eoq:
           type: number
@@ -1606,9 +1576,6 @@ components:
           readOnly: true
         quantity_requested:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
         expected_delivery_date:
           type: string
           format: date
@@ -1633,9 +1600,6 @@ components:
           readOnly: true
         quantity_fulfilled:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
         unit_price:
           type: string
           format: decimal
@@ -1646,9 +1610,6 @@ components:
           readOnly: true
         days_delivery:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
         attachments:
           type: string
           format: uri
@@ -1747,9 +1708,6 @@ components:
           readOnly: true
         quantity_requested:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
         expected_delivery_date:
           type: string
           format: date
@@ -1795,9 +1753,6 @@ components:
           readOnly: true
         quantity_requested:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
         expected_delivery_date:
           type: string
           format: date
@@ -1840,9 +1795,6 @@ components:
           readOnly: true
         quantity_fulfilled:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
         unit_price:
           type: string
           format: decimal
@@ -1853,9 +1805,6 @@ components:
           readOnly: true
         days_delivery:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
         attachments:
           type: string
           format: uri
@@ -1881,9 +1830,6 @@ components:
           readOnly: true
         quantity_fulfilled:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
         unit_price:
           type: string
           format: decimal
@@ -1894,9 +1840,6 @@ components:
           readOnly: true
         days_delivery:
           type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
         attachments:
           type: string
           format: uri
