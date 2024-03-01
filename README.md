@@ -27,7 +27,7 @@
 
 <div align="center">
 
-[![](https://custom-icon-badges.demolab.com/badge/Documentation-deployed-default?style=flat&logo=github pages&logoColor=default)](https://sahil-gidwani.github.io/procurement-system-backend/ "Go to documentation")
+[![](https://custom-icon-badges.demolab.com/badge/Documentation-deployed-default?style=flat&logo=github%20pages&logoColor=default)](https://sahil-gidwani.github.io/procurement-system-backend/ "Go to documentation")
 
 </div>
 
