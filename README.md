@@ -1,5 +1,13 @@
 # procurement-system-backend
 
+## Deployment Status
+
+<div align="center">
+
+[![](https://custom-icon-badges.demolab.com/badge/Render-Deployed-default?style=flat&logo=render&logoColor=default)](https://django-e7pz.onrender.com)
+
+</div>
+
 ## Workflow Status
 
 <div align="center">
@@ -44,6 +52,14 @@
 <div align="center">
 
 [![](https://custom-icon-badges.demolab.com/badge/Sentry-Status-green?style=flat&logo=sentry&logoColor=purple)](https://sahil-gidwani.sentry.io/projects/procurement-system-backend/?project=4506820636573696 "Link to Sentry dashboard")
+
+</div>
+
+## Vulnerability Scanning
+
+<div align="center">
+
+[![Snyk Monitoring](https://snyk.io/test/github/sahil-gidwani/procurement-system-backend/badge.svg)](https://snyk.io/test/github/sahil-gidwani/procurement-system-backend "Link to Snyk Dashboard")
 
 </div>
 
