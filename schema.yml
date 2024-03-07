@@ -764,6 +764,121 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedPurchaseRequisitionVendorList'
           description: ''
+  /purchase/purchase-orders/list/:
+    get:
+      operationId: purchase_purchase_orders_list_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - purchase
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedPurchaseOrderList'
+          description: ''
+  /purchase/purchase-orders/vendor/{id}/status/:
+    put:
+      operationId: purchase_purchase_orders_vendor_status_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - purchase
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PurchaseOrderStatus'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PurchaseOrderStatus'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PurchaseOrderStatus'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseOrderStatus'
+          description: ''
+    patch:
+      operationId: purchase_purchase_orders_vendor_status_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - purchase
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedPurchaseOrderStatus'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedPurchaseOrderStatus'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedPurchaseOrderStatus'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseOrderStatus'
+          description: ''
+  /purchase/purchase-orders/vendor/list/:
+    get:
+      operationId: purchase_purchase_orders_vendor_list_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - purchase
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedPurchaseOrderList'
+          description: ''
   /purchase/purchase-requisitions/{id}/:
     get:
       operationId: purchase_purchase_requisitions_retrieve
@@ -1078,6 +1193,87 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedSupplierBidList'
           description: ''
+  /purchase/supplier-bids/procurement-officer/{id}/:
+    get:
+      operationId: purchase_supplier_bids_procurement_officer_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - purchase
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupplierBidProcurementOfficer'
+          description: ''
+  /purchase/supplier-bids/procurement-officer/{id}/status/:
+    put:
+      operationId: purchase_supplier_bids_procurement_officer_status_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - purchase
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupplierBidProcurementOfficerStatus'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SupplierBidProcurementOfficerStatus'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SupplierBidProcurementOfficerStatus'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupplierBidProcurementOfficerStatus'
+          description: ''
+    patch:
+      operationId: purchase_supplier_bids_procurement_officer_status_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - purchase
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedSupplierBidProcurementOfficerStatus'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedSupplierBidProcurementOfficerStatus'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedSupplierBidProcurementOfficerStatus'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupplierBidProcurementOfficerStatus'
+          description: ''
   /purchase/supplier-bids/procurement-officer/list/{requisition_id}/:
     get:
       operationId: purchase_supplier_bids_procurement_officer_list_list
@@ -1311,6 +1507,26 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Inventory'
+    PaginatedPurchaseOrderList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseOrder'
     PaginatedPurchaseRequisitionList:
       type: object
       properties:
@@ -1557,6 +1773,11 @@ components:
           type: string
           pattern: ^\d{2}[A-Z]{5}\d{4}[A-Z]{1}\d[Z]{1}[A-Z\d]{1}$
           maxLength: 15
+    PatchedPurchaseOrderStatus:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/Status536Enum'
     PatchedPurchaseRequisition:
       type: object
       properties:
@@ -1617,6 +1838,11 @@ components:
         comments:
           type: string
           nullable: true
+    PatchedSupplierBidProcurementOfficerStatus:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/StatusC90Enum'
     ProcurementOfficerRegister:
       type: object
       properties:
@@ -1689,6 +1915,46 @@ components:
       - email
       - gstin
       - username
+    PurchaseOrder:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        quantity_ordered:
+          type: integer
+          readOnly: true
+        unit_price:
+          type: number
+          format: double
+          readOnly: true
+        expected_delivery_date:
+          type: string
+          readOnly: true
+        order_number:
+          type: string
+          maxLength: 255
+        date_ordered:
+          type: string
+          format: date
+          readOnly: true
+        status:
+          $ref: '#/components/schemas/Status536Enum'
+        bid:
+          type: integer
+      required:
+      - bid
+      - date_ordered
+      - expected_delivery_date
+      - id
+      - order_number
+      - quantity_ordered
+      - unit_price
+    PurchaseOrderStatus:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/Status536Enum'
     PurchaseRequisition:
       type: object
       properties:
@@ -1777,7 +2043,17 @@ components:
       - procurement_officer
       - quantity_requested
       - requisition_number
-    StatusEnum:
+    Status536Enum:
+      enum:
+      - pending
+      - shipped
+      - delivered
+      type: string
+      description: |-
+        * `pending` - Pending
+        * `shipped` - Shipped
+        * `delivered` - Delivered
+    StatusC90Enum:
       enum:
       - submitted
       - accepted
@@ -1828,6 +2104,9 @@ components:
           type: number
           format: double
           readOnly: true
+        total_ratings:
+          type: integer
+          readOnly: true
         quantity_fulfilled:
           type: integer
         unit_price:
@@ -1848,7 +2127,7 @@ components:
           type: string
           nullable: true
         status:
-          $ref: '#/components/schemas/StatusEnum'
+          $ref: '#/components/schemas/StatusC90Enum'
         supplier:
           type: integer
       required:
@@ -1858,7 +2137,13 @@ components:
       - quantity_fulfilled
       - supplier
       - supplier_rating
+      - total_ratings
       - unit_price
+    SupplierBidProcurementOfficerStatus:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/StatusC90Enum'
     TokenRefresh:
       type: object
       properties:
@@ -1911,6 +2196,8 @@ components:
           format: double
           maximum: 5.0
           minimum: 0.0
+        total_ratings:
+          type: integer
         user:
           type: integer
       required:
@@ -1919,7 +2206,6 @@ components:
       - id
       - user
       - vendor_name
-      - vendor_rating
       - vendor_type
     VendorInfo:
       type: object
@@ -1945,7 +2231,6 @@ components:
       - address
       - contract_expiry_date
       - vendor_name
-      - vendor_rating
       - vendor_type
     VendorRegister:
       type: object

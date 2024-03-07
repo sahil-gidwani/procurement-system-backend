@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from rest_framework import generics
+from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
@@ -15,7 +15,9 @@ from .serializers import (
     PurchaseRequisitionVendorSerializer,
     SupplierBidSerializer,
     SupplierBidProcurementOfficerSerializer,
+    SupplierBidProcurementOfficerStatusSerializer,
     PurchaseOrderSerializer,
+    PurchaseOrderStatusSerializer
 )
 from inventory.models import Inventory
 from accounts.permissions import IsProcurementOfficer, IsVendor
@@ -161,6 +163,7 @@ class SupplierBidProcurementOfficerRankingView(generics.GenericAPIView):
         df["quantity_fulfilled"] = pd.to_numeric(df["quantity_fulfilled"])
         df["days_delivery"] = pd.to_numeric(df["days_delivery"])
         df["supplier_rating"] = pd.to_numeric(df["supplier_rating"])
+        df["total_ratings"] = pd.to_numeric(df["total_ratings"])
         df["total_cost"] = df["unit_price"] * df["quantity_fulfilled"]
 
         # Multi-Criteria Evaluation using TOPSIS - Technique for Order of Preference by Similarity to Ideal Solution
@@ -168,16 +171,17 @@ class SupplierBidProcurementOfficerRankingView(generics.GenericAPIView):
         # 1. Normalize the Decision Matrix
         norm_df = df.copy()
         norm_df = norm_df[
-            ["unit_price", "total_cost", "days_delivery", "supplier_rating"]
+            ["unit_price", "total_cost", "days_delivery", "supplier_rating", "total_ratings"]
         ]
         norm_df = (norm_df - norm_df.min()) / (norm_df.max() - norm_df.min())
 
         # 2. Define weights for each criterion
         weights = {
-            "unit_price": 0.125,
-            "days_delivery": 0.125,
-            "supplier_rating": 0.25,
-            "total_cost": 0.5,
+            "unit_price": 0.25,
+            "total_cost": 0.25,
+            "days_delivery": 0.25,
+            "supplier_rating": 0.125,
+            "total_ratings": 0.125,
         }
 
         # 3. Multiply the normalized decision matrix by the weights to get the weighted normalized decision matrix
@@ -188,18 +192,20 @@ class SupplierBidProcurementOfficerRankingView(generics.GenericAPIView):
         PIS = pd.Series(
             {
                 "unit_price": norm_df["unit_price"].min(),
+                "total_cost": norm_df["total_cost"].min(),
                 "days_delivery": norm_df["days_delivery"].min(),
                 "supplier_rating": norm_df["supplier_rating"].max(),
-                "total_cost": norm_df["total_cost"].min(),
+                "total_ratings": norm_df["total_ratings"].max(),
             }
         )
 
         NIS = pd.Series(
             {
                 "unit_price": norm_df["unit_price"].max(),
+                "total_cost": norm_df["total_cost"].max(),
                 "days_delivery": norm_df["days_delivery"].max(),
                 "supplier_rating": norm_df["supplier_rating"].min(),
-                "total_cost": norm_df["total_cost"].max(),
+                "total_ratings": norm_df["total_ratings"].min(),
             }
         )
 
@@ -223,7 +229,7 @@ class SupplierBidProcurementOfficerRankingView(generics.GenericAPIView):
         df_json = df.to_json(orient="records")
 
         # Create the radar chart
-        criteria = ["unit_price", "days_delivery", "supplier_rating", "total_cost"]
+        criteria = ["unit_price", "total_cost", "days_delivery", "supplier_rating", "total_ratings"]
         norm_values = norm_df.values.tolist()
         alternative_names = list(norm_df["rank"])
         fig = go.Figure()
@@ -248,7 +254,7 @@ class SupplierBidProcurementOfficerRankingView(generics.GenericAPIView):
             color="rank",
             color_continuous_scale=px.colors.sequential.Viridis,
             labels={"rank": "Rank"},
-            dimensions=["unit_price", "days_delivery", "supplier_rating", "total_cost"],
+            dimensions=["unit_price", "total_cost", "days_delivery", "supplier_rating", "total_ratings"],
         )
         fig.update_layout(
             title="Multi-Criteria Evaluation: Parallel Coordinates of Bids Ranking",
@@ -263,6 +269,125 @@ class SupplierBidProcurementOfficerRankingView(generics.GenericAPIView):
             "parallel_plot": parallel_plot_json,
         }
         return Response(response_data, content_type="application/json")
+
+
+class SupplierBidProcurementOfficerRetrieveView(generics.RetrieveAPIView):
+    permission_classes = [IsAuthenticated, IsProcurementOfficer]
+    serializer_class = SupplierBidProcurementOfficerSerializer
+
+    def get_queryset(self):
+        return SupplierBid.objects.filter(
+            requisition__inventory__procurement_officer=self.request.user,
+            id=self.kwargs.get("pk"),
+        )
+
+
+class SupplierBidProcurementOfficerStatusView(generics.UpdateAPIView):
+    permission_classes = [IsAuthenticated, IsProcurementOfficer]
+    serializer_class = SupplierBidProcurementOfficerStatusSerializer
+
+    def get_queryset(self):
+        return SupplierBid.objects.filter(
+            requisition__inventory__procurement_officer=self.request.user,
+            id=self.kwargs.get("pk"),
+        )
+    
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+
+        bid_status = serializer.validated_data['status']
+        if bid_status not in ['accepted', 'rejected']:
+            return Response({"error": "Bid status can only be 'accepted' or 'rejected'."}, status=status.HTTP_400_BAD_REQUEST)
+        
+        if instance.status != 'submitted':
+            return Response({"error": "Bid status already modified."}, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Custom logic for updating requisition and creating purchase order
+        if bid_status == 'accepted':
+            requisition = instance.requisition
+            if SupplierBid.objects.filter(requisition=requisition, status='accepted').exists():
+                # If another bid is already accepted, do not update the status
+                return Response({"error": "Another bid is already accepted for this requisition."}, status=status.HTTP_400_BAD_REQUEST)
+
+            # No other bids are accepted, proceed with the update
+            self.perform_update(serializer)
+
+            requisition.status = 'accepted'
+            requisition.save()
+            
+            # Reject all other bids associated with the requisition
+            other_bids = SupplierBid.objects.filter(requisition=requisition).exclude(id=instance.id)
+            other_bids.update(status='rejected')
+
+            # Create a purchase order automatically
+            purchase_order = PurchaseOrder.objects.create(
+                order_number=f"PO-{requisition.requisition_number}",
+                bid_id=instance.id,
+            )
+            purchase_order.save()
+
+            return Response(serializer.data)
+
+        elif bid_status == 'rejected':
+            # Only perform serializer update if bid is rejected
+            self.perform_update(serializer)
+            return Response(serializer.data)
+
+
+class PurchaseOrderListView(generics.ListAPIView):
+    permission_classes = [IsAuthenticated, IsProcurementOfficer]
+    serializer_class = PurchaseOrderSerializer
+
+    def get_queryset(self):
+        return PurchaseOrder.objects.filter(
+            bid__requisition__inventory__procurement_officer=self.request.user
+        )
+
+
+class PurchaseOrderVendorListView(generics.ListAPIView):
+    permission_classes = [IsAuthenticated, IsVendor]
+    serializer_class = PurchaseOrderSerializer
+
+    def get_queryset(self):
+        return PurchaseOrder.objects.filter(
+            bid__supplier=self.request.user
+        )
+
+
+class PurchaseOrderVendorStatusView(generics.UpdateAPIView):
+    permission_classes = [IsAuthenticated, IsVendor]
+    serializer_class = PurchaseOrderStatusSerializer
+
+    def get_queryset(self):
+        return PurchaseOrder.objects.filter(
+            bid__supplier=self.request.user,
+            id=self.kwargs.get("pk"),
+        )
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+
+        new_status = serializer.validated_data.get('status')
+
+        # Check if the status transition is valid
+        if instance.status == 'delivered':
+            return Response({"error": "Order is already delivered."}, status=status.HTTP_400_BAD_REQUEST)
+        elif instance.status == 'shipped' and new_status == 'shipped':
+            return Response({"error": "Order is already shipped."}, status=status.HTTP_400_BAD_REQUEST)
+        elif new_status not in ['shipped', 'delivered']:
+            return Response({"error": "Invalid status transition."}, status=status.HTTP_400_BAD_REQUEST)
+        elif new_status == 'delivered' and instance.status != 'shipped':
+            return Response({"error": "Order must be shipped before it can be delivered."}, status=status.HTTP_400_BAD_REQUEST)
+
+        instance.status = new_status
+        instance.save()
+
+        return Response(serializer.data)
 
 
 @extend_schema(exclude=True)

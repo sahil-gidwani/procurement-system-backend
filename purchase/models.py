@@ -58,8 +58,6 @@ class SupplierBid(models.Model):
 class PurchaseOrder(models.Model):
     order_number = models.CharField(max_length=255)
     date_ordered = models.DateField(auto_now_add=True)
-    quantity_ordered = models.IntegerField()
-    unit_price = models.DecimalField(max_digits=10, decimal_places=2)
     STATUS_CHOICES = [
         ("pending", "Pending"),
         ("shipped", "Shipped"),

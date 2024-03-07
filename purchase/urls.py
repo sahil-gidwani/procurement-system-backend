@@ -68,4 +68,29 @@ urlpatterns = [
         views.SupplierBidProcurementOfficerRankingView.as_view(),
         name="supplier_bid_procurement_officer_ranking",
     ),
+    path(
+        "supplier-bids/procurement-officer/<int:pk>/", 
+        views.SupplierBidProcurementOfficerRetrieveView.as_view(), 
+        name="supplier_bid_procurement_officer_detail"
+    ),
+    path(
+        "supplier-bids/procurement-officer/<int:pk>/status/",
+        views.SupplierBidProcurementOfficerStatusView.as_view(),
+        name="supplier_bid_procurement_officer_status",
+    ),
+    path(
+        "purchase-orders/list/",
+        views.PurchaseOrderListView.as_view(),
+        name="purchase_order_list",
+    ),
+    path(
+        "purchase-orders/vendor/list/",
+        views.PurchaseOrderVendorListView.as_view(),
+        name="purchase_order_vendor_list",
+    ),
+    path(
+        "purchase-orders/vendor/<int:pk>/status/",
+        views.PurchaseOrderVendorStatusView.as_view(),
+        name="purchase_order_vendor_status",
+    ),
 ]

@@ -39,8 +39,9 @@ class Vendor(models.Model):
     contract_expiry_date = models.DateField()
     # rating_count = models.PositiveIntegerField(default=0)
     vendor_rating = models.FloatField(
-        validators=[MinValueValidator(0.0), MaxValueValidator(5.0)]
+        validators=[MinValueValidator(0.0), MaxValueValidator(5.0)], default=0.0
     )
+    total_ratings = models.PositiveIntegerField(default=0)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):
