@@ -1,4 +1,6 @@
 from django.shortcuts import get_object_or_404
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.decorators import api_view, permission_classes
@@ -55,6 +57,7 @@ class BasePurchaseRequisitionAPIView(generics.GenericAPIView):
         return obj
 
 
+@method_decorator(cache_page(60 * 15), name="dispatch")
 class PurchaseRequisitionListView(BasePurchaseRequisitionAPIView, generics.ListAPIView):
     pass
 
@@ -90,6 +93,7 @@ class PurchaseRequisitionDeleteView(
     pass
 
 
+@method_decorator(cache_page(60 * 15), name="dispatch")
 class PurchaseRequisitionVendorListView(generics.ListAPIView):
     permission_classes = [IsAuthenticated, IsVendor]
     serializer_class = PurchaseRequisitionVendorSerializer
@@ -116,6 +120,7 @@ class BaseSupplierAPIView(generics.GenericAPIView):
         return obj
 
 
+@method_decorator(cache_page(60 * 15), name="dispatch")
 class SupplierBidListView(BaseSupplierAPIView, generics.ListAPIView):
     pass
 
@@ -142,6 +147,7 @@ class SupplierBidDeleteView(BaseSupplierAPIView, generics.DestroyAPIView):
     pass
 
 
+@method_decorator(cache_page(60 * 15), name="dispatch")
 class SupplierBidProcurementOfficerListView(generics.ListAPIView):
     permission_classes = [IsAuthenticated, IsProcurementOfficer]
     serializer_class = SupplierBidProcurementOfficerSerializer
@@ -354,6 +360,7 @@ class SupplierBidProcurementOfficerStatusView(generics.UpdateAPIView):
             return Response(serializer.data)
 
 
+@method_decorator(cache_page(60 * 15), name="dispatch")
 class PurchaseOrderListView(generics.ListAPIView):
     permission_classes = [IsAuthenticated, IsProcurementOfficer]
     serializer_class = PurchaseOrderSerializer
@@ -364,6 +371,7 @@ class PurchaseOrderListView(generics.ListAPIView):
         )
 
 
+@method_decorator(cache_page(60 * 15), name="dispatch")
 class PurchaseOrderVendorListView(generics.ListAPIView):
     permission_classes = [IsAuthenticated, IsVendor]
     serializer_class = PurchaseOrderSerializer
