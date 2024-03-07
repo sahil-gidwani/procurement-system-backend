@@ -19,6 +19,14 @@ from .serializers import (
     PurchaseOrderSerializer,
     PurchaseOrderStatusSerializer
 )
+from .tasks import (
+    send_supplier_bid_email,
+    send_bid_accepted_email,
+    send_bid_rejected_email,
+    send_requisition_accepted_email,
+    send_purchase_order_email,
+    send_purchase_order_status_email
+)
 from inventory.models import Inventory
 from accounts.permissions import IsProcurementOfficer, IsVendor
 
@@ -119,6 +127,7 @@ class SupplierBidCreateView(BaseSupplierAPIView, generics.CreateAPIView):
         requisition_id = self.kwargs.get("requisition_id")
         requisition = get_object_or_404(PurchaseRequisition, pk=requisition_id)
         serializer.save(requisition=requisition, supplier=self.request.user)
+        send_supplier_bid_email.delay(requisition.inventory.procurement_officer.email, self.request.user.vendor.vendor_name, requisition.requisition_number)
 
 
 class SupplierBidRetrieveView(BaseSupplierAPIView, generics.RetrieveAPIView):
@@ -314,13 +323,19 @@ class SupplierBidProcurementOfficerStatusView(generics.UpdateAPIView):
 
             # No other bids are accepted, proceed with the update
             self.perform_update(serializer)
+            send_bid_accepted_email.delay(instance.supplier.email, instance.id, requisition.requisition_number)
 
             requisition.status = 'accepted'
             requisition.save()
+            send_requisition_accepted_email.delay(requisition.inventory.procurement_officer.email, requisition.requisition_number)
             
             # Reject all other bids associated with the requisition
             other_bids = SupplierBid.objects.filter(requisition=requisition).exclude(id=instance.id)
             other_bids.update(status='rejected')
+
+            # Convert the QuerySet to a list and extract the email addresses
+            supplier_emails = list(other_bids.values_list('supplier__email', flat=True))
+            send_bid_rejected_email.delay(supplier_emails, instance.id, requisition.requisition_number)
 
             # Create a purchase order automatically
             purchase_order = PurchaseOrder.objects.create(
@@ -328,12 +343,14 @@ class SupplierBidProcurementOfficerStatusView(generics.UpdateAPIView):
                 bid_id=instance.id,
             )
             purchase_order.save()
+            send_purchase_order_email.delay([instance.supplier.email, requisition.inventory.procurement_officer.email], instance.id, requisition.requisition_number, purchase_order.order_number)
 
             return Response(serializer.data)
 
         elif bid_status == 'rejected':
             # Only perform serializer update if bid is rejected
             self.perform_update(serializer)
+            send_bid_rejected_email.delay([instance.supplier.email], instance.id, instance.requisition.requisition_number)
             return Response(serializer.data)
 
 
@@ -386,6 +403,7 @@ class PurchaseOrderVendorStatusView(generics.UpdateAPIView):
 
         instance.status = new_status
         instance.save()
+        send_purchase_order_status_email.delay(instance.bid.requisition.inventory.procurement_officer.email, instance.order_number, new_status)
 
         return Response(serializer.data)
 
@@ -408,6 +426,11 @@ def getRoutes(request):
         "/supplier-bids/<int:pk>/delete",
         "/supplier-bids/procurement-officer/list/<int:requisition_id>",
         "/supplier-bids/procurement-officer/list/<int:requisition_id>/ranking",
+        "/supplier-bids/procurement-officer/<int:pk>",
+        "/supplier-bids/procurement-officer/<int:pk>/status",
+        "/purchase-orders/list",
+        "/purchase-orders/vendor/list",
+        "/purchase-orders/vendor/<int:pk>/status",
     ]
 
     return Response(routes)
