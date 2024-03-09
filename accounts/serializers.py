@@ -46,9 +46,7 @@ class ChangePasswordSerializer(serializers.Serializer):
     def validate_old_password(self, value):
         user = self.context["request"].user
         if not user.check_password(value):
-            raise serializers.ValidationError(
-                {"Password is incorrect."}
-            )
+            raise serializers.ValidationError("Password is incorrect.")
 
         return value
 
@@ -143,8 +141,6 @@ class VendorInfoSerializer(serializers.ModelSerializer):
             "address",
             "vendor_certified",
             "vendor_type",
-            "contract_expiry_date",
-            "vendor_rating",
         )
 
 
@@ -231,12 +227,6 @@ class ProfileSerializer(serializers.ModelSerializer):
                 "vendor_certified", vendor.vendor_certified
             )
             vendor.vendor_type = vendor_data.get("vendor_type", vendor.vendor_type)
-            vendor.contract_expiry_date = vendor_data.get(
-                "contract_expiry_date", vendor.contract_expiry_date
-            )
-            vendor.vendor_rating = vendor_data.get(
-                "vendor_rating", vendor.vendor_rating
-            )
             vendor.save()
 
         return instance
@@ -252,8 +242,6 @@ class ProfileSerializer(serializers.ModelSerializer):
                 "address": instance.vendor.address,
                 "vendor_certified": instance.vendor.vendor_certified,
                 "vendor_type": instance.vendor.vendor_type,
-                "contract_expiry_date": instance.vendor.contract_expiry_date,
-                "vendor_rating": instance.vendor.vendor_rating,
             }
             representation["vendor"] = vendor_data
 
