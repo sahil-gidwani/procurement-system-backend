@@ -23,6 +23,15 @@ class SupplierBidSerializer(serializers.ModelSerializer):
     class Meta:
         model = SupplierBid
         exclude = ["status", "requisition", "supplier"]
+    
+    def validate_quantity_fulfilled(self, value):
+        requisition = self.initial_data.get("requisition")
+
+        if requisition and value < requisition.quantity_requested:
+            raise serializers.ValidationError(
+                f"Quantity fulfilled must be greater than or equal to quantity requested ({requisition.quantity_requested})."
+            )
+        return value
 
 
 class SupplierBidProcurementOfficerSerializer(serializers.ModelSerializer):
