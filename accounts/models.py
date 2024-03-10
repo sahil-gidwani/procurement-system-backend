@@ -17,6 +17,8 @@ class User(AbstractUser):
         message="Enter a valid GSTIN (Goods and Services Tax Identification Number).",
     )
     gstin = models.CharField(max_length=15, validators=[gstin_validator], unique=True)
+    company_name = models.CharField(max_length=255)
+    address = models.TextField()
     USER_ROLE_CHOICES = [
         ("procurement_officer", "Procurement Officer"),
         ("vendor", "Vendor"),
@@ -28,8 +30,6 @@ class User(AbstractUser):
 
 
 class Vendor(models.Model):
-    vendor_name = models.CharField(max_length=255)
-    address = models.TextField()
     vendor_certified = models.BooleanField(default=False)
     VENDOR_TYPE_CHOICES = [
         ("supplier", "Supplier"),
@@ -45,4 +45,4 @@ class Vendor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.vendor_name)
+        return str(self.user.username)

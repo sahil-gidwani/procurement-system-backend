@@ -132,7 +132,7 @@ class SupplierBidCreateView(BaseSupplierAPIView, generics.CreateAPIView):
         requisition_id = self.kwargs.get("requisition_id")
         requisition = get_object_or_404(PurchaseRequisition, pk=requisition_id)
         serializer.save(requisition=requisition, supplier=self.request.user)
-        send_supplier_bid_email.delay(requisition.inventory.procurement_officer.email, self.request.user.vendor.vendor_name, requisition.requisition_number)
+        send_supplier_bid_email.delay(requisition.inventory.procurement_officer.email, self.request.user.company_name, requisition.requisition_number)
 
 
 class SupplierBidRetrieveView(BaseSupplierAPIView, generics.RetrieveAPIView):

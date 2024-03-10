@@ -1,6 +1,6 @@
 from rest_framework import generics, exceptions, serializers
 from rest_framework.response import Response
-from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework.decorators import api_view, permission_classes
 from django.contrib.auth.tokens import default_token_generator
@@ -32,6 +32,10 @@ from .tasks import (
 class MyTokenObtainPairView(TokenObtainPairView):
     permission_classes = [AllowAny]
     serializer_class = MyTokenObtainPairSerializer
+
+
+class MyTokenRefreshView(TokenRefreshView):
+    permission_classes = [AllowAny]
 
 
 class ChangePasswordView(generics.UpdateAPIView):
@@ -189,7 +193,7 @@ def getRoutes(request):
         "/token/verify",
         "/change-password",
         "/password-reset",
-        "/password-reset-confirm/<int:pk>/<str:token>/",
+        "/password-reset-confirm/<int:pk>/<str:token>",
         "/register/procurement-officer",
         "/register/vendor",
         "/profile",

@@ -9,12 +9,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def get_token(cls, user):
         token = super().get_token(user)
         # Add custom claims
-        token["first_name"] = user.first_name
-        token["last_name"] = user.last_name
         token["username"] = user.username
-        token["email"] = user.email
-        token["phone_number"] = user.phone_number
-        token["gstin"] = user.gstin
         token["user_role"] = user.user_role
         token["is_superuser"] = user.is_superuser
         # ...
@@ -106,6 +101,8 @@ class ProcurementOfficerRegisterSerializer(serializers.ModelSerializer):
             "email",
             "phone_number",
             "gstin",
+            "company_name",
+            "address",
             "password1",
             "password2",
         )
@@ -119,14 +116,11 @@ class ProcurementOfficerRegisterSerializer(serializers.ModelSerializer):
         return attrs
 
     def create(self, validated_data):
+        password1 = validated_data.pop("password1", None)
+        password2 = validated_data.pop("password2", None)
         user = User.objects.create_user(
-            username=validated_data["username"],
-            first_name=validated_data["first_name"],
-            last_name=validated_data["last_name"],
-            email=validated_data["email"],
-            phone_number=validated_data["phone_number"],
-            gstin=validated_data["gstin"],
-            password=validated_data["password1"],
+            **validated_data,
+            password=password1,
             user_role="procurement_officer",
         )
 
@@ -137,8 +131,6 @@ class VendorInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vendor
         fields = (
-            "vendor_name",
-            "address",
             "vendor_certified",
             "vendor_type",
         )
@@ -166,6 +158,8 @@ class VendorRegisterSerializer(serializers.ModelSerializer):
             "email",
             "phone_number",
             "gstin",
+            "company_name",
+            "address",
             "password1",
             "password2",
             "vendor_info",
@@ -194,6 +188,7 @@ class VendorRegisterSerializer(serializers.ModelSerializer):
 
 
 class ProfileSerializer(serializers.ModelSerializer):
+    vendor = VendorInfoSerializer(write_only=True, required=False, allow_null=True)
     class Meta:
         model = User
         fields = (
@@ -203,7 +198,19 @@ class ProfileSerializer(serializers.ModelSerializer):
             "email",
             "phone_number",
             "gstin",
+            "company_name",
+            "address",
+            "vendor",
         )
+    
+    def __init__(self, *args, **kwargs):
+        super(ProfileSerializer, self).__init__(*args, **kwargs)
+
+        # Adjust the 'required' attribute of the 'vendor' field based on user role
+        if 'context' in kwargs and 'request' in kwargs['context']:
+            user_role = kwargs['context']['request'].user.user_role
+            if user_role == 'procurement_officer':
+                self.fields['vendor'].required = False
 
     def update(self, instance, validated_data):
         # Update user fields
@@ -215,14 +222,15 @@ class ProfileSerializer(serializers.ModelSerializer):
             "phone_number", instance.phone_number
         )
         instance.gstin = validated_data.get("gstin", instance.gstin)
+        instance.company_name = validated_data.get("company_name", instance.company_name)
+        instance.address = validated_data.get("address", instance.address)
         instance.save()
 
         # Check if the user role is 'vendor' and update vendor info
         if instance.user_role == "vendor":
-            vendor_data = self.validated_data.get("vendor", {})
+            print(validated_data)
+            vendor_data = validated_data.get("vendor", {})
             vendor = instance.vendor
-            vendor.vendor_name = vendor_data.get("vendor_name", vendor.vendor_name)
-            vendor.address = vendor_data.get("address", vendor.address)
             vendor.vendor_certified = vendor_data.get(
                 "vendor_certified", vendor.vendor_certified
             )
@@ -238,10 +246,10 @@ class ProfileSerializer(serializers.ModelSerializer):
         # Check if the user role is 'vendor' and include vendor info
         if instance.user_role == "vendor":
             vendor_data = {
-                "vendor_name": instance.vendor.vendor_name,
-                "address": instance.vendor.address,
                 "vendor_certified": instance.vendor.vendor_certified,
                 "vendor_type": instance.vendor.vendor_type,
+                "contract_expiry_date": instance.vendor.contract_expiry_date,
+                "vendor_rating": instance.vendor.vendor_rating,
             }
             representation["vendor"] = vendor_data
 

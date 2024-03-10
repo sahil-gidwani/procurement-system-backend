@@ -1773,6 +1773,11 @@ components:
           type: string
           pattern: ^\d{2}[A-Z]{5}\d{4}[A-Z]{1}\d[Z]{1}[A-Z\d]{1}$
           maxLength: 15
+        company_name:
+          type: string
+          maxLength: 255
+        address:
+          type: string
     PatchedPurchaseOrderStatus:
       type: object
       properties:
@@ -1871,6 +1876,11 @@ components:
           type: string
           pattern: ^\d{2}[A-Z]{5}\d{4}[A-Z]{1}\d[Z]{1}[A-Z\d]{1}$
           maxLength: 15
+        company_name:
+          type: string
+          maxLength: 255
+        address:
+          type: string
         password1:
           type: string
           writeOnly: true
@@ -1878,6 +1888,8 @@ components:
           type: string
           writeOnly: true
       required:
+      - address
+      - company_name
       - email
       - gstin
       - password1
@@ -1911,7 +1923,14 @@ components:
           type: string
           pattern: ^\d{2}[A-Z]{5}\d{4}[A-Z]{1}\d[Z]{1}[A-Z\d]{1}$
           maxLength: 15
+        company_name:
+          type: string
+          maxLength: 255
+        address:
+          type: string
       required:
+      - address
+      - company_name
       - email
       - gstin
       - username
@@ -2179,11 +2198,6 @@ components:
         id:
           type: integer
           readOnly: true
-        vendor_name:
-          type: string
-          maxLength: 255
-        address:
-          type: string
         vendor_certified:
           type: boolean
         vendor_type:
@@ -2201,36 +2215,17 @@ components:
         user:
           type: integer
       required:
-      - address
-      - contract_expiry_date
       - id
       - user
-      - vendor_name
       - vendor_type
     VendorInfo:
       type: object
       properties:
-        vendor_name:
-          type: string
-          maxLength: 255
-        address:
-          type: string
         vendor_certified:
           type: boolean
         vendor_type:
           $ref: '#/components/schemas/VendorTypeEnum'
-        contract_expiry_date:
-          type: string
-          format: date
-        vendor_rating:
-          type: number
-          format: double
-          maximum: 5.0
-          minimum: 0.0
       required:
-      - address
-      - contract_expiry_date
-      - vendor_name
       - vendor_type
     VendorRegister:
       type: object
@@ -2260,6 +2255,11 @@ components:
           type: string
           pattern: ^\d{2}[A-Z]{5}\d{4}[A-Z]{1}\d[Z]{1}[A-Z\d]{1}$
           maxLength: 15
+        company_name:
+          type: string
+          maxLength: 255
+        address:
+          type: string
         password1:
           type: string
           writeOnly: true
@@ -2271,6 +2271,8 @@ components:
           - $ref: '#/components/schemas/VendorInfo'
           writeOnly: true
       required:
+      - address
+      - company_name
       - email
       - gstin
       - password1
