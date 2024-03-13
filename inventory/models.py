@@ -8,8 +8,8 @@ from accounts.models import User
 class Inventory(models.Model):
     item_name = models.CharField(max_length=255)
     description = models.TextField()
-    unit_price = models.DecimalField(max_digits=10, decimal_places=2)
-    stock_quantity = models.IntegerField()
+    unit_price = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0.0)])
+    stock_quantity = models.PositiveIntegerField()
     location = models.CharField(max_length=255)
     date_added = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
@@ -21,8 +21,8 @@ class Inventory(models.Model):
 
 
 class HistoricalInventory(models.Model):
-    stock_quantity = models.IntegerField()
-    demand = models.IntegerField(default=0)
+    stock_quantity = models.PositiveIntegerField()
+    demand = models.PositiveIntegerField(default=0)
     datetime = models.DateTimeField()
     inventory = models.ForeignKey(Inventory, on_delete=models.CASCADE)
 
@@ -31,20 +31,20 @@ class HistoricalInventory(models.Model):
 
 
 class OptimizedInventory(models.Model):
-    demand = models.FloatField()
-    ordering_cost = models.FloatField()
-    holding_cost = models.FloatField()
-    lead_time = models.IntegerField(null=True, blank=True)
+    demand = models.FloatField(validators=[MinValueValidator(0.0)])
+    ordering_cost = models.FloatField(validators=[MinValueValidator(0.0)])
+    holding_cost = models.FloatField(validators=[MinValueValidator(0.0)])
+    lead_time = models.PositiveIntegerField(null=True, blank=True)
     service_level = models.FloatField(
         validators=[MinValueValidator(0.0), MaxValueValidator(1.0)],
         null=True,
         blank=True,
     )
-    safety_stock = models.FloatField(null=True, blank=True)
-    reorder_point = models.FloatField(null=True, blank=True)
-    shelf_life = models.IntegerField(null=True, blank=True)
-    storage_limit = models.IntegerField(null=True, blank=True)
-    eoq = models.FloatField(null=True, blank=True)
+    safety_stock = models.FloatField(null=True, blank=True, validators=[MinValueValidator(0.0)])
+    reorder_point = models.FloatField(null=True, blank=True, validators=[MinValueValidator(0.0)])
+    shelf_life = models.PositiveIntegerField(null=True, blank=True)
+    storage_limit = models.PositiveIntegerField(null=True, blank=True)
+    eoq = models.FloatField(null=True, blank=True, validators=[MinValueValidator(0.0)])
     inventory = models.OneToOneField(Inventory, on_delete=models.CASCADE)
 
     def __str__(self):
