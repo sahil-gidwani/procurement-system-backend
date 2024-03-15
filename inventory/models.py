@@ -59,13 +59,12 @@ def create_historical_inventory(sender, instance, created, **kwargs):
         .order_by("-datetime")
         .first()
     )
-
+    
+    demand = 0
     if latest_historical_inventory:
         demand = max(
             0, latest_historical_inventory.stock_quantity - instance.stock_quantity
         )
-    else:
-        demand = 0
 
     HistoricalInventory.objects.create(
         stock_quantity=instance.stock_quantity,

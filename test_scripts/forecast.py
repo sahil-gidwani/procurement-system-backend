@@ -48,7 +48,7 @@ for i in range(num_weeks):
 
     # Ensure demand is non-negative
     if demand < 0:
-        demand = 0
+        demand = abs(demand)
 
     # For simplicity, let's assume a constant stock quantity
     stock_quantity = 100
