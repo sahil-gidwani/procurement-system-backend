@@ -1115,7 +1115,8 @@ class UserProfileViewTests(SetUpUsers):
 
 class VendorListViewTests(APITestCase):
     def setUp(self):
-        self.vendor_list_url = reverse("vendor_list")
+        cache.clear()
+
         self.admin_user = User.objects.create_user(
             username="admin",
             email="admin@example.com",
@@ -1142,6 +1143,8 @@ class VendorListViewTests(APITestCase):
             password="testpassword",
             user_role="vendor",
         )
+
+        self.vendor_list_url = reverse("vendor_list")
 
     def test_no_vendors(self):
         self.client.force_authenticate(user=self.admin_user)
