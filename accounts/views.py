@@ -4,7 +4,8 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework.decorators import api_view, permission_classes
 from django.contrib.auth.tokens import default_token_generator
-from django.core.cache import cache
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from django.urls import reverse
 from django.conf import settings
 from drf_spectacular.utils import extend_schema
@@ -86,8 +87,9 @@ class PasswordResetConfirmView(generics.UpdateAPIView):
         pk = self.kwargs.get("pk")
         token = self.kwargs.get("token")
 
-        user = User.objects.get(id=int(pk))
-        if not user:
+        try:
+            user = User.objects.get(id=int(pk))
+        except User.DoesNotExist:
             raise exceptions.NotFound("User Not available")
 
         if not default_token_generator.check_token(user, token):
@@ -127,8 +129,6 @@ class VendorRegisterView(generics.CreateAPIView):
     def perform_create(self, serializer):
         user = serializer.save()
         send_register_email.delay(user.email)
-        cache_key = "vendor_list"
-        cache.delete(cache_key)
 
 
 class UserProfileView(generics.RetrieveAPIView):
@@ -166,21 +166,11 @@ class DeleteUserProfileView(generics.DestroyAPIView):
         return self.request.user
 
 
+@method_decorator(cache_page(60 * 15), name="dispatch")
 class VendorView(generics.ListAPIView):
     permission_classes = [IsAuthenticated, IsAdminUser | IsProcurementOfficer]
     queryset = Vendor.objects.all()
     serializer_class = VendorSerializer
-
-    def list(self, request, *args, **kwargs):
-        cache_key = "vendor_list"
-        cached_data = cache.get(cache_key)
-
-        if cached_data is not None:
-            return Response(cached_data)
-
-        response = super().list(request, *args, **kwargs)
-        cache.set(cache_key, response.data, timeout=60 * 60 * 24 * 7)
-        return response
 
 
 @extend_schema(exclude=True)
