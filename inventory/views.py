@@ -6,11 +6,13 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
+from rest_framework.exceptions import ValidationError
 from django.shortcuts import get_object_or_404
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
+from django.db import IntegrityError
 from drf_spectacular.utils import extend_schema
 import pandas as pd
 import numpy as np
@@ -228,6 +230,17 @@ class ARIMAForecastAPIView(generics.GenericAPIView):
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
+        if len(df.columns) < 2:
+            return Response(
+                {"file": "Insufficient columns in the file"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        elif len(df.columns) > 2:
+            return Response(
+                {"file": "Too many columns in the file"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        
         df.columns = ["datetime", "demand"]
         df["datetime"] = pd.to_datetime(df["datetime"])
         df.set_index("datetime", inplace=True)
@@ -342,12 +355,15 @@ class OptimizedInventoryCreateAPIView(generics.CreateAPIView):
         else:
             eoq = None
 
-        serializer.save(
-            safety_stock=safety_stock,
-            reorder_point=reorder_point,
-            eoq=eoq,
-            inventory_id=inventory_id,
-        )
+        try:
+            serializer.save(
+                safety_stock=safety_stock,
+                reorder_point=reorder_point,
+                eoq=eoq,
+                inventory_id=inventory_id,
+            )
+        except IntegrityError:
+            raise ValidationError("OptimizedInventory already exists for this inventory.")
 
 
 class OptimizedInventoryUpdateAPIView(generics.UpdateAPIView):
@@ -372,6 +388,12 @@ class OptimizedInventoryUpdateAPIView(generics.UpdateAPIView):
             optimized_inventory, data=request.data, partial=partial
         )
         serializer.is_valid(raise_exception=True)
+
+        if not request.data:
+            return Response(
+                {"detail": "No data provided for update"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
 
         inventory = get_object_or_404(Inventory, id=inventory_id)
         if inventory.procurement_officer != self.request.user:
@@ -447,8 +469,13 @@ class BaseOptimizedInventoryAPIView(generics.GenericAPIView):
         inventory_id = self.kwargs.get("inventory_id")
 
         inventory = get_object_or_404(
-            Inventory, id=inventory_id, procurement_officer=self.request.user
+            Inventory, id=inventory_id
         )
+
+        if inventory.procurement_officer != self.request.user:
+            raise PermissionDenied(
+                "You don't have permission to access this OptimizedInventory."
+            )
 
         return OptimizedInventory.objects.filter(inventory=inventory)
 

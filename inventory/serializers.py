@@ -17,8 +17,8 @@ class HistoricalInventorySerializer(serializers.ModelSerializer):
 class OptimizedInventorySerializer(serializers.ModelSerializer):
     class Meta:
         model = OptimizedInventory
-        exclude = ["inventory"]
-        read_only_fields = ["eoq", "safety_stock", "reorder_point"]
+        fields = "__all__"
+        read_only_fields = ["eoq", "safety_stock", "reorder_point", "inventory"]
 
 
 class ARIMAForecastSerializer(serializers.Serializer):

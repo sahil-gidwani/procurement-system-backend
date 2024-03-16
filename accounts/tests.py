@@ -35,6 +35,8 @@ from .models import User, Vendor
 
 class SetUpUsers(APITestCase):
     def setUp(self):
+        cache.clear()
+
         self.procurement_officer = User.objects.create_user(
             first_name="John",
             last_name="Doe",
@@ -64,32 +66,6 @@ class SetUpUsers(APITestCase):
             user=self.vendor,
             vendor_certified=True,
             vendor_type="supplier",
-        )
-
-        self.procurement_officer2 = User.objects.create_user(
-            first_name="John",
-            last_name="Doe",
-            username="procurement_officer2",
-            email="procurement_officer2@example.com",
-            phone_number="1234567891",
-            gstin="32ABCDE1234F1Z5",
-            company_name="Procurement Corporation",
-            address="123 Main St",
-            password="testpassword",
-            user_role="procurement_officer",
-        )
-
-        self.vendor2 = User.objects.create_user(
-            first_name="Jane",
-            last_name="Smith",
-            username="vendor2",
-            email="vendor2@example.com",
-            phone_number="9876543211",
-            gstin="62ABCDE1234F1Z5",
-            company_name="Vendor Corporation",
-            address="123 Main St",
-            password="testpassword",
-            user_role="vendor",
         )
 
         self.token_obtain_url = reverse("token_obtain_pair")
@@ -1139,8 +1115,6 @@ class UserProfileViewTests(SetUpUsers):
 
 class VendorListViewTests(APITestCase):
     def setUp(self):
-        # * Clear cache before each test case method
-        cache.clear()
         self.vendor_list_url = reverse("vendor_list")
         self.admin_user = User.objects.create_user(
             username="admin",
