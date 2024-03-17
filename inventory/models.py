@@ -33,7 +33,7 @@ class HistoricalInventory(models.Model):
 class OptimizedInventory(models.Model):
     demand = models.FloatField(validators=[MinValueValidator(0.0)])
     ordering_cost = models.FloatField(validators=[MinValueValidator(0.0)])
-    holding_cost = models.FloatField(validators=[MinValueValidator(0.0)])
+    holding_cost = models.FloatField(validators=[MinValueValidator(0.01)])
     lead_time = models.PositiveIntegerField(null=True, blank=True)
     service_level = models.FloatField(
         validators=[MinValueValidator(0.0), MaxValueValidator(1.0)],

@@ -724,6 +724,16 @@ class OptimizedInventoryViewsTests(SetupClass, TestCase):
         self.assertEqual(response.data["safety_stock"], None)
         self.assertEqual(response.data["reorder_point"], None)
     
+    def test_optimized_inventory_holding_cost_equals_0(self):
+        self.client.force_authenticate(user=self.procurement_officer)
+        data = {
+            "demand": 100,
+            "ordering_cost": 10,
+            "holding_cost": 0,
+        }
+        response = self.client.post(self.optimized_inventory_create_url2, data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+    
     def test_optimized_inventory_retrieve_view_procurement_officer(self):
         self.client.force_authenticate(user=self.procurement_officer)
         response = self.client.get(self.optimized_inventory_retrieve_url)
