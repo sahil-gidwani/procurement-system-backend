@@ -1,6 +1,30 @@
 from celery import shared_task
 from django.core.mail import send_mail
 from django.conf import settings
+from .models import PurchaseRequisition, SupplierBid
+
+
+@shared_task
+def send_requisition_update_email(requisition_id):
+    requisition = PurchaseRequisition.objects.get(id=requisition_id)
+
+    # Get all vendors who submitted bids for the given requisition
+    submitted_bids = SupplierBid.objects.filter(
+        requisition_id=requisition_id).select_related('supplier')
+
+    # Extract unique email addresses of vendors
+    vendor_emails = set(bid.supplier.email for bid in submitted_bids)
+
+    subject = "Requisition Updated"
+    message = f"Dear Vendor,\n\nRequisition ID {requisition.requisition_number} has been updated.\n\nThank you."
+    send_mail(
+        subject,
+        message,
+        settings.EMAIL_HOST_USER,
+        vendor_emails,
+        fail_silently=True,
+    )
+    return "Requisition update email sent successfully."
 
 
 @shared_task
@@ -15,6 +39,20 @@ def send_supplier_bid_email(procurement_officer_email, supplier_name, requisitio
         fail_silently=True,
     )
     return "Supplier bid email sent successfully."
+
+
+@shared_task
+def send_supplier_bid_update_email(procurement_officer_email, supplier_name, requisition_id):
+    subject = "Supplier Bid Update"
+    message = f"Dear Procurement Officer,\n\n{supplier_name} has updated their bid for requisition ID {requisition_id}.\n\nThank you."
+    send_mail(
+        subject,
+        message,
+        settings.EMAIL_HOST_USER,
+        [procurement_officer_email],
+        fail_silently=True,
+    )
+    return "Supplier bid update email sent successfully."
 
 
 @shared_task

@@ -166,7 +166,7 @@ class DeleteUserProfileView(generics.DestroyAPIView):
         return self.request.user
 
 
-@method_decorator(cache_page(60 * 15), name="dispatch")
+# @method_decorator(cache_page(60 * 15), name="dispatch")
 class VendorView(generics.ListAPIView):
     permission_classes = [IsAuthenticated, IsAdminUser | IsProcurementOfficer]
     queryset = Vendor.objects.all()

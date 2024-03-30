@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator
 from inventory.models import Inventory
 from accounts.models import User
 
@@ -7,7 +8,7 @@ class PurchaseRequisition(models.Model):
     requisition_number = models.CharField(max_length=255)
     date_created = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
-    quantity_requested = models.IntegerField()
+    quantity_requested = models.IntegerField(validators=[MinValueValidator(1)])
     expected_delivery_date = models.DateField()
     URGENCY_LEVEL_CHOICES = [("low", "Low"), ("medium", "Medium"), ("high", "High")]
     urgency_level = models.CharField(
@@ -32,9 +33,9 @@ class PurchaseRequisition(models.Model):
 
 class SupplierBid(models.Model):
     quantity_fulfilled = models.IntegerField()
-    unit_price = models.DecimalField(max_digits=10, decimal_places=2)
+    unit_price = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0.0)])
     date_submitted = models.DateTimeField(auto_now_add=True)
-    days_delivery = models.IntegerField()
+    days_delivery = models.IntegerField(validators=[MinValueValidator(1)])
     attachments = models.ImageField(upload_to="bid", null=True, blank=True)
     comments = models.TextField(null=True, blank=True)
     STATUS_CHOICES = [

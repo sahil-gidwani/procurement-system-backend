@@ -80,7 +80,7 @@ class InventoryDeleteView(BaseInventoryAPIView, generics.DestroyAPIView):
         return response
 
 
-@method_decorator(cache_page(60 * 15), name="dispatch")
+# @method_decorator(cache_page(60 * 15), name="dispatch")
 class HistoricalInventoryListView(generics.ListAPIView):
     permission_classes = [IsAuthenticated, IsProcurementOfficer]
     serializer_class = HistoricalInventorySerializer
@@ -170,7 +170,7 @@ def calculate_auto_arima(monthly_demand):
     return forecast_data
 
 
-@method_decorator(cache_page(60 * 15), name="dispatch")
+# @method_decorator(cache_page(60 * 15), name="dispatch")
 class ARIMAForecastAPIView(generics.GenericAPIView):
     permission_classes = [IsAuthenticated, IsProcurementOfficer]
     serializer_class = ARIMAForecastSerializer

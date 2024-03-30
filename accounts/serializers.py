@@ -208,9 +208,11 @@ class ProfileSerializer(serializers.ModelSerializer):
 
         # Adjust the 'required' attribute of the 'vendor' field based on user role
         if 'context' in kwargs and 'request' in kwargs['context']:
-            user_role = kwargs['context']['request'].user.user_role
-            if user_role == 'procurement_officer':
-                self.fields['vendor'].required = False
+            user = kwargs['context']['request'].user
+            if user.is_authenticated:  # Ensure user is authenticated
+                user_role = user.user_role
+                if user_role == 'procurement_officer':
+                    self.fields['vendor'].required = False
 
     def update(self, instance, validated_data):
         # Update user fields

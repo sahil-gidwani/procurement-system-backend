@@ -63,4 +63,10 @@
 
 </div>
 
-![Lines of code](https://img.shields.io/tokei/lines/github/sahil-gidwani/procurement-system-backend)
+## Lines of Code
+
+<div align="center">
+
+![Lines of code](https://img.shields.io/endpoint?url=https://ghloc.vercel.app/api/sahil-gidwani/procurement-system-backend/badge)
+
+</div>
