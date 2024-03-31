@@ -1,4 +1,6 @@
-# ProcurEase
+<p align="center">
+  <img src="https://github.com/sahil-gidwani/procurement-system-frontend/blob/feature/purchase-pages/src/assets/ProcurEase-logo-orange-tagline.png" alt="AquaProbe Logo" width="350">
+</p>
 
 ## Deployment Status
 
