@@ -28,8 +28,14 @@ urlpatterns = [
         views.PurchaseRequisitionDeleteView.as_view(),
         name="purchase_requisition_delete",
     ),
+    # TODO: Change status of requisition to reject and that rejects all the bids associated with that requisition
+    # path(
+    #     "purchase-requisitions/<int:pk>/status/",
+    #     views.PurchaseRequisitionStatusView.as_view(),
+    #     name="purchase_requisition_status",
+    # ),
     path(
-        "purcase-requisitions/vendor/list/",
+        "purchase-requisitions/vendor/list/",
         views.PurchaseRequisitionVendorListView.as_view(),
         name="purchase_requisition_vendor_list",
     ),

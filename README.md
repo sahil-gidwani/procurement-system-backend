@@ -1,4 +1,4 @@
-# procurement-system-backend
+# ProcurEase
 
 ## Deployment Status
 

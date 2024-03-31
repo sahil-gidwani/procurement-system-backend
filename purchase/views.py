@@ -81,15 +81,16 @@ class PurchaseRequisitionCreateView(
         inventory = get_object_or_404(
             Inventory, pk=inventory_id
         )
+
         if inventory.procurement_officer != self.request.user:
             raise PermissionDenied(
                 "You do not have permission to access this inventory item.")
-        try:
-            serializer.save(inventory=inventory)
-        except IntegrityError:
-            raise ValidationError(
-                "A requisition for this inventory already exists."
-            )
+
+        existing_requisition = PurchaseRequisition.objects.filter(inventory=inventory).exists()
+        if existing_requisition:
+            raise ValidationError("A requisition for this inventory already exists.")
+        
+        serializer.save(inventory=inventory)
 
 
 class PurchaseRequisitionRetrieveView(
@@ -109,12 +110,16 @@ class PurchaseRequisitionUpdateView(
             raise serializers.ValidationError(
                 {"status": "Requisition is already approved."}
             )
-        instance.status = 'pending'
-        instance.save()
-
+        
+        serializer.validated_data['status'] = 'pending'
         serializer.save()
 
         send_requisition_update_email.delay(instance.id)
+    
+    def patch(self, request, *args, **kwargs):
+        if not request.data:
+            return Response({"error": "No data provided"}, status=status.HTTP_400_BAD_REQUEST)
+        return super().patch(request, *args, **kwargs)
 
 
 class PurchaseRequisitionDeleteView(
@@ -223,15 +228,20 @@ class SupplierBidUpdateView(BaseSupplierAPIView, generics.UpdateAPIView):
             )
 
         # Reset status to submitted if the bid is not accepted
-        instance.status = 'submitted'
-        instance.save()
+        serializer.validated_data['status'] = 'submitted'
 
         serializer.save(requisition=requisition, supplier=self.request.user)
+
         send_supplier_bid_update_email.delay(
             requisition.inventory.procurement_officer.email,
             self.request.user.company_name,
             requisition.requisition_number
         )
+    
+    def patch(self, request, *args, **kwargs):
+        if not request.data:
+            return Response({"error": "No data provided"}, status=status.HTTP_400_BAD_REQUEST)
+        return super().patch(request, *args, **kwargs)
 
 
 class SupplierBidDeleteView(BaseSupplierAPIView, generics.DestroyAPIView):
@@ -427,7 +437,11 @@ class SupplierBidProcurementOfficerStatusView(generics.UpdateAPIView):
             instance, data=request.data, partial=partial)
         serializer.is_valid(raise_exception=True)
 
-        bid_status = serializer.validated_data['status']
+        if 'status' not in serializer.validated_data:
+            return Response({"error": "Bid status is required."}, status=status.HTTP_400_BAD_REQUEST)
+
+        bid_status = serializer.validated_data.get('status')
+
         if bid_status not in ['accepted', 'rejected']:
             return Response({"error": "Bid status can only be 'accepted' or 'rejected'."}, status=status.HTTP_400_BAD_REQUEST)
 

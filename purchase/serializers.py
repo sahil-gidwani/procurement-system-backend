@@ -84,6 +84,8 @@ class SupplierBidProcurementOfficerStatusSerializer(serializers.ModelSerializer)
 
 
 class PurchaseOrderSerializer(serializers.ModelSerializer):
+    delivery_location = serializers.ReadOnlyField(
+        source="bid.requisition.inventory.location")
     quantity_ordered = serializers.SerializerMethodField()
     unit_price = serializers.SerializerMethodField()
     expected_delivery_date = serializers.SerializerMethodField()
