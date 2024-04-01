@@ -357,6 +357,48 @@ paths:
                 items:
                   $ref: '#/components/schemas/Vendor'
           description: ''
+  /dashboard/admin/:
+    get:
+      operationId: dashboard_admin_retrieve
+      tags:
+      - dashboard
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminDashboard'
+          description: ''
+  /dashboard/procurement-officer/:
+    get:
+      operationId: dashboard_procurement_officer_retrieve
+      tags:
+      - dashboard
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcurementOfficerDashboard'
+          description: ''
+  /dashboard/vendor/:
+    get:
+      operationId: dashboard_vendor_retrieve
+      tags:
+      - dashboard
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorDashboard'
+          description: ''
   /inventory/{id}/:
     get:
       operationId: inventory_retrieve
@@ -679,6 +721,152 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OptimizedInventory'
+          description: ''
+  /logistics/inventory-receipt/{id}/:
+    get:
+      operationId: logistics_inventory_receipt_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - logistics
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryReceipt'
+          description: ''
+  /logistics/inventory-receipt/{id}/delete/:
+    delete:
+      operationId: logistics_inventory_receipt_delete_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - logistics
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /logistics/inventory-receipt/{id}/update/:
+    put:
+      operationId: logistics_inventory_receipt_update_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - logistics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InventoryReceipt'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/InventoryReceipt'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/InventoryReceipt'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryReceipt'
+          description: ''
+    patch:
+      operationId: logistics_inventory_receipt_update_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - logistics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedInventoryReceipt'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedInventoryReceipt'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedInventoryReceipt'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryReceipt'
+          description: ''
+  /logistics/inventory-receipt/create/{order_id}/:
+    post:
+      operationId: logistics_inventory_receipt_create_create
+      parameters:
+      - in: path
+        name: order_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - logistics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InventoryReceipt'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/InventoryReceipt'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/InventoryReceipt'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryReceipt'
+          description: ''
+  /logistics/inventory-receipt/list/:
+    get:
+      operationId: logistics_inventory_receipt_list_list
+      tags:
+      - logistics
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InventoryReceipt'
           description: ''
   /purchase/purchase-orders/list/:
     get:
@@ -1218,6 +1406,24 @@ paths:
           description: ''
 components:
   schemas:
+    AdminDashboard:
+      type: object
+      properties:
+        total_users:
+          type: integer
+        users_by_role: {}
+        user_registration_over_time: {}
+        vendors_by_vendor_type: {}
+        vendor_rating_distribution: {}
+      required:
+      - total_users
+      - user_registration_over_time
+      - users_by_role
+      - vendor_rating_distribution
+      - vendors_by_vendor_type
+    BlankEnum:
+      enum:
+      - ''
     ChangePassword:
       type: object
       properties:
@@ -1292,6 +1498,40 @@ components:
       - location
       - stock_quantity
       - unit_price
+    InventoryReceipt:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        receipt_id:
+          type: string
+          maxLength: 255
+        receipt_date:
+          type: string
+          format: date
+          readOnly: true
+        received_quantity:
+          type: integer
+          minimum: 0
+        received_condition:
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/ReceivedConditionEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        inspection_notes:
+          type: string
+          nullable: true
+        inspection_report:
+          type: string
+          format: uri
+          nullable: true
+      required:
+      - id
+      - receipt_date
+      - receipt_id
+      - received_quantity
     MyTokenObtainPair:
       type: object
       properties:
@@ -1304,6 +1544,9 @@ components:
       required:
       - password
       - username
+    NullEnum:
+      enum:
+      - null
     OptimizedInventory:
       type: object
       properties:
@@ -1425,6 +1668,35 @@ components:
           format: date-time
           readOnly: true
         image:
+          type: string
+          format: uri
+          nullable: true
+    PatchedInventoryReceipt:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        receipt_id:
+          type: string
+          maxLength: 255
+        receipt_date:
+          type: string
+          format: date
+          readOnly: true
+        received_quantity:
+          type: integer
+          minimum: 0
+        received_condition:
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/ReceivedConditionEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        inspection_notes:
+          type: string
+          nullable: true
+        inspection_report:
           type: string
           format: uri
           nullable: true
@@ -1609,6 +1881,36 @@ components:
       properties:
         status:
           $ref: '#/components/schemas/StatusC90Enum'
+    ProcurementOfficerDashboard:
+      type: object
+      properties:
+        total_inventory_items:
+          type: integer
+        top_items_stock_quantity: {}
+        top_items_unit_price: {}
+        top_items_total_price: {}
+        inventory_items_added: {}
+        inventory_age: {}
+        stock_quantity_distribution: {}
+        total_purchase_requisitions:
+          type: integer
+        purchase_requisitions_by_status: {}
+        purchase_requisitions_over_time: {}
+        purchase_requisitions_age: {}
+        quantity_requested_distribution: {}
+      required:
+      - inventory_age
+      - inventory_items_added
+      - purchase_requisitions_age
+      - purchase_requisitions_by_status
+      - purchase_requisitions_over_time
+      - quantity_requested_distribution
+      - stock_quantity_distribution
+      - top_items_stock_quantity
+      - top_items_total_price
+      - top_items_unit_price
+      - total_inventory_items
+      - total_purchase_requisitions
     ProcurementOfficerRegister:
       type: object
       properties:
@@ -1853,6 +2155,16 @@ components:
       - procurement_officer
       - quantity_requested
       - requisition_number
+    ReceivedConditionEnum:
+      enum:
+      - good
+      - damaged
+      - defective
+      type: string
+      description: |-
+        * `good` - Good
+        * `damaged` - Damaged
+        * `defective` - Defective
     Status536Enum:
       enum:
       - pending
@@ -2059,6 +2371,28 @@ components:
       - id
       - user
       - vendor_type
+    VendorDashboard:
+      type: object
+      properties:
+        total_supplier_bids:
+          type: integer
+        top_bids_bid_amount: {}
+        supplier_bids_by_status: {}
+        supplier_bids_over_time: {}
+        total_purchase_orders:
+          type: integer
+        top_orders_order_amount: {}
+        purchase_orders_by_status: {}
+        purchase_orders_over_time: {}
+      required:
+      - purchase_orders_by_status
+      - purchase_orders_over_time
+      - supplier_bids_by_status
+      - supplier_bids_over_time
+      - top_bids_bid_amount
+      - top_orders_order_amount
+      - total_purchase_orders
+      - total_supplier_bids
     VendorInfo:
       type: object
       properties:
