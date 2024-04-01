@@ -1,8 +1,8 @@
 openapi: 3.0.3
 info:
-  title: Your Project API
+  title: ProcurEase
   version: 1.0.0
-  description: Your project description
+  description: Your Gateway to Effortless Procurement
 paths:
   /accounts/change-password/:
     put:
@@ -680,22 +680,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/OptimizedInventory'
           description: ''
-  /purchase/purcase-requisitions/vendor/list/:
-    get:
-      operationId: purchase_purcase_requisitions_vendor_list_list
-      tags:
-      - purchase
-      security:
-      - jwtAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/PurchaseRequisitionVendor'
-          description: ''
   /purchase/purchase-orders/list/:
     get:
       operationId: purchase_purchase_orders_list_list
@@ -934,6 +918,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/PurchaseRequisition'
+          description: ''
+  /purchase/purchase-requisitions/vendor/list/:
+    get:
+      operationId: purchase_purchase_requisitions_vendor_list_list
+      tags:
+      - purchase
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PurchaseRequisitionVendor'
           description: ''
   /purchase/supplier-bids/{id}/:
     get:
@@ -1706,6 +1706,9 @@ components:
         id:
           type: integer
           readOnly: true
+        delivery_location:
+          type: string
+          readOnly: true
         quantity_ordered:
           type: integer
           readOnly: true
@@ -1730,6 +1733,7 @@ components:
       required:
       - bid
       - date_ordered
+      - delivery_location
       - expected_delivery_date
       - id
       - order_number

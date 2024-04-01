@@ -14,7 +14,7 @@ django.setup()
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "Smart Procurement System"
+project = "ProcurEase"
 copyright = "2024, Sahil Gidwani"
 author = "Sahil Gidwani"
 release = "1.0"
