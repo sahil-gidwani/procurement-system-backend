@@ -441,7 +441,7 @@ class VendorDashboardView(generics.GenericAPIView):
 
         top_orders_order_amount_plot = go.Figure()
         top_orders_order_amount_plot.add_trace(go.Bar(
-            x=[item.order_id for item in top_orders_order_amount],
+            x=[item.order_number for item in top_orders_order_amount],
             y=[item.order_amount for item in top_orders_order_amount],
             text=[f"${item.order_amount}" for item in top_orders_order_amount],
             textposition="outside",
@@ -450,7 +450,7 @@ class VendorDashboardView(generics.GenericAPIView):
         ))
         top_orders_order_amount_plot.update_layout(
             title="Top Orders by Order Amount",
-            xaxis_title="Order ID",
+            xaxis_title="Order Number",
             yaxis_title="Order Amount",
             coloraxis_colorbar=dict(title="Order Amount")
         )
