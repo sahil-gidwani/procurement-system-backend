@@ -113,7 +113,10 @@
 <div class="viewcode-block" id="InvoiceVendorRatingSerializer">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.serializers.InvoiceVendorRatingSerializer">[docs]</a>
 <span class="k">class</span> <span class="nc">InvoiceVendorRatingSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
-    <span class="n">vendor_rating</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span><span class="n">min_value</span><span class="o">=</span><span class="mf">0.00</span><span class="p">,</span> <span class="n">max_value</span><span class="o">=</span><span class="mf">5.00</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">vendor_rating</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">min_value</span><span class="o">=</span><span class="mf">0.00</span><span class="p">,</span> <span class="n">max_value</span><span class="o">=</span><span class="mf">5.00</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+
 <div class="viewcode-block" id="InvoiceVendorRatingSerializer.Meta">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.serializers.InvoiceVendorRatingSerializer.Meta">[docs]</a>
     <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>

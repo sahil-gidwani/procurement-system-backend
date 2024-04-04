@@ -225,72 +225,96 @@
             <span class="n">inventory</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">inventory_item3</span><span class="p">,</span>
         <span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">purchase_requisition_list_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;purchase_requisition_list&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">purchase_requisition_list_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;purchase_requisition_list&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">purchase_requisition_create_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;purchase_requisition_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;inventory_id&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+            <span class="s2">&quot;purchase_requisition_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;inventory_id&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">purchase_requisition_create_existing_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;purchase_requisition_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;inventory_id&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+            <span class="s2">&quot;purchase_requisition_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;inventory_id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">purchase_requisition_retrieve_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;purchase_requisition_detail&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+            <span class="s2">&quot;purchase_requisition_detail&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">purchase_requisition_update_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;purchase_requisition_update&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+            <span class="s2">&quot;purchase_requisition_update&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">purchase_requisition_update_status_approved_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;purchase_requisition_update&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+            <span class="s2">&quot;purchase_requisition_update&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">purchase_requisition_update_status_rejected_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;purchase_requisition_update&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+            <span class="s2">&quot;purchase_requisition_update&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">purchase_requisition_delete_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;purchase_requisition_delete&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+            <span class="s2">&quot;purchase_requisition_delete&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">purchase_requisition_delete_status_approved_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;purchase_requisition_delete&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+            <span class="s2">&quot;purchase_requisition_delete&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">purchase_requisition_delete_status_rejected_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;purchase_requisition_delete&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+            <span class="s2">&quot;purchase_requisition_delete&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">purchase_requisition_vendor_list_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;purchase_requisition_vendor_list&quot;</span><span class="p">)</span>
+            <span class="s2">&quot;purchase_requisition_vendor_list&quot;</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_list_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;supplier_bid_list&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_create_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;supplier_bid_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;requisition_id&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+            <span class="s2">&quot;supplier_bid_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;requisition_id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_create_requisition_status_approved_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;supplier_bid_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;requisition_id&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+            <span class="s2">&quot;supplier_bid_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;requisition_id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_create_requisition_status_rejected_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;supplier_bid_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;requisition_id&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+            <span class="s2">&quot;supplier_bid_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;requisition_id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_retrieve_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;supplier_bid_detail&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_update_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;supplier_bid_update&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+            <span class="s2">&quot;supplier_bid_detail&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_update_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;supplier_bid_update&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_update_status_accepted_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;supplier_bid_update&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+            <span class="s2">&quot;supplier_bid_update&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_update_status_rejected_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;supplier_bid_update&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_delete_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;supplier_bid_delete&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+            <span class="s2">&quot;supplier_bid_update&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_delete_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;supplier_bid_delete&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_delete_status_accepted_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;supplier_bid_delete&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+            <span class="s2">&quot;supplier_bid_delete&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_delete_status_rejected_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;supplier_bid_delete&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+            <span class="s2">&quot;supplier_bid_delete&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurment_officer_list_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;supplier_bid_procurement_officer_list&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;requisition_id&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+            <span class="s2">&quot;supplier_bid_procurement_officer_list&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;requisition_id&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_ranking_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;supplier_bid_procurement_officer_ranking&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;requisition_id&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+            <span class="s2">&quot;supplier_bid_procurement_officer_ranking&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;requisition_id&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_detail_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;supplier_bid_procurement_officer_detail&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+            <span class="s2">&quot;supplier_bid_procurement_officer_detail&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_status_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;supplier_bid_procurement_officer_status&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+            <span class="s2">&quot;supplier_bid_procurement_officer_status&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_status_accepted_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;supplier_bid_procurement_officer_status&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+            <span class="s2">&quot;supplier_bid_procurement_officer_status&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_status_rejected_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;supplier_bid_procurement_officer_status&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+            <span class="s2">&quot;supplier_bid_procurement_officer_status&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_list_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;purchase_order_list&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_vendor_list_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;purchase_order_vendor_list&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_vendor_list_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;purchase_order_vendor_list&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_vendor_status_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;purchase_order_vendor_status&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+            <span class="s2">&quot;purchase_order_vendor_status&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_vendor_status_pending_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;purchase_order_vendor_status&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+            <span class="s2">&quot;purchase_order_vendor_status&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_vendor_status_shipped_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;purchase_order_vendor_status&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+            <span class="s2">&quot;purchase_order_vendor_status&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_vendor_status_delivered_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;purchase_order_vendor_status&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span></div>
+            <span class="s2">&quot;purchase_order_vendor_status&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+        <span class="p">)</span></div>
 </div>
 
 
@@ -357,7 +381,9 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">purchase_requisition_create_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_201_CREATED</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;requisition_number&quot;</span><span class="p">],</span> <span class="s2">&quot;PR-004&quot;</span><span class="p">)</span>
-        <span class="n">purchase_requisition</span> <span class="o">=</span> <span class="n">PurchaseRequisition</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">requisition_number</span><span class="o">=</span><span class="s2">&quot;PR-004&quot;</span><span class="p">)</span>
+        <span class="n">purchase_requisition</span> <span class="o">=</span> <span class="n">PurchaseRequisition</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="n">requisition_number</span><span class="o">=</span><span class="s2">&quot;PR-004&quot;</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">purchase_requisition</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="s2">&quot;pending&quot;</span><span class="p">)</span></div>
 
 
@@ -538,7 +564,9 @@
         <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;quantity_requested&quot;</span><span class="p">:</span> <span class="mi">150</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">purchase_requisition_update_status_approved_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">purchase_requisition_update_status_approved_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
         <span class="n">purchase_requisition</span> <span class="o">=</span> <span class="n">PurchaseRequisition</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">purchase_requisition</span><span class="o">.</span><span class="n">quantity_requested</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span></div>
@@ -551,7 +579,9 @@
         <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;quantity_requested&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">purchase_requisition_update_status_rejected_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">purchase_requisition_update_status_rejected_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
         <span class="n">purchase_requisition</span> <span class="o">=</span> <span class="n">PurchaseRequisition</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">purchase_requisition</span><span class="o">.</span><span class="n">quantity_requested</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
@@ -675,7 +705,9 @@
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_delete_view_status_approved">[docs]</a>
     <span class="k">def</span> <span class="nf">test_purchase_requisition_delete_view_status_approved</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_authenticate</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer</span><span class="p">)</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">purchase_requisition_delete_status_approved_url</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">purchase_requisition_delete_status_approved_url</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">PurchaseRequisition</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="mi">3</span><span class="p">)</span></div>
 
@@ -684,7 +716,9 @@
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_delete_view_status_rejected">[docs]</a>
     <span class="k">def</span> <span class="nf">test_purchase_requisition_delete_view_status_rejected</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_authenticate</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer</span><span class="p">)</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">purchase_requisition_delete_status_rejected_url</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">purchase_requisition_delete_status_rejected_url</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_204_NO_CONTENT</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">PurchaseRequisition</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="mi">2</span><span class="p">)</span></div>
 
@@ -719,7 +753,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_authenticate</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">vendor</span><span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">purchase_requisition_vendor_list_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
-        <span class="c1">#* Vendor should be able to see only 1 since only pending requisitions are shown</span>
+        <span class="c1"># * Vendor should be able to see only 1 since only pending requisitions are shown</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span></div>
 
 
@@ -898,7 +932,9 @@
             <span class="s2">&quot;unit_price&quot;</span><span class="p">:</span> <span class="mf">10.00</span><span class="p">,</span>
             <span class="s2">&quot;days_delivery&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_create_requisition_status_approved_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_create_requisition_status_approved_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">SupplierBid</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="mi">4</span><span class="p">)</span></div>
 
@@ -912,7 +948,9 @@
             <span class="s2">&quot;unit_price&quot;</span><span class="p">:</span> <span class="mf">10.00</span><span class="p">,</span>
             <span class="s2">&quot;days_delivery&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_create_requisition_status_rejected_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_create_requisition_status_rejected_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">SupplierBid</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="mi">4</span><span class="p">)</span></div>
 
@@ -926,7 +964,9 @@
             <span class="s2">&quot;unit_price&quot;</span><span class="p">:</span> <span class="mf">10.00</span><span class="p">,</span>
             <span class="s2">&quot;days_delivery&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;supplier_bid_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;requisition_id&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}),</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;supplier_bid_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;requisition_id&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}),</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">SupplierBid</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="mi">4</span><span class="p">)</span></div>
 
@@ -1299,7 +1339,9 @@
             <span class="s2">&quot;weight_supplier_rating&quot;</span><span class="p">:</span> <span class="mf">0.20</span><span class="p">,</span>
             <span class="s2">&quot;weight_total_ratings&quot;</span><span class="p">:</span> <span class="mf">0.20</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_ranking_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_ranking_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s2">&quot;dataframe&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s2">&quot;radar_plot&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
@@ -1317,7 +1359,9 @@
             <span class="s2">&quot;weight_supplier_rating&quot;</span><span class="p">:</span> <span class="mf">0.20</span><span class="p">,</span>
             <span class="s2">&quot;weight_total_ratings&quot;</span><span class="p">:</span> <span class="mf">0.30</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_ranking_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_ranking_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span></div>
 
 
@@ -1332,7 +1376,11 @@
             <span class="s2">&quot;weight_supplier_rating&quot;</span><span class="p">:</span> <span class="mf">0.20</span><span class="p">,</span>
             <span class="s2">&quot;weight_total_ratings&quot;</span><span class="p">:</span> <span class="mf">0.20</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;supplier_bid_procurement_officer_ranking&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;requisition_id&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}))</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="n">reverse</span><span class="p">(</span>
+                <span class="s2">&quot;supplier_bid_procurement_officer_ranking&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;requisition_id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span></div>
 
 
@@ -1347,7 +1395,9 @@
             <span class="s2">&quot;weight_supplier_rating&quot;</span><span class="p">:</span> <span class="mf">0.20</span><span class="p">,</span>
             <span class="s2">&quot;weight_total_ratings&quot;</span><span class="p">:</span> <span class="mf">0.20</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_ranking_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_ranking_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_403_FORBIDDEN</span><span class="p">)</span></div>
 
 
@@ -1361,7 +1411,9 @@
             <span class="s2">&quot;weight_supplier_rating&quot;</span><span class="p">:</span> <span class="mf">0.20</span><span class="p">,</span>
             <span class="s2">&quot;weight_total_ratings&quot;</span><span class="p">:</span> <span class="mf">0.20</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_ranking_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_ranking_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
 
@@ -1376,7 +1428,9 @@
             <span class="s2">&quot;weight_supplier_rating&quot;</span><span class="p">:</span> <span class="mf">0.20</span><span class="p">,</span>
             <span class="s2">&quot;weight_total_ratings&quot;</span><span class="p">:</span> <span class="mf">0.20</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_ranking_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_ranking_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
 
@@ -1407,13 +1461,17 @@
             <span class="s2">&quot;weight_supplier_rating&quot;</span><span class="p">:</span> <span class="s2">&quot;invalid&quot;</span><span class="p">,</span>
             <span class="s2">&quot;weight_total_ratings&quot;</span><span class="p">:</span> <span class="s2">&quot;invalid&quot;</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_ranking_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_ranking_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="SupplierBidViewsTests.test_supplier_bid_procurement_officer_retrieve_view_procurement_officer_own_item">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_retrieve_view_procurement_officer_own_item">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_supplier_bid_procurement_officer_retrieve_view_procurement_officer_own_item</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_supplier_bid_procurement_officer_retrieve_view_procurement_officer_own_item</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_authenticate</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer</span><span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_detail_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
@@ -1422,7 +1480,9 @@
 
 <div class="viewcode-block" id="SupplierBidViewsTests.test_supplier_bid_procurement_officer_retrieve_view_other_procurement_officer">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_retrieve_view_other_procurement_officer">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_supplier_bid_procurement_officer_retrieve_view_other_procurement_officer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_supplier_bid_procurement_officer_retrieve_view_other_procurement_officer</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_authenticate</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer2</span><span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_detail_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_404_NOT_FOUND</span><span class="p">)</span></div>
@@ -1467,7 +1527,8 @@
             <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;accepted&quot;</span><span class="p">,</span>
         <span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_status_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_status_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">],</span> <span class="s2">&quot;accepted&quot;</span><span class="p">)</span>
         <span class="n">supplier_bid</span> <span class="o">=</span> <span class="n">SupplierBid</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -1486,7 +1547,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">purchase_order</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="s2">&quot;pending&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">purchase_order</span><span class="o">.</span><span class="n">bid_id</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="SupplierBidViewsTests.test_supplier_bid_procurement_officer_status_reject">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_status_reject">[docs]</a>
     <span class="k">def</span> <span class="nf">test_supplier_bid_procurement_officer_status_reject</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1495,7 +1556,8 @@
             <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;rejected&quot;</span><span class="p">,</span>
         <span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_status_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_status_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">],</span> <span class="s2">&quot;rejected&quot;</span><span class="p">)</span>
         <span class="n">supplier_bid</span> <span class="o">=</span> <span class="n">SupplierBid</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -1513,7 +1575,7 @@
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="n">ObjectDoesNotExist</span><span class="p">):</span>
             <span class="n">PurchaseOrder</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="SupplierBidViewsTests.test_supplier_bid_prcourement_officer_bid_accept">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_prcourement_officer_bid_accept">[docs]</a>
     <span class="k">def</span> <span class="nf">test_supplier_bid_prcourement_officer_bid_accept</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1522,10 +1584,11 @@
             <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;rejected&quot;</span><span class="p">,</span>
         <span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_status_accepted_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_status_accepted_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
         <span class="n">supplier_bid</span> <span class="o">=</span> <span class="n">SupplierBid</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">supplier_bid</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="s2">&quot;accepted&quot;</span><span class="p">)</span> </div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">supplier_bid</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="s2">&quot;accepted&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="SupplierBidViewsTests.test_supplier_bid_prcourement_officer_bid_reject">
@@ -1536,12 +1599,13 @@
             <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;accepted&quot;</span><span class="p">,</span>
         <span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_status_rejected_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_status_rejected_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
         <span class="n">supplier_bid</span> <span class="o">=</span> <span class="n">SupplierBid</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">supplier_bid</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="s2">&quot;rejected&quot;</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="SupplierBidViewsTests.test_supplier_bid_procurement_officer_status_procurement_officer">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_status_procurement_officer">[docs]</a>
     <span class="k">def</span> <span class="nf">test_supplier_bid_procurement_officer_status_procurement_officer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1550,7 +1614,8 @@
             <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;accepted&quot;</span><span class="p">,</span>
         <span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_status_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_status_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">],</span> <span class="s2">&quot;accepted&quot;</span><span class="p">)</span>
         <span class="n">supplier_bid</span> <span class="o">=</span> <span class="n">SupplierBid</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -1565,7 +1630,8 @@
             <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;accepted&quot;</span><span class="p">,</span>
         <span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_status_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_status_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_403_FORBIDDEN</span><span class="p">)</span>
         <span class="n">supplier_bid</span> <span class="o">=</span> <span class="n">SupplierBid</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">supplier_bid</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="s2">&quot;submitted&quot;</span><span class="p">)</span></div>
@@ -1578,7 +1644,8 @@
             <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;accepted&quot;</span><span class="p">,</span>
         <span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_status_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_status_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span>
         <span class="n">supplier_bid</span> <span class="o">=</span> <span class="n">SupplierBid</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">supplier_bid</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="s2">&quot;submitted&quot;</span><span class="p">)</span></div>
@@ -1592,7 +1659,8 @@
             <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;accepted&quot;</span><span class="p">,</span>
         <span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_status_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_status_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span>
         <span class="n">supplier_bid</span> <span class="o">=</span> <span class="n">SupplierBid</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">supplier_bid</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="s2">&quot;submitted&quot;</span><span class="p">)</span></div>
@@ -1602,10 +1670,8 @@
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_status_invalid_http_method">[docs]</a>
     <span class="k">def</span> <span class="nf">test_supplier_bid_procurement_officer_status_invalid_http_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_authenticate</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer</span><span class="p">)</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_status_url</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span>
-                         <span class="n">status</span><span class="o">.</span><span class="n">HTTP_405_METHOD_NOT_ALLOWED</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_status_url</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_405_METHOD_NOT_ALLOWED</span><span class="p">)</span>
         <span class="n">supplier_bid</span> <span class="o">=</span> <span class="n">SupplierBid</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">supplier_bid</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="s2">&quot;submitted&quot;</span><span class="p">)</span></div>
 
@@ -1614,8 +1680,7 @@
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_status_missing_data">[docs]</a>
     <span class="k">def</span> <span class="nf">test_supplier_bid_procurement_officer_status_missing_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_authenticate</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer</span><span class="p">)</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_status_url</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_status_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
         <span class="n">supplier_bid</span> <span class="o">=</span> <span class="n">SupplierBid</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">supplier_bid</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="s2">&quot;submitted&quot;</span><span class="p">)</span></div>
@@ -1629,7 +1694,8 @@
             <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;invalid&quot;</span><span class="p">,</span>
         <span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_status_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">supplier_bid_procurement_officer_status_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
         <span class="n">supplier_bid</span> <span class="o">=</span> <span class="n">SupplierBid</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">supplier_bid</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="s2">&quot;submitted&quot;</span><span class="p">)</span></div>
@@ -1699,7 +1765,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="PurchaseOrderViewsTests.test_purchase_order_list_view_vendor">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_list_view_vendor">[docs]</a>
     <span class="k">def</span> <span class="nf">test_purchase_order_list_view_vendor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1707,14 +1773,14 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_list_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_403_FORBIDDEN</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="PurchaseOrderViewsTests.test_purchase_order_list_view_unauthenticated">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_list_view_unauthenticated">[docs]</a>
     <span class="k">def</span> <span class="nf">test_purchase_order_list_view_unauthenticated</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_list_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="PurchaseOrderViewsTests.test_purchase_order_list_view_invalid_token">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_list_view_invalid_token">[docs]</a>
     <span class="k">def</span> <span class="nf">test_purchase_order_list_view_invalid_token</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1722,7 +1788,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_list_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="PurchaseOrderViewsTests.test_purchase_order_list_view_invalid_http_method">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_list_view_invalid_http_method">[docs]</a>
     <span class="k">def</span> <span class="nf">test_purchase_order_list_view_invalid_http_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1730,7 +1796,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_list_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_405_METHOD_NOT_ALLOWED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="PurchaseOrderViewsTests.test_purchase_order_vendor_list_view_vendor">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_list_view_vendor">[docs]</a>
     <span class="k">def</span> <span class="nf">test_purchase_order_vendor_list_view_vendor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1739,7 +1805,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="PurchaseOrderViewsTests.test_purchase_order_vendor_list_view_procurement_officer">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_list_view_procurement_officer">[docs]</a>
     <span class="k">def</span> <span class="nf">test_purchase_order_vendor_list_view_procurement_officer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1747,14 +1813,14 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_vendor_list_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_403_FORBIDDEN</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="PurchaseOrderViewsTests.test_purchase_order_vendor_list_view_unauthenticated">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_list_view_unauthenticated">[docs]</a>
     <span class="k">def</span> <span class="nf">test_purchase_order_vendor_list_view_unauthenticated</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_vendor_list_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="PurchaseOrderViewsTests.test_purchase_order_vendor_list_view_invalid_token">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_list_view_invalid_token">[docs]</a>
     <span class="k">def</span> <span class="nf">test_purchase_order_vendor_list_view_invalid_token</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1762,7 +1828,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_vendor_list_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="PurchaseOrderViewsTests.test_purchase_order_vendor_list_view_invalid_http_method">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_list_view_invalid_http_method">[docs]</a>
     <span class="k">def</span> <span class="nf">test_purchase_order_vendor_list_view_invalid_http_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1770,7 +1836,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_vendor_list_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_405_METHOD_NOT_ALLOWED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_pending_to_pending">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_pending_to_pending">[docs]</a>
     <span class="k">def</span> <span class="nf">test_purchase_order_vendor_status_view_pending_to_pending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1778,12 +1844,14 @@
         <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;pending&quot;</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_vendor_status_pending_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_vendor_status_pending_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
         <span class="n">purchase_order</span> <span class="o">=</span> <span class="n">PurchaseOrder</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">purchase_order</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="s2">&quot;pending&quot;</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_pending_to_shipped">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_pending_to_shipped">[docs]</a>
     <span class="k">def</span> <span class="nf">test_purchase_order_vendor_status_view_pending_to_shipped</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1791,13 +1859,15 @@
         <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;shipped&quot;</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_vendor_status_pending_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_vendor_status_pending_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">],</span> <span class="s2">&quot;shipped&quot;</span><span class="p">)</span>
         <span class="n">purchase_order</span> <span class="o">=</span> <span class="n">PurchaseOrder</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">purchase_order</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="s2">&quot;shipped&quot;</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_pending_to_delivered">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_pending_to_delivered">[docs]</a>
     <span class="k">def</span> <span class="nf">test_purchase_order_vendor_status_view_pending_to_delivered</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1805,12 +1875,14 @@
         <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;delivered&quot;</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_vendor_status_pending_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_vendor_status_pending_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
         <span class="n">purchase_order</span> <span class="o">=</span> <span class="n">PurchaseOrder</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">purchase_order</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="s2">&quot;pending&quot;</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_shipped_to_pending">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_shipped_to_pending">[docs]</a>
     <span class="k">def</span> <span class="nf">test_purchase_order_vendor_status_view_shipped_to_pending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1818,12 +1890,14 @@
         <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;pending&quot;</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_vendor_status_shipped_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_vendor_status_shipped_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
         <span class="n">purchase_order</span> <span class="o">=</span> <span class="n">PurchaseOrder</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">purchase_order</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="s2">&quot;shipped&quot;</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_shipped_to_shipped">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_shipped_to_shipped">[docs]</a>
     <span class="k">def</span> <span class="nf">test_purchase_order_vendor_status_view_shipped_to_shipped</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1831,12 +1905,14 @@
         <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;shipped&quot;</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_vendor_status_shipped_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_vendor_status_shipped_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
         <span class="n">purchase_order</span> <span class="o">=</span> <span class="n">PurchaseOrder</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">purchase_order</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="s2">&quot;shipped&quot;</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_shipped_to_delivered">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_shipped_to_delivered">[docs]</a>
     <span class="k">def</span> <span class="nf">test_purchase_order_vendor_status_view_shipped_to_delivered</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1844,13 +1920,15 @@
         <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;delivered&quot;</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_vendor_status_shipped_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_vendor_status_shipped_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">],</span> <span class="s2">&quot;delivered&quot;</span><span class="p">)</span>
         <span class="n">purchase_order</span> <span class="o">=</span> <span class="n">PurchaseOrder</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">purchase_order</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="s2">&quot;delivered&quot;</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_delivered_to_pending">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_delivered_to_pending">[docs]</a>
     <span class="k">def</span> <span class="nf">test_purchase_order_vendor_status_view_delivered_to_pending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1858,12 +1936,14 @@
         <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;pending&quot;</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_vendor_status_delivered_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_vendor_status_delivered_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
         <span class="n">purchase_order</span> <span class="o">=</span> <span class="n">PurchaseOrder</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">purchase_order</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="s2">&quot;delivered&quot;</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_delivered_to_shipped">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_delivered_to_shipped">[docs]</a>
     <span class="k">def</span> <span class="nf">test_purchase_order_vendor_status_view_delivered_to_shipped</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1871,12 +1951,14 @@
         <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;shipped&quot;</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_vendor_status_delivered_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_vendor_status_delivered_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
         <span class="n">purchase_order</span> <span class="o">=</span> <span class="n">PurchaseOrder</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">purchase_order</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="s2">&quot;delivered&quot;</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_delivered_to_delivered">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_delivered_to_delivered">[docs]</a>
     <span class="k">def</span> <span class="nf">test_purchase_order_vendor_status_view_delivered_to_delivered</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1884,12 +1966,14 @@
         <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;delivered&quot;</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_vendor_status_delivered_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">purchase_order_vendor_status_delivered_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
         <span class="n">purchase_order</span> <span class="o">=</span> <span class="n">PurchaseOrder</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">purchase_order</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="s2">&quot;delivered&quot;</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_vendor">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_vendor">[docs]</a>
     <span class="k">def</span> <span class="nf">test_purchase_order_vendor_status_view_vendor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1903,7 +1987,7 @@
         <span class="n">purchase_order</span> <span class="o">=</span> <span class="n">PurchaseOrder</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">purchase_order</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="s2">&quot;shipped&quot;</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_procurement_officer">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_procurement_officer">[docs]</a>
     <span class="k">def</span> <span class="nf">test_purchase_order_vendor_status_view_procurement_officer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1916,7 +2000,7 @@
         <span class="n">purchase_order</span> <span class="o">=</span> <span class="n">PurchaseOrder</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">purchase_order</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="s2">&quot;pending&quot;</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_unauthenticated">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_unauthenticated">[docs]</a>
     <span class="k">def</span> <span class="nf">test_purchase_order_vendor_status_view_unauthenticated</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1928,7 +2012,7 @@
         <span class="n">purchase_order</span> <span class="o">=</span> <span class="n">PurchaseOrder</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">purchase_order</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="s2">&quot;pending&quot;</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_invalid_token">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_invalid_token">[docs]</a>
     <span class="k">def</span> <span class="nf">test_purchase_order_vendor_status_view_invalid_token</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1941,7 +2025,7 @@
         <span class="n">purchase_order</span> <span class="o">=</span> <span class="n">PurchaseOrder</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">purchase_order</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="s2">&quot;pending&quot;</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_invalid_http_method">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_invalid_http_method">[docs]</a>
     <span class="k">def</span> <span class="nf">test_purchase_order_vendor_status_view_invalid_http_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1951,7 +2035,7 @@
         <span class="n">purchase_order</span> <span class="o">=</span> <span class="n">PurchaseOrder</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">purchase_order</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="s2">&quot;pending&quot;</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_missing_data">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_missing_data">[docs]</a>
     <span class="k">def</span> <span class="nf">test_purchase_order_vendor_status_view_missing_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1961,7 +2045,7 @@
         <span class="n">purchase_order</span> <span class="o">=</span> <span class="n">PurchaseOrder</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">purchase_order</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="s2">&quot;pending&quot;</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_invalid_data">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_invalid_data">[docs]</a>
     <span class="k">def</span> <span class="nf">test_purchase_order_vendor_status_view_invalid_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

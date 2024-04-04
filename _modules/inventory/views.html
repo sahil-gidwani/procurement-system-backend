@@ -362,7 +362,7 @@
                 <span class="p">{</span><span class="s2">&quot;file&quot;</span><span class="p">:</span> <span class="s2">&quot;Too many columns in the file&quot;</span><span class="p">},</span>
                 <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">,</span>
             <span class="p">)</span>
-        
+
         <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;datetime&quot;</span><span class="p">,</span> <span class="s2">&quot;demand&quot;</span><span class="p">]</span>
         <span class="n">df</span><span class="p">[</span><span class="s2">&quot;datetime&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;datetime&quot;</span><span class="p">])</span>
         <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;datetime&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -506,7 +506,9 @@
                 <span class="n">inventory_id</span><span class="o">=</span><span class="n">inventory_id</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="k">except</span> <span class="n">IntegrityError</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s2">&quot;OptimizedInventory already exists for this inventory.&quot;</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span>
+                <span class="s2">&quot;OptimizedInventory already exists for this inventory.&quot;</span>
+            <span class="p">)</span></div>
 </div>
 
 
@@ -541,7 +543,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">Response</span><span class="p">(</span>
                 <span class="p">{</span><span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;No data provided for update&quot;</span><span class="p">},</span>
-                <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span>
+                <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">,</span>
             <span class="p">)</span>
 
         <span class="n">inventory</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Inventory</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">inventory_id</span><span class="p">)</span>
@@ -626,9 +628,7 @@
     <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">inventory_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;inventory_id&quot;</span><span class="p">)</span>
 
-        <span class="n">inventory</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span>
-            <span class="n">Inventory</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">inventory_id</span>
-        <span class="p">)</span>
+        <span class="n">inventory</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Inventory</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">inventory_id</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">inventory</span><span class="o">.</span><span class="n">procurement_officer</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">PermissionDenied</span><span class="p">(</span>

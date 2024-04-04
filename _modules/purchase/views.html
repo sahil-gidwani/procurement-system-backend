@@ -92,7 +92,7 @@
     <span class="n">SupplierBidProcurementOfficerSerializer</span><span class="p">,</span>
     <span class="n">SupplierBidProcurementOfficerStatusSerializer</span><span class="p">,</span>
     <span class="n">PurchaseOrderSerializer</span><span class="p">,</span>
-    <span class="n">PurchaseOrderStatusSerializer</span>
+    <span class="n">PurchaseOrderStatusSerializer</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">.tasks</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">send_requisition_update_email</span><span class="p">,</span>
@@ -102,7 +102,7 @@
     <span class="n">send_bid_rejected_email</span><span class="p">,</span>
     <span class="n">send_requisition_accepted_email</span><span class="p">,</span>
     <span class="n">send_purchase_order_email</span><span class="p">,</span>
-    <span class="n">send_purchase_order_status_email</span>
+    <span class="n">send_purchase_order_status_email</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">inventory.models</span> <span class="kn">import</span> <span class="n">Inventory</span>
 <span class="kn">from</span> <span class="nn">accounts.permissions</span> <span class="kn">import</span> <span class="n">IsProcurementOfficer</span><span class="p">,</span> <span class="n">IsVendor</span>
@@ -133,11 +133,13 @@
             <span class="k">return</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(),</span> <span class="nb">id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;pk&quot;</span><span class="p">))</span>
 
         <span class="n">inventory</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span>
-            <span class="n">Inventory</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">inventory_id</span><span class="p">,</span>
+            <span class="n">Inventory</span><span class="p">,</span>
+            <span class="nb">id</span><span class="o">=</span><span class="n">inventory_id</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="k">if</span> <span class="n">inventory</span><span class="o">.</span><span class="n">procurement_officer</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">PermissionDenied</span><span class="p">(</span>
-                <span class="s2">&quot;You do not have permission to access this inventory item.&quot;</span><span class="p">)</span>
+                <span class="s2">&quot;You do not have permission to access this inventory item.&quot;</span>
+            <span class="p">)</span>
         <span class="n">obj</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(),</span> <span class="n">inventory</span><span class="o">=</span><span class="n">inventory</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">obj</span></div>
@@ -164,18 +166,19 @@
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.views.PurchaseRequisitionCreateView.perform_create">[docs]</a>
     <span class="k">def</span> <span class="nf">perform_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serializer</span><span class="p">):</span>
         <span class="n">inventory_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;inventory_id&quot;</span><span class="p">)</span>
-        <span class="n">inventory</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span>
-            <span class="n">Inventory</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="n">inventory_id</span>
-        <span class="p">)</span>
+        <span class="n">inventory</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Inventory</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="n">inventory_id</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">inventory</span><span class="o">.</span><span class="n">procurement_officer</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">PermissionDenied</span><span class="p">(</span>
-                <span class="s2">&quot;You do not have permission to access this inventory item.&quot;</span><span class="p">)</span>
+                <span class="s2">&quot;You do not have permission to access this inventory item.&quot;</span>
+            <span class="p">)</span>
 
-        <span class="n">existing_requisition</span> <span class="o">=</span> <span class="n">PurchaseRequisition</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">inventory</span><span class="o">=</span><span class="n">inventory</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
+        <span class="n">existing_requisition</span> <span class="o">=</span> <span class="n">PurchaseRequisition</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+            <span class="n">inventory</span><span class="o">=</span><span class="n">inventory</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">existing_requisition</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s2">&quot;A requisition for this inventory already exists.&quot;</span><span class="p">)</span>
-        
+
         <span class="n">serializer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">inventory</span><span class="o">=</span><span class="n">inventory</span><span class="p">)</span></div>
 </div>
 
@@ -201,22 +204,24 @@
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.views.PurchaseRequisitionUpdateView.perform_update">[docs]</a>
     <span class="k">def</span> <span class="nf">perform_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serializer</span><span class="p">):</span>
         <span class="n">instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_object</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">instance</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s1">&#39;approved&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">instance</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;approved&quot;</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span>
                 <span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;Requisition is already approved.&quot;</span><span class="p">}</span>
             <span class="p">)</span>
-        
-        <span class="n">serializer</span><span class="o">.</span><span class="n">validated_data</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;pending&#39;</span>
+
+        <span class="n">serializer</span><span class="o">.</span><span class="n">validated_data</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;pending&quot;</span>
         <span class="n">serializer</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
         <span class="n">send_requisition_update_email</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="PurchaseRequisitionUpdateView.patch">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.views.PurchaseRequisitionUpdateView.patch">[docs]</a>
     <span class="k">def</span> <span class="nf">patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;No data provided&quot;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span>
+                <span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;No data provided&quot;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span>
+            <span class="p">)</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 </div>
 
@@ -232,7 +237,7 @@
 <div class="viewcode-block" id="PurchaseRequisitionDeleteView.perform_destroy">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.views.PurchaseRequisitionDeleteView.perform_destroy">[docs]</a>
     <span class="k">def</span> <span class="nf">perform_destroy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">instance</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s1">&#39;approved&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">instance</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;approved&quot;</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span>
                 <span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;Requisition is already approved.&quot;</span><span class="p">}</span>
             <span class="p">)</span>
@@ -247,7 +252,7 @@
 <span class="k">class</span> <span class="nc">PurchaseRequisitionVendorListView</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">ListAPIView</span><span class="p">):</span>
     <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">IsAuthenticated</span><span class="p">,</span> <span class="n">IsVendor</span><span class="p">]</span>
     <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">PurchaseRequisitionVendorSerializer</span>
-    <span class="n">queryset</span> <span class="o">=</span> <span class="n">PurchaseRequisition</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s1">&#39;pending&#39;</span><span class="p">)</span></div>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">PurchaseRequisition</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s2">&quot;pending&quot;</span><span class="p">)</span></div>
 
 
 
@@ -299,18 +304,21 @@
         <span class="n">requisition_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;requisition_id&quot;</span><span class="p">)</span>
         <span class="n">requisition</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">PurchaseRequisition</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="n">requisition_id</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">requisition</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s1">&#39;approved&#39;</span> <span class="ow">or</span> <span class="n">requisition</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s1">&#39;rejected&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">requisition</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;approved&quot;</span> <span class="ow">or</span> <span class="n">requisition</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;rejected&quot;</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span>
                 <span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;Requisition is already approved or rejected.&quot;</span><span class="p">}</span>
             <span class="p">)</span>
 
         <span class="c1"># Validate quantity_fulfilled against requisition.quantity_requested</span>
-        <span class="n">quantity_fulfilled</span> <span class="o">=</span> <span class="n">serializer</span><span class="o">.</span><span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-            <span class="s2">&quot;quantity_fulfilled&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">quantity_fulfilled</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">quantity_fulfilled</span> <span class="o">&lt;</span> <span class="n">requisition</span><span class="o">.</span><span class="n">quantity_requested</span><span class="p">:</span>
+        <span class="n">quantity_fulfilled</span> <span class="o">=</span> <span class="n">serializer</span><span class="o">.</span><span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;quantity_fulfilled&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">quantity_fulfilled</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="n">quantity_fulfilled</span> <span class="o">&lt;</span> <span class="n">requisition</span><span class="o">.</span><span class="n">quantity_requested</span>
+        <span class="p">):</span>
             <span class="k">raise</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span>
-                <span class="p">{</span><span class="s2">&quot;quantity_fulfilled&quot;</span><span class="p">:</span>
-                    <span class="sa">f</span><span class="s2">&quot;Quantity fulfilled must be greater than or equal to quantity requested (</span><span class="si">{</span><span class="n">requisition</span><span class="o">.</span><span class="n">quantity_requested</span><span class="si">}</span><span class="s2">).&quot;</span><span class="p">}</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;quantity_fulfilled&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Quantity fulfilled must be greater than or equal to quantity requested (</span><span class="si">{</span><span class="n">requisition</span><span class="o">.</span><span class="n">quantity_requested</span><span class="si">}</span><span class="s2">).&quot;</span>
+                <span class="p">}</span>
             <span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
@@ -318,7 +326,7 @@
             <span class="n">send_supplier_bid_email</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span>
                 <span class="n">requisition</span><span class="o">.</span><span class="n">inventory</span><span class="o">.</span><span class="n">procurement_officer</span><span class="o">.</span><span class="n">email</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">company_name</span><span class="p">,</span>
-                <span class="n">requisition</span><span class="o">.</span><span class="n">requisition_number</span>
+                <span class="n">requisition</span><span class="o">.</span><span class="n">requisition_number</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="k">except</span> <span class="n">IntegrityError</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span>
@@ -347,37 +355,40 @@
         <span class="n">requisition</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">requisition</span>
 
         <span class="c1"># Prevent updating the bid if it is already accepted</span>
-        <span class="k">if</span> <span class="n">instance</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s1">&#39;accepted&#39;</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span>
-                <span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;Bid is already accepted.&quot;</span><span class="p">}</span>
-            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">instance</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;accepted&quot;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">({</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;Bid is already accepted.&quot;</span><span class="p">})</span>
 
         <span class="c1"># Validate quantity_fulfilled against requisition.quantity_requested</span>
-        <span class="n">quantity_fulfilled</span> <span class="o">=</span> <span class="n">serializer</span><span class="o">.</span><span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-            <span class="s2">&quot;quantity_fulfilled&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">quantity_fulfilled</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">quantity_fulfilled</span> <span class="o">&lt;</span> <span class="n">requisition</span><span class="o">.</span><span class="n">quantity_requested</span><span class="p">:</span>
+        <span class="n">quantity_fulfilled</span> <span class="o">=</span> <span class="n">serializer</span><span class="o">.</span><span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;quantity_fulfilled&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">quantity_fulfilled</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="n">quantity_fulfilled</span> <span class="o">&lt;</span> <span class="n">requisition</span><span class="o">.</span><span class="n">quantity_requested</span>
+        <span class="p">):</span>
             <span class="k">raise</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span>
-                <span class="p">{</span><span class="s2">&quot;quantity_fulfilled&quot;</span><span class="p">:</span>
-                    <span class="sa">f</span><span class="s2">&quot;Quantity fulfilled must be greater than or equal to quantity requested (</span><span class="si">{</span><span class="n">requisition</span><span class="o">.</span><span class="n">quantity_requested</span><span class="si">}</span><span class="s2">).&quot;</span><span class="p">}</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;quantity_fulfilled&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Quantity fulfilled must be greater than or equal to quantity requested (</span><span class="si">{</span><span class="n">requisition</span><span class="o">.</span><span class="n">quantity_requested</span><span class="si">}</span><span class="s2">).&quot;</span>
+                <span class="p">}</span>
             <span class="p">)</span>
 
         <span class="c1"># Reset status to submitted if the bid is not accepted</span>
-        <span class="n">serializer</span><span class="o">.</span><span class="n">validated_data</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;submitted&#39;</span>
+        <span class="n">serializer</span><span class="o">.</span><span class="n">validated_data</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;submitted&quot;</span>
 
         <span class="n">serializer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">requisition</span><span class="o">=</span><span class="n">requisition</span><span class="p">,</span> <span class="n">supplier</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
 
         <span class="n">send_supplier_bid_update_email</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span>
             <span class="n">requisition</span><span class="o">.</span><span class="n">inventory</span><span class="o">.</span><span class="n">procurement_officer</span><span class="o">.</span><span class="n">email</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">company_name</span><span class="p">,</span>
-            <span class="n">requisition</span><span class="o">.</span><span class="n">requisition_number</span>
+            <span class="n">requisition</span><span class="o">.</span><span class="n">requisition_number</span><span class="p">,</span>
         <span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="SupplierBidUpdateView.patch">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.views.SupplierBidUpdateView.patch">[docs]</a>
     <span class="k">def</span> <span class="nf">patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;No data provided&quot;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span>
+                <span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;No data provided&quot;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span>
+            <span class="p">)</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 </div>
 
@@ -391,10 +402,8 @@
 <div class="viewcode-block" id="SupplierBidDeleteView.perform_destroy">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.views.SupplierBidDeleteView.perform_destroy">[docs]</a>
     <span class="k">def</span> <span class="nf">perform_destroy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">instance</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s1">&#39;accepted&#39;</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span>
-                <span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;Bid is already accepted.&quot;</span><span class="p">}</span>
-            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">instance</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;accepted&quot;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">({</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;Bid is already accepted.&quot;</span><span class="p">})</span>
         <span class="n">instance</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span></div>
 </div>
 
@@ -439,7 +448,7 @@
         <span class="k">if</span> <span class="n">bids</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">Response</span><span class="p">(</span>
                 <span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;There must be at least two bids to perform ranking.&quot;</span><span class="p">},</span>
-                <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span>
+                <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">,</span>
             <span class="p">)</span>
 
         <span class="n">serializer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serializer_class</span><span class="p">(</span><span class="n">bids</span><span class="p">,</span> <span class="n">many</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -458,8 +467,13 @@
         <span class="c1"># 1. Normalize the Decision Matrix</span>
         <span class="n">norm_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">norm_df</span> <span class="o">=</span> <span class="n">norm_df</span><span class="p">[</span>
-            <span class="p">[</span><span class="s2">&quot;unit_price&quot;</span><span class="p">,</span> <span class="s2">&quot;total_cost&quot;</span><span class="p">,</span> <span class="s2">&quot;days_delivery&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;supplier_rating&quot;</span><span class="p">,</span> <span class="s2">&quot;total_ratings&quot;</span><span class="p">]</span>
+            <span class="p">[</span>
+                <span class="s2">&quot;unit_price&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;total_cost&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;days_delivery&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;supplier_rating&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;total_ratings&quot;</span><span class="p">,</span>
+            <span class="p">]</span>
         <span class="p">]</span>
         <span class="n">norm_df</span> <span class="o">=</span> <span class="p">(</span><span class="n">norm_df</span> <span class="o">-</span> <span class="n">norm_df</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="n">norm_df</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">norm_df</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
 
@@ -519,15 +533,19 @@
         <span class="n">df_json</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">&quot;records&quot;</span><span class="p">)</span>
 
         <span class="c1"># Create the radar chart</span>
-        <span class="n">criteria</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;unit_price&quot;</span><span class="p">,</span> <span class="s2">&quot;total_cost&quot;</span><span class="p">,</span>
-                    <span class="s2">&quot;days_delivery&quot;</span><span class="p">,</span> <span class="s2">&quot;supplier_rating&quot;</span><span class="p">,</span> <span class="s2">&quot;total_ratings&quot;</span><span class="p">]</span>
+        <span class="n">criteria</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;unit_price&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;total_cost&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;days_delivery&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;supplier_rating&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;total_ratings&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
         <span class="n">norm_values</span> <span class="o">=</span> <span class="n">norm_df</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
         <span class="n">alternative_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">norm_df</span><span class="p">[</span><span class="s2">&quot;rank&quot;</span><span class="p">])</span>
         <span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">alternative_names</span><span class="p">,</span> <span class="n">norm_values</span><span class="p">):</span>
             <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span>
-                <span class="n">go</span><span class="o">.</span><span class="n">Scatterpolar</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="n">values</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="n">criteria</span><span class="p">,</span>
-                                <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;toself&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+                <span class="n">go</span><span class="o">.</span><span class="n">Scatterpolar</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="n">values</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="n">criteria</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;toself&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
             <span class="p">)</span>
         <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
             <span class="n">polar</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
@@ -546,8 +564,13 @@
             <span class="n">color</span><span class="o">=</span><span class="s2">&quot;rank&quot;</span><span class="p">,</span>
             <span class="n">color_continuous_scale</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">sequential</span><span class="o">.</span><span class="n">Viridis</span><span class="p">,</span>
             <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;rank&quot;</span><span class="p">:</span> <span class="s2">&quot;Rank&quot;</span><span class="p">},</span>
-            <span class="n">dimensions</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;unit_price&quot;</span><span class="p">,</span> <span class="s2">&quot;total_cost&quot;</span><span class="p">,</span>
-                        <span class="s2">&quot;days_delivery&quot;</span><span class="p">,</span> <span class="s2">&quot;supplier_rating&quot;</span><span class="p">,</span> <span class="s2">&quot;total_ratings&quot;</span><span class="p">],</span>
+            <span class="n">dimensions</span><span class="o">=</span><span class="p">[</span>
+                <span class="s2">&quot;unit_price&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;total_cost&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;days_delivery&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;supplier_rating&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;total_ratings&quot;</span><span class="p">,</span>
+            <span class="p">],</span>
         <span class="p">)</span>
         <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
             <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Multi-Criteria Evaluation: Parallel Coordinates of Bids Ranking&quot;</span><span class="p">,</span>
@@ -601,50 +624,66 @@
 <div class="viewcode-block" id="SupplierBidProcurementOfficerStatusView.update">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.views.SupplierBidProcurementOfficerStatusView.update">[docs]</a>
     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">partial</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;partial&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="n">partial</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;partial&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
         <span class="n">instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_object</span><span class="p">()</span>
-        <span class="n">serializer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_serializer</span><span class="p">(</span>
-            <span class="n">instance</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">partial</span><span class="o">=</span><span class="n">partial</span><span class="p">)</span>
+        <span class="n">serializer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_serializer</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">partial</span><span class="o">=</span><span class="n">partial</span><span class="p">)</span>
         <span class="n">serializer</span><span class="o">.</span><span class="n">is_valid</span><span class="p">(</span><span class="n">raise_exception</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="s1">&#39;status&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">serializer</span><span class="o">.</span><span class="n">validated_data</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;Bid status is required.&quot;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;status&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">serializer</span><span class="o">.</span><span class="n">validated_data</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span>
+                <span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;Bid status is required.&quot;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span>
+            <span class="p">)</span>
 
-        <span class="n">bid_status</span> <span class="o">=</span> <span class="n">serializer</span><span class="o">.</span><span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">)</span>
+        <span class="n">bid_status</span> <span class="o">=</span> <span class="n">serializer</span><span class="o">.</span><span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;status&quot;</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">bid_status</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;accepted&#39;</span><span class="p">,</span> <span class="s1">&#39;rejected&#39;</span><span class="p">]:</span>
-            <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;Bid status can only be &#39;accepted&#39; or &#39;rejected&#39;.&quot;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">bid_status</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;accepted&quot;</span><span class="p">,</span> <span class="s2">&quot;rejected&quot;</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span>
+                <span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;Bid status can only be &#39;accepted&#39; or &#39;rejected&#39;.&quot;</span><span class="p">},</span>
+                <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">,</span>
+            <span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">instance</span><span class="o">.</span><span class="n">status</span> <span class="o">!=</span> <span class="s1">&#39;submitted&#39;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;Bid status already modified.&quot;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">instance</span><span class="o">.</span><span class="n">status</span> <span class="o">!=</span> <span class="s2">&quot;submitted&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span>
+                <span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;Bid status already modified.&quot;</span><span class="p">},</span>
+                <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">,</span>
+            <span class="p">)</span>
 
         <span class="c1"># Custom logic for updating requisition and creating purchase order</span>
-        <span class="k">if</span> <span class="n">bid_status</span> <span class="o">==</span> <span class="s1">&#39;accepted&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">bid_status</span> <span class="o">==</span> <span class="s2">&quot;accepted&quot;</span><span class="p">:</span>
             <span class="n">requisition</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">requisition</span>
-            <span class="k">if</span> <span class="n">SupplierBid</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">requisition</span><span class="o">=</span><span class="n">requisition</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="s1">&#39;accepted&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">SupplierBid</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                <span class="n">requisition</span><span class="o">=</span><span class="n">requisition</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="s2">&quot;accepted&quot;</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
                 <span class="c1"># If another bid is already accepted, do not update the status</span>
-                <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;Another bid is already accepted for this requisition.&quot;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">Response</span><span class="p">(</span>
+                    <span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;Another bid is already accepted for this requisition.&quot;</span><span class="p">},</span>
+                    <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">,</span>
+                <span class="p">)</span>
 
             <span class="c1"># No other bids are accepted, proceed with the update</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">perform_update</span><span class="p">(</span><span class="n">serializer</span><span class="p">)</span>
             <span class="n">send_bid_accepted_email</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span>
-                <span class="n">instance</span><span class="o">.</span><span class="n">supplier</span><span class="o">.</span><span class="n">email</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">requisition</span><span class="o">.</span><span class="n">requisition_number</span><span class="p">)</span>
+                <span class="n">instance</span><span class="o">.</span><span class="n">supplier</span><span class="o">.</span><span class="n">email</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">requisition</span><span class="o">.</span><span class="n">requisition_number</span>
+            <span class="p">)</span>
 
-            <span class="n">requisition</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s1">&#39;approved&#39;</span>
+            <span class="n">requisition</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;approved&quot;</span>
             <span class="n">requisition</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
             <span class="n">send_requisition_accepted_email</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span>
-                <span class="n">requisition</span><span class="o">.</span><span class="n">inventory</span><span class="o">.</span><span class="n">procurement_officer</span><span class="o">.</span><span class="n">email</span><span class="p">,</span> <span class="n">requisition</span><span class="o">.</span><span class="n">requisition_number</span><span class="p">)</span>
+                <span class="n">requisition</span><span class="o">.</span><span class="n">inventory</span><span class="o">.</span><span class="n">procurement_officer</span><span class="o">.</span><span class="n">email</span><span class="p">,</span>
+                <span class="n">requisition</span><span class="o">.</span><span class="n">requisition_number</span><span class="p">,</span>
+            <span class="p">)</span>
 
             <span class="c1"># Reject all other bids associated with the requisition</span>
-            <span class="n">other_bids</span> <span class="o">=</span> <span class="n">SupplierBid</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
-                <span class="n">requisition</span><span class="o">=</span><span class="n">requisition</span><span class="p">)</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
-            <span class="n">other_bids</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s1">&#39;rejected&#39;</span><span class="p">)</span>
+            <span class="n">other_bids</span> <span class="o">=</span> <span class="n">SupplierBid</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">requisition</span><span class="o">=</span><span class="n">requisition</span><span class="p">)</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span>
+                <span class="nb">id</span><span class="o">=</span><span class="n">instance</span><span class="o">.</span><span class="n">id</span>
+            <span class="p">)</span>
+            <span class="n">other_bids</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s2">&quot;rejected&quot;</span><span class="p">)</span>
 
             <span class="c1"># Convert the QuerySet to a list and extract the email addresses</span>
-            <span class="n">supplier_emails</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">other_bids</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span>
-                <span class="s1">&#39;supplier__email&#39;</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+            <span class="n">supplier_emails</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">other_bids</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s2">&quot;supplier__email&quot;</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
             <span class="n">send_bid_rejected_email</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span>
-                <span class="n">supplier_emails</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">requisition</span><span class="o">.</span><span class="n">requisition_number</span><span class="p">)</span>
+                <span class="n">supplier_emails</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">requisition</span><span class="o">.</span><span class="n">requisition_number</span>
+            <span class="p">)</span>
 
             <span class="c1"># Create a purchase order automatically</span>
             <span class="n">purchase_order</span> <span class="o">=</span> <span class="n">PurchaseOrder</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
@@ -652,16 +691,26 @@
                 <span class="n">bid_id</span><span class="o">=</span><span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="n">purchase_order</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-            <span class="n">send_purchase_order_email</span><span class="o">.</span><span class="n">delay</span><span class="p">([</span><span class="n">instance</span><span class="o">.</span><span class="n">supplier</span><span class="o">.</span><span class="n">email</span><span class="p">,</span> <span class="n">requisition</span><span class="o">.</span><span class="n">inventory</span><span class="o">.</span><span class="n">procurement_officer</span><span class="o">.</span><span class="n">email</span><span class="p">],</span>
-                                            <span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">requisition</span><span class="o">.</span><span class="n">requisition_number</span><span class="p">,</span> <span class="n">purchase_order</span><span class="o">.</span><span class="n">order_number</span><span class="p">)</span>
+            <span class="n">send_purchase_order_email</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="n">instance</span><span class="o">.</span><span class="n">supplier</span><span class="o">.</span><span class="n">email</span><span class="p">,</span>
+                    <span class="n">requisition</span><span class="o">.</span><span class="n">inventory</span><span class="o">.</span><span class="n">procurement_officer</span><span class="o">.</span><span class="n">email</span><span class="p">,</span>
+                <span class="p">],</span>
+                <span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                <span class="n">requisition</span><span class="o">.</span><span class="n">requisition_number</span><span class="p">,</span>
+                <span class="n">purchase_order</span><span class="o">.</span><span class="n">order_number</span><span class="p">,</span>
+            <span class="p">)</span>
 
             <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
 
-        <span class="k">elif</span> <span class="n">bid_status</span> <span class="o">==</span> <span class="s1">&#39;rejected&#39;</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">bid_status</span> <span class="o">==</span> <span class="s2">&quot;rejected&quot;</span><span class="p">:</span>
             <span class="c1"># Only perform serializer update if bid is rejected</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">perform_update</span><span class="p">(</span><span class="n">serializer</span><span class="p">)</span>
             <span class="n">send_bid_rejected_email</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span>
-                <span class="p">[</span><span class="n">instance</span><span class="o">.</span><span class="n">supplier</span><span class="o">.</span><span class="n">email</span><span class="p">],</span> <span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">requisition</span><span class="o">.</span><span class="n">requisition_number</span><span class="p">)</span>
+                <span class="p">[</span><span class="n">instance</span><span class="o">.</span><span class="n">supplier</span><span class="o">.</span><span class="n">email</span><span class="p">],</span>
+                <span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                <span class="n">instance</span><span class="o">.</span><span class="n">requisition</span><span class="o">.</span><span class="n">requisition_number</span><span class="p">,</span>
+            <span class="p">)</span>
             <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">)</span></div>
 </div>
 
@@ -694,9 +743,7 @@
 <div class="viewcode-block" id="PurchaseOrderVendorListView.get_queryset">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.views.PurchaseOrderVendorListView.get_queryset">[docs]</a>
     <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">PurchaseOrder</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
-            <span class="n">bid__supplier</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
-        <span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">PurchaseOrder</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">bid__supplier</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span></div>
 </div>
 
 
@@ -720,26 +767,40 @@
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.views.PurchaseOrderVendorStatusView.update">[docs]</a>
     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_object</span><span class="p">()</span>
-        <span class="n">serializer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_serializer</span><span class="p">(</span>
-            <span class="n">instance</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">partial</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">serializer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_serializer</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">partial</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">serializer</span><span class="o">.</span><span class="n">is_valid</span><span class="p">(</span><span class="n">raise_exception</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-        <span class="n">new_status</span> <span class="o">=</span> <span class="n">serializer</span><span class="o">.</span><span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">)</span>
+        <span class="n">new_status</span> <span class="o">=</span> <span class="n">serializer</span><span class="o">.</span><span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;status&quot;</span><span class="p">)</span>
 
         <span class="c1"># Check if the status transition is valid</span>
-        <span class="k">if</span> <span class="n">instance</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s1">&#39;delivered&#39;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;Order is already delivered.&quot;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">instance</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s1">&#39;shipped&#39;</span> <span class="ow">and</span> <span class="n">new_status</span> <span class="o">==</span> <span class="s1">&#39;shipped&#39;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;Order is already shipped.&quot;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">new_status</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;shipped&#39;</span><span class="p">,</span> <span class="s1">&#39;delivered&#39;</span><span class="p">]:</span>
-            <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;Invalid status transition.&quot;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">new_status</span> <span class="o">==</span> <span class="s1">&#39;delivered&#39;</span> <span class="ow">and</span> <span class="n">instance</span><span class="o">.</span><span class="n">status</span> <span class="o">!=</span> <span class="s1">&#39;shipped&#39;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;Order must be shipped before it can be delivered.&quot;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">instance</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;delivered&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span>
+                <span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;Order is already delivered.&quot;</span><span class="p">},</span>
+                <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">instance</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;shipped&quot;</span> <span class="ow">and</span> <span class="n">new_status</span> <span class="o">==</span> <span class="s2">&quot;shipped&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span>
+                <span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;Order is already shipped.&quot;</span><span class="p">},</span>
+                <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">new_status</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;shipped&quot;</span><span class="p">,</span> <span class="s2">&quot;delivered&quot;</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span>
+                <span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;Invalid status transition.&quot;</span><span class="p">},</span>
+                <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">new_status</span> <span class="o">==</span> <span class="s2">&quot;delivered&quot;</span> <span class="ow">and</span> <span class="n">instance</span><span class="o">.</span><span class="n">status</span> <span class="o">!=</span> <span class="s2">&quot;shipped&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span>
+                <span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;Order must be shipped before it can be delivered.&quot;</span><span class="p">},</span>
+                <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">,</span>
+            <span class="p">)</span>
 
         <span class="n">instance</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">new_status</span>
         <span class="n">instance</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
         <span class="n">send_purchase_order_status_email</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span>
-            <span class="n">instance</span><span class="o">.</span><span class="n">bid</span><span class="o">.</span><span class="n">requisition</span><span class="o">.</span><span class="n">inventory</span><span class="o">.</span><span class="n">procurement_officer</span><span class="o">.</span><span class="n">email</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">order_number</span><span class="p">,</span> <span class="n">new_status</span><span class="p">)</span>
+            <span class="n">instance</span><span class="o">.</span><span class="n">bid</span><span class="o">.</span><span class="n">requisition</span><span class="o">.</span><span class="n">inventory</span><span class="o">.</span><span class="n">procurement_officer</span><span class="o">.</span><span class="n">email</span><span class="p">,</span>
+            <span class="n">instance</span><span class="o">.</span><span class="n">order_number</span><span class="p">,</span>
+            <span class="n">new_status</span><span class="p">,</span>
+        <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">)</span></div>
 </div>

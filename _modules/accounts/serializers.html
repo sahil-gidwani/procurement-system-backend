@@ -321,6 +321,7 @@
 <a class="viewcode-back" href="../../modules/accounts.html#accounts.serializers.ProfileSerializer">[docs]</a>
 <span class="k">class</span> <span class="nc">ProfileSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
     <span class="n">vendor</span> <span class="o">=</span> <span class="n">VendorInfoSerializer</span><span class="p">(</span><span class="n">write_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">allow_null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
 <div class="viewcode-block" id="ProfileSerializer.Meta">
 <a class="viewcode-back" href="../../modules/accounts.html#accounts.serializers.ProfileSerializer.Meta">[docs]</a>
     <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
@@ -337,17 +338,17 @@
             <span class="s2">&quot;vendor&quot;</span><span class="p">,</span>
         <span class="p">)</span></div>
 
-    
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">ProfileSerializer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="c1"># Adjust the &#39;required&#39; attribute of the &#39;vendor&#39; field based on user role</span>
-        <span class="k">if</span> <span class="s1">&#39;context&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="s1">&#39;request&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;context&#39;</span><span class="p">]:</span>
-            <span class="n">user</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;context&#39;</span><span class="p">][</span><span class="s1">&#39;request&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">user</span>
+        <span class="k">if</span> <span class="s2">&quot;context&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="s2">&quot;request&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;context&quot;</span><span class="p">]:</span>
+            <span class="n">user</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;context&quot;</span><span class="p">][</span><span class="s2">&quot;request&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">user</span>
             <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">:</span>  <span class="c1"># Ensure user is authenticated</span>
                 <span class="n">user_role</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">user_role</span>
-                <span class="k">if</span> <span class="n">user_role</span> <span class="o">==</span> <span class="s1">&#39;procurement_officer&#39;</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s1">&#39;vendor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">required</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">if</span> <span class="n">user_role</span> <span class="o">==</span> <span class="s2">&quot;procurement_officer&quot;</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s2">&quot;vendor&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">required</span> <span class="o">=</span> <span class="kc">False</span>
 
 <div class="viewcode-block" id="ProfileSerializer.update">
 <a class="viewcode-back" href="../../modules/accounts.html#accounts.serializers.ProfileSerializer.update">[docs]</a>
@@ -361,7 +362,9 @@
             <span class="s2">&quot;phone_number&quot;</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">phone_number</span>
         <span class="p">)</span>
         <span class="n">instance</span><span class="o">.</span><span class="n">gstin</span> <span class="o">=</span> <span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;gstin&quot;</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">gstin</span><span class="p">)</span>
-        <span class="n">instance</span><span class="o">.</span><span class="n">company_name</span> <span class="o">=</span> <span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;company_name&quot;</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">company_name</span><span class="p">)</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">company_name</span> <span class="o">=</span> <span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="s2">&quot;company_name&quot;</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">company_name</span>
+        <span class="p">)</span>
         <span class="n">instance</span><span class="o">.</span><span class="n">address</span> <span class="o">=</span> <span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;address&quot;</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">address</span><span class="p">)</span>
         <span class="n">instance</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 

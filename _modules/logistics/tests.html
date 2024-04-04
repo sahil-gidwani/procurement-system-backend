@@ -376,53 +376,73 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">inventory_receipt_list_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;inventory_receipt_list&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inventory_receipt_create_duplicate_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;inventory_receipt_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;order_id&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+            <span class="s2">&quot;inventory_receipt_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;order_id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inventory_receipt_create_order_status_pending_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;inventory_receipt_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;order_id&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+            <span class="s2">&quot;inventory_receipt_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;order_id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inventory_receipt_create_order_status_shipped_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;inventory_receipt_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;order_id&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+            <span class="s2">&quot;inventory_receipt_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;order_id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inventory_receipt_create_order_status_delivered_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;inventory_receipt_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;order_id&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+            <span class="s2">&quot;inventory_receipt_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;order_id&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inventory_receipt_create_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;inventory_receipt_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;order_id&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">})</span>
+            <span class="s2">&quot;inventory_receipt_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;order_id&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inventory_receipt_retrieve_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;inventory_receipt_detail&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+            <span class="s2">&quot;inventory_receipt_detail&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inventory_receipt_update_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;inventory_receipt_update&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+            <span class="s2">&quot;inventory_receipt_update&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inventory_receipt_delete_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;inventory_receipt_delete&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+            <span class="s2">&quot;inventory_receipt_delete&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inventory_receipt_vendor_list_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;inventory_receipt_vendor_list&quot;</span><span class="p">)</span>
+            <span class="s2">&quot;inventory_receipt_vendor_list&quot;</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inventory_receipt_vendor_retrieve_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;inventory_receipt_vendor_detail&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+            <span class="s2">&quot;inventory_receipt_vendor_detail&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">invoice_list_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;invoice_list&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">invoice_create_duplicate_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;invoice_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;order_id&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+            <span class="s2">&quot;invoice_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;order_id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">invoice_create_order_status_pending_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;invoice_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;order_id&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+            <span class="s2">&quot;invoice_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;order_id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">invoice_create_order_status_shipped_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;invoice_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;order_id&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+            <span class="s2">&quot;invoice_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;order_id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">invoice_create_order_status_delivered_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;invoice_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;order_id&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">invoice_create_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;invoice_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;order_id&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">})</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">invoice_retrieve_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;invoice_detail&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">invoice_update_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;invoice_update&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">invoice_delete_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;invoice_delete&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+            <span class="s2">&quot;invoice_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;order_id&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">invoice_create_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;invoice_create&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;order_id&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">invoice_retrieve_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;invoice_detail&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">invoice_update_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;invoice_update&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">invoice_delete_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;invoice_delete&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">invoice_procurement_officer_list_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;invoice_procurement_officer_list&quot;</span><span class="p">)</span>
+            <span class="s2">&quot;invoice_procurement_officer_list&quot;</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">invoice_procurement_officer_retrieve_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;invoice_procurement_officer_detail&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+            <span class="s2">&quot;invoice_procurement_officer_detail&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">invoice_payment_status_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;invoice_payment_status&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+            <span class="s2">&quot;invoice_payment_status&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">invoice_payment_status_paid_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;invoice_payment_status&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+            <span class="s2">&quot;invoice_payment_status&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">invoice_vendor_rating_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;invoice_vendor_rating&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+            <span class="s2">&quot;invoice_vendor_rating&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">invoice_vendor_rating_rated_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;invoice_vendor_rating&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+            <span class="s2">&quot;invoice_vendor_rating&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">invoice_vendor_rating_unpaid_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
-            <span class="s2">&quot;invoice_vendor_rating&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span></div>
+            <span class="s2">&quot;invoice_vendor_rating&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+        <span class="p">)</span></div>
 </div>
 
 
@@ -482,8 +502,7 @@
     <span class="k">def</span> <span class="nf">test_inventory_receipt_list_view_invalid_http_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_authenticate</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer</span><span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inventory_receipt_list_url</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span>
-                         <span class="n">status</span><span class="o">.</span><span class="n">HTTP_405_METHOD_NOT_ALLOWED</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_405_METHOD_NOT_ALLOWED</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="InventoryReceiptTests.test_inventory_receipt_create_view_procurement_officer">
@@ -513,8 +532,7 @@
             <span class="s2">&quot;received_condition&quot;</span><span class="p">:</span> <span class="s2">&quot;good&quot;</span><span class="p">,</span>
             <span class="s2">&quot;inspection_notes&quot;</span><span class="p">:</span> <span class="s2">&quot;Test Notes&quot;</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">inventory_receipt_create_duplicate_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inventory_receipt_create_duplicate_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">InventoryReceipt</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="mi">3</span><span class="p">)</span></div>
 
@@ -530,7 +548,8 @@
             <span class="s2">&quot;inspection_notes&quot;</span><span class="p">:</span> <span class="s2">&quot;Test Notes&quot;</span><span class="p">,</span>
         <span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">inventory_receipt_create_order_status_pending_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">inventory_receipt_create_order_status_pending_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">InventoryReceipt</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="mi">3</span><span class="p">)</span></div>
 
@@ -546,7 +565,8 @@
             <span class="s2">&quot;inspection_notes&quot;</span><span class="p">:</span> <span class="s2">&quot;Test Notes&quot;</span><span class="p">,</span>
         <span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">inventory_receipt_create_order_status_shipped_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">inventory_receipt_create_order_status_shipped_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">InventoryReceipt</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="mi">3</span><span class="p">)</span></div>
 
@@ -562,7 +582,8 @@
             <span class="s2">&quot;inspection_notes&quot;</span><span class="p">:</span> <span class="s2">&quot;Test Notes&quot;</span><span class="p">,</span>
         <span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">inventory_receipt_create_order_status_delivered_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">inventory_receipt_create_order_status_delivered_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_201_CREATED</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;receipt_id&quot;</span><span class="p">],</span> <span class="s2">&quot;IR-004&quot;</span><span class="p">)</span>
         <span class="n">inventory_receipt</span> <span class="o">=</span> <span class="n">InventoryReceipt</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">receipt_id</span><span class="o">=</span><span class="s2">&quot;IR-004&quot;</span><span class="p">)</span>
@@ -633,8 +654,7 @@
     <span class="k">def</span> <span class="nf">test_inventory_receipt_create_view_invalid_http_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_authenticate</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer</span><span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inventory_receipt_create_url</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span>
-                         <span class="n">status</span><span class="o">.</span><span class="n">HTTP_405_METHOD_NOT_ALLOWED</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_405_METHOD_NOT_ALLOWED</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">InventoryReceipt</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="mi">3</span><span class="p">)</span></div>
 
 
@@ -707,8 +727,7 @@
     <span class="k">def</span> <span class="nf">test_inventory_receipt_retrieve_view_invalid_http_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_authenticate</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer</span><span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inventory_receipt_retrieve_url</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span>
-                         <span class="n">status</span><span class="o">.</span><span class="n">HTTP_405_METHOD_NOT_ALLOWED</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_405_METHOD_NOT_ALLOWED</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="InventoryReceiptTests.test_inventory_receipt_update_view_procurement_officer_own_item">
@@ -783,8 +802,7 @@
     <span class="k">def</span> <span class="nf">test_inventory_receipt_update_view_invalid_http_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_authenticate</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer</span><span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inventory_receipt_update_url</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span>
-                         <span class="n">status</span><span class="o">.</span><span class="n">HTTP_405_METHOD_NOT_ALLOWED</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_405_METHOD_NOT_ALLOWED</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="InventoryReceiptTests.test_inventory_receipt_update_view_missing_data">
@@ -854,8 +872,7 @@
     <span class="k">def</span> <span class="nf">test_inventory_receipt_delete_view_invalid_http_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_authenticate</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer</span><span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inventory_receipt_delete_url</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span>
-                         <span class="n">status</span><span class="o">.</span><span class="n">HTTP_405_METHOD_NOT_ALLOWED</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_405_METHOD_NOT_ALLOWED</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="InventoryReceiptTests.test_inventory_receipt_vendor_list_view_vendor">
@@ -898,7 +915,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inventory_receipt_vendor_list_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InventoryReceiptTests.test_inventory_receipt_vendor_list_view_invalid_http_method">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_vendor_list_view_invalid_http_method">[docs]</a>
     <span class="k">def</span> <span class="nf">test_inventory_receipt_vendor_list_view_invalid_http_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -906,7 +923,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inventory_receipt_vendor_list_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_405_METHOD_NOT_ALLOWED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InventoryReceiptTests.test_inventory_receipt_vendor_retrieve_view_vendor_own_item">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_vendor_retrieve_view_vendor_own_item">[docs]</a>
     <span class="k">def</span> <span class="nf">test_inventory_receipt_vendor_retrieve_view_vendor_own_item</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -915,7 +932,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;receipt_id&quot;</span><span class="p">],</span> <span class="s2">&quot;IR-001&quot;</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InventoryReceiptTests.test_inventory_receipt_vendor_retrieve_view_other_vendor">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_vendor_retrieve_view_other_vendor">[docs]</a>
     <span class="k">def</span> <span class="nf">test_inventory_receipt_vendor_retrieve_view_other_vendor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -931,14 +948,14 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inventory_receipt_vendor_retrieve_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_403_FORBIDDEN</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InventoryReceiptTests.test_inventory_receipt_vendor_retrieve_view_unauthenticated">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_vendor_retrieve_view_unauthenticated">[docs]</a>
     <span class="k">def</span> <span class="nf">test_inventory_receipt_vendor_retrieve_view_unauthenticated</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inventory_receipt_vendor_retrieve_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InventoryReceiptTests.test_inventory_receipt_vendor_retrieve_view_invalid_token">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_vendor_retrieve_view_invalid_token">[docs]</a>
     <span class="k">def</span> <span class="nf">test_inventory_receipt_vendor_retrieve_view_invalid_token</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -946,7 +963,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inventory_receipt_vendor_retrieve_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InventoryReceiptTests.test_inventory_receipt_vendor_retrieve_view_invalid_http_method">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_vendor_retrieve_view_invalid_http_method">[docs]</a>
     <span class="k">def</span> <span class="nf">test_inventory_receipt_vendor_retrieve_view_invalid_http_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -955,7 +972,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_405_METHOD_NOT_ALLOWED</span><span class="p">)</span></div>
 </div>
 
-    
+
 
 <div class="viewcode-block" id="InvoiceTests">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests">[docs]</a>
@@ -974,7 +991,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_list_view_other_vendor">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_list_view_other_vendor">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_list_view_other_vendor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -983,7 +1000,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_list_view_procurement_officer">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_list_view_procurement_officer">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_list_view_procurement_officer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -991,14 +1008,14 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_list_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_403_FORBIDDEN</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_list_view_unauthenticated">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_list_view_unauthenticated">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_list_view_unauthenticated</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_list_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_list_view_invalid_token">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_list_view_invalid_token">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_list_view_invalid_token</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1006,7 +1023,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_list_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_list_view_invalid_http_method">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_list_view_invalid_http_method">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_list_view_invalid_http_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1014,7 +1031,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_list_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_405_METHOD_NOT_ALLOWED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_create_view_vendor">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_create_view_vendor">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_create_view_vendor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1032,7 +1049,7 @@
         <span class="n">invoice</span> <span class="o">=</span> <span class="n">Invoice</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">invoice_number</span><span class="o">=</span><span class="s2">&quot;INV-004&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">invoice</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">order_number</span><span class="p">,</span> <span class="s2">&quot;PO-005&quot;</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_create_view_one_to_one_purchase_order">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_create_view_one_to_one_purchase_order">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_create_view_one_to_one_purchase_order</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1048,7 +1065,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">Invoice</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="mi">3</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_create_view_order_status_pending">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_create_view_order_status_pending">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_create_view_order_status_pending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1064,7 +1081,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">Invoice</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="mi">3</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_create_view_order_status_shipped">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_create_view_order_status_shipped">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_create_view_order_status_shipped</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1080,7 +1097,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">Invoice</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="mi">3</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_create_view_order_status_delivered">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_create_view_order_status_delivered">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_create_view_order_status_delivered</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1092,13 +1109,15 @@
             <span class="s2">&quot;payment_due_date&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">30</span><span class="p">))</span><span class="o">.</span><span class="n">date</span><span class="p">(),</span>
             <span class="s2">&quot;payment_mode&quot;</span><span class="p">:</span> <span class="s2">&quot;credit&quot;</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_create_order_status_delivered_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">invoice_create_order_status_delivered_url</span><span class="p">,</span> <span class="n">data</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_201_CREATED</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;invoice_number&quot;</span><span class="p">],</span> <span class="s2">&quot;INV-004&quot;</span><span class="p">)</span>
         <span class="n">invoice</span> <span class="o">=</span> <span class="n">Invoice</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">invoice_number</span><span class="o">=</span><span class="s2">&quot;INV-004&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">invoice</span><span class="o">.</span><span class="n">order</span><span class="o">.</span><span class="n">order_number</span><span class="p">,</span> <span class="s2">&quot;PO-004&quot;</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_create_view_procurement_officer">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_create_view_procurement_officer">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_create_view_procurement_officer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1114,7 +1133,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_403_FORBIDDEN</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">Invoice</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="mi">3</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_create_view_other_vendor">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_create_view_other_vendor">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_create_view_other_vendor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1130,7 +1149,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_403_FORBIDDEN</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">Invoice</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="mi">3</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_create_view_unauthenticated">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_create_view_unauthenticated">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_create_view_unauthenticated</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1145,7 +1164,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">Invoice</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="mi">3</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_create_view_invalid_token">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_create_view_invalid_token">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_create_view_invalid_token</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1161,7 +1180,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">Invoice</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="mi">3</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_create_view_invalid_http_method">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_create_view_invalid_http_method">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_create_view_invalid_http_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1170,7 +1189,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_405_METHOD_NOT_ALLOWED</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">Invoice</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="mi">3</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_create_view_missing_data">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_create_view_missing_data">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_create_view_missing_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1179,7 +1198,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">Invoice</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="mi">3</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_create_view_invalid_data">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_create_view_invalid_data">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_create_view_invalid_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1195,7 +1214,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">Invoice</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="mi">3</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_retrieve_view_vendor_own_item">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_retrieve_view_vendor_own_item">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_retrieve_view_vendor_own_item</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1204,7 +1223,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;invoice_number&quot;</span><span class="p">],</span> <span class="s2">&quot;INV-001&quot;</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_retrieve_view_other_vendor">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_retrieve_view_other_vendor">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_retrieve_view_other_vendor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1212,7 +1231,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_retrieve_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_404_NOT_FOUND</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_retrieve_view_procurement_officer">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_retrieve_view_procurement_officer">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_retrieve_view_procurement_officer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1220,14 +1239,14 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_retrieve_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_403_FORBIDDEN</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_retrieve_view_unauthenticated">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_retrieve_view_unauthenticated">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_retrieve_view_unauthenticated</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_retrieve_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_retrieve_view_invalid_token">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_retrieve_view_invalid_token">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_retrieve_view_invalid_token</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1235,7 +1254,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_retrieve_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_retrieve_view_invalid_http_method">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_retrieve_view_invalid_http_method">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_retrieve_view_invalid_http_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1243,7 +1262,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_retrieve_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_405_METHOD_NOT_ALLOWED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_update_view_vendor_own_item">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_update_view_vendor_own_item">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_update_view_vendor_own_item</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1274,7 +1293,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_update_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_404_NOT_FOUND</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_update_view_procurement_officer">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_update_view_procurement_officer">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_update_view_procurement_officer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1288,7 +1307,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_update_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_403_FORBIDDEN</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_update_view_unauthenticated">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_update_view_unauthenticated">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_update_view_unauthenticated</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1301,7 +1320,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_update_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_update_view_invalid_token">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_update_view_invalid_token">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_update_view_invalid_token</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1315,7 +1334,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_update_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_update_view_invalid_http_method">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_update_view_invalid_http_method">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_update_view_invalid_http_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1323,7 +1342,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_update_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_405_METHOD_NOT_ALLOWED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_update_view_missing_data">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_update_view_missing_data">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_update_view_missing_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1331,7 +1350,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_update_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_update_view_invalid_data">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_update_view_invalid_data">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_update_view_invalid_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1345,7 +1364,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_update_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_delete_view_vendor_own_item">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_delete_view_vendor_own_item">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_delete_view_vendor_own_item</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1355,7 +1374,7 @@
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="n">ObjectDoesNotExist</span><span class="p">):</span>
             <span class="n">Invoice</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">invoice_number</span><span class="o">=</span><span class="s2">&quot;INV-001&quot;</span><span class="p">)</span></div>
 
-        
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_delete_view_other_vendor">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_delete_view_other_vendor">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_delete_view_other_vendor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1363,7 +1382,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_delete_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_404_NOT_FOUND</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_delete_view_procurement_officer">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_delete_view_procurement_officer">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_delete_view_procurement_officer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1371,14 +1390,14 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_delete_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_403_FORBIDDEN</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_delete_view_unauthenticated">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_delete_view_unauthenticated">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_delete_view_unauthenticated</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_delete_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_delete_view_invalid_token">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_delete_view_invalid_token">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_delete_view_invalid_token</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1386,7 +1405,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_delete_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_delete_view_invalid_http_method">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_delete_view_invalid_http_method">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_delete_view_invalid_http_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1394,7 +1413,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_delete_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_405_METHOD_NOT_ALLOWED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_procurement_officer_list_view_procurement_officer">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_procurement_officer_list_view_procurement_officer">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_procurement_officer_list_view_procurement_officer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1403,7 +1422,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_procurement_officer_list_view_other_procurement_officer">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_procurement_officer_list_view_other_procurement_officer">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_procurement_officer_list_view_other_procurement_officer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1412,7 +1431,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_procurement_officer_list_view_vendor">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_procurement_officer_list_view_vendor">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_procurement_officer_list_view_vendor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1420,14 +1439,14 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_procurement_officer_list_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_403_FORBIDDEN</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_procurement_officer_list_view_unauthenticated">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_procurement_officer_list_view_unauthenticated">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_procurement_officer_list_view_unauthenticated</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_procurement_officer_list_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_procurement_officer_list_view_invalid_token">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_procurement_officer_list_view_invalid_token">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_procurement_officer_list_view_invalid_token</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1435,7 +1454,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_procurement_officer_list_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_procurement_officer_list_view_invalid_http_method">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_procurement_officer_list_view_invalid_http_method">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_procurement_officer_list_view_invalid_http_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1443,16 +1462,18 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_procurement_officer_list_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_405_METHOD_NOT_ALLOWED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_procurement_officer_retrieve_view_procurement_officer_own_item">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_procurement_officer_retrieve_view_procurement_officer_own_item">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_invoice_procurement_officer_retrieve_view_procurement_officer_own_item</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_invoice_procurement_officer_retrieve_view_procurement_officer_own_item</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_authenticate</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer</span><span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_procurement_officer_retrieve_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;invoice_number&quot;</span><span class="p">],</span> <span class="s2">&quot;INV-001&quot;</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_procurement_officer_retrieve_view_other_procurement_officer">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_procurement_officer_retrieve_view_other_procurement_officer">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_procurement_officer_retrieve_view_other_procurement_officer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1460,7 +1481,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_procurement_officer_retrieve_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_404_NOT_FOUND</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_procurement_officer_retrieve_view_vendor">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_procurement_officer_retrieve_view_vendor">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_procurement_officer_retrieve_view_vendor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1468,14 +1489,14 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_procurement_officer_retrieve_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_403_FORBIDDEN</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_procurement_officer_retrieve_view_unauthenticated">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_procurement_officer_retrieve_view_unauthenticated">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_procurement_officer_retrieve_view_unauthenticated</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_procurement_officer_retrieve_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_procurement_officer_retrieve_view_invalid_token">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_procurement_officer_retrieve_view_invalid_token">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_procurement_officer_retrieve_view_invalid_token</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1483,7 +1504,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_procurement_officer_retrieve_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_procurement_officer_retrieve_view_invalid_http_method">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_procurement_officer_retrieve_view_invalid_http_method">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_procurement_officer_retrieve_view_invalid_http_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1491,74 +1512,62 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_procurement_officer_retrieve_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_405_METHOD_NOT_ALLOWED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_payment_status_view_procurement_officer">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_payment_status_view_procurement_officer">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_payment_status_view_procurement_officer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_authenticate</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer</span><span class="p">)</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;payment_status&quot;</span><span class="p">:</span> <span class="s2">&quot;paid&quot;</span>
-        <span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;payment_status&quot;</span><span class="p">:</span> <span class="s2">&quot;paid&quot;</span><span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_payment_status_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
         <span class="n">invoice</span> <span class="o">=</span> <span class="n">Invoice</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">invoice_number</span><span class="o">=</span><span class="s2">&quot;INV-001&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">invoice</span><span class="o">.</span><span class="n">payment_status</span><span class="p">,</span> <span class="s2">&quot;paid&quot;</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_payment_status_view_status_paid">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_payment_status_view_status_paid">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_payment_status_view_status_paid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_authenticate</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer</span><span class="p">)</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;payment_status&quot;</span><span class="p">:</span> <span class="s2">&quot;paid&quot;</span>
-        <span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;payment_status&quot;</span><span class="p">:</span> <span class="s2">&quot;paid&quot;</span><span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_payment_status_paid_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_payment_status_view_vendor">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_payment_status_view_vendor">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_payment_status_view_vendor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_authenticate</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">vendor</span><span class="p">)</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;payment_status&quot;</span><span class="p">:</span> <span class="s2">&quot;paid&quot;</span>
-        <span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;payment_status&quot;</span><span class="p">:</span> <span class="s2">&quot;paid&quot;</span><span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_payment_status_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_403_FORBIDDEN</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_payment_status_view_other_procurement_officer">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_payment_status_view_other_procurement_officer">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_payment_status_view_other_procurement_officer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_authenticate</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer2</span><span class="p">)</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;payment_status&quot;</span><span class="p">:</span> <span class="s2">&quot;paid&quot;</span>
-        <span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;payment_status&quot;</span><span class="p">:</span> <span class="s2">&quot;paid&quot;</span><span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_payment_status_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_404_NOT_FOUND</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_payment_status_view_unauthenticated">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_payment_status_view_unauthenticated">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_payment_status_view_unauthenticated</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;payment_status&quot;</span><span class="p">:</span> <span class="s2">&quot;paid&quot;</span>
-        <span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;payment_status&quot;</span><span class="p">:</span> <span class="s2">&quot;paid&quot;</span><span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_payment_status_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_payment_status_view_invalid_token">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_payment_status_view_invalid_token">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_payment_status_view_invalid_token</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">credentials</span><span class="p">(</span><span class="n">HTTP_AUTHORIZATION</span><span class="o">=</span><span class="s2">&quot;Bearer invalidtoken&quot;</span><span class="p">)</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;payment_status&quot;</span><span class="p">:</span> <span class="s2">&quot;paid&quot;</span>
-        <span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;payment_status&quot;</span><span class="p">:</span> <span class="s2">&quot;paid&quot;</span><span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_payment_status_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_payment_status_view_invalid_http_method">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_payment_status_view_invalid_http_method">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_payment_status_view_invalid_http_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1566,7 +1575,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_payment_status_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_405_METHOD_NOT_ALLOWED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_payment_status_view_missing_data">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_payment_status_view_missing_data">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_payment_status_view_missing_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1574,14 +1583,12 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_payment_status_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_payment_status_view_invalid_data">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_payment_status_view_invalid_data">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_payment_status_view_invalid_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_authenticate</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer</span><span class="p">)</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;payment_status&quot;</span><span class="p">:</span> <span class="s2">&quot;invalid&quot;</span>
-        <span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;payment_status&quot;</span><span class="p">:</span> <span class="s2">&quot;invalid&quot;</span><span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_payment_status_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span></div>
 
@@ -1590,58 +1597,48 @@
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_vendor_rating_view_procurement_officer">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_vendor_rating_view_procurement_officer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_authenticate</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer</span><span class="p">)</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;vendor_rating&quot;</span><span class="p">:</span> <span class="mi">5</span>
-        <span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;vendor_rating&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_vendor_rating_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
         <span class="n">invoice</span> <span class="o">=</span> <span class="n">Invoice</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">invoice_number</span><span class="o">=</span><span class="s2">&quot;INV-002&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">invoice</span><span class="o">.</span><span class="n">vendor_rated</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_vendor_rating_view_vendor">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_vendor_rating_view_vendor">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_vendor_rating_view_vendor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_authenticate</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">vendor</span><span class="p">)</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;vendor_rating&quot;</span><span class="p">:</span> <span class="mi">5</span>
-        <span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;vendor_rating&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_vendor_rating_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_403_FORBIDDEN</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_vendor_rating_view_other_procurement_officer">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_vendor_rating_view_other_procurement_officer">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_vendor_rating_view_other_procurement_officer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_authenticate</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer2</span><span class="p">)</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;vendor_rating&quot;</span><span class="p">:</span> <span class="mi">5</span>
-        <span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;vendor_rating&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_vendor_rating_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_404_NOT_FOUND</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_vendor_rating_view_unauthenticated">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_vendor_rating_view_unauthenticated">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_vendor_rating_view_unauthenticated</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;vendor_rating&quot;</span><span class="p">:</span> <span class="mi">5</span>
-        <span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;vendor_rating&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_vendor_rating_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_vendor_rating_view_invalid_token">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_vendor_rating_view_invalid_token">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_vendor_rating_view_invalid_token</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">credentials</span><span class="p">(</span><span class="n">HTTP_AUTHORIZATION</span><span class="o">=</span><span class="s2">&quot;Bearer invalidtoken&quot;</span><span class="p">)</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;vendor_rating&quot;</span><span class="p">:</span> <span class="mi">5</span>
-        <span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;vendor_rating&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_vendor_rating_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_vendor_rating_view_invalid_http_method">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_vendor_rating_view_invalid_http_method">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_vendor_rating_view_invalid_http_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1649,7 +1646,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_vendor_rating_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_405_METHOD_NOT_ALLOWED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_vendor_rating_view_missing_data">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_vendor_rating_view_missing_data">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_vendor_rating_view_missing_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1657,25 +1654,21 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_vendor_rating_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_vendor_rating_view_invalid_data">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_vendor_rating_view_invalid_data">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_vendor_rating_view_invalid_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_authenticate</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer</span><span class="p">)</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;vendor_rating&quot;</span><span class="p">:</span> <span class="s2">&quot;invalid&quot;</span>
-        <span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;vendor_rating&quot;</span><span class="p">:</span> <span class="s2">&quot;invalid&quot;</span><span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_vendor_rating_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_vendor_rating_view_vendor_rated">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_vendor_rating_view_vendor_rated">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_vendor_rating_view_vendor_rated</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_authenticate</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer</span><span class="p">)</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;vendor_rating&quot;</span><span class="p">:</span> <span class="mi">5</span>
-        <span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;vendor_rating&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_vendor_rating_rated_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span></div>
 
@@ -1684,20 +1677,16 @@
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_vendor_rating_view_unpaid">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_vendor_rating_view_unpaid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_authenticate</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer</span><span class="p">)</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;vendor_rating&quot;</span><span class="p">:</span> <span class="mi">5</span>
-        <span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;vendor_rating&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_vendor_rating_unpaid_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceTests.test_invoice_vendpr_rating_view_invalid_rating">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_vendpr_rating_view_invalid_rating">[docs]</a>
     <span class="k">def</span> <span class="nf">test_invoice_vendpr_rating_view_invalid_rating</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">force_authenticate</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer</span><span class="p">)</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;vendor_rating&quot;</span><span class="p">:</span> <span class="mi">6</span>
-        <span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;vendor_rating&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">invoice_vendor_rating_url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span></div>
 </div>

@@ -115,11 +115,13 @@
             <span class="k">return</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(),</span> <span class="nb">id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;pk&quot;</span><span class="p">))</span>
 
         <span class="n">order</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span>
-            <span class="n">PurchaseOrder</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">order_id</span><span class="p">,</span>
+            <span class="n">PurchaseOrder</span><span class="p">,</span>
+            <span class="nb">id</span><span class="o">=</span><span class="n">order_id</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="k">if</span> <span class="n">order</span><span class="o">.</span><span class="n">bid</span><span class="o">.</span><span class="n">requisition</span><span class="o">.</span><span class="n">inventory</span><span class="o">.</span><span class="n">procurement_officer</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">PermissionDenied</span><span class="p">(</span>
-                <span class="s2">&quot;You do not have permission to access this purchase order.&quot;</span><span class="p">)</span>
+                <span class="s2">&quot;You do not have permission to access this purchase order.&quot;</span>
+            <span class="p">)</span>
         <span class="n">obj</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(),</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">obj</span></div>
@@ -137,9 +139,7 @@
 
 <div class="viewcode-block" id="InventoryReceiptCreateView">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.views.InventoryReceiptCreateView">[docs]</a>
-<span class="k">class</span> <span class="nc">InventoryReceiptCreateView</span><span class="p">(</span>
-    <span class="n">BaseInventoryReceiptAPIView</span><span class="p">,</span> <span class="n">generics</span><span class="o">.</span><span class="n">CreateAPIView</span>
-<span class="p">):</span>
+<span class="k">class</span> <span class="nc">InventoryReceiptCreateView</span><span class="p">(</span><span class="n">BaseInventoryReceiptAPIView</span><span class="p">,</span> <span class="n">generics</span><span class="o">.</span><span class="n">CreateAPIView</span><span class="p">):</span>
     <span class="n">queryset</span> <span class="o">=</span> <span class="n">InventoryReceipt</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
 
 <div class="viewcode-block" id="InventoryReceiptCreateView.perform_create">
@@ -147,25 +147,28 @@
     <span class="k">def</span> <span class="nf">perform_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serializer</span><span class="p">):</span>
         <span class="n">order_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;order_id&quot;</span><span class="p">)</span>
         <span class="n">order</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span>
-            <span class="n">PurchaseOrder</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">order_id</span><span class="p">,</span>
+            <span class="n">PurchaseOrder</span><span class="p">,</span>
+            <span class="nb">id</span><span class="o">=</span><span class="n">order_id</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="k">if</span> <span class="n">order</span><span class="o">.</span><span class="n">bid</span><span class="o">.</span><span class="n">requisition</span><span class="o">.</span><span class="n">inventory</span><span class="o">.</span><span class="n">procurement_officer</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">PermissionDenied</span><span class="p">(</span>
                 <span class="s2">&quot;You do not have permission to access this purchase order.&quot;</span>
             <span class="p">)</span>
-    
-        <span class="k">if</span> <span class="n">order</span><span class="o">.</span><span class="n">status</span> <span class="o">!=</span> <span class="s1">&#39;delivered&#39;</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="n">order</span><span class="o">.</span><span class="n">status</span> <span class="o">!=</span> <span class="s2">&quot;delivered&quot;</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s2">&quot;Order is not delivered yet.&quot;</span><span class="p">)</span>
 
         <span class="n">existing_receipt</span> <span class="o">=</span> <span class="n">InventoryReceipt</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">existing_receipt</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s2">&quot;Inventory receipt already exists for this order.&quot;</span><span class="p">)</span>
-        
+
         <span class="n">instance</span> <span class="o">=</span> <span class="n">serializer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
 
-        <span class="n">generate_report_and_save</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s1">&#39;inventory_receipt&#39;</span><span class="p">)</span>
-        <span class="n">send_logistics_email</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;inventory_receipt&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;created&#39;</span><span class="p">)</span></div>
+        <span class="n">generate_report_and_save</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">&quot;inventory_receipt&quot;</span><span class="p">)</span>
+        <span class="n">send_logistics_email</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span>
+            <span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;inventory_receipt&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;created&quot;</span>
+        <span class="p">)</span></div>
 </div>
 
 
@@ -181,9 +184,7 @@
 
 <div class="viewcode-block" id="InventoryReceiptUpdateView">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.views.InventoryReceiptUpdateView">[docs]</a>
-<span class="k">class</span> <span class="nc">InventoryReceiptUpdateView</span><span class="p">(</span>
-    <span class="n">BaseInventoryReceiptAPIView</span><span class="p">,</span> <span class="n">generics</span><span class="o">.</span><span class="n">UpdateAPIView</span>
-<span class="p">):</span>
+<span class="k">class</span> <span class="nc">InventoryReceiptUpdateView</span><span class="p">(</span><span class="n">BaseInventoryReceiptAPIView</span><span class="p">,</span> <span class="n">generics</span><span class="o">.</span><span class="n">UpdateAPIView</span><span class="p">):</span>
     <span class="n">queryset</span> <span class="o">=</span> <span class="n">InventoryReceipt</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
 
 <div class="viewcode-block" id="InventoryReceiptUpdateView.perform_update">
@@ -197,15 +198,19 @@
 
         <span class="n">serializer</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
-        <span class="n">generate_report_and_save</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s1">&#39;inventory_receipt&#39;</span><span class="p">)</span>
-        <span class="n">send_logistics_email</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;inventory_receipt&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;updated&#39;</span><span class="p">)</span></div>
+        <span class="n">generate_report_and_save</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">&quot;inventory_receipt&quot;</span><span class="p">)</span>
+        <span class="n">send_logistics_email</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span>
+            <span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;inventory_receipt&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;updated&quot;</span>
+        <span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InventoryReceiptUpdateView.patch">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.views.InventoryReceiptUpdateView.patch">[docs]</a>
     <span class="k">def</span> <span class="nf">patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;No data provided&quot;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span>
+                <span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;No data provided&quot;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span>
+            <span class="p">)</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 </div>
 
@@ -213,9 +218,7 @@
 
 <div class="viewcode-block" id="InventoryReceiptDeleteView">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.views.InventoryReceiptDeleteView">[docs]</a>
-<span class="k">class</span> <span class="nc">InventoryReceiptDeleteView</span><span class="p">(</span>
-    <span class="n">BaseInventoryReceiptAPIView</span><span class="p">,</span> <span class="n">generics</span><span class="o">.</span><span class="n">DestroyAPIView</span>
-<span class="p">):</span>
+<span class="k">class</span> <span class="nc">InventoryReceiptDeleteView</span><span class="p">(</span><span class="n">BaseInventoryReceiptAPIView</span><span class="p">,</span> <span class="n">generics</span><span class="o">.</span><span class="n">DestroyAPIView</span><span class="p">):</span>
     <span class="n">queryset</span> <span class="o">=</span> <span class="n">InventoryReceipt</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
 
 <div class="viewcode-block" id="InventoryReceiptDeleteView.perform_destroy">
@@ -253,11 +256,13 @@
             <span class="k">return</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(),</span> <span class="nb">id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;pk&quot;</span><span class="p">))</span>
 
         <span class="n">order</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span>
-            <span class="n">PurchaseOrder</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">order_id</span><span class="p">,</span>
+            <span class="n">PurchaseOrder</span><span class="p">,</span>
+            <span class="nb">id</span><span class="o">=</span><span class="n">order_id</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="k">if</span> <span class="n">order</span><span class="o">.</span><span class="n">bid</span><span class="o">.</span><span class="n">supplier</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">PermissionDenied</span><span class="p">(</span>
-                <span class="s2">&quot;You do not have permission to access this purchase order.&quot;</span><span class="p">)</span>
+                <span class="s2">&quot;You do not have permission to access this purchase order.&quot;</span>
+            <span class="p">)</span>
         <span class="n">obj</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(),</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">obj</span></div>
@@ -268,14 +273,18 @@
 <span class="c1"># @method_decorator(cache_page(60 * 15), name=&quot;dispatch&quot;)</span>
 <div class="viewcode-block" id="InventoryReceiptVendorListView">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.views.InventoryReceiptVendorListView">[docs]</a>
-<span class="k">class</span> <span class="nc">InventoryReceiptVendorListView</span><span class="p">(</span><span class="n">BaseInventoryReceiptVendorAPIView</span><span class="p">,</span> <span class="n">generics</span><span class="o">.</span><span class="n">ListAPIView</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">InventoryReceiptVendorListView</span><span class="p">(</span>
+    <span class="n">BaseInventoryReceiptVendorAPIView</span><span class="p">,</span> <span class="n">generics</span><span class="o">.</span><span class="n">ListAPIView</span>
+<span class="p">):</span>
     <span class="k">pass</span></div>
 
 
 
 <div class="viewcode-block" id="InventoryReceiptVendorRetrieveView">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.views.InventoryReceiptVendorRetrieveView">[docs]</a>
-<span class="k">class</span> <span class="nc">InventoryReceiptVendorRetrieveView</span><span class="p">(</span><span class="n">BaseInventoryReceiptVendorAPIView</span><span class="p">,</span> <span class="n">generics</span><span class="o">.</span><span class="n">RetrieveAPIView</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">InventoryReceiptVendorRetrieveView</span><span class="p">(</span>
+    <span class="n">BaseInventoryReceiptVendorAPIView</span><span class="p">,</span> <span class="n">generics</span><span class="o">.</span><span class="n">RetrieveAPIView</span>
+<span class="p">):</span>
     <span class="k">pass</span></div>
 
 
@@ -303,11 +312,13 @@
             <span class="k">return</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(),</span> <span class="nb">id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;pk&quot;</span><span class="p">))</span>
 
         <span class="n">order</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span>
-            <span class="n">PurchaseOrder</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">order_id</span><span class="p">,</span>
+            <span class="n">PurchaseOrder</span><span class="p">,</span>
+            <span class="nb">id</span><span class="o">=</span><span class="n">order_id</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="k">if</span> <span class="n">order</span><span class="o">.</span><span class="n">bid</span><span class="o">.</span><span class="n">supplier</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">PermissionDenied</span><span class="p">(</span>
-                <span class="s2">&quot;You do not have permission to access this purchase order.&quot;</span><span class="p">)</span>
+                <span class="s2">&quot;You do not have permission to access this purchase order.&quot;</span>
+            <span class="p">)</span>
         <span class="n">obj</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(),</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">obj</span></div>
@@ -333,25 +344,26 @@
     <span class="k">def</span> <span class="nf">perform_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serializer</span><span class="p">):</span>
         <span class="n">order_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;order_id&quot;</span><span class="p">)</span>
         <span class="n">order</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span>
-            <span class="n">PurchaseOrder</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">order_id</span><span class="p">,</span>
+            <span class="n">PurchaseOrder</span><span class="p">,</span>
+            <span class="nb">id</span><span class="o">=</span><span class="n">order_id</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="k">if</span> <span class="n">order</span><span class="o">.</span><span class="n">bid</span><span class="o">.</span><span class="n">supplier</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">PermissionDenied</span><span class="p">(</span>
                 <span class="s2">&quot;You do not have permission to access this purchase order.&quot;</span>
             <span class="p">)</span>
-        
-        <span class="k">if</span> <span class="n">order</span><span class="o">.</span><span class="n">status</span> <span class="o">!=</span> <span class="s1">&#39;delivered&#39;</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="n">order</span><span class="o">.</span><span class="n">status</span> <span class="o">!=</span> <span class="s2">&quot;delivered&quot;</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s2">&quot;Order is not delivered yet.&quot;</span><span class="p">)</span>
 
         <span class="n">existing_invoice</span> <span class="o">=</span> <span class="n">Invoice</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">existing_invoice</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s2">&quot;Invoice already exists for this order.&quot;</span><span class="p">)</span>
-        
+
         <span class="n">instance</span> <span class="o">=</span> <span class="n">serializer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
 
-        <span class="n">generate_report_and_save</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s1">&#39;invoice&#39;</span><span class="p">)</span>
-        <span class="n">send_logistics_email</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;invoice&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;created&#39;</span><span class="p">)</span></div>
+        <span class="n">generate_report_and_save</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">&quot;invoice&quot;</span><span class="p">)</span>
+        <span class="n">send_logistics_email</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;invoice&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;created&quot;</span><span class="p">)</span></div>
 </div>
 
 
@@ -372,22 +384,24 @@
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.views.InvoiceUpdateView.perform_update">[docs]</a>
     <span class="k">def</span> <span class="nf">perform_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serializer</span><span class="p">):</span>
         <span class="n">instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_object</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">instance</span><span class="o">.</span><span class="n">payment_status</span> <span class="o">==</span> <span class="s1">&#39;paid&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">instance</span><span class="o">.</span><span class="n">payment_status</span> <span class="o">==</span> <span class="s2">&quot;paid&quot;</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span>
                 <span class="p">{</span><span class="s2">&quot;payment_status&quot;</span><span class="p">:</span> <span class="s2">&quot;Invoice is already paid.&quot;</span><span class="p">}</span>
             <span class="p">)</span>
 
         <span class="n">serializer</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
-        <span class="n">generate_report_and_save</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s1">&#39;invoice&#39;</span><span class="p">)</span>
-        <span class="n">send_logistics_email</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;invoice&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;updated&#39;</span><span class="p">)</span></div>
+        <span class="n">generate_report_and_save</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">&quot;invoice&quot;</span><span class="p">)</span>
+        <span class="n">send_logistics_email</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;invoice&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;updated&quot;</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceUpdateView.patch">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.views.InvoiceUpdateView.patch">[docs]</a>
     <span class="k">def</span> <span class="nf">patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;No data provided&quot;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span>
+                <span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;No data provided&quot;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span>
+            <span class="p">)</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 </div>
 
@@ -401,7 +415,7 @@
 <div class="viewcode-block" id="InvoiceDeleteView.perform_destroy">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.views.InvoiceDeleteView.perform_destroy">[docs]</a>
     <span class="k">def</span> <span class="nf">perform_destroy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">instance</span><span class="o">.</span><span class="n">payment_status</span> <span class="o">==</span> <span class="s1">&#39;paid&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">instance</span><span class="o">.</span><span class="n">payment_status</span> <span class="o">==</span> <span class="s2">&quot;paid&quot;</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span>
                 <span class="p">{</span><span class="s2">&quot;payment_status&quot;</span><span class="p">:</span> <span class="s2">&quot;Invoice is already paid.&quot;</span><span class="p">}</span>
             <span class="p">)</span>
@@ -419,7 +433,9 @@
 <div class="viewcode-block" id="BaseInvoiceProcurementOfficerAPIView.get_queryset">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.views.BaseInvoiceProcurementOfficerAPIView.get_queryset">[docs]</a>
     <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">Invoice</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">order__bid__requisition__inventory__procurement_officer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">Invoice</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+            <span class="n">order__bid__requisition__inventory__procurement_officer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="BaseInvoiceProcurementOfficerAPIView.get_object">
@@ -433,11 +449,13 @@
             <span class="k">return</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(),</span> <span class="nb">id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;pk&quot;</span><span class="p">))</span>
 
         <span class="n">order</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span>
-            <span class="n">PurchaseOrder</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">order_id</span><span class="p">,</span>
+            <span class="n">PurchaseOrder</span><span class="p">,</span>
+            <span class="nb">id</span><span class="o">=</span><span class="n">order_id</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="k">if</span> <span class="n">order</span><span class="o">.</span><span class="n">bid</span><span class="o">.</span><span class="n">requisition</span><span class="o">.</span><span class="n">inventory</span><span class="o">.</span><span class="n">procurement_officer</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">PermissionDenied</span><span class="p">(</span>
-                <span class="s2">&quot;You do not have permission to access this purchase order.&quot;</span><span class="p">)</span>
+                <span class="s2">&quot;You do not have permission to access this purchase order.&quot;</span>
+            <span class="p">)</span>
         <span class="n">obj</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(),</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">obj</span></div>
@@ -448,14 +466,18 @@
 <span class="c1"># @method_decorator(cache_page(60 * 15), name=&quot;dispatch&quot;)</span>
 <div class="viewcode-block" id="InvoiceProcurementOfficerListView">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.views.InvoiceProcurementOfficerListView">[docs]</a>
-<span class="k">class</span> <span class="nc">InvoiceProcurementOfficerListView</span><span class="p">(</span><span class="n">BaseInvoiceProcurementOfficerAPIView</span><span class="p">,</span> <span class="n">generics</span><span class="o">.</span><span class="n">ListAPIView</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">InvoiceProcurementOfficerListView</span><span class="p">(</span>
+    <span class="n">BaseInvoiceProcurementOfficerAPIView</span><span class="p">,</span> <span class="n">generics</span><span class="o">.</span><span class="n">ListAPIView</span>
+<span class="p">):</span>
     <span class="k">pass</span></div>
 
 
 
 <div class="viewcode-block" id="InvoiceProcurementOfficerRetrieveView">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.views.InvoiceProcurementOfficerRetrieveView">[docs]</a>
-<span class="k">class</span> <span class="nc">InvoiceProcurementOfficerRetrieveView</span><span class="p">(</span><span class="n">BaseInvoiceProcurementOfficerAPIView</span><span class="p">,</span> <span class="n">generics</span><span class="o">.</span><span class="n">RetrieveAPIView</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">InvoiceProcurementOfficerRetrieveView</span><span class="p">(</span>
+    <span class="n">BaseInvoiceProcurementOfficerAPIView</span><span class="p">,</span> <span class="n">generics</span><span class="o">.</span><span class="n">RetrieveAPIView</span>
+<span class="p">):</span>
     <span class="k">pass</span></div>
 
 
@@ -469,7 +491,9 @@
 <div class="viewcode-block" id="InvoicePaymentStatusUpdateView.get_queryset">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.views.InvoicePaymentStatusUpdateView.get_queryset">[docs]</a>
     <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">Invoice</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">order__bid__requisition__inventory__procurement_officer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">Invoice</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+            <span class="n">order__bid__requisition__inventory__procurement_officer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="InvoicePaymentStatusUpdateView.get_object">
@@ -483,11 +507,13 @@
             <span class="k">return</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(),</span> <span class="nb">id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;pk&quot;</span><span class="p">))</span>
 
         <span class="n">order</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span>
-            <span class="n">PurchaseOrder</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">order_id</span><span class="p">,</span>
+            <span class="n">PurchaseOrder</span><span class="p">,</span>
+            <span class="nb">id</span><span class="o">=</span><span class="n">order_id</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="k">if</span> <span class="n">order</span><span class="o">.</span><span class="n">bid</span><span class="o">.</span><span class="n">requisition</span><span class="o">.</span><span class="n">inventory</span><span class="o">.</span><span class="n">procurement_officer</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">PermissionDenied</span><span class="p">(</span>
-                <span class="s2">&quot;You do not have permission to access this purchase order.&quot;</span><span class="p">)</span>
+                <span class="s2">&quot;You do not have permission to access this purchase order.&quot;</span>
+            <span class="p">)</span>
         <span class="n">obj</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(),</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">obj</span></div>
@@ -497,22 +523,26 @@
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.views.InvoicePaymentStatusUpdateView.perform_update">[docs]</a>
     <span class="k">def</span> <span class="nf">perform_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serializer</span><span class="p">):</span>
         <span class="n">instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_object</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">instance</span><span class="o">.</span><span class="n">payment_status</span> <span class="o">==</span> <span class="s1">&#39;paid&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">instance</span><span class="o">.</span><span class="n">payment_status</span> <span class="o">==</span> <span class="s2">&quot;paid&quot;</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span>
                 <span class="p">{</span><span class="s2">&quot;payment_status&quot;</span><span class="p">:</span> <span class="s2">&quot;Invoice is already paid.&quot;</span><span class="p">}</span>
             <span class="p">)</span>
 
         <span class="n">serializer</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
-        <span class="n">generate_report_and_save</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s1">&#39;invoice&#39;</span><span class="p">)</span>
-        <span class="n">send_logistics_email</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;invoice&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;payment_received&#39;</span><span class="p">)</span></div>
+        <span class="n">generate_report_and_save</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">&quot;invoice&quot;</span><span class="p">)</span>
+        <span class="n">send_logistics_email</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span>
+            <span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;invoice&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;payment_received&quot;</span>
+        <span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoicePaymentStatusUpdateView.patch">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.views.InvoicePaymentStatusUpdateView.patch">[docs]</a>
     <span class="k">def</span> <span class="nf">patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;No data provided&quot;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span>
+                <span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;No data provided&quot;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span>
+            <span class="p">)</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 </div>
 
@@ -527,7 +557,9 @@
 <div class="viewcode-block" id="InvoiceVendorRatingUpdateView.get_queryset">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.views.InvoiceVendorRatingUpdateView.get_queryset">[docs]</a>
     <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">Invoice</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">order__bid__requisition__inventory__procurement_officer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">Invoice</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+            <span class="n">order__bid__requisition__inventory__procurement_officer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="InvoiceVendorRatingUpdateView.get_object">
@@ -541,11 +573,13 @@
             <span class="k">return</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(),</span> <span class="nb">id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;pk&quot;</span><span class="p">))</span>
 
         <span class="n">order</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span>
-            <span class="n">PurchaseOrder</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">order_id</span><span class="p">,</span>
+            <span class="n">PurchaseOrder</span><span class="p">,</span>
+            <span class="nb">id</span><span class="o">=</span><span class="n">order_id</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="k">if</span> <span class="n">order</span><span class="o">.</span><span class="n">bid</span><span class="o">.</span><span class="n">requisition</span><span class="o">.</span><span class="n">inventory</span><span class="o">.</span><span class="n">procurement_officer</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">PermissionDenied</span><span class="p">(</span>
-                <span class="s2">&quot;You do not have permission to access this purchase order.&quot;</span><span class="p">)</span>
+                <span class="s2">&quot;You do not have permission to access this purchase order.&quot;</span>
+            <span class="p">)</span>
         <span class="n">obj</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">(),</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">obj</span></div>
@@ -560,7 +594,7 @@
                 <span class="p">{</span><span class="s2">&quot;vendor_rated&quot;</span><span class="p">:</span> <span class="s2">&quot;Vendor is already rated.&quot;</span><span class="p">}</span>
             <span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">instance</span><span class="o">.</span><span class="n">payment_status</span> <span class="o">!=</span> <span class="s1">&#39;paid&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">instance</span><span class="o">.</span><span class="n">payment_status</span> <span class="o">!=</span> <span class="s2">&quot;paid&quot;</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span>
                 <span class="p">{</span><span class="s2">&quot;payment_status&quot;</span><span class="p">:</span> <span class="s2">&quot;Invoice is not paid yet.&quot;</span><span class="p">}</span>
             <span class="p">)</span>
@@ -571,7 +605,9 @@
         <span class="c1"># Calculate the average vendor rating</span>
         <span class="n">total_ratings</span> <span class="o">=</span> <span class="n">vendor</span><span class="o">.</span><span class="n">total_ratings</span>
         <span class="n">current_rating</span> <span class="o">=</span> <span class="n">vendor</span><span class="o">.</span><span class="n">vendor_rating</span>
-        <span class="n">new_rating</span> <span class="o">=</span> <span class="p">(</span><span class="n">total_ratings</span> <span class="o">*</span> <span class="n">current_rating</span> <span class="o">+</span> <span class="n">serializer</span><span class="o">.</span><span class="n">validated_data</span><span class="p">[</span><span class="s2">&quot;vendor_rating&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">total_ratings</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">new_rating</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">total_ratings</span> <span class="o">*</span> <span class="n">current_rating</span> <span class="o">+</span> <span class="n">serializer</span><span class="o">.</span><span class="n">validated_data</span><span class="p">[</span><span class="s2">&quot;vendor_rating&quot;</span><span class="p">]</span>
+        <span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">total_ratings</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 
         <span class="c1"># Update the vendor rating and total ratings</span>
         <span class="n">vendor</span><span class="o">.</span><span class="n">vendor_rating</span> <span class="o">=</span> <span class="n">new_rating</span>
@@ -580,14 +616,16 @@
 
         <span class="n">serializer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">vendor_rated</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-        <span class="n">send_logistics_email</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;invoice&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;vendor_rated&#39;</span><span class="p">)</span></div>
+        <span class="n">send_logistics_email</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="n">instance</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;invoice&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;vendor_rated&quot;</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="InvoiceVendorRatingUpdateView.patch">
 <a class="viewcode-back" href="../../modules/logistics.html#logistics.views.InvoiceVendorRatingUpdateView.patch">[docs]</a>
     <span class="k">def</span> <span class="nf">patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;No data provided&quot;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span>
+                <span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;No data provided&quot;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span>
+            <span class="p">)</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 </div>
 

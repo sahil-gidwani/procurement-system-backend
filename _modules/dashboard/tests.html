@@ -138,7 +138,7 @@
             <span class="n">location</span><span class="o">=</span><span class="s2">&quot;Test Location&quot;</span><span class="p">,</span>
             <span class="n">procurement_officer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer</span><span class="p">,</span>
         <span class="p">)</span>
-        
+
         <span class="bp">self</span><span class="o">.</span><span class="n">purchase_requisition</span> <span class="o">=</span> <span class="n">PurchaseRequisition</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
             <span class="n">requisition_number</span><span class="o">=</span><span class="s2">&quot;PR-001&quot;</span><span class="p">,</span>
             <span class="n">quantity_requested</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
@@ -164,7 +164,9 @@
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">admin_dashboard_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;admin_dashboard&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer_dashboard_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;procurement_officer_dashboard&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer_dashboard_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span>
+            <span class="s2">&quot;procurement_officer_dashboard&quot;</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">vendor_dashboard_url</span> <span class="o">=</span> <span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;vendor_dashboard&quot;</span><span class="p">)</span></div>
 </div>
 
@@ -186,7 +188,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">admin_dashboard_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="DashboardViewsTests.test_admin_dashboard_view_procurement_officer">
 <a class="viewcode-back" href="../../modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_admin_dashboard_view_procurement_officer">[docs]</a>
     <span class="k">def</span> <span class="nf">test_admin_dashboard_view_procurement_officer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -194,7 +196,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">admin_dashboard_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_403_FORBIDDEN</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="DashboardViewsTests.test_admin_dashboard_view_vendor">
 <a class="viewcode-back" href="../../modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_admin_dashboard_view_vendor">[docs]</a>
     <span class="k">def</span> <span class="nf">test_admin_dashboard_view_vendor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -202,14 +204,14 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">admin_dashboard_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_403_FORBIDDEN</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="DashboardViewsTests.test_admin_dashboard_view_unauthenticated">
 <a class="viewcode-back" href="../../modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_admin_dashboard_view_unauthenticated">[docs]</a>
     <span class="k">def</span> <span class="nf">test_admin_dashboard_view_unauthenticated</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">admin_dashboard_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="DashboardViewsTests.test_admin_dashboard_view_invalid_token">
 <a class="viewcode-back" href="../../modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_admin_dashboard_view_invalid_token">[docs]</a>
     <span class="k">def</span> <span class="nf">test_admin_dashboard_view_invalid_token</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -217,7 +219,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">admin_dashboard_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="DashboardViewsTests.test_admin_dashboard_view_invalid_http_method">
 <a class="viewcode-back" href="../../modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_admin_dashboard_view_invalid_http_method">[docs]</a>
     <span class="k">def</span> <span class="nf">test_admin_dashboard_view_invalid_http_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -233,7 +235,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer_dashboard_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="DashboardViewsTests.test_procurement_officer_dashboard_view_admin">
 <a class="viewcode-back" href="../../modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_procurement_officer_dashboard_view_admin">[docs]</a>
     <span class="k">def</span> <span class="nf">test_procurement_officer_dashboard_view_admin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -241,7 +243,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer_dashboard_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_403_FORBIDDEN</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="DashboardViewsTests.test_procurement_officer_dashboard_view_vendor">
 <a class="viewcode-back" href="../../modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_procurement_officer_dashboard_view_vendor">[docs]</a>
     <span class="k">def</span> <span class="nf">test_procurement_officer_dashboard_view_vendor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -249,14 +251,14 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer_dashboard_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_403_FORBIDDEN</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="DashboardViewsTests.test_procurement_officer_dashboard_view_unauthenticated">
 <a class="viewcode-back" href="../../modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_procurement_officer_dashboard_view_unauthenticated">[docs]</a>
     <span class="k">def</span> <span class="nf">test_procurement_officer_dashboard_view_unauthenticated</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer_dashboard_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="DashboardViewsTests.test_procurement_officer_dashboard_view_invalid_token">
 <a class="viewcode-back" href="../../modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_procurement_officer_dashboard_view_invalid_token">[docs]</a>
     <span class="k">def</span> <span class="nf">test_procurement_officer_dashboard_view_invalid_token</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -264,7 +266,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">procurement_officer_dashboard_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="DashboardViewsTests.test_procurement_officer_dashboard_view_invalid_http_method">
 <a class="viewcode-back" href="../../modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_procurement_officer_dashboard_view_invalid_http_method">[docs]</a>
     <span class="k">def</span> <span class="nf">test_procurement_officer_dashboard_view_invalid_http_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -288,7 +290,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vendor_dashboard_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_403_FORBIDDEN</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="DashboardViewsTests.test_vendor_dashboard_view_procurement_officer">
 <a class="viewcode-back" href="../../modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_vendor_dashboard_view_procurement_officer">[docs]</a>
     <span class="k">def</span> <span class="nf">test_vendor_dashboard_view_procurement_officer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -296,14 +298,14 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vendor_dashboard_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_403_FORBIDDEN</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="DashboardViewsTests.test_vendor_dashboard_view_unauthenticated">
 <a class="viewcode-back" href="../../modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_vendor_dashboard_view_unauthenticated">[docs]</a>
     <span class="k">def</span> <span class="nf">test_vendor_dashboard_view_unauthenticated</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vendor_dashboard_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="DashboardViewsTests.test_vendor_dashboard_view_invalid_token">
 <a class="viewcode-back" href="../../modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_vendor_dashboard_view_invalid_token">[docs]</a>
     <span class="k">def</span> <span class="nf">test_vendor_dashboard_view_invalid_token</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -311,7 +313,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vendor_dashboard_url</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="DashboardViewsTests.test_vendor_dashboard_view_invalid_http_method">
 <a class="viewcode-back" href="../../modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_vendor_dashboard_view_invalid_http_method">[docs]</a>
     <span class="k">def</span> <span class="nf">test_vendor_dashboard_view_invalid_http_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
