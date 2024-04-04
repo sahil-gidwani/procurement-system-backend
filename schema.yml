@@ -1173,6 +1173,26 @@ paths:
                 items:
                   $ref: '#/components/schemas/Invoice'
           description: ''
+  /logistics/invoice/procurement-officer/{id}/:
+    get:
+      operationId: logistics_invoice_procurement_officer_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - logistics
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+          description: ''
   /logistics/invoice/procurement-officer/list/:
     get:
       operationId: logistics_invoice_procurement_officer_list_list
@@ -1906,9 +1926,10 @@ components:
       type: object
       properties:
         vendor_rating:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,1}(?:\.\d{0,2})?$
+          type: number
+          format: double
+          maximum: 5.0
+          minimum: 0.0
         vendor_rated:
           type: boolean
           readOnly: true
@@ -2130,9 +2151,10 @@ components:
       type: object
       properties:
         vendor_rating:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,1}(?:\.\d{0,2})?$
+          type: number
+          format: double
+          maximum: 5.0
+          minimum: 0.0
         vendor_rated:
           type: boolean
           readOnly: true
