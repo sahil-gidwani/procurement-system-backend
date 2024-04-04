@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>accounts.serializers &mdash; Smart Procurement System 1.0 documentation</title>
+  <title>accounts.serializers &mdash; ProcurEase 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
 
@@ -31,7 +31,7 @@
           
           
           <a href="../../index.html" class="icon icon-home">
-            Smart Procurement System
+            ProcurEase
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -49,7 +49,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">Smart Procurement System</a>
+          <a href="../../index.html">ProcurEase</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -83,12 +83,7 @@
     <span class="k">def</span> <span class="nf">get_token</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">user</span><span class="p">):</span>
         <span class="n">token</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_token</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
         <span class="c1"># Add custom claims</span>
-        <span class="n">token</span><span class="p">[</span><span class="s2">&quot;first_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">first_name</span>
-        <span class="n">token</span><span class="p">[</span><span class="s2">&quot;last_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">last_name</span>
         <span class="n">token</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">username</span>
-        <span class="n">token</span><span class="p">[</span><span class="s2">&quot;email&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span>
-        <span class="n">token</span><span class="p">[</span><span class="s2">&quot;phone_number&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">phone_number</span>
-        <span class="n">token</span><span class="p">[</span><span class="s2">&quot;gstin&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">gstin</span>
         <span class="n">token</span><span class="p">[</span><span class="s2">&quot;user_role&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">user_role</span>
         <span class="n">token</span><span class="p">[</span><span class="s2">&quot;is_superuser&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">is_superuser</span>
         <span class="c1"># ...</span>
@@ -129,9 +124,7 @@
     <span class="k">def</span> <span class="nf">validate_old_password</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="p">[</span><span class="s2">&quot;request&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">user</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span><span class="o">.</span><span class="n">check_password</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span>
-                <span class="p">{</span><span class="s2">&quot;old_password&quot;</span><span class="p">:</span> <span class="s2">&quot;Password is incorrect.&quot;</span><span class="p">}</span>
-            <span class="p">)</span>
+            <span class="k">raise</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span><span class="s2">&quot;Password is incorrect.&quot;</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">value</span></div>
 
@@ -212,6 +205,8 @@
             <span class="s2">&quot;email&quot;</span><span class="p">,</span>
             <span class="s2">&quot;phone_number&quot;</span><span class="p">,</span>
             <span class="s2">&quot;gstin&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;company_name&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;address&quot;</span><span class="p">,</span>
             <span class="s2">&quot;password1&quot;</span><span class="p">,</span>
             <span class="s2">&quot;password2&quot;</span><span class="p">,</span>
         <span class="p">)</span></div>
@@ -231,14 +226,11 @@
 <div class="viewcode-block" id="ProcurementOfficerRegisterSerializer.create">
 <a class="viewcode-back" href="../../modules/accounts.html#accounts.serializers.ProcurementOfficerRegisterSerializer.create">[docs]</a>
     <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">validated_data</span><span class="p">):</span>
+        <span class="n">password1</span> <span class="o">=</span> <span class="n">validated_data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;password1&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">password2</span> <span class="o">=</span> <span class="n">validated_data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;password2&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span>
-            <span class="n">username</span><span class="o">=</span><span class="n">validated_data</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">],</span>
-            <span class="n">first_name</span><span class="o">=</span><span class="n">validated_data</span><span class="p">[</span><span class="s2">&quot;first_name&quot;</span><span class="p">],</span>
-            <span class="n">last_name</span><span class="o">=</span><span class="n">validated_data</span><span class="p">[</span><span class="s2">&quot;last_name&quot;</span><span class="p">],</span>
-            <span class="n">email</span><span class="o">=</span><span class="n">validated_data</span><span class="p">[</span><span class="s2">&quot;email&quot;</span><span class="p">],</span>
-            <span class="n">phone_number</span><span class="o">=</span><span class="n">validated_data</span><span class="p">[</span><span class="s2">&quot;phone_number&quot;</span><span class="p">],</span>
-            <span class="n">gstin</span><span class="o">=</span><span class="n">validated_data</span><span class="p">[</span><span class="s2">&quot;gstin&quot;</span><span class="p">],</span>
-            <span class="n">password</span><span class="o">=</span><span class="n">validated_data</span><span class="p">[</span><span class="s2">&quot;password1&quot;</span><span class="p">],</span>
+            <span class="o">**</span><span class="n">validated_data</span><span class="p">,</span>
+            <span class="n">password</span><span class="o">=</span><span class="n">password1</span><span class="p">,</span>
             <span class="n">user_role</span><span class="o">=</span><span class="s2">&quot;procurement_officer&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
@@ -255,12 +247,8 @@
     <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">Vendor</span>
         <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="s2">&quot;vendor_name&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;address&quot;</span><span class="p">,</span>
             <span class="s2">&quot;vendor_certified&quot;</span><span class="p">,</span>
             <span class="s2">&quot;vendor_type&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;contract_expiry_date&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;vendor_rating&quot;</span><span class="p">,</span>
         <span class="p">)</span></div>
 </div>
 
@@ -292,6 +280,8 @@
             <span class="s2">&quot;email&quot;</span><span class="p">,</span>
             <span class="s2">&quot;phone_number&quot;</span><span class="p">,</span>
             <span class="s2">&quot;gstin&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;company_name&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;address&quot;</span><span class="p">,</span>
             <span class="s2">&quot;password1&quot;</span><span class="p">,</span>
             <span class="s2">&quot;password2&quot;</span><span class="p">,</span>
             <span class="s2">&quot;vendor_info&quot;</span><span class="p">,</span>
@@ -330,6 +320,7 @@
 <div class="viewcode-block" id="ProfileSerializer">
 <a class="viewcode-back" href="../../modules/accounts.html#accounts.serializers.ProfileSerializer">[docs]</a>
 <span class="k">class</span> <span class="nc">ProfileSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
+    <span class="n">vendor</span> <span class="o">=</span> <span class="n">VendorInfoSerializer</span><span class="p">(</span><span class="n">write_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">allow_null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <div class="viewcode-block" id="ProfileSerializer.Meta">
 <a class="viewcode-back" href="../../modules/accounts.html#accounts.serializers.ProfileSerializer.Meta">[docs]</a>
     <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
@@ -341,8 +332,22 @@
             <span class="s2">&quot;email&quot;</span><span class="p">,</span>
             <span class="s2">&quot;phone_number&quot;</span><span class="p">,</span>
             <span class="s2">&quot;gstin&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;company_name&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;address&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;vendor&quot;</span><span class="p">,</span>
         <span class="p">)</span></div>
 
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ProfileSerializer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Adjust the &#39;required&#39; attribute of the &#39;vendor&#39; field based on user role</span>
+        <span class="k">if</span> <span class="s1">&#39;context&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="s1">&#39;request&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;context&#39;</span><span class="p">]:</span>
+            <span class="n">user</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;context&#39;</span><span class="p">][</span><span class="s1">&#39;request&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">user</span>
+            <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">:</span>  <span class="c1"># Ensure user is authenticated</span>
+                <span class="n">user_role</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">user_role</span>
+                <span class="k">if</span> <span class="n">user_role</span> <span class="o">==</span> <span class="s1">&#39;procurement_officer&#39;</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s1">&#39;vendor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">required</span> <span class="o">=</span> <span class="kc">False</span>
 
 <div class="viewcode-block" id="ProfileSerializer.update">
 <a class="viewcode-back" href="../../modules/accounts.html#accounts.serializers.ProfileSerializer.update">[docs]</a>
@@ -356,24 +361,19 @@
             <span class="s2">&quot;phone_number&quot;</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">phone_number</span>
         <span class="p">)</span>
         <span class="n">instance</span><span class="o">.</span><span class="n">gstin</span> <span class="o">=</span> <span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;gstin&quot;</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">gstin</span><span class="p">)</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">company_name</span> <span class="o">=</span> <span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;company_name&quot;</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">company_name</span><span class="p">)</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">address</span> <span class="o">=</span> <span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;address&quot;</span><span class="p">,</span> <span class="n">instance</span><span class="o">.</span><span class="n">address</span><span class="p">)</span>
         <span class="n">instance</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
         <span class="c1"># Check if the user role is &#39;vendor&#39; and update vendor info</span>
         <span class="k">if</span> <span class="n">instance</span><span class="o">.</span><span class="n">user_role</span> <span class="o">==</span> <span class="s2">&quot;vendor&quot;</span><span class="p">:</span>
-            <span class="n">vendor_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;vendor&quot;</span><span class="p">,</span> <span class="p">{})</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">validated_data</span><span class="p">)</span>
+            <span class="n">vendor_data</span> <span class="o">=</span> <span class="n">validated_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;vendor&quot;</span><span class="p">,</span> <span class="p">{})</span>
             <span class="n">vendor</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">vendor</span>
-            <span class="n">vendor</span><span class="o">.</span><span class="n">vendor_name</span> <span class="o">=</span> <span class="n">vendor_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;vendor_name&quot;</span><span class="p">,</span> <span class="n">vendor</span><span class="o">.</span><span class="n">vendor_name</span><span class="p">)</span>
-            <span class="n">vendor</span><span class="o">.</span><span class="n">address</span> <span class="o">=</span> <span class="n">vendor_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;address&quot;</span><span class="p">,</span> <span class="n">vendor</span><span class="o">.</span><span class="n">address</span><span class="p">)</span>
             <span class="n">vendor</span><span class="o">.</span><span class="n">vendor_certified</span> <span class="o">=</span> <span class="n">vendor_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
                 <span class="s2">&quot;vendor_certified&quot;</span><span class="p">,</span> <span class="n">vendor</span><span class="o">.</span><span class="n">vendor_certified</span>
             <span class="p">)</span>
             <span class="n">vendor</span><span class="o">.</span><span class="n">vendor_type</span> <span class="o">=</span> <span class="n">vendor_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;vendor_type&quot;</span><span class="p">,</span> <span class="n">vendor</span><span class="o">.</span><span class="n">vendor_type</span><span class="p">)</span>
-            <span class="n">vendor</span><span class="o">.</span><span class="n">contract_expiry_date</span> <span class="o">=</span> <span class="n">vendor_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-                <span class="s2">&quot;contract_expiry_date&quot;</span><span class="p">,</span> <span class="n">vendor</span><span class="o">.</span><span class="n">contract_expiry_date</span>
-            <span class="p">)</span>
-            <span class="n">vendor</span><span class="o">.</span><span class="n">vendor_rating</span> <span class="o">=</span> <span class="n">vendor_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-                <span class="s2">&quot;vendor_rating&quot;</span><span class="p">,</span> <span class="n">vendor</span><span class="o">.</span><span class="n">vendor_rating</span>
-            <span class="p">)</span>
             <span class="n">vendor</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
         <span class="k">return</span> <span class="n">instance</span></div>
@@ -388,8 +388,6 @@
         <span class="c1"># Check if the user role is &#39;vendor&#39; and include vendor info</span>
         <span class="k">if</span> <span class="n">instance</span><span class="o">.</span><span class="n">user_role</span> <span class="o">==</span> <span class="s2">&quot;vendor&quot;</span><span class="p">:</span>
             <span class="n">vendor_data</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="s2">&quot;vendor_name&quot;</span><span class="p">:</span> <span class="n">instance</span><span class="o">.</span><span class="n">vendor</span><span class="o">.</span><span class="n">vendor_name</span><span class="p">,</span>
-                <span class="s2">&quot;address&quot;</span><span class="p">:</span> <span class="n">instance</span><span class="o">.</span><span class="n">vendor</span><span class="o">.</span><span class="n">address</span><span class="p">,</span>
                 <span class="s2">&quot;vendor_certified&quot;</span><span class="p">:</span> <span class="n">instance</span><span class="o">.</span><span class="n">vendor</span><span class="o">.</span><span class="n">vendor_certified</span><span class="p">,</span>
                 <span class="s2">&quot;vendor_type&quot;</span><span class="p">:</span> <span class="n">instance</span><span class="o">.</span><span class="n">vendor</span><span class="o">.</span><span class="n">vendor_type</span><span class="p">,</span>
                 <span class="s2">&quot;contract_expiry_date&quot;</span><span class="p">:</span> <span class="n">instance</span><span class="o">.</span><span class="n">vendor</span><span class="o">.</span><span class="n">contract_expiry_date</span><span class="p">,</span>

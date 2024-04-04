@@ -44,6 +44,14 @@ purchase.serializers module
    :undoc-members:
    :show-inheritance:
 
+purchase.tasks module
+---------------------
+
+.. automodule:: purchase.tasks
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 purchase.tests module
 ---------------------
 

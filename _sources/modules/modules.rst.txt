@@ -5,7 +5,9 @@ procurement-system-backend
    :maxdepth: 4
 
    accounts
+   dashboard
    inventory
+   logistics
    manage
    procurement_system_backend
    purchase

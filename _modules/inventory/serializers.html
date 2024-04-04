@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>inventory.serializers &mdash; Smart Procurement System 1.0 documentation</title>
+  <title>inventory.serializers &mdash; ProcurEase 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
 
@@ -31,7 +31,7 @@
           
           
           <a href="../../index.html" class="icon icon-home">
-            Smart Procurement System
+            ProcurEase
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -49,7 +49,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">Smart Procurement System</a>
+          <a href="../../index.html">ProcurEase</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -103,8 +103,8 @@
 <a class="viewcode-back" href="../../modules/inventory.html#inventory.serializers.OptimizedInventorySerializer.Meta">[docs]</a>
     <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">OptimizedInventory</span>
-        <span class="n">exclude</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;inventory&quot;</span><span class="p">]</span>
-        <span class="n">read_only_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;eoq&quot;</span><span class="p">,</span> <span class="s2">&quot;safety_stock&quot;</span><span class="p">,</span> <span class="s2">&quot;reorder_point&quot;</span><span class="p">]</span></div>
+        <span class="n">fields</span> <span class="o">=</span> <span class="s2">&quot;__all__&quot;</span>
+        <span class="n">read_only_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;eoq&quot;</span><span class="p">,</span> <span class="s2">&quot;safety_stock&quot;</span><span class="p">,</span> <span class="s2">&quot;reorder_point&quot;</span><span class="p">,</span> <span class="s2">&quot;inventory&quot;</span><span class="p">]</span></div>
 </div>
 
 
@@ -112,6 +112,7 @@
 <div class="viewcode-block" id="ARIMAForecastSerializer">
 <a class="viewcode-back" href="../../modules/inventory.html#inventory.serializers.ARIMAForecastSerializer">[docs]</a>
 <span class="k">class</span> <span class="nc">ARIMAForecastSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">Serializer</span><span class="p">):</span>
+    <span class="c1"># file = serializers.FileField(write_only=True)</span>
     <span class="k">pass</span></div>
 
 </pre></div>

@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dashboard.views &mdash; ProcurEase 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            ProcurEase
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ProcurEase</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">dashboard.views</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for dashboard.views</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">django.db.models</span> <span class="kn">import</span> <span class="n">F</span>
+<span class="kn">from</span> <span class="nn">django.db.models</span> <span class="kn">import</span> <span class="n">Count</span>
+<span class="kn">from</span> <span class="nn">django.db.models.functions</span> <span class="kn">import</span> <span class="n">ExtractMonth</span>
+<span class="kn">from</span> <span class="nn">django.utils.decorators</span> <span class="kn">import</span> <span class="n">method_decorator</span>
+<span class="kn">from</span> <span class="nn">django.views.decorators.cache</span> <span class="kn">import</span> <span class="n">cache_page</span>
+<span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">generics</span>
+<span class="kn">from</span> <span class="nn">rest_framework.permissions</span> <span class="kn">import</span> <span class="n">IsAuthenticated</span><span class="p">,</span> <span class="n">AllowAny</span><span class="p">,</span> <span class="n">IsAdminUser</span>
+<span class="kn">from</span> <span class="nn">rest_framework.decorators</span> <span class="kn">import</span> <span class="n">api_view</span><span class="p">,</span> <span class="n">permission_classes</span>
+<span class="kn">from</span> <span class="nn">rest_framework.response</span> <span class="kn">import</span> <span class="n">Response</span>
+<span class="kn">from</span> <span class="nn">drf_spectacular.utils</span> <span class="kn">import</span> <span class="n">extend_schema</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">plotly.io</span> <span class="k">as</span> <span class="nn">pio</span>
+<span class="kn">from</span> <span class="nn">.serializers</span> <span class="kn">import</span> <span class="n">AdminDashboardSerializer</span><span class="p">,</span> <span class="n">ProcurementOfficerDashboardSerializer</span><span class="p">,</span> <span class="n">VendorDashboardSerializer</span>
+<span class="kn">from</span> <span class="nn">accounts.models</span> <span class="kn">import</span> <span class="n">User</span><span class="p">,</span> <span class="n">Vendor</span>
+<span class="kn">from</span> <span class="nn">inventory.models</span> <span class="kn">import</span> <span class="n">Inventory</span>
+<span class="kn">from</span> <span class="nn">purchase.models</span> <span class="kn">import</span> <span class="n">PurchaseRequisition</span><span class="p">,</span> <span class="n">SupplierBid</span><span class="p">,</span> <span class="n">PurchaseOrder</span>
+<span class="kn">from</span> <span class="nn">accounts.permissions</span> <span class="kn">import</span> <span class="n">IsProcurementOfficer</span><span class="p">,</span> <span class="n">IsVendor</span>
+
+
+<div class="viewcode-block" id="AdminDashboardView">
+<a class="viewcode-back" href="../../modules/dashboard.html#dashboard.views.AdminDashboardView">[docs]</a>
+<span class="nd">@method_decorator</span><span class="p">(</span><span class="n">cache_page</span><span class="p">(</span><span class="mi">60</span> <span class="o">*</span> <span class="mi">15</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;dispatch&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">AdminDashboardView</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">GenericAPIView</span><span class="p">):</span>
+    <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">IsAuthenticated</span><span class="p">,</span> <span class="n">IsAdminUser</span><span class="p">]</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">AdminDashboardSerializer</span>
+
+<div class="viewcode-block" id="AdminDashboardView.get">
+<a class="viewcode-back" href="../../modules/dashboard.html#dashboard.views.AdminDashboardView.get">[docs]</a>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="c1"># * Users Analysis</span>
+        <span class="n">users</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+
+        <span class="c1"># Get the total number of users</span>
+        <span class="n">total_users</span> <span class="o">=</span> <span class="n">users</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+        <span class="c1"># Users by role</span>
+        <span class="n">users_by_role</span> <span class="o">=</span> <span class="n">users</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="s2">&quot;user_role&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+            <span class="n">count</span><span class="o">=</span><span class="n">F</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s2">&quot;user_role&quot;</span><span class="p">)</span>
+
+        <span class="n">users_by_role_plot</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+        <span class="n">users_by_role_plot</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Pie</span><span class="p">(</span>
+            <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;user_role&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">users_by_role</span><span class="p">],</span>
+            <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">users_by_role</span><span class="p">]</span>
+        <span class="p">))</span>
+        <span class="n">users_by_role_plot</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Users by Role&quot;</span><span class="p">)</span>
+        <span class="n">users_by_role_plot</span> <span class="o">=</span> <span class="n">pio</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">users_by_role_plot</span><span class="p">)</span>
+
+        <span class="c1"># User Registration over time (monthly)</span>
+        <span class="n">user_registration_over_time</span> <span class="o">=</span> <span class="n">users</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+            <span class="n">month</span><span class="o">=</span><span class="n">ExtractMonth</span><span class="p">(</span><span class="s2">&quot;date_joined&quot;</span><span class="p">)</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="s2">&quot;month&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="n">F</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s2">&quot;month&quot;</span><span class="p">)</span>
+
+        <span class="n">user_registration_over_time_plot</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+        <span class="n">user_registration_over_time_plot</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Bar</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;month&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">user_registration_over_time</span><span class="p">],</span>
+            <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">user_registration_over_time</span><span class="p">],</span>
+            <span class="n">text</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">user_registration_over_time</span><span class="p">],</span>
+            <span class="n">textposition</span><span class="o">=</span><span class="s2">&quot;outside&quot;</span><span class="p">,</span>
+            <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span>
+                        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">user_registration_over_time</span><span class="p">])</span>
+        <span class="p">))</span>
+        <span class="n">user_registration_over_time_plot</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;User Registration Over Time&quot;</span><span class="p">,</span>
+            <span class="n">xaxis_title</span><span class="o">=</span><span class="s2">&quot;Month&quot;</span><span class="p">,</span>
+            <span class="n">yaxis_title</span><span class="o">=</span><span class="s2">&quot;Number of Users&quot;</span><span class="p">,</span>
+            <span class="n">coloraxis_colorbar</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Number of Users&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">user_registration_over_time_plot</span> <span class="o">=</span> <span class="n">pio</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span>
+            <span class="n">user_registration_over_time_plot</span><span class="p">)</span>
+
+        <span class="c1"># * Vendor Analysis</span>
+        <span class="n">vendors</span> <span class="o">=</span> <span class="n">Vendor</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+
+        <span class="c1"># Vendors by Vendor Type</span>
+        <span class="n">vendors_by_vendor_type</span> <span class="o">=</span> <span class="n">vendors</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="s2">&quot;vendor_type&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+            <span class="n">count</span><span class="o">=</span><span class="n">F</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s2">&quot;vendor_type&quot;</span><span class="p">)</span>
+
+        <span class="n">vendors_by_vendor_type_plot</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+        <span class="n">vendors_by_vendor_type_plot</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Pie</span><span class="p">(</span>
+            <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;vendor_type&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">vendors_by_vendor_type</span><span class="p">],</span>
+            <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">vendors_by_vendor_type</span><span class="p">]</span>
+        <span class="p">))</span>
+        <span class="n">vendors_by_vendor_type_plot</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Vendors by Vendor Type&quot;</span><span class="p">)</span>
+        <span class="n">vendors_by_vendor_type_plot</span> <span class="o">=</span> <span class="n">pio</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">vendors_by_vendor_type_plot</span><span class="p">)</span>
+
+        <span class="c1"># Vendor Rating Distribution</span>
+        <span class="n">vendor_rating_distribution</span> <span class="o">=</span> <span class="n">vendors</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="s2">&quot;vendor_rating&quot;</span><span class="p">)</span>
+        <span class="n">vendor_rating_distribution</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">vendor_rating_distribution</span><span class="p">)</span>
+        <span class="n">vendor_rating_distribution</span> <span class="o">=</span> <span class="n">vendor_rating_distribution</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span>
+            <span class="s2">&quot;vendor_rating&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;count&quot;</span><span class="p">)</span>
+
+        <span class="n">vendor_rating_distribution_plot</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+        <span class="n">vendor_rating_distribution_plot</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Histogram</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="n">vendor_rating_distribution</span><span class="p">[</span><span class="s2">&quot;vendor_rating&quot;</span><span class="p">],</span>
+            <span class="n">y</span><span class="o">=</span><span class="n">vendor_rating_distribution</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span>
+        <span class="p">))</span>
+        <span class="n">vendor_rating_distribution_plot</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Vendor Rating Distribution&quot;</span><span class="p">)</span>
+        <span class="n">vendor_rating_distribution_plot</span> <span class="o">=</span> <span class="n">pio</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span>
+            <span class="n">vendor_rating_distribution_plot</span><span class="p">)</span>
+
+        <span class="c1"># Serializing the data</span>
+        <span class="n">serializer</span> <span class="o">=</span> <span class="n">AdminDashboardSerializer</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;total_users&quot;</span><span class="p">:</span> <span class="n">total_users</span><span class="p">,</span>
+            <span class="s2">&quot;users_by_role&quot;</span><span class="p">:</span> <span class="n">users_by_role_plot</span><span class="p">,</span>
+            <span class="s2">&quot;user_registration_over_time&quot;</span><span class="p">:</span> <span class="n">user_registration_over_time_plot</span><span class="p">,</span>
+            <span class="s2">&quot;vendors_by_vendor_type&quot;</span><span class="p">:</span> <span class="n">vendors_by_vendor_type_plot</span><span class="p">,</span>
+            <span class="s2">&quot;vendor_rating_distribution&quot;</span><span class="p">:</span> <span class="n">vendor_rating_distribution_plot</span>
+        <span class="p">})</span>
+
+        <span class="c1"># Validating and returning the serialized data</span>
+        <span class="n">serializer</span><span class="o">.</span><span class="n">is_valid</span><span class="p">(</span><span class="n">raise_exception</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">validated_data</span><span class="p">,</span> <span class="n">content_type</span><span class="o">=</span><span class="s2">&quot;application/json&quot;</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="ProcurementOfficerDashboardView">
+<a class="viewcode-back" href="../../modules/dashboard.html#dashboard.views.ProcurementOfficerDashboardView">[docs]</a>
+<span class="nd">@method_decorator</span><span class="p">(</span><span class="n">cache_page</span><span class="p">(</span><span class="mi">60</span> <span class="o">*</span> <span class="mi">15</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;dispatch&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">ProcurementOfficerDashboardView</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">GenericAPIView</span><span class="p">):</span>
+    <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">IsAuthenticated</span><span class="p">,</span> <span class="n">IsProcurementOfficer</span><span class="p">]</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">ProcurementOfficerDashboardSerializer</span>
+
+<div class="viewcode-block" id="ProcurementOfficerDashboardView.get">
+<a class="viewcode-back" href="../../modules/dashboard.html#dashboard.views.ProcurementOfficerDashboardView.get">[docs]</a>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span>
+
+        <span class="c1"># * Inventory Analysis</span>
+        <span class="n">inventory_items</span> <span class="o">=</span> <span class="n">Inventory</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">procurement_officer</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+
+        <span class="c1"># Get the total number of inventory items</span>
+        <span class="n">total_inventory_items</span> <span class="o">=</span> <span class="n">inventory_items</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+        <span class="c1"># Top items by stock quantity</span>
+        <span class="n">top_items_stock_quantity</span> <span class="o">=</span> <span class="n">inventory_items</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span>
+            <span class="s2">&quot;-stock_quantity&quot;</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]</span>
+
+        <span class="n">top_items_stock_quantity_plot</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+        <span class="n">top_items_stock_quantity_plot</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Bar</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">item_name</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">top_items_stock_quantity</span><span class="p">],</span>
+            <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">stock_quantity</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">top_items_stock_quantity</span><span class="p">],</span>
+            <span class="n">text</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">stock_quantity</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">top_items_stock_quantity</span><span class="p">],</span>
+            <span class="n">textposition</span><span class="o">=</span><span class="s2">&quot;outside&quot;</span><span class="p">,</span>
+            <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+                <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">stock_quantity</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">top_items_stock_quantity</span><span class="p">])</span>
+        <span class="p">))</span>
+        <span class="n">top_items_stock_quantity_plot</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Top Items by Stock Quantity&quot;</span><span class="p">,</span>
+            <span class="n">xaxis_title</span><span class="o">=</span><span class="s2">&quot;Item Name&quot;</span><span class="p">,</span>
+            <span class="n">yaxis_title</span><span class="o">=</span><span class="s2">&quot;Stock Quantity&quot;</span><span class="p">,</span>
+            <span class="n">coloraxis_colorbar</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Stock Quantity&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">top_items_stock_quantity_plot</span> <span class="o">=</span> <span class="n">pio</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span>
+            <span class="n">top_items_stock_quantity_plot</span><span class="p">)</span>
+
+        <span class="c1"># Top items by unit price</span>
+        <span class="n">top_items_unit_price</span> <span class="o">=</span> <span class="n">inventory_items</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s2">&quot;-unit_price&quot;</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]</span>
+
+        <span class="n">top_items_unit_price_plot</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+        <span class="n">top_items_unit_price_plot</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Bar</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">item_name</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">top_items_unit_price</span><span class="p">],</span>
+            <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">unit_price</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">top_items_unit_price</span><span class="p">],</span>
+            <span class="n">text</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">unit_price</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">top_items_unit_price</span><span class="p">],</span>
+            <span class="n">textposition</span><span class="o">=</span><span class="s2">&quot;outside&quot;</span><span class="p">,</span>
+            <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+                <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">unit_price</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">top_items_unit_price</span><span class="p">])</span>
+        <span class="p">))</span>
+        <span class="n">top_items_unit_price_plot</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Top Items by Unit Price&quot;</span><span class="p">,</span>
+            <span class="n">xaxis_title</span><span class="o">=</span><span class="s2">&quot;Item Name&quot;</span><span class="p">,</span>
+            <span class="n">yaxis_title</span><span class="o">=</span><span class="s2">&quot;Unit Price&quot;</span><span class="p">,</span>
+            <span class="n">coloraxis_colorbar</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Unit Price&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">top_items_unit_price_plot</span> <span class="o">=</span> <span class="n">pio</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">top_items_unit_price_plot</span><span class="p">)</span>
+
+        <span class="c1"># Top items by total price</span>
+        <span class="n">top_items_total_price</span> <span class="o">=</span> <span class="n">inventory_items</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">total_price</span><span class="o">=</span><span class="n">F</span><span class="p">(</span>
+            <span class="s1">&#39;stock_quantity&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">F</span><span class="p">(</span><span class="s1">&#39;unit_price&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s2">&quot;-total_price&quot;</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]</span>
+
+        <span class="n">top_items_total_price_plot</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+        <span class="n">top_items_total_price_plot</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Bar</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">item_name</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">top_items_total_price</span><span class="p">],</span>
+            <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">stock_quantity</span> <span class="o">*</span> <span class="n">item</span><span class="o">.</span><span class="n">unit_price</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">top_items_total_price</span><span class="p">],</span>
+            <span class="n">text</span><span class="o">=</span><span class="p">[</span>
+                <span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">stock_quantity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">item</span><span class="o">.</span><span class="n">unit_price</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">top_items_total_price</span><span class="p">],</span>
+            <span class="n">textposition</span><span class="o">=</span><span class="s2">&quot;outside&quot;</span><span class="p">,</span>
+            <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+                <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">stock_quantity</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">top_items_total_price</span><span class="p">])</span>
+        <span class="p">))</span>
+        <span class="n">top_items_total_price_plot</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Top Items by Total Price&quot;</span><span class="p">,</span>
+            <span class="n">xaxis_title</span><span class="o">=</span><span class="s2">&quot;Item Name&quot;</span><span class="p">,</span>
+            <span class="n">yaxis_title</span><span class="o">=</span><span class="s2">&quot;Total Price&quot;</span><span class="p">,</span>
+            <span class="n">coloraxis_colorbar</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Stock Quantity&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">top_items_total_price_plot</span> <span class="o">=</span> <span class="n">pio</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">top_items_total_price_plot</span><span class="p">)</span>
+
+        <span class="c1"># Inventory Items added over time (monthly)</span>
+        <span class="n">inventory_items_added</span> <span class="o">=</span> <span class="n">inventory_items</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+            <span class="n">month</span><span class="o">=</span><span class="n">ExtractMonth</span><span class="p">(</span><span class="s1">&#39;date_added&#39;</span><span class="p">)</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="s2">&quot;month&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="n">Count</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s2">&quot;month&quot;</span><span class="p">)</span>
+
+        <span class="n">inventory_items_added_plot</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+        <span class="n">inventory_items_added_plot</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Bar</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;month&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">inventory_items_added</span><span class="p">],</span>
+            <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">inventory_items_added</span><span class="p">],</span>
+            <span class="n">text</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">inventory_items_added</span><span class="p">],</span>
+            <span class="n">textposition</span><span class="o">=</span><span class="s2">&quot;outside&quot;</span><span class="p">,</span>
+            <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span>
+                        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">inventory_items_added</span><span class="p">])</span>
+        <span class="p">))</span>
+        <span class="n">inventory_items_added_plot</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Inventory Items Added Over Time&quot;</span><span class="p">,</span>
+            <span class="n">xaxis_title</span><span class="o">=</span><span class="s2">&quot;Month&quot;</span><span class="p">,</span>
+            <span class="n">yaxis_title</span><span class="o">=</span><span class="s2">&quot;Number of Items&quot;</span><span class="p">,</span>
+            <span class="n">coloraxis_colorbar</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Number of Items&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">inventory_items_added_plot</span> <span class="o">=</span> <span class="n">pio</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">inventory_items_added_plot</span><span class="p">)</span>
+
+        <span class="c1"># Inventory Age Analysis</span>
+        <span class="n">inventory_age</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">inventory_items</span><span class="o">.</span><span class="n">values</span><span class="p">(</span>
+            <span class="s2">&quot;item_name&quot;</span><span class="p">,</span> <span class="s2">&quot;stock_quantity&quot;</span><span class="p">,</span> <span class="s2">&quot;date_added&quot;</span><span class="p">,</span> <span class="s2">&quot;last_updated&quot;</span><span class="p">)))</span>
+        <span class="n">inventory_age</span><span class="p">[</span><span class="s2">&quot;date_added&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
+            <span class="n">inventory_age</span><span class="p">[</span><span class="s2">&quot;date_added&quot;</span><span class="p">])</span>
+        <span class="n">inventory_age</span><span class="p">[</span><span class="s2">&quot;last_updated&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
+            <span class="n">inventory_age</span><span class="p">[</span><span class="s2">&quot;last_updated&quot;</span><span class="p">])</span>
+        <span class="n">inventory_age</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">inventory_age</span><span class="p">[</span><span class="s2">&quot;last_updated&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">inventory_age</span><span class="p">[</span><span class="s2">&quot;date_added&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">days</span>
+        <span class="n">inventory_age</span> <span class="o">=</span> <span class="n">inventory_age</span><span class="p">[[</span><span class="s2">&quot;item_name&quot;</span><span class="p">,</span> <span class="s2">&quot;stock_quantity&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">]]</span>
+        <span class="n">inventory_age</span> <span class="o">=</span> <span class="n">inventory_age</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">inventory_age</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;item_name&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;age&quot;</span><span class="p">,</span>
+                     <span class="n">color</span><span class="o">=</span><span class="s2">&quot;stock_quantity&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Inventory Age Analysis&quot;</span><span class="p">)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+            <span class="n">xaxis_title</span><span class="o">=</span><span class="s2">&quot;Item Name&quot;</span><span class="p">,</span>
+            <span class="n">yaxis_title</span><span class="o">=</span><span class="s2">&quot;Age (Days)&quot;</span><span class="p">,</span>
+            <span class="n">coloraxis_colorbar</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Stock Quantity&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">inventory_age_plot</span> <span class="o">=</span> <span class="n">pio</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+
+        <span class="c1"># Stock Quantity Distribution over Locations</span>
+        <span class="n">stock_quantity_distribution</span> <span class="o">=</span> <span class="n">inventory_items</span><span class="o">.</span><span class="n">values</span><span class="p">(</span>
+            <span class="s2">&quot;location&quot;</span><span class="p">,</span> <span class="s2">&quot;stock_quantity&quot;</span><span class="p">)</span>
+        <span class="n">stock_quantity_distribution</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">stock_quantity_distribution</span><span class="p">)</span>
+        <span class="n">stock_quantity_distribution</span> <span class="o">=</span> <span class="n">stock_quantity_distribution</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span>
+            <span class="s2">&quot;location&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s2">&quot;stock_quantity&quot;</span><span class="p">:</span> <span class="s2">&quot;sum&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+        <span class="n">stock_quantity_distribution_plot</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+        <span class="n">stock_quantity_distribution_plot</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Pie</span><span class="p">(</span>
+            <span class="n">labels</span><span class="o">=</span><span class="n">stock_quantity_distribution</span><span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">],</span>
+            <span class="n">values</span><span class="o">=</span><span class="n">stock_quantity_distribution</span><span class="p">[</span><span class="s2">&quot;stock_quantity&quot;</span><span class="p">]</span>
+        <span class="p">))</span>
+        <span class="n">stock_quantity_distribution_plot</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Stock Quantity Distribution over Locations&quot;</span><span class="p">)</span>
+        <span class="n">stock_quantity_distribution_plot</span> <span class="o">=</span> <span class="n">pio</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span>
+            <span class="n">stock_quantity_distribution_plot</span><span class="p">)</span>
+
+        <span class="c1"># * Purchase Requisitions Analysis</span>
+        <span class="n">purchase_requisitions</span> <span class="o">=</span> <span class="n">PurchaseRequisition</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+            <span class="n">inventory__procurement_officer</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+
+        <span class="c1"># Get the total number of purchase requisitions</span>
+        <span class="n">total_purchase_requisitions</span> <span class="o">=</span> <span class="n">purchase_requisitions</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+        <span class="c1"># Purchase Requisitions by status</span>
+        <span class="n">purchase_requisitions_by_status</span> <span class="o">=</span> <span class="n">purchase_requisitions</span><span class="o">.</span><span class="n">values</span><span class="p">(</span>
+            <span class="s2">&quot;status&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="n">F</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s2">&quot;status&quot;</span><span class="p">)</span>
+
+        <span class="n">purchase_requisitions_by_status_plot</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+        <span class="n">purchase_requisitions_by_status_plot</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Pie</span><span class="p">(</span>
+            <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span>
+                    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">purchase_requisitions_by_status</span><span class="p">],</span>
+            <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">purchase_requisitions_by_status</span><span class="p">]</span>
+        <span class="p">))</span>
+        <span class="n">purchase_requisitions_by_status_plot</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Purchase Requisitions by Status&quot;</span><span class="p">)</span>
+        <span class="n">purchase_requisitions_by_status_plot</span> <span class="o">=</span> <span class="n">pio</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span>
+            <span class="n">purchase_requisitions_by_status_plot</span><span class="p">)</span>
+
+        <span class="c1"># Purchase Requisitions over time (monthly)</span>
+        <span class="n">purchase_requisitions_over_time</span> <span class="o">=</span> <span class="n">purchase_requisitions</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+            <span class="n">month</span><span class="o">=</span><span class="n">ExtractMonth</span><span class="p">(</span><span class="s1">&#39;date_created&#39;</span><span class="p">)</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="s2">&quot;month&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="n">Count</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s2">&quot;month&quot;</span><span class="p">)</span>
+
+        <span class="n">purchase_requisitions_over_time_plot</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+        <span class="n">purchase_requisitions_over_time_plot</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Bar</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;month&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">purchase_requisitions_over_time</span><span class="p">],</span>
+            <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">purchase_requisitions_over_time</span><span class="p">],</span>
+            <span class="n">text</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">purchase_requisitions_over_time</span><span class="p">],</span>
+            <span class="n">textposition</span><span class="o">=</span><span class="s2">&quot;outside&quot;</span><span class="p">,</span>
+            <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span>
+                        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">purchase_requisitions_over_time</span><span class="p">])</span>
+        <span class="p">))</span>
+        <span class="n">purchase_requisitions_over_time_plot</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Purchase Requisitions Over Time&quot;</span><span class="p">,</span>
+            <span class="n">xaxis_title</span><span class="o">=</span><span class="s2">&quot;Month&quot;</span><span class="p">,</span>
+            <span class="n">yaxis_title</span><span class="o">=</span><span class="s2">&quot;Number of Requisitions&quot;</span><span class="p">,</span>
+            <span class="n">coloraxis_colorbar</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Number of Requisitions&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">purchase_requisitions_over_time_plot</span> <span class="o">=</span> <span class="n">pio</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span>
+            <span class="n">purchase_requisitions_over_time_plot</span><span class="p">)</span>
+
+        <span class="c1"># Purchase Requisitions Age Analysis</span>
+        <span class="n">purchase_requisitions_age</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">purchase_requisitions</span><span class="o">.</span><span class="n">values</span><span class="p">(</span>
+            <span class="s2">&quot;inventory__item_name&quot;</span><span class="p">,</span> <span class="s2">&quot;quantity_requested&quot;</span><span class="p">,</span> <span class="s2">&quot;date_created&quot;</span><span class="p">,</span> <span class="s2">&quot;last_updated&quot;</span><span class="p">)))</span>
+        <span class="n">purchase_requisitions_age</span><span class="p">[</span><span class="s2">&quot;date_created&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
+            <span class="n">purchase_requisitions_age</span><span class="p">[</span><span class="s2">&quot;date_created&quot;</span><span class="p">])</span>
+        <span class="n">purchase_requisitions_age</span><span class="p">[</span><span class="s2">&quot;last_updated&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
+            <span class="n">purchase_requisitions_age</span><span class="p">[</span><span class="s2">&quot;last_updated&quot;</span><span class="p">])</span>
+        <span class="n">purchase_requisitions_age</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">purchase_requisitions_age</span><span class="p">[</span><span class="s2">&quot;last_updated&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">purchase_requisitions_age</span><span class="p">[</span><span class="s2">&quot;date_created&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">days</span>
+        <span class="n">purchase_requisitions_age</span> <span class="o">=</span> <span class="n">purchase_requisitions_age</span><span class="p">[[</span>
+            <span class="s2">&quot;inventory__item_name&quot;</span><span class="p">,</span> <span class="s2">&quot;quantity_requested&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">]]</span>
+        <span class="n">purchase_requisitions_age</span> <span class="o">=</span> <span class="n">purchase_requisitions_age</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span>
+            <span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">purchase_requisitions_age</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;inventory__item_name&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;age&quot;</span><span class="p">,</span>
+                     <span class="n">color</span><span class="o">=</span><span class="s2">&quot;quantity_requested&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Purchase Requisitions Age Analysis&quot;</span><span class="p">)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+            <span class="n">xaxis_title</span><span class="o">=</span><span class="s2">&quot;Item Name&quot;</span><span class="p">,</span>
+            <span class="n">yaxis_title</span><span class="o">=</span><span class="s2">&quot;Age (Days)&quot;</span><span class="p">,</span>
+            <span class="n">coloraxis_colorbar</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Quantity&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">purchase_requisitions_age_plot</span> <span class="o">=</span> <span class="n">pio</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+
+        <span class="c1"># Quantity Requested Distribution over Locations</span>
+        <span class="n">quantity_requested_distribution</span> <span class="o">=</span> <span class="n">purchase_requisitions</span><span class="o">.</span><span class="n">values</span><span class="p">(</span>
+            <span class="s2">&quot;inventory__location&quot;</span><span class="p">,</span> <span class="s2">&quot;quantity_requested&quot;</span><span class="p">)</span>
+        <span class="n">quantity_requested_distribution</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+            <span class="n">quantity_requested_distribution</span><span class="p">)</span>
+        <span class="n">quantity_requested_distribution</span> <span class="o">=</span> <span class="n">quantity_requested_distribution</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span>
+            <span class="s2">&quot;inventory__location&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s2">&quot;quantity_requested&quot;</span><span class="p">:</span> <span class="s2">&quot;sum&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+        <span class="n">quantity_requested_distribution_plot</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+        <span class="n">quantity_requested_distribution_plot</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Pie</span><span class="p">(</span>
+            <span class="n">labels</span><span class="o">=</span><span class="n">quantity_requested_distribution</span><span class="p">[</span><span class="s2">&quot;inventory__location&quot;</span><span class="p">],</span>
+            <span class="n">values</span><span class="o">=</span><span class="n">quantity_requested_distribution</span><span class="p">[</span><span class="s2">&quot;quantity_requested&quot;</span><span class="p">]</span>
+        <span class="p">))</span>
+        <span class="n">quantity_requested_distribution_plot</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Quantity Requested Distribution over Locations&quot;</span><span class="p">)</span>
+        <span class="n">quantity_requested_distribution_plot</span> <span class="o">=</span> <span class="n">pio</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span>
+            <span class="n">quantity_requested_distribution_plot</span><span class="p">)</span>
+
+        <span class="c1"># Serializing the data</span>
+        <span class="n">serializer</span> <span class="o">=</span> <span class="n">ProcurementOfficerDashboardSerializer</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;total_inventory_items&quot;</span><span class="p">:</span> <span class="n">total_inventory_items</span><span class="p">,</span>
+            <span class="s2">&quot;top_items_stock_quantity&quot;</span><span class="p">:</span> <span class="n">top_items_stock_quantity_plot</span><span class="p">,</span>
+            <span class="s2">&quot;top_items_unit_price&quot;</span><span class="p">:</span> <span class="n">top_items_unit_price_plot</span><span class="p">,</span>
+            <span class="s2">&quot;top_items_total_price&quot;</span><span class="p">:</span> <span class="n">top_items_total_price_plot</span><span class="p">,</span>
+            <span class="s2">&quot;inventory_items_added&quot;</span><span class="p">:</span> <span class="n">inventory_items_added_plot</span><span class="p">,</span>
+            <span class="s2">&quot;inventory_age&quot;</span><span class="p">:</span> <span class="n">inventory_age_plot</span><span class="p">,</span>
+            <span class="s2">&quot;stock_quantity_distribution&quot;</span><span class="p">:</span> <span class="n">stock_quantity_distribution_plot</span><span class="p">,</span>
+            <span class="s2">&quot;total_purchase_requisitions&quot;</span><span class="p">:</span> <span class="n">total_purchase_requisitions</span><span class="p">,</span>
+            <span class="s2">&quot;purchase_requisitions_by_status&quot;</span><span class="p">:</span> <span class="n">purchase_requisitions_by_status_plot</span><span class="p">,</span>
+            <span class="s2">&quot;purchase_requisitions_over_time&quot;</span><span class="p">:</span> <span class="n">purchase_requisitions_over_time_plot</span><span class="p">,</span>
+            <span class="s2">&quot;purchase_requisitions_age&quot;</span><span class="p">:</span> <span class="n">purchase_requisitions_age_plot</span><span class="p">,</span>
+            <span class="s2">&quot;quantity_requested_distribution&quot;</span><span class="p">:</span> <span class="n">quantity_requested_distribution_plot</span>
+        <span class="p">})</span>
+
+        <span class="c1"># Validating and returning the serialized data</span>
+        <span class="n">serializer</span><span class="o">.</span><span class="n">is_valid</span><span class="p">(</span><span class="n">raise_exception</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">validated_data</span><span class="p">,</span> <span class="n">content_type</span><span class="o">=</span><span class="s2">&quot;application/json&quot;</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="VendorDashboardView">
+<a class="viewcode-back" href="../../modules/dashboard.html#dashboard.views.VendorDashboardView">[docs]</a>
+<span class="nd">@method_decorator</span><span class="p">(</span><span class="n">cache_page</span><span class="p">(</span><span class="mi">60</span> <span class="o">*</span> <span class="mi">15</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;dispatch&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">VendorDashboardView</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">GenericAPIView</span><span class="p">):</span>
+    <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">IsAuthenticated</span><span class="p">,</span> <span class="n">IsVendor</span><span class="p">]</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">VendorDashboardSerializer</span>
+
+<div class="viewcode-block" id="VendorDashboardView.get">
+<a class="viewcode-back" href="../../modules/dashboard.html#dashboard.views.VendorDashboardView.get">[docs]</a>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span>
+
+        <span class="c1"># * Supplier Bid Analysis</span>
+        <span class="n">supplier_bids</span> <span class="o">=</span> <span class="n">SupplierBid</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">supplier</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+
+        <span class="c1"># Get the total number of supplier bids</span>
+        <span class="n">total_supplier_bids</span> <span class="o">=</span> <span class="n">supplier_bids</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+        <span class="c1"># Top bids by bid amount</span>
+        <span class="n">top_bids_bid_amount</span> <span class="o">=</span> <span class="n">supplier_bids</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">bid_amount</span><span class="o">=</span><span class="n">F</span><span class="p">(</span>
+            <span class="s2">&quot;unit_price&quot;</span><span class="p">)</span> <span class="o">*</span> <span class="n">F</span><span class="p">(</span><span class="s2">&quot;quantity_fulfilled&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s2">&quot;-bid_amount&quot;</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]</span>
+
+        <span class="n">top_bids_bid_amount_plot</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+        <span class="n">top_bids_bid_amount_plot</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Bar</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">top_bids_bid_amount</span><span class="p">],</span>
+            <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">bid_amount</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">top_bids_bid_amount</span><span class="p">],</span>
+            <span class="n">text</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">bid_amount</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">top_bids_bid_amount</span><span class="p">],</span>
+            <span class="n">textposition</span><span class="o">=</span><span class="s2">&quot;outside&quot;</span><span class="p">,</span>
+            <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+                <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">bid_amount</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">top_bids_bid_amount</span><span class="p">])</span>
+        <span class="p">))</span>
+        <span class="n">top_bids_bid_amount_plot</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Top Bids by Bid Amount&quot;</span><span class="p">,</span>
+            <span class="n">xaxis_title</span><span class="o">=</span><span class="s2">&quot;Bid ID&quot;</span><span class="p">,</span>
+            <span class="n">yaxis_title</span><span class="o">=</span><span class="s2">&quot;Bid Amount&quot;</span><span class="p">,</span>
+            <span class="n">coloraxis_colorbar</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Bid Amount&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">top_bids_bid_amount_plot</span> <span class="o">=</span> <span class="n">pio</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">top_bids_bid_amount_plot</span><span class="p">)</span>
+
+        <span class="c1"># Supplier Bids by status</span>
+        <span class="n">supplier_bids_by_status</span> <span class="o">=</span> <span class="n">supplier_bids</span><span class="o">.</span><span class="n">values</span><span class="p">(</span>
+            <span class="s2">&quot;status&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="n">F</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s2">&quot;status&quot;</span><span class="p">)</span>
+
+        <span class="n">supplier_bids_by_status_plot</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+        <span class="n">supplier_bids_by_status_plot</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Pie</span><span class="p">(</span>
+            <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">supplier_bids_by_status</span><span class="p">],</span>
+            <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">supplier_bids_by_status</span><span class="p">]</span>
+        <span class="p">))</span>
+        <span class="n">supplier_bids_by_status_plot</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Supplier Bids by Status&quot;</span><span class="p">)</span>
+        <span class="n">supplier_bids_by_status_plot</span> <span class="o">=</span> <span class="n">pio</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span>
+            <span class="n">supplier_bids_by_status_plot</span><span class="p">)</span>
+
+        <span class="c1"># Supplier Bids over time (monthly)</span>
+        <span class="n">supplier_bids_over_time</span> <span class="o">=</span> <span class="n">supplier_bids</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+            <span class="n">month</span><span class="o">=</span><span class="n">ExtractMonth</span><span class="p">(</span><span class="s2">&quot;date_submitted&quot;</span><span class="p">)</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="s2">&quot;month&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="n">F</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s2">&quot;month&quot;</span><span class="p">)</span>
+
+        <span class="n">supplier_bids_over_time_plot</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+        <span class="n">supplier_bids_over_time_plot</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Bar</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;month&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">supplier_bids_over_time</span><span class="p">],</span>
+            <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">supplier_bids_over_time</span><span class="p">],</span>
+            <span class="n">text</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">supplier_bids_over_time</span><span class="p">],</span>
+            <span class="n">textposition</span><span class="o">=</span><span class="s2">&quot;outside&quot;</span><span class="p">,</span>
+            <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span>
+                        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">supplier_bids_over_time</span><span class="p">])</span>
+        <span class="p">))</span>
+        <span class="n">supplier_bids_over_time_plot</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Supplier Bids Over Time&quot;</span><span class="p">,</span>
+            <span class="n">xaxis_title</span><span class="o">=</span><span class="s2">&quot;Month&quot;</span><span class="p">,</span>
+            <span class="n">yaxis_title</span><span class="o">=</span><span class="s2">&quot;Number of Bids&quot;</span><span class="p">,</span>
+            <span class="n">coloraxis_colorbar</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Number of Bids&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">supplier_bids_over_time_plot</span> <span class="o">=</span> <span class="n">pio</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span>
+            <span class="n">supplier_bids_over_time_plot</span><span class="p">)</span>
+
+        <span class="c1"># * Purchase Orders Analysis</span>
+        <span class="n">purchase_orders</span> <span class="o">=</span> <span class="n">PurchaseOrder</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">bid__supplier</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+
+        <span class="c1"># Get the total number of purchase orders</span>
+        <span class="n">total_purchase_orders</span> <span class="o">=</span> <span class="n">purchase_orders</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+        <span class="c1"># Top orders by order amount</span>
+        <span class="n">top_orders_order_amount</span> <span class="o">=</span> <span class="n">purchase_orders</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">order_amount</span><span class="o">=</span><span class="n">F</span><span class="p">(</span>
+            <span class="s2">&quot;bid__unit_price&quot;</span><span class="p">)</span> <span class="o">*</span> <span class="n">F</span><span class="p">(</span><span class="s2">&quot;bid__quantity_fulfilled&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s2">&quot;-order_amount&quot;</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]</span>
+
+        <span class="n">top_orders_order_amount_plot</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+        <span class="n">top_orders_order_amount_plot</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Bar</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">order_number</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">top_orders_order_amount</span><span class="p">],</span>
+            <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">order_amount</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">top_orders_order_amount</span><span class="p">],</span>
+            <span class="n">text</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">order_amount</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">top_orders_order_amount</span><span class="p">],</span>
+            <span class="n">textposition</span><span class="o">=</span><span class="s2">&quot;outside&quot;</span><span class="p">,</span>
+            <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+                <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">order_amount</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">top_orders_order_amount</span><span class="p">])</span>
+        <span class="p">))</span>
+        <span class="n">top_orders_order_amount_plot</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Top Orders by Order Amount&quot;</span><span class="p">,</span>
+            <span class="n">xaxis_title</span><span class="o">=</span><span class="s2">&quot;Order Number&quot;</span><span class="p">,</span>
+            <span class="n">yaxis_title</span><span class="o">=</span><span class="s2">&quot;Order Amount&quot;</span><span class="p">,</span>
+            <span class="n">coloraxis_colorbar</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Order Amount&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">top_orders_order_amount_plot</span> <span class="o">=</span> <span class="n">pio</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span>
+            <span class="n">top_orders_order_amount_plot</span><span class="p">)</span>
+
+        <span class="c1"># Purchase Orders by status</span>
+        <span class="n">purchase_orders_by_status</span> <span class="o">=</span> <span class="n">purchase_orders</span><span class="o">.</span><span class="n">values</span><span class="p">(</span>
+            <span class="s2">&quot;status&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="n">F</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s2">&quot;status&quot;</span><span class="p">)</span>
+
+        <span class="n">purchase_orders_by_status_plot</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+        <span class="n">purchase_orders_by_status_plot</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Pie</span><span class="p">(</span>
+            <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">purchase_orders_by_status</span><span class="p">],</span>
+            <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">purchase_orders_by_status</span><span class="p">]</span>
+        <span class="p">))</span>
+        <span class="n">purchase_orders_by_status_plot</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Purchase Orders by Status&quot;</span><span class="p">)</span>
+        <span class="n">purchase_orders_by_status_plot</span> <span class="o">=</span> <span class="n">pio</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span>
+            <span class="n">purchase_orders_by_status_plot</span><span class="p">)</span>
+
+        <span class="c1"># Purchase Orders over time (monthly)</span>
+        <span class="n">purchase_orders_over_time</span> <span class="o">=</span> <span class="n">purchase_orders</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+            <span class="n">month</span><span class="o">=</span><span class="n">ExtractMonth</span><span class="p">(</span><span class="s2">&quot;date_ordered&quot;</span><span class="p">)</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="s2">&quot;month&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="n">F</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s2">&quot;month&quot;</span><span class="p">)</span>
+
+        <span class="n">purchase_orders_over_time_plot</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+        <span class="n">purchase_orders_over_time_plot</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Bar</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;month&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">purchase_orders_over_time</span><span class="p">],</span>
+            <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">purchase_orders_over_time</span><span class="p">],</span>
+            <span class="n">text</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">purchase_orders_over_time</span><span class="p">],</span>
+            <span class="n">textposition</span><span class="o">=</span><span class="s2">&quot;outside&quot;</span><span class="p">,</span>
+            <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span>
+                        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">purchase_orders_over_time</span><span class="p">])</span>
+        <span class="p">))</span>
+        <span class="n">purchase_orders_over_time_plot</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Purchase Orders Over Time&quot;</span><span class="p">,</span>
+            <span class="n">xaxis_title</span><span class="o">=</span><span class="s2">&quot;Month&quot;</span><span class="p">,</span>
+            <span class="n">yaxis_title</span><span class="o">=</span><span class="s2">&quot;Number of Orders&quot;</span><span class="p">,</span>
+            <span class="n">coloraxis_colorbar</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Number of Orders&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">purchase_orders_over_time_plot</span> <span class="o">=</span> <span class="n">pio</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span>
+            <span class="n">purchase_orders_over_time_plot</span><span class="p">)</span>
+
+        <span class="c1"># Serializing the data</span>
+        <span class="n">serializer</span> <span class="o">=</span> <span class="n">VendorDashboardSerializer</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;total_supplier_bids&quot;</span><span class="p">:</span> <span class="n">total_supplier_bids</span><span class="p">,</span>
+            <span class="s2">&quot;top_bids_bid_amount&quot;</span><span class="p">:</span> <span class="n">top_bids_bid_amount_plot</span><span class="p">,</span>
+            <span class="s2">&quot;supplier_bids_by_status&quot;</span><span class="p">:</span> <span class="n">supplier_bids_by_status_plot</span><span class="p">,</span>
+            <span class="s2">&quot;supplier_bids_over_time&quot;</span><span class="p">:</span> <span class="n">supplier_bids_over_time_plot</span><span class="p">,</span>
+            <span class="s2">&quot;total_purchase_orders&quot;</span><span class="p">:</span> <span class="n">total_purchase_orders</span><span class="p">,</span>
+            <span class="s2">&quot;top_orders_order_amount&quot;</span><span class="p">:</span> <span class="n">top_orders_order_amount_plot</span><span class="p">,</span>
+            <span class="s2">&quot;purchase_orders_by_status&quot;</span><span class="p">:</span> <span class="n">purchase_orders_by_status_plot</span><span class="p">,</span>
+            <span class="s2">&quot;purchase_orders_over_time&quot;</span><span class="p">:</span> <span class="n">purchase_orders_over_time_plot</span>
+        <span class="p">})</span>
+
+        <span class="c1"># Validating and returning the serialized data</span>
+        <span class="n">serializer</span><span class="o">.</span><span class="n">is_valid</span><span class="p">(</span><span class="n">raise_exception</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">validated_data</span><span class="p">,</span> <span class="n">content_type</span><span class="o">=</span><span class="s2">&quot;application/json&quot;</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="getRoutes">
+<a class="viewcode-back" href="../../modules/dashboard.html#dashboard.views.getRoutes">[docs]</a>
+<span class="nd">@extend_schema</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@api_view</span><span class="p">([</span><span class="s2">&quot;GET&quot;</span><span class="p">])</span>
+<span class="nd">@permission_classes</span><span class="p">([</span><span class="n">AllowAny</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">getRoutes</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">routes</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;/admin&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/procurement-officer&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/vendor&quot;</span>
+    <span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">routes</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sahil Gidwani.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

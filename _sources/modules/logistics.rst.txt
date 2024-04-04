@@ -1,0 +1,85 @@
+logistics package
+=================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   logistics.migrations
+
+Submodules
+----------
+
+logistics.admin module
+----------------------
+
+.. automodule:: logistics.admin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+logistics.apps module
+---------------------
+
+.. automodule:: logistics.apps
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+logistics.models module
+-----------------------
+
+.. automodule:: logistics.models
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+logistics.serializers module
+----------------------------
+
+.. automodule:: logistics.serializers
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+logistics.tasks module
+----------------------
+
+.. automodule:: logistics.tasks
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+logistics.tests module
+----------------------
+
+.. automodule:: logistics.tests
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+logistics.urls module
+---------------------
+
+.. automodule:: logistics.urls
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+logistics.views module
+----------------------
+
+.. automodule:: logistics.views
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: logistics
+   :members:
+   :undoc-members:
+   :show-inheritance:

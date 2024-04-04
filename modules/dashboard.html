@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dashboard package &mdash; ProcurEase 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ProcurEase
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">dashboard package</a><ul>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-dashboard.admin">dashboard.admin module</a></li>
+<li><a class="reference internal" href="#module-dashboard.apps">dashboard.apps module</a><ul>
+<li><a class="reference internal" href="#dashboard.apps.DashboardConfig"><code class="docutils literal notranslate"><span class="pre">DashboardConfig</span></code></a><ul>
+<li><a class="reference internal" href="#dashboard.apps.DashboardConfig.default_auto_field"><code class="docutils literal notranslate"><span class="pre">DashboardConfig.default_auto_field</span></code></a></li>
+<li><a class="reference internal" href="#dashboard.apps.DashboardConfig.name"><code class="docutils literal notranslate"><span class="pre">DashboardConfig.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-dashboard.models">dashboard.models module</a></li>
+<li><a class="reference internal" href="#module-dashboard.serializers">dashboard.serializers module</a><ul>
+<li><a class="reference internal" href="#dashboard.serializers.AdminDashboardSerializer"><code class="docutils literal notranslate"><span class="pre">AdminDashboardSerializer</span></code></a></li>
+<li><a class="reference internal" href="#dashboard.serializers.ProcurementOfficerDashboardSerializer"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerDashboardSerializer</span></code></a></li>
+<li><a class="reference internal" href="#dashboard.serializers.VendorDashboardSerializer"><code class="docutils literal notranslate"><span class="pre">VendorDashboardSerializer</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-dashboard.tests">dashboard.tests module</a><ul>
+<li><a class="reference internal" href="#dashboard.tests.DashboardViewsTests"><code class="docutils literal notranslate"><span class="pre">DashboardViewsTests</span></code></a><ul>
+<li><a class="reference internal" href="#dashboard.tests.DashboardViewsTests.setUp"><code class="docutils literal notranslate"><span class="pre">DashboardViewsTests.setUp()</span></code></a></li>
+<li><a class="reference internal" href="#dashboard.tests.DashboardViewsTests.test_admin_dashboard_view"><code class="docutils literal notranslate"><span class="pre">DashboardViewsTests.test_admin_dashboard_view()</span></code></a></li>
+<li><a class="reference internal" href="#dashboard.tests.DashboardViewsTests.test_admin_dashboard_view_invalid_http_method"><code class="docutils literal notranslate"><span class="pre">DashboardViewsTests.test_admin_dashboard_view_invalid_http_method()</span></code></a></li>
+<li><a class="reference internal" href="#dashboard.tests.DashboardViewsTests.test_admin_dashboard_view_invalid_token"><code class="docutils literal notranslate"><span class="pre">DashboardViewsTests.test_admin_dashboard_view_invalid_token()</span></code></a></li>
+<li><a class="reference internal" href="#dashboard.tests.DashboardViewsTests.test_admin_dashboard_view_procurement_officer"><code class="docutils literal notranslate"><span class="pre">DashboardViewsTests.test_admin_dashboard_view_procurement_officer()</span></code></a></li>
+<li><a class="reference internal" href="#dashboard.tests.DashboardViewsTests.test_admin_dashboard_view_unauthenticated"><code class="docutils literal notranslate"><span class="pre">DashboardViewsTests.test_admin_dashboard_view_unauthenticated()</span></code></a></li>
+<li><a class="reference internal" href="#dashboard.tests.DashboardViewsTests.test_admin_dashboard_view_vendor"><code class="docutils literal notranslate"><span class="pre">DashboardViewsTests.test_admin_dashboard_view_vendor()</span></code></a></li>
+<li><a class="reference internal" href="#dashboard.tests.DashboardViewsTests.test_procurement_officer_dashboard_view"><code class="docutils literal notranslate"><span class="pre">DashboardViewsTests.test_procurement_officer_dashboard_view()</span></code></a></li>
+<li><a class="reference internal" href="#dashboard.tests.DashboardViewsTests.test_procurement_officer_dashboard_view_admin"><code class="docutils literal notranslate"><span class="pre">DashboardViewsTests.test_procurement_officer_dashboard_view_admin()</span></code></a></li>
+<li><a class="reference internal" href="#dashboard.tests.DashboardViewsTests.test_procurement_officer_dashboard_view_invalid_http_method"><code class="docutils literal notranslate"><span class="pre">DashboardViewsTests.test_procurement_officer_dashboard_view_invalid_http_method()</span></code></a></li>
+<li><a class="reference internal" href="#dashboard.tests.DashboardViewsTests.test_procurement_officer_dashboard_view_invalid_token"><code class="docutils literal notranslate"><span class="pre">DashboardViewsTests.test_procurement_officer_dashboard_view_invalid_token()</span></code></a></li>
+<li><a class="reference internal" href="#dashboard.tests.DashboardViewsTests.test_procurement_officer_dashboard_view_unauthenticated"><code class="docutils literal notranslate"><span class="pre">DashboardViewsTests.test_procurement_officer_dashboard_view_unauthenticated()</span></code></a></li>
+<li><a class="reference internal" href="#dashboard.tests.DashboardViewsTests.test_procurement_officer_dashboard_view_vendor"><code class="docutils literal notranslate"><span class="pre">DashboardViewsTests.test_procurement_officer_dashboard_view_vendor()</span></code></a></li>
+<li><a class="reference internal" href="#dashboard.tests.DashboardViewsTests.test_vendor_dashboard_view"><code class="docutils literal notranslate"><span class="pre">DashboardViewsTests.test_vendor_dashboard_view()</span></code></a></li>
+<li><a class="reference internal" href="#dashboard.tests.DashboardViewsTests.test_vendor_dashboard_view_admin"><code class="docutils literal notranslate"><span class="pre">DashboardViewsTests.test_vendor_dashboard_view_admin()</span></code></a></li>
+<li><a class="reference internal" href="#dashboard.tests.DashboardViewsTests.test_vendor_dashboard_view_invalid_http_method"><code class="docutils literal notranslate"><span class="pre">DashboardViewsTests.test_vendor_dashboard_view_invalid_http_method()</span></code></a></li>
+<li><a class="reference internal" href="#dashboard.tests.DashboardViewsTests.test_vendor_dashboard_view_invalid_token"><code class="docutils literal notranslate"><span class="pre">DashboardViewsTests.test_vendor_dashboard_view_invalid_token()</span></code></a></li>
+<li><a class="reference internal" href="#dashboard.tests.DashboardViewsTests.test_vendor_dashboard_view_procurement_officer"><code class="docutils literal notranslate"><span class="pre">DashboardViewsTests.test_vendor_dashboard_view_procurement_officer()</span></code></a></li>
+<li><a class="reference internal" href="#dashboard.tests.DashboardViewsTests.test_vendor_dashboard_view_unauthenticated"><code class="docutils literal notranslate"><span class="pre">DashboardViewsTests.test_vendor_dashboard_view_unauthenticated()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dashboard.tests.SetupClass"><code class="docutils literal notranslate"><span class="pre">SetupClass</span></code></a><ul>
+<li><a class="reference internal" href="#dashboard.tests.SetupClass.setUp"><code class="docutils literal notranslate"><span class="pre">SetupClass.setUp()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-dashboard.urls">dashboard.urls module</a></li>
+<li><a class="reference internal" href="#module-dashboard.views">dashboard.views module</a><ul>
+<li><a class="reference internal" href="#dashboard.views.AdminDashboardView"><code class="docutils literal notranslate"><span class="pre">AdminDashboardView</span></code></a><ul>
+<li><a class="reference internal" href="#dashboard.views.AdminDashboardView.dispatch"><code class="docutils literal notranslate"><span class="pre">AdminDashboardView.dispatch()</span></code></a></li>
+<li><a class="reference internal" href="#dashboard.views.AdminDashboardView.get"><code class="docutils literal notranslate"><span class="pre">AdminDashboardView.get()</span></code></a></li>
+<li><a class="reference internal" href="#dashboard.views.AdminDashboardView.permission_classes"><code class="docutils literal notranslate"><span class="pre">AdminDashboardView.permission_classes</span></code></a></li>
+<li><a class="reference internal" href="#dashboard.views.AdminDashboardView.serializer_class"><code class="docutils literal notranslate"><span class="pre">AdminDashboardView.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dashboard.views.ProcurementOfficerDashboardView"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerDashboardView</span></code></a><ul>
+<li><a class="reference internal" href="#dashboard.views.ProcurementOfficerDashboardView.dispatch"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerDashboardView.dispatch()</span></code></a></li>
+<li><a class="reference internal" href="#dashboard.views.ProcurementOfficerDashboardView.get"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerDashboardView.get()</span></code></a></li>
+<li><a class="reference internal" href="#dashboard.views.ProcurementOfficerDashboardView.permission_classes"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerDashboardView.permission_classes</span></code></a></li>
+<li><a class="reference internal" href="#dashboard.views.ProcurementOfficerDashboardView.serializer_class"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerDashboardView.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dashboard.views.VendorDashboardView"><code class="docutils literal notranslate"><span class="pre">VendorDashboardView</span></code></a><ul>
+<li><a class="reference internal" href="#dashboard.views.VendorDashboardView.dispatch"><code class="docutils literal notranslate"><span class="pre">VendorDashboardView.dispatch()</span></code></a></li>
+<li><a class="reference internal" href="#dashboard.views.VendorDashboardView.get"><code class="docutils literal notranslate"><span class="pre">VendorDashboardView.get()</span></code></a></li>
+<li><a class="reference internal" href="#dashboard.views.VendorDashboardView.permission_classes"><code class="docutils literal notranslate"><span class="pre">VendorDashboardView.permission_classes</span></code></a></li>
+<li><a class="reference internal" href="#dashboard.views.VendorDashboardView.serializer_class"><code class="docutils literal notranslate"><span class="pre">VendorDashboardView.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dashboard.views.getRoutes"><code class="docutils literal notranslate"><span class="pre">getRoutes()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-dashboard">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ProcurEase</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">dashboard package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/dashboard.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dashboard-package">
+<h1>dashboard package<a class="headerlink" href="#dashboard-package" title="Link to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-dashboard.admin">
+<span id="dashboard-admin-module"></span><h2>dashboard.admin module<a class="headerlink" href="#module-dashboard.admin" title="Link to this heading"></a></h2>
+</section>
+<section id="module-dashboard.apps">
+<span id="dashboard-apps-module"></span><h2>dashboard.apps module<a class="headerlink" href="#module-dashboard.apps" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="dashboard.apps.DashboardConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dashboard.apps.</span></span><span class="sig-name descname"><span class="pre">DashboardConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_module</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/apps.html#DashboardConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.apps.DashboardConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AppConfig</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dashboard.apps.DashboardConfig.default_auto_field">
+<span class="sig-name descname"><span class="pre">default_auto_field</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'django.db.models.BigAutoField'</span></em><a class="headerlink" href="#dashboard.apps.DashboardConfig.default_auto_field" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dashboard.apps.DashboardConfig.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'dashboard'</span></em><a class="headerlink" href="#dashboard.apps.DashboardConfig.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-dashboard.models">
+<span id="dashboard-models-module"></span><h2>dashboard.models module<a class="headerlink" href="#module-dashboard.models" title="Link to this heading"></a></h2>
+</section>
+<section id="module-dashboard.serializers">
+<span id="dashboard-serializers-module"></span><h2>dashboard.serializers module<a class="headerlink" href="#module-dashboard.serializers" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="dashboard.serializers.AdminDashboardSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dashboard.serializers.</span></span><span class="sig-name descname"><span class="pre">AdminDashboardSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/serializers.html#AdminDashboardSerializer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.serializers.AdminDashboardSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Serializer</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="dashboard.serializers.ProcurementOfficerDashboardSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dashboard.serializers.</span></span><span class="sig-name descname"><span class="pre">ProcurementOfficerDashboardSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/serializers.html#ProcurementOfficerDashboardSerializer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.serializers.ProcurementOfficerDashboardSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Serializer</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="dashboard.serializers.VendorDashboardSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dashboard.serializers.</span></span><span class="sig-name descname"><span class="pre">VendorDashboardSerializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/serializers.html#VendorDashboardSerializer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.serializers.VendorDashboardSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Serializer</span></code></p>
+</dd></dl>
+
+</section>
+<section id="module-dashboard.tests">
+<span id="dashboard-tests-module"></span><h2>dashboard.tests module<a class="headerlink" href="#module-dashboard.tests" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="dashboard.tests.DashboardViewsTests">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dashboard.tests.</span></span><span class="sig-name descname"><span class="pre">DashboardViewsTests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/tests.html#DashboardViewsTests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.tests.DashboardViewsTests" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dashboard.tests.SetupClass" title="dashboard.tests.SetupClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">SetupClass</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="dashboard.tests.DashboardViewsTests.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/tests.html#DashboardViewsTests.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.tests.DashboardViewsTests.setUp" title="Link to this definition"></a></dt>
+<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dashboard.tests.DashboardViewsTests.test_admin_dashboard_view">
+<span class="sig-name descname"><span class="pre">test_admin_dashboard_view</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/tests.html#DashboardViewsTests.test_admin_dashboard_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.tests.DashboardViewsTests.test_admin_dashboard_view" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dashboard.tests.DashboardViewsTests.test_admin_dashboard_view_invalid_http_method">
+<span class="sig-name descname"><span class="pre">test_admin_dashboard_view_invalid_http_method</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/tests.html#DashboardViewsTests.test_admin_dashboard_view_invalid_http_method"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.tests.DashboardViewsTests.test_admin_dashboard_view_invalid_http_method" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dashboard.tests.DashboardViewsTests.test_admin_dashboard_view_invalid_token">
+<span class="sig-name descname"><span class="pre">test_admin_dashboard_view_invalid_token</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/tests.html#DashboardViewsTests.test_admin_dashboard_view_invalid_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.tests.DashboardViewsTests.test_admin_dashboard_view_invalid_token" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dashboard.tests.DashboardViewsTests.test_admin_dashboard_view_procurement_officer">
+<span class="sig-name descname"><span class="pre">test_admin_dashboard_view_procurement_officer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/tests.html#DashboardViewsTests.test_admin_dashboard_view_procurement_officer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.tests.DashboardViewsTests.test_admin_dashboard_view_procurement_officer" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dashboard.tests.DashboardViewsTests.test_admin_dashboard_view_unauthenticated">
+<span class="sig-name descname"><span class="pre">test_admin_dashboard_view_unauthenticated</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/tests.html#DashboardViewsTests.test_admin_dashboard_view_unauthenticated"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.tests.DashboardViewsTests.test_admin_dashboard_view_unauthenticated" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dashboard.tests.DashboardViewsTests.test_admin_dashboard_view_vendor">
+<span class="sig-name descname"><span class="pre">test_admin_dashboard_view_vendor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/tests.html#DashboardViewsTests.test_admin_dashboard_view_vendor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.tests.DashboardViewsTests.test_admin_dashboard_view_vendor" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dashboard.tests.DashboardViewsTests.test_procurement_officer_dashboard_view">
+<span class="sig-name descname"><span class="pre">test_procurement_officer_dashboard_view</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/tests.html#DashboardViewsTests.test_procurement_officer_dashboard_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.tests.DashboardViewsTests.test_procurement_officer_dashboard_view" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dashboard.tests.DashboardViewsTests.test_procurement_officer_dashboard_view_admin">
+<span class="sig-name descname"><span class="pre">test_procurement_officer_dashboard_view_admin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/tests.html#DashboardViewsTests.test_procurement_officer_dashboard_view_admin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.tests.DashboardViewsTests.test_procurement_officer_dashboard_view_admin" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dashboard.tests.DashboardViewsTests.test_procurement_officer_dashboard_view_invalid_http_method">
+<span class="sig-name descname"><span class="pre">test_procurement_officer_dashboard_view_invalid_http_method</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/tests.html#DashboardViewsTests.test_procurement_officer_dashboard_view_invalid_http_method"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.tests.DashboardViewsTests.test_procurement_officer_dashboard_view_invalid_http_method" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dashboard.tests.DashboardViewsTests.test_procurement_officer_dashboard_view_invalid_token">
+<span class="sig-name descname"><span class="pre">test_procurement_officer_dashboard_view_invalid_token</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/tests.html#DashboardViewsTests.test_procurement_officer_dashboard_view_invalid_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.tests.DashboardViewsTests.test_procurement_officer_dashboard_view_invalid_token" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dashboard.tests.DashboardViewsTests.test_procurement_officer_dashboard_view_unauthenticated">
+<span class="sig-name descname"><span class="pre">test_procurement_officer_dashboard_view_unauthenticated</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/tests.html#DashboardViewsTests.test_procurement_officer_dashboard_view_unauthenticated"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.tests.DashboardViewsTests.test_procurement_officer_dashboard_view_unauthenticated" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dashboard.tests.DashboardViewsTests.test_procurement_officer_dashboard_view_vendor">
+<span class="sig-name descname"><span class="pre">test_procurement_officer_dashboard_view_vendor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/tests.html#DashboardViewsTests.test_procurement_officer_dashboard_view_vendor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.tests.DashboardViewsTests.test_procurement_officer_dashboard_view_vendor" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dashboard.tests.DashboardViewsTests.test_vendor_dashboard_view">
+<span class="sig-name descname"><span class="pre">test_vendor_dashboard_view</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/tests.html#DashboardViewsTests.test_vendor_dashboard_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.tests.DashboardViewsTests.test_vendor_dashboard_view" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dashboard.tests.DashboardViewsTests.test_vendor_dashboard_view_admin">
+<span class="sig-name descname"><span class="pre">test_vendor_dashboard_view_admin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/tests.html#DashboardViewsTests.test_vendor_dashboard_view_admin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.tests.DashboardViewsTests.test_vendor_dashboard_view_admin" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dashboard.tests.DashboardViewsTests.test_vendor_dashboard_view_invalid_http_method">
+<span class="sig-name descname"><span class="pre">test_vendor_dashboard_view_invalid_http_method</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/tests.html#DashboardViewsTests.test_vendor_dashboard_view_invalid_http_method"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.tests.DashboardViewsTests.test_vendor_dashboard_view_invalid_http_method" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dashboard.tests.DashboardViewsTests.test_vendor_dashboard_view_invalid_token">
+<span class="sig-name descname"><span class="pre">test_vendor_dashboard_view_invalid_token</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/tests.html#DashboardViewsTests.test_vendor_dashboard_view_invalid_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.tests.DashboardViewsTests.test_vendor_dashboard_view_invalid_token" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dashboard.tests.DashboardViewsTests.test_vendor_dashboard_view_procurement_officer">
+<span class="sig-name descname"><span class="pre">test_vendor_dashboard_view_procurement_officer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/tests.html#DashboardViewsTests.test_vendor_dashboard_view_procurement_officer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.tests.DashboardViewsTests.test_vendor_dashboard_view_procurement_officer" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dashboard.tests.DashboardViewsTests.test_vendor_dashboard_view_unauthenticated">
+<span class="sig-name descname"><span class="pre">test_vendor_dashboard_view_unauthenticated</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/tests.html#DashboardViewsTests.test_vendor_dashboard_view_unauthenticated"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.tests.DashboardViewsTests.test_vendor_dashboard_view_unauthenticated" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="dashboard.tests.SetupClass">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dashboard.tests.</span></span><span class="sig-name descname"><span class="pre">SetupClass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/tests.html#SetupClass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.tests.SetupClass" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="dashboard.tests.SetupClass.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/tests.html#SetupClass.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.tests.SetupClass.setUp" title="Link to this definition"></a></dt>
+<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-dashboard.urls">
+<span id="dashboard-urls-module"></span><h2>dashboard.urls module<a class="headerlink" href="#module-dashboard.urls" title="Link to this heading"></a></h2>
+</section>
+<section id="module-dashboard.views">
+<span id="dashboard-views-module"></span><h2>dashboard.views module<a class="headerlink" href="#module-dashboard.views" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="dashboard.views.AdminDashboardView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dashboard.views.</span></span><span class="sig-name descname"><span class="pre">AdminDashboardView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/views.html#AdminDashboardView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.views.AdminDashboardView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">GenericAPIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="dashboard.views.AdminDashboardView.dispatch">
+<span class="sig-name descname"><span class="pre">dispatch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dashboard.views.AdminDashboardView.dispatch" title="Link to this definition"></a></dt>
+<dd><p><cite>.dispatch()</cite> is pretty much the same as Django’s regular dispatch,
+but with extra hooks for startup, finalize, and exception handling.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dashboard.views.AdminDashboardView.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/views.html#AdminDashboardView.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.views.AdminDashboardView.get" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dashboard.views.AdminDashboardView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'rest_framework.permissions.IsAdminUser'&gt;]</span></em><a class="headerlink" href="#dashboard.views.AdminDashboardView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dashboard.views.AdminDashboardView.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#dashboard.views.AdminDashboardView.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#dashboard.serializers.AdminDashboardSerializer" title="dashboard.serializers.AdminDashboardSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">AdminDashboardSerializer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="dashboard.views.ProcurementOfficerDashboardView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dashboard.views.</span></span><span class="sig-name descname"><span class="pre">ProcurementOfficerDashboardView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/views.html#ProcurementOfficerDashboardView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.views.ProcurementOfficerDashboardView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">GenericAPIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="dashboard.views.ProcurementOfficerDashboardView.dispatch">
+<span class="sig-name descname"><span class="pre">dispatch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dashboard.views.ProcurementOfficerDashboardView.dispatch" title="Link to this definition"></a></dt>
+<dd><p><cite>.dispatch()</cite> is pretty much the same as Django’s regular dispatch,
+but with extra hooks for startup, finalize, and exception handling.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dashboard.views.ProcurementOfficerDashboardView.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/views.html#ProcurementOfficerDashboardView.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.views.ProcurementOfficerDashboardView.get" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dashboard.views.ProcurementOfficerDashboardView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'accounts.permissions.IsProcurementOfficer'&gt;]</span></em><a class="headerlink" href="#dashboard.views.ProcurementOfficerDashboardView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dashboard.views.ProcurementOfficerDashboardView.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#dashboard.views.ProcurementOfficerDashboardView.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#dashboard.serializers.ProcurementOfficerDashboardSerializer" title="dashboard.serializers.ProcurementOfficerDashboardSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProcurementOfficerDashboardSerializer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="dashboard.views.VendorDashboardView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dashboard.views.</span></span><span class="sig-name descname"><span class="pre">VendorDashboardView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/views.html#VendorDashboardView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.views.VendorDashboardView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">GenericAPIView</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="dashboard.views.VendorDashboardView.dispatch">
+<span class="sig-name descname"><span class="pre">dispatch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dashboard.views.VendorDashboardView.dispatch" title="Link to this definition"></a></dt>
+<dd><p><cite>.dispatch()</cite> is pretty much the same as Django’s regular dispatch,
+but with extra hooks for startup, finalize, and exception handling.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dashboard.views.VendorDashboardView.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/views.html#VendorDashboardView.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.views.VendorDashboardView.get" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dashboard.views.VendorDashboardView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'accounts.permissions.IsVendor'&gt;]</span></em><a class="headerlink" href="#dashboard.views.VendorDashboardView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dashboard.views.VendorDashboardView.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#dashboard.views.VendorDashboardView.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#dashboard.serializers.VendorDashboardSerializer" title="dashboard.serializers.VendorDashboardSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">VendorDashboardSerializer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dashboard.views.getRoutes">
+<span class="sig-prename descclassname"><span class="pre">dashboard.views.</span></span><span class="sig-name descname"><span class="pre">getRoutes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dashboard/views.html#getRoutes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dashboard.views.getRoutes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-dashboard">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-dashboard" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Sahil Gidwani.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

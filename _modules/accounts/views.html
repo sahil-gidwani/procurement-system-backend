@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>accounts.views &mdash; Smart Procurement System 1.0 documentation</title>
+  <title>accounts.views &mdash; ProcurEase 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
 
@@ -31,7 +31,7 @@
           
           
           <a href="../../index.html" class="icon icon-home">
-            Smart Procurement System
+            ProcurEase
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -49,7 +49,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">Smart Procurement System</a>
+          <a href="../../index.html">ProcurEase</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -70,11 +70,12 @@
   <h1>Source code for accounts.views</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">generics</span><span class="p">,</span> <span class="n">exceptions</span><span class="p">,</span> <span class="n">serializers</span>
 <span class="kn">from</span> <span class="nn">rest_framework.response</span> <span class="kn">import</span> <span class="n">Response</span>
-<span class="kn">from</span> <span class="nn">rest_framework_simplejwt.views</span> <span class="kn">import</span> <span class="n">TokenObtainPairView</span>
+<span class="kn">from</span> <span class="nn">rest_framework_simplejwt.views</span> <span class="kn">import</span> <span class="n">TokenObtainPairView</span><span class="p">,</span> <span class="n">TokenRefreshView</span>
 <span class="kn">from</span> <span class="nn">rest_framework.permissions</span> <span class="kn">import</span> <span class="n">AllowAny</span><span class="p">,</span> <span class="n">IsAuthenticated</span><span class="p">,</span> <span class="n">IsAdminUser</span>
 <span class="kn">from</span> <span class="nn">rest_framework.decorators</span> <span class="kn">import</span> <span class="n">api_view</span><span class="p">,</span> <span class="n">permission_classes</span>
 <span class="kn">from</span> <span class="nn">django.contrib.auth.tokens</span> <span class="kn">import</span> <span class="n">default_token_generator</span>
-<span class="kn">from</span> <span class="nn">django.core.cache</span> <span class="kn">import</span> <span class="n">cache</span>
+<span class="kn">from</span> <span class="nn">django.utils.decorators</span> <span class="kn">import</span> <span class="n">method_decorator</span>
+<span class="kn">from</span> <span class="nn">django.views.decorators.cache</span> <span class="kn">import</span> <span class="n">cache_page</span>
 <span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">reverse</span>
 <span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
 <span class="kn">from</span> <span class="nn">drf_spectacular.utils</span> <span class="kn">import</span> <span class="n">extend_schema</span>
@@ -104,6 +105,13 @@
 <span class="k">class</span> <span class="nc">MyTokenObtainPairView</span><span class="p">(</span><span class="n">TokenObtainPairView</span><span class="p">):</span>
     <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">AllowAny</span><span class="p">]</span>
     <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">MyTokenObtainPairSerializer</span></div>
+
+
+
+<div class="viewcode-block" id="MyTokenRefreshView">
+<a class="viewcode-back" href="../../modules/accounts.html#accounts.views.MyTokenRefreshView">[docs]</a>
+<span class="k">class</span> <span class="nc">MyTokenRefreshView</span><span class="p">(</span><span class="n">TokenRefreshView</span><span class="p">):</span>
+    <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">AllowAny</span><span class="p">]</span></div>
 
 
 
@@ -174,8 +182,9 @@
         <span class="n">pk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;pk&quot;</span><span class="p">)</span>
         <span class="n">token</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;token&quot;</span><span class="p">)</span>
 
-        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">pk</span><span class="p">))</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">pk</span><span class="p">))</span>
+        <span class="k">except</span> <span class="n">User</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">NotFound</span><span class="p">(</span><span class="s2">&quot;User Not available&quot;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">default_token_generator</span><span class="o">.</span><span class="n">check_token</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
@@ -229,9 +238,7 @@
 <a class="viewcode-back" href="../../modules/accounts.html#accounts.views.VendorRegisterView.perform_create">[docs]</a>
     <span class="k">def</span> <span class="nf">perform_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serializer</span><span class="p">):</span>
         <span class="n">user</span> <span class="o">=</span> <span class="n">serializer</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-        <span class="n">send_register_email</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
-        <span class="n">cache_key</span> <span class="o">=</span> <span class="s2">&quot;vendor_list&quot;</span>
-        <span class="n">cache</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">cache_key</span><span class="p">)</span></div>
+        <span class="n">send_register_email</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">)</span></div>
 </div>
 
 
@@ -292,26 +299,13 @@
 
 
 
+<span class="c1"># @method_decorator(cache_page(60 * 15), name=&quot;dispatch&quot;)</span>
 <div class="viewcode-block" id="VendorView">
 <a class="viewcode-back" href="../../modules/accounts.html#accounts.views.VendorView">[docs]</a>
 <span class="k">class</span> <span class="nc">VendorView</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">ListAPIView</span><span class="p">):</span>
     <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">IsAuthenticated</span><span class="p">,</span> <span class="n">IsAdminUser</span> <span class="o">|</span> <span class="n">IsProcurementOfficer</span><span class="p">]</span>
     <span class="n">queryset</span> <span class="o">=</span> <span class="n">Vendor</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
-    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">VendorSerializer</span>
-
-<div class="viewcode-block" id="VendorView.list">
-<a class="viewcode-back" href="../../modules/accounts.html#accounts.views.VendorView.list">[docs]</a>
-    <span class="k">def</span> <span class="nf">list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">cache_key</span> <span class="o">=</span> <span class="s2">&quot;vendor_list&quot;</span>
-        <span class="n">cached_data</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cache_key</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">cached_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">cached_data</span><span class="p">)</span>
-
-        <span class="n">response</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">cache_key</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">7</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">response</span></div>
-</div>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">VendorSerializer</span></div>
 
 
 
@@ -327,7 +321,7 @@
         <span class="s2">&quot;/token/verify&quot;</span><span class="p">,</span>
         <span class="s2">&quot;/change-password&quot;</span><span class="p">,</span>
         <span class="s2">&quot;/password-reset&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;/password-reset-confirm/&lt;int:pk&gt;/&lt;str:token&gt;/&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/password-reset-confirm/&lt;int:pk&gt;/&lt;str:token&gt;&quot;</span><span class="p">,</span>
         <span class="s2">&quot;/register/procurement-officer&quot;</span><span class="p">,</span>
         <span class="s2">&quot;/register/vendor&quot;</span><span class="p">,</span>
         <span class="s2">&quot;/profile&quot;</span><span class="p">,</span>

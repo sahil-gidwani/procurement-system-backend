@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>accounts package &mdash; Smart Procurement System 1.0 documentation</title>
+  <title>accounts package &mdash; ProcurEase 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
@@ -32,7 +32,7 @@
           
           
           <a href="../index.html" class="icon icon-home">
-            Smart Procurement System
+            ProcurEase
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -61,6 +61,8 @@
 <li><a class="reference internal" href="#accounts.models.User.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">User.DoesNotExist</span></code></a></li>
 <li><a class="reference internal" href="#accounts.models.User.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">User.MultipleObjectsReturned</span></code></a></li>
 <li><a class="reference internal" href="#accounts.models.User.USER_ROLE_CHOICES"><code class="docutils literal notranslate"><span class="pre">User.USER_ROLE_CHOICES</span></code></a></li>
+<li><a class="reference internal" href="#accounts.models.User.address"><code class="docutils literal notranslate"><span class="pre">User.address</span></code></a></li>
+<li><a class="reference internal" href="#accounts.models.User.company_name"><code class="docutils literal notranslate"><span class="pre">User.company_name</span></code></a></li>
 <li><a class="reference internal" href="#accounts.models.User.date_joined"><code class="docutils literal notranslate"><span class="pre">User.date_joined</span></code></a></li>
 <li><a class="reference internal" href="#accounts.models.User.email"><code class="docutils literal notranslate"><span class="pre">User.email</span></code></a></li>
 <li><a class="reference internal" href="#accounts.models.User.first_name"><code class="docutils literal notranslate"><span class="pre">User.first_name</span></code></a></li>
@@ -93,17 +95,16 @@
 <li><a class="reference internal" href="#accounts.models.Vendor.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Vendor.DoesNotExist</span></code></a></li>
 <li><a class="reference internal" href="#accounts.models.Vendor.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Vendor.MultipleObjectsReturned</span></code></a></li>
 <li><a class="reference internal" href="#accounts.models.Vendor.VENDOR_TYPE_CHOICES"><code class="docutils literal notranslate"><span class="pre">Vendor.VENDOR_TYPE_CHOICES</span></code></a></li>
-<li><a class="reference internal" href="#accounts.models.Vendor.address"><code class="docutils literal notranslate"><span class="pre">Vendor.address</span></code></a></li>
 <li><a class="reference internal" href="#accounts.models.Vendor.contract_expiry_date"><code class="docutils literal notranslate"><span class="pre">Vendor.contract_expiry_date</span></code></a></li>
 <li><a class="reference internal" href="#accounts.models.Vendor.get_next_by_contract_expiry_date"><code class="docutils literal notranslate"><span class="pre">Vendor.get_next_by_contract_expiry_date()</span></code></a></li>
 <li><a class="reference internal" href="#accounts.models.Vendor.get_previous_by_contract_expiry_date"><code class="docutils literal notranslate"><span class="pre">Vendor.get_previous_by_contract_expiry_date()</span></code></a></li>
 <li><a class="reference internal" href="#accounts.models.Vendor.get_vendor_type_display"><code class="docutils literal notranslate"><span class="pre">Vendor.get_vendor_type_display()</span></code></a></li>
 <li><a class="reference internal" href="#accounts.models.Vendor.id"><code class="docutils literal notranslate"><span class="pre">Vendor.id</span></code></a></li>
 <li><a class="reference internal" href="#accounts.models.Vendor.objects"><code class="docutils literal notranslate"><span class="pre">Vendor.objects</span></code></a></li>
+<li><a class="reference internal" href="#accounts.models.Vendor.total_ratings"><code class="docutils literal notranslate"><span class="pre">Vendor.total_ratings</span></code></a></li>
 <li><a class="reference internal" href="#accounts.models.Vendor.user"><code class="docutils literal notranslate"><span class="pre">Vendor.user</span></code></a></li>
 <li><a class="reference internal" href="#accounts.models.Vendor.user_id"><code class="docutils literal notranslate"><span class="pre">Vendor.user_id</span></code></a></li>
 <li><a class="reference internal" href="#accounts.models.Vendor.vendor_certified"><code class="docutils literal notranslate"><span class="pre">Vendor.vendor_certified</span></code></a></li>
-<li><a class="reference internal" href="#accounts.models.Vendor.vendor_name"><code class="docutils literal notranslate"><span class="pre">Vendor.vendor_name</span></code></a></li>
 <li><a class="reference internal" href="#accounts.models.Vendor.vendor_rating"><code class="docutils literal notranslate"><span class="pre">Vendor.vendor_rating</span></code></a></li>
 <li><a class="reference internal" href="#accounts.models.Vendor.vendor_type"><code class="docutils literal notranslate"><span class="pre">Vendor.vendor_type</span></code></a></li>
 </ul>
@@ -193,28 +194,50 @@
 <li><a class="reference internal" href="#accounts.tests.ChangePasswordViewTests"><code class="docutils literal notranslate"><span class="pre">ChangePasswordViewTests</span></code></a><ul>
 <li><a class="reference internal" href="#accounts.tests.ChangePasswordViewTests.setUp"><code class="docutils literal notranslate"><span class="pre">ChangePasswordViewTests.setUp()</span></code></a></li>
 <li><a class="reference internal" href="#accounts.tests.ChangePasswordViewTests.test_change_password_successfully"><code class="docutils literal notranslate"><span class="pre">ChangePasswordViewTests.test_change_password_successfully()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.ChangePasswordViewTests.test_change_password_unauthenticated"><code class="docutils literal notranslate"><span class="pre">ChangePasswordViewTests.test_change_password_unauthenticated()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.ChangePasswordViewTests.test_change_password_with_invalid_http_authorization_header"><code class="docutils literal notranslate"><span class="pre">ChangePasswordViewTests.test_change_password_with_invalid_http_authorization_header()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.ChangePasswordViewTests.test_change_password_with_invalid_http_method"><code class="docutils literal notranslate"><span class="pre">ChangePasswordViewTests.test_change_password_with_invalid_http_method()</span></code></a></li>
 <li><a class="reference internal" href="#accounts.tests.ChangePasswordViewTests.test_change_password_with_invalid_old_password"><code class="docutils literal notranslate"><span class="pre">ChangePasswordViewTests.test_change_password_with_invalid_old_password()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.ChangePasswordViewTests.test_change_password_with_invalid_payload"><code class="docutils literal notranslate"><span class="pre">ChangePasswordViewTests.test_change_password_with_invalid_payload()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.ChangePasswordViewTests.test_change_password_with_mismatched_passwords"><code class="docutils literal notranslate"><span class="pre">ChangePasswordViewTests.test_change_password_with_mismatched_passwords()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.ChangePasswordViewTests.test_change_password_without_providing_old_password"><code class="docutils literal notranslate"><span class="pre">ChangePasswordViewTests.test_change_password_without_providing_old_password()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#accounts.tests.PasswordResetConfirmViewTests"><code class="docutils literal notranslate"><span class="pre">PasswordResetConfirmViewTests</span></code></a><ul>
 <li><a class="reference internal" href="#accounts.tests.PasswordResetConfirmViewTests.setUp"><code class="docutils literal notranslate"><span class="pre">PasswordResetConfirmViewTests.setUp()</span></code></a></li>
 <li><a class="reference internal" href="#accounts.tests.PasswordResetConfirmViewTests.test_password_reset_confirm_successful"><code class="docutils literal notranslate"><span class="pre">PasswordResetConfirmViewTests.test_password_reset_confirm_successful()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.PasswordResetConfirmViewTests.test_password_reset_confirm_with_authenticated_user"><code class="docutils literal notranslate"><span class="pre">PasswordResetConfirmViewTests.test_password_reset_confirm_with_authenticated_user()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.PasswordResetConfirmViewTests.test_password_reset_confirm_with_invalid_http_method"><code class="docutils literal notranslate"><span class="pre">PasswordResetConfirmViewTests.test_password_reset_confirm_with_invalid_http_method()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.PasswordResetConfirmViewTests.test_password_reset_confirm_with_invalid_payload"><code class="docutils literal notranslate"><span class="pre">PasswordResetConfirmViewTests.test_password_reset_confirm_with_invalid_payload()</span></code></a></li>
 <li><a class="reference internal" href="#accounts.tests.PasswordResetConfirmViewTests.test_password_reset_confirm_with_invalid_token"><code class="docutils literal notranslate"><span class="pre">PasswordResetConfirmViewTests.test_password_reset_confirm_with_invalid_token()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.PasswordResetConfirmViewTests.test_password_reset_confirm_with_invalid_user"><code class="docutils literal notranslate"><span class="pre">PasswordResetConfirmViewTests.test_password_reset_confirm_with_invalid_user()</span></code></a></li>
 <li><a class="reference internal" href="#accounts.tests.PasswordResetConfirmViewTests.test_password_reset_confirm_with_mismatched_passwords"><code class="docutils literal notranslate"><span class="pre">PasswordResetConfirmViewTests.test_password_reset_confirm_with_mismatched_passwords()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#accounts.tests.PasswordResetViewTests"><code class="docutils literal notranslate"><span class="pre">PasswordResetViewTests</span></code></a><ul>
 <li><a class="reference internal" href="#accounts.tests.PasswordResetViewTests.setUp"><code class="docutils literal notranslate"><span class="pre">PasswordResetViewTests.setUp()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.PasswordResetViewTests.test_password_reset_successful"><code class="docutils literal notranslate"><span class="pre">PasswordResetViewTests.test_password_reset_successful()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.PasswordResetViewTests.test_password_reset_with_authenticated_user"><code class="docutils literal notranslate"><span class="pre">PasswordResetViewTests.test_password_reset_with_authenticated_user()</span></code></a></li>
 <li><a class="reference internal" href="#accounts.tests.PasswordResetViewTests.test_password_reset_with_invalid_email"><code class="docutils literal notranslate"><span class="pre">PasswordResetViewTests.test_password_reset_with_invalid_email()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.PasswordResetViewTests.test_password_reset_with_invalid_http_method"><code class="docutils literal notranslate"><span class="pre">PasswordResetViewTests.test_password_reset_with_invalid_http_method()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.PasswordResetViewTests.test_password_reset_with_invalid_payload"><code class="docutils literal notranslate"><span class="pre">PasswordResetViewTests.test_password_reset_with_invalid_payload()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.PasswordResetViewTests.test_password_reset_with_missing_email"><code class="docutils literal notranslate"><span class="pre">PasswordResetViewTests.test_password_reset_with_missing_email()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.PasswordResetViewTests.test_password_reset_with_unregistered_email"><code class="docutils literal notranslate"><span class="pre">PasswordResetViewTests.test_password_reset_with_unregistered_email()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#accounts.tests.RegisterViewTests"><code class="docutils literal notranslate"><span class="pre">RegisterViewTests</span></code></a><ul>
-<li><a class="reference internal" href="#accounts.tests.RegisterViewTests.setUp"><code class="docutils literal notranslate"><span class="pre">RegisterViewTests.setUp()</span></code></a></li>
-<li><a class="reference internal" href="#accounts.tests.RegisterViewTests.test_register_procurement_officer_user"><code class="docutils literal notranslate"><span class="pre">RegisterViewTests.test_register_procurement_officer_user()</span></code></a></li>
-<li><a class="reference internal" href="#accounts.tests.RegisterViewTests.test_register_user_with_invalid_email"><code class="docutils literal notranslate"><span class="pre">RegisterViewTests.test_register_user_with_invalid_email()</span></code></a></li>
-<li><a class="reference internal" href="#accounts.tests.RegisterViewTests.test_register_user_with_invalid_phone_number"><code class="docutils literal notranslate"><span class="pre">RegisterViewTests.test_register_user_with_invalid_phone_number()</span></code></a></li>
-<li><a class="reference internal" href="#accounts.tests.RegisterViewTests.test_register_user_with_password_mismatch"><code class="docutils literal notranslate"><span class="pre">RegisterViewTests.test_register_user_with_password_mismatch()</span></code></a></li>
-<li><a class="reference internal" href="#accounts.tests.RegisterViewTests.test_register_vendor_user"><code class="docutils literal notranslate"><span class="pre">RegisterViewTests.test_register_vendor_user()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.ProcurementOfficerRegisterViewTests"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerRegisterViewTests</span></code></a><ul>
+<li><a class="reference internal" href="#accounts.tests.ProcurementOfficerRegisterViewTests.setUp"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerRegisterViewTests.setUp()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_procurement_officer_user"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerRegisterViewTests.test_register_procurement_officer_user()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_authenticated_user"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerRegisterViewTests.test_register_user_with_authenticated_user()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_existing_email"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerRegisterViewTests.test_register_user_with_existing_email()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_existing_gstin"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerRegisterViewTests.test_register_user_with_existing_gstin()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_existing_username"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerRegisterViewTests.test_register_user_with_existing_username()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_invalid_email"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerRegisterViewTests.test_register_user_with_invalid_email()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_invalid_gstin"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerRegisterViewTests.test_register_user_with_invalid_gstin()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_invalid_http_method"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerRegisterViewTests.test_register_user_with_invalid_http_method()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_invalid_payload"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerRegisterViewTests.test_register_user_with_invalid_payload()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_invalid_phone_number"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerRegisterViewTests.test_register_user_with_invalid_phone_number()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_password_mismatch"><code class="docutils literal notranslate"><span class="pre">ProcurementOfficerRegisterViewTests.test_register_user_with_password_mismatch()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#accounts.tests.SetUpUsers"><code class="docutils literal notranslate"><span class="pre">SetUpUsers</span></code></a><ul>
@@ -224,8 +247,13 @@
 <li><a class="reference internal" href="#accounts.tests.TokenViewTests"><code class="docutils literal notranslate"><span class="pre">TokenViewTests</span></code></a><ul>
 <li><a class="reference internal" href="#accounts.tests.TokenViewTests.setUp"><code class="docutils literal notranslate"><span class="pre">TokenViewTests.setUp()</span></code></a></li>
 <li><a class="reference internal" href="#accounts.tests.TokenViewTests.test_obtain_token"><code class="docutils literal notranslate"><span class="pre">TokenViewTests.test_obtain_token()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.TokenViewTests.test_obtain_token_with_invalid_credentials"><code class="docutils literal notranslate"><span class="pre">TokenViewTests.test_obtain_token_with_invalid_credentials()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.TokenViewTests.test_obtain_token_with_missing_credentials"><code class="docutils literal notranslate"><span class="pre">TokenViewTests.test_obtain_token_with_missing_credentials()</span></code></a></li>
 <li><a class="reference internal" href="#accounts.tests.TokenViewTests.test_refresh_token"><code class="docutils literal notranslate"><span class="pre">TokenViewTests.test_refresh_token()</span></code></a></li>
-<li><a class="reference internal" href="#accounts.tests.TokenViewTests.test_verify_token"><code class="docutils literal notranslate"><span class="pre">TokenViewTests.test_verify_token()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.TokenViewTests.test_refresh_token_which_was_used_previously"><code class="docutils literal notranslate"><span class="pre">TokenViewTests.test_refresh_token_which_was_used_previously()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.TokenViewTests.test_refresh_token_with_blacklisted_token"><code class="docutils literal notranslate"><span class="pre">TokenViewTests.test_refresh_token_with_blacklisted_token()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.TokenViewTests.test_refresh_token_with_expired_token"><code class="docutils literal notranslate"><span class="pre">TokenViewTests.test_refresh_token_with_expired_token()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.TokenViewTests.test_refresh_token_with_invalid_token"><code class="docutils literal notranslate"><span class="pre">TokenViewTests.test_refresh_token_with_invalid_token()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#accounts.tests.UserProfileViewTests"><code class="docutils literal notranslate"><span class="pre">UserProfileViewTests</span></code></a><ul>
@@ -248,6 +276,21 @@
 <li><a class="reference internal" href="#accounts.tests.VendorListViewTests.test_sufficient_permissions_admin"><code class="docutils literal notranslate"><span class="pre">VendorListViewTests.test_sufficient_permissions_admin()</span></code></a></li>
 <li><a class="reference internal" href="#accounts.tests.VendorListViewTests.test_sufficient_permissions_procurement_officer"><code class="docutils literal notranslate"><span class="pre">VendorListViewTests.test_sufficient_permissions_procurement_officer()</span></code></a></li>
 <li><a class="reference internal" href="#accounts.tests.VendorListViewTests.test_vendor_list"><code class="docutils literal notranslate"><span class="pre">VendorListViewTests.test_vendor_list()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#accounts.tests.VendorRegisterViewTests"><code class="docutils literal notranslate"><span class="pre">VendorRegisterViewTests</span></code></a><ul>
+<li><a class="reference internal" href="#accounts.tests.VendorRegisterViewTests.setUp"><code class="docutils literal notranslate"><span class="pre">VendorRegisterViewTests.setUp()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.VendorRegisterViewTests.test_register_user_with_authenticated_user"><code class="docutils literal notranslate"><span class="pre">VendorRegisterViewTests.test_register_user_with_authenticated_user()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.VendorRegisterViewTests.test_register_user_with_existing_email"><code class="docutils literal notranslate"><span class="pre">VendorRegisterViewTests.test_register_user_with_existing_email()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.VendorRegisterViewTests.test_register_user_with_existing_gstin"><code class="docutils literal notranslate"><span class="pre">VendorRegisterViewTests.test_register_user_with_existing_gstin()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.VendorRegisterViewTests.test_register_user_with_existing_username"><code class="docutils literal notranslate"><span class="pre">VendorRegisterViewTests.test_register_user_with_existing_username()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.VendorRegisterViewTests.test_register_user_with_invalid_email"><code class="docutils literal notranslate"><span class="pre">VendorRegisterViewTests.test_register_user_with_invalid_email()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.VendorRegisterViewTests.test_register_user_with_invalid_gstin"><code class="docutils literal notranslate"><span class="pre">VendorRegisterViewTests.test_register_user_with_invalid_gstin()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.VendorRegisterViewTests.test_register_user_with_invalid_http_method"><code class="docutils literal notranslate"><span class="pre">VendorRegisterViewTests.test_register_user_with_invalid_http_method()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.VendorRegisterViewTests.test_register_user_with_invalid_payload"><code class="docutils literal notranslate"><span class="pre">VendorRegisterViewTests.test_register_user_with_invalid_payload()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.VendorRegisterViewTests.test_register_user_with_invalid_phone_number"><code class="docutils literal notranslate"><span class="pre">VendorRegisterViewTests.test_register_user_with_invalid_phone_number()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.VendorRegisterViewTests.test_register_user_with_password_mismatch"><code class="docutils literal notranslate"><span class="pre">VendorRegisterViewTests.test_register_user_with_password_mismatch()</span></code></a></li>
+<li><a class="reference internal" href="#accounts.tests.VendorRegisterViewTests.test_register_vendor_user"><code class="docutils literal notranslate"><span class="pre">VendorRegisterViewTests.test_register_vendor_user()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -273,6 +316,10 @@
 <li><a class="reference internal" href="#accounts.views.MyTokenObtainPairView"><code class="docutils literal notranslate"><span class="pre">MyTokenObtainPairView</span></code></a><ul>
 <li><a class="reference internal" href="#accounts.views.MyTokenObtainPairView.permission_classes"><code class="docutils literal notranslate"><span class="pre">MyTokenObtainPairView.permission_classes</span></code></a></li>
 <li><a class="reference internal" href="#accounts.views.MyTokenObtainPairView.serializer_class"><code class="docutils literal notranslate"><span class="pre">MyTokenObtainPairView.serializer_class</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#accounts.views.MyTokenRefreshView"><code class="docutils literal notranslate"><span class="pre">MyTokenRefreshView</span></code></a><ul>
+<li><a class="reference internal" href="#accounts.views.MyTokenRefreshView.permission_classes"><code class="docutils literal notranslate"><span class="pre">MyTokenRefreshView.permission_classes</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#accounts.views.PasswordResetConfirmView"><code class="docutils literal notranslate"><span class="pre">PasswordResetConfirmView</span></code></a><ul>
@@ -316,7 +363,6 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#accounts.views.VendorView"><code class="docutils literal notranslate"><span class="pre">VendorView</span></code></a><ul>
-<li><a class="reference internal" href="#accounts.views.VendorView.list"><code class="docutils literal notranslate"><span class="pre">VendorView.list()</span></code></a></li>
 <li><a class="reference internal" href="#accounts.views.VendorView.permission_classes"><code class="docutils literal notranslate"><span class="pre">VendorView.permission_classes</span></code></a></li>
 <li><a class="reference internal" href="#accounts.views.VendorView.queryset"><code class="docutils literal notranslate"><span class="pre">VendorView.queryset</span></code></a></li>
 <li><a class="reference internal" href="#accounts.views.VendorView.serializer_class"><code class="docutils literal notranslate"><span class="pre">VendorView.serializer_class</span></code></a></li>
@@ -336,7 +382,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">Smart Procurement System</a>
+          <a href="../index.html">ProcurEase</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -390,7 +436,7 @@
 <span id="accounts-models-module"></span><h2>accounts.models module<a class="headerlink" href="#module-accounts.models" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="accounts.models.User">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accounts.models.</span></span><span class="sig-name descname"><span class="pre">User</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_login</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_superuser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_staff</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_active</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_joined</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phone_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gstin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_role</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/models.html#User"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.models.User" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accounts.models.</span></span><span class="sig-name descname"><span class="pre">User</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_login</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_superuser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_staff</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_active</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_joined</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phone_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gstin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">company_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_role</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/models.html#User"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.models.User" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractUser</span></code></p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="accounts.models.User.DoesNotExist">
@@ -408,6 +454,20 @@
 <dt class="sig sig-object py" id="accounts.models.User.USER_ROLE_CHOICES">
 <span class="sig-name descname"><span class="pre">USER_ROLE_CHOICES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('procurement_officer',</span> <span class="pre">'Procurement</span> <span class="pre">Officer'),</span> <span class="pre">('vendor',</span> <span class="pre">'Vendor')]</span></em><a class="headerlink" href="#accounts.models.User.USER_ROLE_CHOICES" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="accounts.models.User.address">
+<span class="sig-name descname"><span class="pre">address</span></span><a class="headerlink" href="#accounts.models.User.address" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="accounts.models.User.company_name">
+<span class="sig-name descname"><span class="pre">company_name</span></span><a class="headerlink" href="#accounts.models.User.company_name" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="accounts.models.User.date_joined">
@@ -641,7 +701,7 @@ relation.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="accounts.models.Vendor">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accounts.models.</span></span><span class="sig-name descname"><span class="pre">Vendor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vendor_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vendor_certified</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vendor_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contract_expiry_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vendor_rating</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/models.html#Vendor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.models.Vendor" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accounts.models.</span></span><span class="sig-name descname"><span class="pre">Vendor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vendor_certified</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vendor_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contract_expiry_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vendor_rating</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_ratings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/models.html#Vendor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.models.Vendor" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="accounts.models.Vendor.DoesNotExist">
@@ -659,13 +719,6 @@ relation.</p>
 <dt class="sig sig-object py" id="accounts.models.Vendor.VENDOR_TYPE_CHOICES">
 <span class="sig-name descname"><span class="pre">VENDOR_TYPE_CHOICES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('supplier',</span> <span class="pre">'Supplier'),</span> <span class="pre">('manufacturer',</span> <span class="pre">'Manufacturer'),</span> <span class="pre">('service_provider',</span> <span class="pre">'Service</span> <span class="pre">Provider')]</span></em><a class="headerlink" href="#accounts.models.Vendor.VENDOR_TYPE_CHOICES" title="Link to this definition"></a></dt>
 <dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="accounts.models.Vendor.address">
-<span class="sig-name descname"><span class="pre">address</span></span><a class="headerlink" href="#accounts.models.Vendor.address" title="Link to this definition"></a></dt>
-<dd><p>A wrapper for a deferred-loading field. When the value is read from this
-object the first time, the query is executed.</p>
-</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="accounts.models.Vendor.contract_expiry_date">
@@ -702,6 +755,13 @@ object the first time, the query is executed.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="accounts.models.Vendor.total_ratings">
+<span class="sig-name descname"><span class="pre">total_ratings</span></span><a class="headerlink" href="#accounts.models.Vendor.total_ratings" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="accounts.models.Vendor.user">
 <span class="sig-name descname"><span class="pre">user</span></span><a class="headerlink" href="#accounts.models.Vendor.user" title="Link to this definition"></a></dt>
 <dd><p>Accessor to the related object on the forward side of a one-to-one relation.</p>
@@ -721,13 +781,6 @@ object the first time, the query is executed.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="accounts.models.Vendor.vendor_certified">
 <span class="sig-name descname"><span class="pre">vendor_certified</span></span><a class="headerlink" href="#accounts.models.Vendor.vendor_certified" title="Link to this definition"></a></dt>
-<dd><p>A wrapper for a deferred-loading field. When the value is read from this
-object the first time, the query is executed.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="accounts.models.Vendor.vendor_name">
-<span class="sig-name descname"><span class="pre">vendor_name</span></span><a class="headerlink" href="#accounts.models.Vendor.vendor_name" title="Link to this definition"></a></dt>
 <dd><p>A wrapper for a deferred-loading field. When the value is read from this
 object the first time, the query is executed.</p>
 </dd></dl>
@@ -842,7 +895,7 @@ object the first time, the query is executed.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="accounts.serializers.ProcurementOfficerRegisterSerializer.Meta.fields">
-<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('first_name',</span> <span class="pre">'last_name',</span> <span class="pre">'username',</span> <span class="pre">'email',</span> <span class="pre">'phone_number',</span> <span class="pre">'gstin',</span> <span class="pre">'password1',</span> <span class="pre">'password2')</span></em><a class="headerlink" href="#accounts.serializers.ProcurementOfficerRegisterSerializer.Meta.fields" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('first_name',</span> <span class="pre">'last_name',</span> <span class="pre">'username',</span> <span class="pre">'email',</span> <span class="pre">'phone_number',</span> <span class="pre">'gstin',</span> <span class="pre">'company_name',</span> <span class="pre">'address',</span> <span class="pre">'password1',</span> <span class="pre">'password2')</span></em><a class="headerlink" href="#accounts.serializers.ProcurementOfficerRegisterSerializer.Meta.fields" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -893,7 +946,7 @@ to write an explicit <cite>.create()</cite> method.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="accounts.serializers.ProfileSerializer.Meta.fields">
-<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('first_name',</span> <span class="pre">'last_name',</span> <span class="pre">'username',</span> <span class="pre">'email',</span> <span class="pre">'phone_number',</span> <span class="pre">'gstin')</span></em><a class="headerlink" href="#accounts.serializers.ProfileSerializer.Meta.fields" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('first_name',</span> <span class="pre">'last_name',</span> <span class="pre">'username',</span> <span class="pre">'email',</span> <span class="pre">'phone_number',</span> <span class="pre">'gstin',</span> <span class="pre">'company_name',</span> <span class="pre">'address',</span> <span class="pre">'vendor')</span></em><a class="headerlink" href="#accounts.serializers.ProfileSerializer.Meta.fields" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -927,7 +980,7 @@ to write an explicit <cite>.create()</cite> method.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="accounts.serializers.VendorInfoSerializer.Meta.fields">
-<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('vendor_name',</span> <span class="pre">'address',</span> <span class="pre">'vendor_certified',</span> <span class="pre">'vendor_type',</span> <span class="pre">'contract_expiry_date',</span> <span class="pre">'vendor_rating')</span></em><a class="headerlink" href="#accounts.serializers.VendorInfoSerializer.Meta.fields" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('vendor_certified',</span> <span class="pre">'vendor_type')</span></em><a class="headerlink" href="#accounts.serializers.VendorInfoSerializer.Meta.fields" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -950,7 +1003,7 @@ to write an explicit <cite>.create()</cite> method.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="accounts.serializers.VendorRegisterSerializer.Meta.fields">
-<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('first_name',</span> <span class="pre">'last_name',</span> <span class="pre">'username',</span> <span class="pre">'email',</span> <span class="pre">'phone_number',</span> <span class="pre">'gstin',</span> <span class="pre">'password1',</span> <span class="pre">'password2',</span> <span class="pre">'vendor_info')</span></em><a class="headerlink" href="#accounts.serializers.VendorRegisterSerializer.Meta.fields" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('first_name',</span> <span class="pre">'last_name',</span> <span class="pre">'username',</span> <span class="pre">'email',</span> <span class="pre">'phone_number',</span> <span class="pre">'gstin',</span> <span class="pre">'company_name',</span> <span class="pre">'address',</span> <span class="pre">'password1',</span> <span class="pre">'password2',</span> <span class="pre">'vendor_info')</span></em><a class="headerlink" href="#accounts.serializers.VendorRegisterSerializer.Meta.fields" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -1023,7 +1076,7 @@ to write an explicit <cite>.create()</cite> method.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="accounts.tests.ChangePasswordViewTests">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accounts.tests.</span></span><span class="sig-name descname"><span class="pre">ChangePasswordViewTests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#ChangePasswordViewTests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.ChangePasswordViewTests" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APITestCase</span></code></p>
+<dd><p>Bases: <a class="reference internal" href="#accounts.tests.SetUpUsers" title="accounts.tests.SetUpUsers"><code class="xref py py-class docutils literal notranslate"><span class="pre">SetUpUsers</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">APITestCase</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="accounts.tests.ChangePasswordViewTests.setUp">
 <span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#ChangePasswordViewTests.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.ChangePasswordViewTests.setUp" title="Link to this definition"></a></dt>
@@ -1036,8 +1089,38 @@ to write an explicit <cite>.create()</cite> method.</p>
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.ChangePasswordViewTests.test_change_password_unauthenticated">
+<span class="sig-name descname"><span class="pre">test_change_password_unauthenticated</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#ChangePasswordViewTests.test_change_password_unauthenticated"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.ChangePasswordViewTests.test_change_password_unauthenticated" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.ChangePasswordViewTests.test_change_password_with_invalid_http_authorization_header">
+<span class="sig-name descname"><span class="pre">test_change_password_with_invalid_http_authorization_header</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#ChangePasswordViewTests.test_change_password_with_invalid_http_authorization_header"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.ChangePasswordViewTests.test_change_password_with_invalid_http_authorization_header" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.ChangePasswordViewTests.test_change_password_with_invalid_http_method">
+<span class="sig-name descname"><span class="pre">test_change_password_with_invalid_http_method</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#ChangePasswordViewTests.test_change_password_with_invalid_http_method"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.ChangePasswordViewTests.test_change_password_with_invalid_http_method" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="accounts.tests.ChangePasswordViewTests.test_change_password_with_invalid_old_password">
 <span class="sig-name descname"><span class="pre">test_change_password_with_invalid_old_password</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#ChangePasswordViewTests.test_change_password_with_invalid_old_password"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.ChangePasswordViewTests.test_change_password_with_invalid_old_password" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.ChangePasswordViewTests.test_change_password_with_invalid_payload">
+<span class="sig-name descname"><span class="pre">test_change_password_with_invalid_payload</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#ChangePasswordViewTests.test_change_password_with_invalid_payload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.ChangePasswordViewTests.test_change_password_with_invalid_payload" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.ChangePasswordViewTests.test_change_password_with_mismatched_passwords">
+<span class="sig-name descname"><span class="pre">test_change_password_with_mismatched_passwords</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#ChangePasswordViewTests.test_change_password_with_mismatched_passwords"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.ChangePasswordViewTests.test_change_password_with_mismatched_passwords" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.ChangePasswordViewTests.test_change_password_without_providing_old_password">
+<span class="sig-name descname"><span class="pre">test_change_password_without_providing_old_password</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#ChangePasswordViewTests.test_change_password_without_providing_old_password"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.ChangePasswordViewTests.test_change_password_without_providing_old_password" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1058,8 +1141,28 @@ to write an explicit <cite>.create()</cite> method.</p>
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.PasswordResetConfirmViewTests.test_password_reset_confirm_with_authenticated_user">
+<span class="sig-name descname"><span class="pre">test_password_reset_confirm_with_authenticated_user</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#PasswordResetConfirmViewTests.test_password_reset_confirm_with_authenticated_user"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.PasswordResetConfirmViewTests.test_password_reset_confirm_with_authenticated_user" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.PasswordResetConfirmViewTests.test_password_reset_confirm_with_invalid_http_method">
+<span class="sig-name descname"><span class="pre">test_password_reset_confirm_with_invalid_http_method</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#PasswordResetConfirmViewTests.test_password_reset_confirm_with_invalid_http_method"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.PasswordResetConfirmViewTests.test_password_reset_confirm_with_invalid_http_method" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.PasswordResetConfirmViewTests.test_password_reset_confirm_with_invalid_payload">
+<span class="sig-name descname"><span class="pre">test_password_reset_confirm_with_invalid_payload</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#PasswordResetConfirmViewTests.test_password_reset_confirm_with_invalid_payload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.PasswordResetConfirmViewTests.test_password_reset_confirm_with_invalid_payload" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="accounts.tests.PasswordResetConfirmViewTests.test_password_reset_confirm_with_invalid_token">
 <span class="sig-name descname"><span class="pre">test_password_reset_confirm_with_invalid_token</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#PasswordResetConfirmViewTests.test_password_reset_confirm_with_invalid_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.PasswordResetConfirmViewTests.test_password_reset_confirm_with_invalid_token" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.PasswordResetConfirmViewTests.test_password_reset_confirm_with_invalid_user">
+<span class="sig-name descname"><span class="pre">test_password_reset_confirm_with_invalid_user</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#PasswordResetConfirmViewTests.test_password_reset_confirm_with_invalid_user"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.PasswordResetConfirmViewTests.test_password_reset_confirm_with_invalid_user" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1072,7 +1175,7 @@ to write an explicit <cite>.create()</cite> method.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="accounts.tests.PasswordResetViewTests">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accounts.tests.</span></span><span class="sig-name descname"><span class="pre">PasswordResetViewTests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#PasswordResetViewTests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.PasswordResetViewTests" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APITestCase</span></code></p>
+<dd><p>Bases: <a class="reference internal" href="#accounts.tests.SetUpUsers" title="accounts.tests.SetUpUsers"><code class="xref py py-class docutils literal notranslate"><span class="pre">SetUpUsers</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">APITestCase</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="accounts.tests.PasswordResetViewTests.setUp">
 <span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#PasswordResetViewTests.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.PasswordResetViewTests.setUp" title="Link to this definition"></a></dt>
@@ -1080,45 +1183,105 @@ to write an explicit <cite>.create()</cite> method.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.PasswordResetViewTests.test_password_reset_successful">
+<span class="sig-name descname"><span class="pre">test_password_reset_successful</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#PasswordResetViewTests.test_password_reset_successful"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.PasswordResetViewTests.test_password_reset_successful" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.PasswordResetViewTests.test_password_reset_with_authenticated_user">
+<span class="sig-name descname"><span class="pre">test_password_reset_with_authenticated_user</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#PasswordResetViewTests.test_password_reset_with_authenticated_user"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.PasswordResetViewTests.test_password_reset_with_authenticated_user" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="accounts.tests.PasswordResetViewTests.test_password_reset_with_invalid_email">
 <span class="sig-name descname"><span class="pre">test_password_reset_with_invalid_email</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#PasswordResetViewTests.test_password_reset_with_invalid_email"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.PasswordResetViewTests.test_password_reset_with_invalid_email" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.PasswordResetViewTests.test_password_reset_with_invalid_http_method">
+<span class="sig-name descname"><span class="pre">test_password_reset_with_invalid_http_method</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#PasswordResetViewTests.test_password_reset_with_invalid_http_method"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.PasswordResetViewTests.test_password_reset_with_invalid_http_method" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.PasswordResetViewTests.test_password_reset_with_invalid_payload">
+<span class="sig-name descname"><span class="pre">test_password_reset_with_invalid_payload</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#PasswordResetViewTests.test_password_reset_with_invalid_payload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.PasswordResetViewTests.test_password_reset_with_invalid_payload" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.PasswordResetViewTests.test_password_reset_with_missing_email">
+<span class="sig-name descname"><span class="pre">test_password_reset_with_missing_email</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#PasswordResetViewTests.test_password_reset_with_missing_email"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.PasswordResetViewTests.test_password_reset_with_missing_email" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.PasswordResetViewTests.test_password_reset_with_unregistered_email">
+<span class="sig-name descname"><span class="pre">test_password_reset_with_unregistered_email</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#PasswordResetViewTests.test_password_reset_with_unregistered_email"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.PasswordResetViewTests.test_password_reset_with_unregistered_email" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="accounts.tests.RegisterViewTests">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accounts.tests.</span></span><span class="sig-name descname"><span class="pre">RegisterViewTests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#RegisterViewTests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.RegisterViewTests" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<dt class="sig sig-object py" id="accounts.tests.ProcurementOfficerRegisterViewTests">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accounts.tests.</span></span><span class="sig-name descname"><span class="pre">ProcurementOfficerRegisterViewTests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#ProcurementOfficerRegisterViewTests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.ProcurementOfficerRegisterViewTests" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APITestCase</span></code></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="accounts.tests.RegisterViewTests.setUp">
-<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#RegisterViewTests.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.RegisterViewTests.setUp" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="accounts.tests.ProcurementOfficerRegisterViewTests.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#ProcurementOfficerRegisterViewTests.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.ProcurementOfficerRegisterViewTests.setUp" title="Link to this definition"></a></dt>
 <dd><p>Hook method for setting up the test fixture before exercising it.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="accounts.tests.RegisterViewTests.test_register_procurement_officer_user">
-<span class="sig-name descname"><span class="pre">test_register_procurement_officer_user</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#RegisterViewTests.test_register_procurement_officer_user"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.RegisterViewTests.test_register_procurement_officer_user" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="accounts.tests.ProcurementOfficerRegisterViewTests.test_register_procurement_officer_user">
+<span class="sig-name descname"><span class="pre">test_register_procurement_officer_user</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#ProcurementOfficerRegisterViewTests.test_register_procurement_officer_user"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_procurement_officer_user" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="accounts.tests.RegisterViewTests.test_register_user_with_invalid_email">
-<span class="sig-name descname"><span class="pre">test_register_user_with_invalid_email</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#RegisterViewTests.test_register_user_with_invalid_email"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.RegisterViewTests.test_register_user_with_invalid_email" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_authenticated_user">
+<span class="sig-name descname"><span class="pre">test_register_user_with_authenticated_user</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#ProcurementOfficerRegisterViewTests.test_register_user_with_authenticated_user"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_authenticated_user" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="accounts.tests.RegisterViewTests.test_register_user_with_invalid_phone_number">
-<span class="sig-name descname"><span class="pre">test_register_user_with_invalid_phone_number</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#RegisterViewTests.test_register_user_with_invalid_phone_number"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.RegisterViewTests.test_register_user_with_invalid_phone_number" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_existing_email">
+<span class="sig-name descname"><span class="pre">test_register_user_with_existing_email</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#ProcurementOfficerRegisterViewTests.test_register_user_with_existing_email"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_existing_email" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="accounts.tests.RegisterViewTests.test_register_user_with_password_mismatch">
-<span class="sig-name descname"><span class="pre">test_register_user_with_password_mismatch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#RegisterViewTests.test_register_user_with_password_mismatch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.RegisterViewTests.test_register_user_with_password_mismatch" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_existing_gstin">
+<span class="sig-name descname"><span class="pre">test_register_user_with_existing_gstin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#ProcurementOfficerRegisterViewTests.test_register_user_with_existing_gstin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_existing_gstin" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="accounts.tests.RegisterViewTests.test_register_vendor_user">
-<span class="sig-name descname"><span class="pre">test_register_vendor_user</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#RegisterViewTests.test_register_vendor_user"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.RegisterViewTests.test_register_vendor_user" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_existing_username">
+<span class="sig-name descname"><span class="pre">test_register_user_with_existing_username</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#ProcurementOfficerRegisterViewTests.test_register_user_with_existing_username"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_existing_username" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_invalid_email">
+<span class="sig-name descname"><span class="pre">test_register_user_with_invalid_email</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#ProcurementOfficerRegisterViewTests.test_register_user_with_invalid_email"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_invalid_email" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_invalid_gstin">
+<span class="sig-name descname"><span class="pre">test_register_user_with_invalid_gstin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#ProcurementOfficerRegisterViewTests.test_register_user_with_invalid_gstin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_invalid_gstin" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_invalid_http_method">
+<span class="sig-name descname"><span class="pre">test_register_user_with_invalid_http_method</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#ProcurementOfficerRegisterViewTests.test_register_user_with_invalid_http_method"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_invalid_http_method" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_invalid_payload">
+<span class="sig-name descname"><span class="pre">test_register_user_with_invalid_payload</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#ProcurementOfficerRegisterViewTests.test_register_user_with_invalid_payload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_invalid_payload" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_invalid_phone_number">
+<span class="sig-name descname"><span class="pre">test_register_user_with_invalid_phone_number</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#ProcurementOfficerRegisterViewTests.test_register_user_with_invalid_phone_number"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_invalid_phone_number" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_password_mismatch">
+<span class="sig-name descname"><span class="pre">test_register_user_with_password_mismatch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#ProcurementOfficerRegisterViewTests.test_register_user_with_password_mismatch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_password_mismatch" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1138,7 +1301,7 @@ to write an explicit <cite>.create()</cite> method.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="accounts.tests.TokenViewTests">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accounts.tests.</span></span><span class="sig-name descname"><span class="pre">TokenViewTests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#TokenViewTests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.TokenViewTests" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APITestCase</span></code></p>
+<dd><p>Bases: <a class="reference internal" href="#accounts.tests.SetUpUsers" title="accounts.tests.SetUpUsers"><code class="xref py py-class docutils literal notranslate"><span class="pre">SetUpUsers</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">APITestCase</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="accounts.tests.TokenViewTests.setUp">
 <span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#TokenViewTests.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.TokenViewTests.setUp" title="Link to this definition"></a></dt>
@@ -1151,13 +1314,38 @@ to write an explicit <cite>.create()</cite> method.</p>
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.TokenViewTests.test_obtain_token_with_invalid_credentials">
+<span class="sig-name descname"><span class="pre">test_obtain_token_with_invalid_credentials</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#TokenViewTests.test_obtain_token_with_invalid_credentials"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.TokenViewTests.test_obtain_token_with_invalid_credentials" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.TokenViewTests.test_obtain_token_with_missing_credentials">
+<span class="sig-name descname"><span class="pre">test_obtain_token_with_missing_credentials</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#TokenViewTests.test_obtain_token_with_missing_credentials"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.TokenViewTests.test_obtain_token_with_missing_credentials" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="accounts.tests.TokenViewTests.test_refresh_token">
 <span class="sig-name descname"><span class="pre">test_refresh_token</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#TokenViewTests.test_refresh_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.TokenViewTests.test_refresh_token" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="accounts.tests.TokenViewTests.test_verify_token">
-<span class="sig-name descname"><span class="pre">test_verify_token</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#TokenViewTests.test_verify_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.TokenViewTests.test_verify_token" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="accounts.tests.TokenViewTests.test_refresh_token_which_was_used_previously">
+<span class="sig-name descname"><span class="pre">test_refresh_token_which_was_used_previously</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#TokenViewTests.test_refresh_token_which_was_used_previously"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.TokenViewTests.test_refresh_token_which_was_used_previously" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.TokenViewTests.test_refresh_token_with_blacklisted_token">
+<span class="sig-name descname"><span class="pre">test_refresh_token_with_blacklisted_token</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#TokenViewTests.test_refresh_token_with_blacklisted_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.TokenViewTests.test_refresh_token_with_blacklisted_token" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.TokenViewTests.test_refresh_token_with_expired_token">
+<span class="sig-name descname"><span class="pre">test_refresh_token_with_expired_token</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#TokenViewTests.test_refresh_token_with_expired_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.TokenViewTests.test_refresh_token_with_expired_token" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.TokenViewTests.test_refresh_token_with_invalid_token">
+<span class="sig-name descname"><span class="pre">test_refresh_token_with_invalid_token</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#TokenViewTests.test_refresh_token_with_invalid_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.TokenViewTests.test_refresh_token_with_invalid_token" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1256,6 +1444,73 @@ to write an explicit <cite>.create()</cite> method.</p>
 
 </dd></dl>
 
+<dl class="py class">
+<dt class="sig sig-object py" id="accounts.tests.VendorRegisterViewTests">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accounts.tests.</span></span><span class="sig-name descname"><span class="pre">VendorRegisterViewTests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#VendorRegisterViewTests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.VendorRegisterViewTests" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APITestCase</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.VendorRegisterViewTests.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#VendorRegisterViewTests.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.VendorRegisterViewTests.setUp" title="Link to this definition"></a></dt>
+<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.VendorRegisterViewTests.test_register_user_with_authenticated_user">
+<span class="sig-name descname"><span class="pre">test_register_user_with_authenticated_user</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#VendorRegisterViewTests.test_register_user_with_authenticated_user"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.VendorRegisterViewTests.test_register_user_with_authenticated_user" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.VendorRegisterViewTests.test_register_user_with_existing_email">
+<span class="sig-name descname"><span class="pre">test_register_user_with_existing_email</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#VendorRegisterViewTests.test_register_user_with_existing_email"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.VendorRegisterViewTests.test_register_user_with_existing_email" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.VendorRegisterViewTests.test_register_user_with_existing_gstin">
+<span class="sig-name descname"><span class="pre">test_register_user_with_existing_gstin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#VendorRegisterViewTests.test_register_user_with_existing_gstin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.VendorRegisterViewTests.test_register_user_with_existing_gstin" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.VendorRegisterViewTests.test_register_user_with_existing_username">
+<span class="sig-name descname"><span class="pre">test_register_user_with_existing_username</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#VendorRegisterViewTests.test_register_user_with_existing_username"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.VendorRegisterViewTests.test_register_user_with_existing_username" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.VendorRegisterViewTests.test_register_user_with_invalid_email">
+<span class="sig-name descname"><span class="pre">test_register_user_with_invalid_email</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#VendorRegisterViewTests.test_register_user_with_invalid_email"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.VendorRegisterViewTests.test_register_user_with_invalid_email" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.VendorRegisterViewTests.test_register_user_with_invalid_gstin">
+<span class="sig-name descname"><span class="pre">test_register_user_with_invalid_gstin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#VendorRegisterViewTests.test_register_user_with_invalid_gstin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.VendorRegisterViewTests.test_register_user_with_invalid_gstin" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.VendorRegisterViewTests.test_register_user_with_invalid_http_method">
+<span class="sig-name descname"><span class="pre">test_register_user_with_invalid_http_method</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#VendorRegisterViewTests.test_register_user_with_invalid_http_method"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.VendorRegisterViewTests.test_register_user_with_invalid_http_method" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.VendorRegisterViewTests.test_register_user_with_invalid_payload">
+<span class="sig-name descname"><span class="pre">test_register_user_with_invalid_payload</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#VendorRegisterViewTests.test_register_user_with_invalid_payload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.VendorRegisterViewTests.test_register_user_with_invalid_payload" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.VendorRegisterViewTests.test_register_user_with_invalid_phone_number">
+<span class="sig-name descname"><span class="pre">test_register_user_with_invalid_phone_number</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#VendorRegisterViewTests.test_register_user_with_invalid_phone_number"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.VendorRegisterViewTests.test_register_user_with_invalid_phone_number" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.VendorRegisterViewTests.test_register_user_with_password_mismatch">
+<span class="sig-name descname"><span class="pre">test_register_user_with_password_mismatch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#VendorRegisterViewTests.test_register_user_with_password_mismatch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.VendorRegisterViewTests.test_register_user_with_password_mismatch" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="accounts.tests.VendorRegisterViewTests.test_register_vendor_user">
+<span class="sig-name descname"><span class="pre">test_register_vendor_user</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/tests.html#VendorRegisterViewTests.test_register_vendor_user"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.tests.VendorRegisterViewTests.test_register_vendor_user" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 <section id="module-accounts.urls">
 <span id="accounts-urls-module"></span><h2>accounts.urls module<a class="headerlink" href="#module-accounts.urls" title="Link to this heading"></a></h2>
@@ -1349,6 +1604,17 @@ keyword arguments in the url conf.</p>
 <span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#accounts.views.MyTokenObtainPairView.serializer_class" title="Link to this definition"></a></dt>
 <dd><p>alias of <a class="reference internal" href="#accounts.serializers.MyTokenObtainPairSerializer" title="accounts.serializers.MyTokenObtainPairSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">MyTokenObtainPairSerializer</span></code></a></p>
 </dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="accounts.views.MyTokenRefreshView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accounts.views.</span></span><span class="sig-name descname"><span class="pre">MyTokenRefreshView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/views.html#MyTokenRefreshView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.views.MyTokenRefreshView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TokenRefreshView</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="accounts.views.MyTokenRefreshView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.AllowAny'&gt;]</span></em><a class="headerlink" href="#accounts.views.MyTokenRefreshView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -1520,11 +1786,6 @@ keyword arguments in the url conf.</p>
 <dt class="sig sig-object py" id="accounts.views.VendorView">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">accounts.views.</span></span><span class="sig-name descname"><span class="pre">VendorView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/views.html#VendorView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.views.VendorView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ListAPIView</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="accounts.views.VendorView.list">
-<span class="sig-name descname"><span class="pre">list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/accounts/views.html#VendorView.list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#accounts.views.VendorView.list" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
 <dl class="py attribute">
 <dt class="sig sig-object py" id="accounts.views.VendorView.permission_classes">
 <span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;,</span> <span class="pre">&lt;rest_framework.permissions.OperandHolder</span> <span class="pre">object&gt;]</span></em><a class="headerlink" href="#accounts.views.VendorView.permission_classes" title="Link to this definition"></a></dt>

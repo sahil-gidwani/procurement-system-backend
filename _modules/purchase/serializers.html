@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>purchase.serializers &mdash; Smart Procurement System 1.0 documentation</title>
+  <title>purchase.serializers &mdash; ProcurEase 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
 
@@ -31,7 +31,7 @@
           
           
           <a href="../../index.html" class="icon icon-home">
-            Smart Procurement System
+            ProcurEase
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -49,7 +49,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">Smart Procurement System</a>
+          <a href="../../index.html">ProcurEase</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -68,7 +68,8 @@
            <div itemprop="articleBody">
              
   <h1>Source code for purchase.serializers</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">serializers</span>
+<span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
+<span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">serializers</span>
 <span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">PurchaseRequisition</span><span class="p">,</span> <span class="n">SupplierBid</span><span class="p">,</span> <span class="n">PurchaseOrder</span>
 
 
@@ -79,7 +80,8 @@
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.serializers.PurchaseRequisitionSerializer.Meta">[docs]</a>
     <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">PurchaseRequisition</span>
-        <span class="n">exclude</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="s2">&quot;inventory&quot;</span><span class="p">]</span></div>
+        <span class="n">read_only_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span>
+        <span class="n">exclude</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;inventory&quot;</span><span class="p">]</span></div>
 </div>
 
 
@@ -90,6 +92,7 @@
     <span class="n">procurement_officer</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">StringRelatedField</span><span class="p">(</span>
         <span class="n">source</span><span class="o">=</span><span class="s2">&quot;inventory.procurement_officer&quot;</span>
     <span class="p">)</span>
+    <span class="n">item_name</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">StringRelatedField</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">&quot;inventory.item_name&quot;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="PurchaseRequisitionVendorSerializer.Meta">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.serializers.PurchaseRequisitionVendorSerializer.Meta">[docs]</a>
@@ -103,11 +106,15 @@
 <div class="viewcode-block" id="SupplierBidSerializer">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.serializers.SupplierBidSerializer">[docs]</a>
 <span class="k">class</span> <span class="nc">SupplierBidSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
+    <span class="n">requisition_number</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ReadOnlyField</span><span class="p">(</span>
+        <span class="n">source</span><span class="o">=</span><span class="s2">&quot;requisition.requisition_number&quot;</span><span class="p">)</span>
+
 <div class="viewcode-block" id="SupplierBidSerializer.Meta">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.serializers.SupplierBidSerializer.Meta">[docs]</a>
     <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">SupplierBid</span>
-        <span class="n">exclude</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="s2">&quot;requisition&quot;</span><span class="p">,</span> <span class="s2">&quot;supplier&quot;</span><span class="p">]</span></div>
+        <span class="n">read_only_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="s2">&quot;requisition_number&quot;</span><span class="p">]</span>
+        <span class="n">exclude</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;supplier&quot;</span><span class="p">,</span> <span class="s2">&quot;requisition&quot;</span><span class="p">]</span></div>
 </div>
 
 
@@ -115,19 +122,66 @@
 <div class="viewcode-block" id="SupplierBidProcurementOfficerSerializer">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.serializers.SupplierBidProcurementOfficerSerializer">[docs]</a>
 <span class="k">class</span> <span class="nc">SupplierBidProcurementOfficerSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
-    <span class="n">supplier_rating</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">SerializerMethodField</span><span class="p">()</span>
+    <span class="n">supplier_company_name</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ReadOnlyField</span><span class="p">(</span>
+        <span class="n">source</span><span class="o">=</span><span class="s2">&quot;supplier.vendor.user.company_name&quot;</span><span class="p">)</span>
+    <span class="n">supplier_rating</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ReadOnlyField</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">&quot;supplier.vendor.vendor_rating&quot;</span><span class="p">)</span>
+    <span class="n">total_ratings</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ReadOnlyField</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s2">&quot;supplier.vendor.total_ratings&quot;</span><span class="p">)</span>
+    <span class="n">weight_unit_price</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">write_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">min_value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">max_value</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">weight_total_cost</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">write_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">min_value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">max_value</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">weight_days_delivery</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">write_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">min_value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">max_value</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">weight_supplier_rating</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">write_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">min_value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">max_value</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">weight_total_ratings</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">FloatField</span><span class="p">(</span>
+        <span class="n">write_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">min_value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">max_value</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 
 <div class="viewcode-block" id="SupplierBidProcurementOfficerSerializer.Meta">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.serializers.SupplierBidProcurementOfficerSerializer.Meta">[docs]</a>
     <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">SupplierBid</span>
-        <span class="n">exclude</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;requisition&quot;</span><span class="p">]</span></div>
+        <span class="n">read_only_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;quantity_fulfilled&quot;</span><span class="p">,</span> <span class="s2">&quot;unit_price&quot;</span><span class="p">,</span> <span class="s2">&quot;date_submitted&quot;</span><span class="p">,</span> <span class="s2">&quot;days_delivery&quot;</span><span class="p">,</span> <span class="s2">&quot;attachments&quot;</span><span class="p">,</span> <span class="s2">&quot;comments&quot;</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="s2">&quot;supplier_company_name&quot;</span><span class="p">,</span> <span class="s2">&quot;supplier_rating&quot;</span><span class="p">,</span> <span class="s2">&quot;total_ratings&quot;</span><span class="p">]</span>
+        <span class="n">exclude</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;requisition&quot;</span><span class="p">,</span> <span class="s2">&quot;supplier&quot;</span><span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="SupplierBidProcurementOfficerSerializer.get_supplier_rating">
-<a class="viewcode-back" href="../../modules/purchase.html#purchase.serializers.SupplierBidProcurementOfficerSerializer.get_supplier_rating">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_supplier_rating</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">instance</span><span class="o">.</span><span class="n">supplier</span><span class="o">.</span><span class="n">vendor</span><span class="o">.</span><span class="n">vendor_rating</span></div>
+<div class="viewcode-block" id="SupplierBidProcurementOfficerSerializer.validate">
+<a class="viewcode-back" href="../../modules/purchase.html#purchase.serializers.SupplierBidProcurementOfficerSerializer.validate">[docs]</a>
+    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attrs</span><span class="p">):</span>
+        <span class="n">weights</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;weight_unit_price&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+            <span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;weight_total_cost&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+            <span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;weight_days_delivery&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+            <span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;weight_supplier_rating&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+            <span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;weight_total_ratings&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+        <span class="p">]</span>
+
+        <span class="n">total_weight</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">total_weight</span> <span class="o">!=</span> <span class="mf">1.0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;weight_unit_price&quot;</span><span class="p">:</span> <span class="s2">&quot;The sum of weights must be equal to 1.0&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;weight_total_cost&quot;</span><span class="p">:</span> <span class="s2">&quot;The sum of weights must be equal to 1.0&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;weight_days_delivery&quot;</span><span class="p">:</span> <span class="s2">&quot;The sum of weights must be equal to 1.0&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;weight_supplier_rating&quot;</span><span class="p">:</span> <span class="s2">&quot;The sum of weights must be equal to 1.0&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;weight_total_ratings&quot;</span><span class="p">:</span> <span class="s2">&quot;The sum of weights must be equal to 1.0&quot;</span><span class="p">,</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">attrs</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="SupplierBidProcurementOfficerStatusSerializer">
+<a class="viewcode-back" href="../../modules/purchase.html#purchase.serializers.SupplierBidProcurementOfficerStatusSerializer">[docs]</a>
+<span class="k">class</span> <span class="nc">SupplierBidProcurementOfficerStatusSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
+<div class="viewcode-block" id="SupplierBidProcurementOfficerStatusSerializer.Meta">
+<a class="viewcode-back" href="../../modules/purchase.html#purchase.serializers.SupplierBidProcurementOfficerStatusSerializer.Meta">[docs]</a>
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">SupplierBid</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span></div>
 </div>
 
 
@@ -135,11 +189,47 @@
 <div class="viewcode-block" id="PurchaseOrderSerializer">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.serializers.PurchaseOrderSerializer">[docs]</a>
 <span class="k">class</span> <span class="nc">PurchaseOrderSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
+    <span class="n">delivery_location</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">ReadOnlyField</span><span class="p">(</span>
+        <span class="n">source</span><span class="o">=</span><span class="s2">&quot;bid.requisition.inventory.location&quot;</span><span class="p">)</span>
+    <span class="n">quantity_ordered</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">SerializerMethodField</span><span class="p">()</span>
+    <span class="n">unit_price</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">SerializerMethodField</span><span class="p">()</span>
+    <span class="n">expected_delivery_date</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">SerializerMethodField</span><span class="p">()</span>
+
 <div class="viewcode-block" id="PurchaseOrderSerializer.Meta">
 <a class="viewcode-back" href="../../modules/purchase.html#purchase.serializers.PurchaseOrderSerializer.Meta">[docs]</a>
     <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">PurchaseOrder</span>
-        <span class="n">exclude</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="s2">&quot;bid&quot;</span><span class="p">]</span></div>
+        <span class="n">fields</span> <span class="o">=</span> <span class="s2">&quot;__all__&quot;</span></div>
+
+
+<div class="viewcode-block" id="PurchaseOrderSerializer.get_quantity_ordered">
+<a class="viewcode-back" href="../../modules/purchase.html#purchase.serializers.PurchaseOrderSerializer.get_quantity_ordered">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_quantity_ordered</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">instance</span><span class="o">.</span><span class="n">bid</span><span class="o">.</span><span class="n">quantity_fulfilled</span></div>
+
+
+<div class="viewcode-block" id="PurchaseOrderSerializer.get_unit_price">
+<a class="viewcode-back" href="../../modules/purchase.html#purchase.serializers.PurchaseOrderSerializer.get_unit_price">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_unit_price</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">instance</span><span class="o">.</span><span class="n">bid</span><span class="o">.</span><span class="n">unit_price</span></div>
+
+
+<div class="viewcode-block" id="PurchaseOrderSerializer.get_expected_delivery_date">
+<a class="viewcode-back" href="../../modules/purchase.html#purchase.serializers.PurchaseOrderSerializer.get_expected_delivery_date">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_expected_delivery_date</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">instance</span><span class="o">.</span><span class="n">date_ordered</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">instance</span><span class="o">.</span><span class="n">bid</span><span class="o">.</span><span class="n">days_delivery</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="PurchaseOrderStatusSerializer">
+<a class="viewcode-back" href="../../modules/purchase.html#purchase.serializers.PurchaseOrderStatusSerializer">[docs]</a>
+<span class="k">class</span> <span class="nc">PurchaseOrderStatusSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
+<div class="viewcode-block" id="PurchaseOrderStatusSerializer.Meta">
+<a class="viewcode-back" href="../../modules/purchase.html#purchase.serializers.PurchaseOrderStatusSerializer.Meta">[docs]</a>
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">PurchaseOrder</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span></div>
 </div>
 
 </pre></div>

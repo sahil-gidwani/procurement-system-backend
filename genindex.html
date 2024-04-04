@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; Smart Procurement System 1.0 documentation</title>
+  <title>Index &mdash; ProcurEase 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
 
@@ -31,7 +31,7 @@
           
           
           <a href="index.html" class="icon icon-home">
-            Smart Procurement System
+            ProcurEase
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -49,7 +49,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">Smart Procurement System</a>
+          <a href="index.html">ProcurEase</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -95,6 +95,8 @@
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/logistics.html#logistics.models.Invoice.account_number">account_number (logistics.models.Invoice attribute)</a>
+</li>
       <li>
     accounts
 
@@ -169,11 +171,17 @@
       </ul></li>
       <li><a href="modules/accounts.html#accounts.apps.AccountsConfig">AccountsConfig (class in accounts.apps)</a>
 </li>
-      <li><a href="modules/accounts.html#accounts.models.Vendor.address">address (accounts.models.Vendor attribute)</a>
+      <li><a href="modules/accounts.html#accounts.models.User.address">address (accounts.models.User attribute)</a>
+</li>
+      <li><a href="modules/dashboard.html#dashboard.serializers.AdminDashboardSerializer">AdminDashboardSerializer (class in dashboard.serializers)</a>
+</li>
+      <li><a href="modules/dashboard.html#dashboard.views.AdminDashboardView">AdminDashboardView (class in dashboard.views)</a>
 </li>
       <li><a href="modules/inventory.html#inventory.views.ARIMAForecastAPIView">ARIMAForecastAPIView (class in inventory.views)</a>
 </li>
       <li><a href="modules/inventory.html#inventory.serializers.ARIMAForecastSerializer">ARIMAForecastSerializer (class in inventory.serializers)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.ARIMAForecastViewsTests">ARIMAForecastViewsTests (class in inventory.tests)</a>
 </li>
       <li><a href="modules/purchase.html#purchase.models.PurchaseRequisition.attachments">attachments (purchase.models.PurchaseRequisition attribute)</a>
 
@@ -189,12 +197,20 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/inventory.html#inventory.views.BaseInventoryAPIView">BaseInventoryAPIView (class in inventory.views)</a>
 </li>
+      <li><a href="modules/logistics.html#logistics.views.BaseInventoryReceiptAPIView">BaseInventoryReceiptAPIView (class in logistics.views)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.views.BaseInventoryReceiptVendorAPIView">BaseInventoryReceiptVendorAPIView (class in logistics.views)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.views.BaseInvoiceAPIView">BaseInvoiceAPIView (class in logistics.views)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.views.BaseInvoiceProcurementOfficerAPIView">BaseInvoiceProcurementOfficerAPIView (class in logistics.views)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/inventory.html#inventory.views.BaseOptimizedInventoryAPIView">BaseOptimizedInventoryAPIView (class in inventory.views)</a>
 </li>
       <li><a href="modules/purchase.html#purchase.views.BasePurchaseRequisitionAPIView">BasePurchaseRequisitionAPIView (class in purchase.views)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/purchase.html#purchase.views.BaseSupplierAPIView">BaseSupplierAPIView (class in purchase.views)</a>
 </li>
       <li><a href="modules/purchase.html#purchase.models.PurchaseOrder.bid">bid (purchase.models.PurchaseOrder attribute)</a>
@@ -223,16 +239,20 @@
 </li>
       <li><a href="modules/accounts.html#accounts.views.ChangePasswordView">ChangePasswordView (class in accounts.views)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/accounts.html#accounts.tests.ChangePasswordViewTests">ChangePasswordViewTests (class in accounts.tests)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/purchase.html#purchase.models.PurchaseRequisition.comments">comments (purchase.models.PurchaseRequisition attribute)</a>
 
       <ul>
         <li><a href="modules/purchase.html#purchase.models.SupplierBid.comments">(purchase.models.SupplierBid attribute)</a>
 </li>
       </ul></li>
+      <li><a href="modules/accounts.html#accounts.models.User.company_name">company_name (accounts.models.User attribute)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.models.InventoryReceipt.CONDITION_CHOICES">CONDITION_CHOICES (logistics.models.InventoryReceipt attribute)</a>
+</li>
       <li><a href="modules/accounts.html#accounts.models.Vendor.contract_expiry_date">contract_expiry_date (accounts.models.Vendor attribute)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.serializers.ProcurementOfficerRegisterSerializer.create">create() (accounts.serializers.ProcurementOfficerRegisterSerializer method)</a>
@@ -245,16 +265,76 @@
       </ul></li>
       <li><a href="modules/inventory.html#inventory.models.create_historical_inventory">create_historical_inventory() (in module inventory.models)</a>
 </li>
-      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTestCase.create_inventory_item">create_inventory_item() (inventory.tests.InventoryViewsTestCase method)</a>
-</li>
   </ul></td>
 </tr></table>
 
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    dashboard
+
+      <ul>
+        <li><a href="modules/dashboard.html#module-dashboard">module</a>
+</li>
+      </ul></li>
+      <li>
+    dashboard.admin
+
+      <ul>
+        <li><a href="modules/dashboard.html#module-dashboard.admin">module</a>
+</li>
+      </ul></li>
+      <li>
+    dashboard.apps
+
+      <ul>
+        <li><a href="modules/dashboard.html#module-dashboard.apps">module</a>
+</li>
+      </ul></li>
+      <li>
+    dashboard.models
+
+      <ul>
+        <li><a href="modules/dashboard.html#module-dashboard.models">module</a>
+</li>
+      </ul></li>
+      <li>
+    dashboard.serializers
+
+      <ul>
+        <li><a href="modules/dashboard.html#module-dashboard.serializers">module</a>
+</li>
+      </ul></li>
+      <li>
+    dashboard.tests
+
+      <ul>
+        <li><a href="modules/dashboard.html#module-dashboard.tests">module</a>
+</li>
+      </ul></li>
+      <li>
+    dashboard.urls
+
+      <ul>
+        <li><a href="modules/dashboard.html#module-dashboard.urls">module</a>
+</li>
+      </ul></li>
+      <li>
+    dashboard.views
+
+      <ul>
+        <li><a href="modules/dashboard.html#module-dashboard.views">module</a>
+</li>
+      </ul></li>
+      <li><a href="modules/dashboard.html#dashboard.apps.DashboardConfig">DashboardConfig (class in dashboard.apps)</a>
+</li>
+      <li><a href="modules/dashboard.html#dashboard.tests.DashboardViewsTests">DashboardViewsTests (class in dashboard.tests)</a>
+</li>
       <li><a href="modules/inventory.html#inventory.models.Inventory.date_added">date_added (inventory.models.Inventory attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/purchase.html#purchase.models.PurchaseRequisition.date_created">date_created (purchase.models.PurchaseRequisition attribute)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.models.User.date_joined">date_joined (accounts.models.User attribute)</a>
@@ -270,13 +350,15 @@
       <li><a href="modules/accounts.html#accounts.apps.AccountsConfig.default_auto_field">default_auto_field (accounts.apps.AccountsConfig attribute)</a>
 
       <ul>
+        <li><a href="modules/dashboard.html#dashboard.apps.DashboardConfig.default_auto_field">(dashboard.apps.DashboardConfig attribute)</a>
+</li>
         <li><a href="modules/inventory.html#inventory.apps.InventoryConfig.default_auto_field">(inventory.apps.InventoryConfig attribute)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.apps.LogisticsConfig.default_auto_field">(logistics.apps.LogisticsConfig attribute)</a>
 </li>
         <li><a href="modules/purchase.html#purchase.apps.PurchaseConfig.default_auto_field">(purchase.apps.PurchaseConfig attribute)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/accounts.html#accounts.views.DeleteUserProfileView">DeleteUserProfileView (class in accounts.views)</a>
 </li>
       <li><a href="modules/inventory.html#inventory.models.HistoricalInventory.demand">demand (inventory.models.HistoricalInventory attribute)</a>
@@ -289,10 +371,12 @@
 </li>
       <li><a href="modules/inventory.html#inventory.views.InventoryDeleteView.destroy">destroy() (inventory.views.InventoryDeleteView method)</a>
 </li>
-      <li><a href="modules/inventory.html#inventory.views.ARIMAForecastAPIView.dispatch">dispatch() (inventory.views.ARIMAForecastAPIView method)</a>
+      <li><a href="modules/dashboard.html#dashboard.views.AdminDashboardView.dispatch">dispatch() (dashboard.views.AdminDashboardView method)</a>
 
       <ul>
-        <li><a href="modules/inventory.html#inventory.views.HistoricalInventoryListView.dispatch">(inventory.views.HistoricalInventoryListView method)</a>
+        <li><a href="modules/dashboard.html#dashboard.views.ProcurementOfficerDashboardView.dispatch">(dashboard.views.ProcurementOfficerDashboardView method)</a>
+</li>
+        <li><a href="modules/dashboard.html#dashboard.views.VendorDashboardView.dispatch">(dashboard.views.VendorDashboardView method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -310,9 +394,9 @@
       <ul>
         <li><a href="modules/inventory.html#inventory.serializers.InventorySerializer.Meta.exclude">(inventory.serializers.InventorySerializer.Meta attribute)</a>
 </li>
-        <li><a href="modules/inventory.html#inventory.serializers.OptimizedInventorySerializer.Meta.exclude">(inventory.serializers.OptimizedInventorySerializer.Meta attribute)</a>
+        <li><a href="modules/logistics.html#logistics.serializers.InventoryReceiptSerializer.Meta.exclude">(logistics.serializers.InventoryReceiptSerializer.Meta attribute)</a>
 </li>
-        <li><a href="modules/purchase.html#purchase.serializers.PurchaseOrderSerializer.Meta.exclude">(purchase.serializers.PurchaseOrderSerializer.Meta attribute)</a>
+        <li><a href="modules/logistics.html#logistics.serializers.InvoiceSerializer.Meta.exclude">(logistics.serializers.InvoiceSerializer.Meta attribute)</a>
 </li>
         <li><a href="modules/purchase.html#purchase.serializers.PurchaseRequisitionSerializer.Meta.exclude">(purchase.serializers.PurchaseRequisitionSerializer.Meta attribute)</a>
 </li>
@@ -346,6 +430,18 @@
 </li>
         <li><a href="modules/accounts.html#accounts.views.DeleteUserProfileView.fields">(accounts.views.DeleteUserProfileView attribute)</a>
 </li>
+        <li><a href="modules/inventory.html#inventory.serializers.OptimizedInventorySerializer.Meta.fields">(inventory.serializers.OptimizedInventorySerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.serializers.InvoicePaymentStatusSerializer.Meta.fields">(logistics.serializers.InvoicePaymentStatusSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.serializers.InvoiceVendorRatingSerializer.Meta.fields">(logistics.serializers.InvoiceVendorRatingSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.serializers.PurchaseOrderSerializer.Meta.fields">(purchase.serializers.PurchaseOrderSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.serializers.PurchaseOrderStatusSerializer.Meta.fields">(purchase.serializers.PurchaseOrderStatusSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.serializers.SupplierBidProcurementOfficerStatusSerializer.Meta.fields">(purchase.serializers.SupplierBidProcurementOfficerStatusSerializer.Meta attribute)</a>
+</li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -357,12 +453,18 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/inventory.html#inventory.views.ARIMAForecastAPIView.get">get() (inventory.views.ARIMAForecastAPIView method)</a>
+      <li><a href="modules/dashboard.html#dashboard.views.AdminDashboardView.get">get() (dashboard.views.AdminDashboardView method)</a>
 
       <ul>
-        <li><a href="modules/purchase.html#purchase.views.SupplierBidProcurementOfficerRankingView.get">(purchase.views.SupplierBidProcurementOfficerRankingView method)</a>
+        <li><a href="modules/dashboard.html#dashboard.views.ProcurementOfficerDashboardView.get">(dashboard.views.ProcurementOfficerDashboardView method)</a>
+</li>
+        <li><a href="modules/dashboard.html#dashboard.views.VendorDashboardView.get">(dashboard.views.VendorDashboardView method)</a>
+</li>
+        <li><a href="modules/inventory.html#inventory.views.ARIMAForecastAPIView.get">(inventory.views.ARIMAForecastAPIView method)</a>
 </li>
       </ul></li>
+      <li><a href="modules/purchase.html#purchase.serializers.PurchaseOrderSerializer.get_expected_delivery_date">get_expected_delivery_date() (purchase.serializers.PurchaseOrderSerializer method)</a>
+</li>
       <li><a href="modules/accounts.html#accounts.models.Vendor.get_next_by_contract_expiry_date">get_next_by_contract_expiry_date() (accounts.models.Vendor method)</a>
 </li>
       <li><a href="modules/inventory.html#inventory.models.Inventory.get_next_by_date_added">get_next_by_date_added() (inventory.models.Inventory method)</a>
@@ -379,12 +481,18 @@
 </li>
       <li><a href="modules/purchase.html#purchase.models.PurchaseRequisition.get_next_by_expected_delivery_date">get_next_by_expected_delivery_date() (purchase.models.PurchaseRequisition method)</a>
 </li>
+      <li><a href="modules/logistics.html#logistics.models.Invoice.get_next_by_invoice_date">get_next_by_invoice_date() (logistics.models.Invoice method)</a>
+</li>
       <li><a href="modules/inventory.html#inventory.models.Inventory.get_next_by_last_updated">get_next_by_last_updated() (inventory.models.Inventory method)</a>
 
       <ul>
         <li><a href="modules/purchase.html#purchase.models.PurchaseRequisition.get_next_by_last_updated">(purchase.models.PurchaseRequisition method)</a>
 </li>
       </ul></li>
+      <li><a href="modules/logistics.html#logistics.models.Invoice.get_next_by_payment_due_date">get_next_by_payment_due_date() (logistics.models.Invoice method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.models.InventoryReceipt.get_next_by_receipt_date">get_next_by_receipt_date() (logistics.models.InventoryReceipt method)</a>
+</li>
       <li><a href="modules/accounts.html#accounts.views.ChangePasswordView.get_object">get_object() (accounts.views.ChangePasswordView method)</a>
 
       <ul>
@@ -396,11 +504,27 @@
 </li>
         <li><a href="modules/accounts.html#accounts.views.UserProfileView.get_object">(accounts.views.UserProfileView method)</a>
 </li>
+        <li><a href="modules/logistics.html#logistics.views.BaseInventoryReceiptAPIView.get_object">(logistics.views.BaseInventoryReceiptAPIView method)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.BaseInventoryReceiptVendorAPIView.get_object">(logistics.views.BaseInventoryReceiptVendorAPIView method)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.BaseInvoiceAPIView.get_object">(logistics.views.BaseInvoiceAPIView method)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.BaseInvoiceProcurementOfficerAPIView.get_object">(logistics.views.BaseInvoiceProcurementOfficerAPIView method)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.InvoicePaymentStatusUpdateView.get_object">(logistics.views.InvoicePaymentStatusUpdateView method)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.InvoiceVendorRatingUpdateView.get_object">(logistics.views.InvoiceVendorRatingUpdateView method)</a>
+</li>
         <li><a href="modules/purchase.html#purchase.views.BasePurchaseRequisitionAPIView.get_object">(purchase.views.BasePurchaseRequisitionAPIView method)</a>
 </li>
         <li><a href="modules/purchase.html#purchase.views.BaseSupplierAPIView.get_object">(purchase.views.BaseSupplierAPIView method)</a>
 </li>
       </ul></li>
+      <li><a href="modules/logistics.html#logistics.models.Invoice.get_payment_mode_display">get_payment_mode_display() (logistics.models.Invoice method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.models.Invoice.get_payment_status_display">get_payment_status_display() (logistics.models.Invoice method)</a>
+</li>
       <li><a href="modules/accounts.html#accounts.models.Vendor.get_previous_by_contract_expiry_date">get_previous_by_contract_expiry_date() (accounts.models.Vendor method)</a>
 </li>
       <li><a href="modules/inventory.html#inventory.models.Inventory.get_previous_by_date_added">get_previous_by_date_added() (inventory.models.Inventory method)</a>
@@ -413,11 +537,13 @@
 </li>
       <li><a href="modules/purchase.html#purchase.models.SupplierBid.get_previous_by_date_submitted">get_previous_by_date_submitted() (purchase.models.SupplierBid method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/inventory.html#inventory.models.HistoricalInventory.get_previous_by_datetime">get_previous_by_datetime() (inventory.models.HistoricalInventory method)</a>
 </li>
       <li><a href="modules/purchase.html#purchase.models.PurchaseRequisition.get_previous_by_expected_delivery_date">get_previous_by_expected_delivery_date() (purchase.models.PurchaseRequisition method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/logistics.html#logistics.models.Invoice.get_previous_by_invoice_date">get_previous_by_invoice_date() (logistics.models.Invoice method)</a>
 </li>
       <li><a href="modules/inventory.html#inventory.models.Inventory.get_previous_by_last_updated">get_previous_by_last_updated() (inventory.models.Inventory method)</a>
 
@@ -425,6 +551,12 @@
         <li><a href="modules/purchase.html#purchase.models.PurchaseRequisition.get_previous_by_last_updated">(purchase.models.PurchaseRequisition method)</a>
 </li>
       </ul></li>
+      <li><a href="modules/logistics.html#logistics.models.Invoice.get_previous_by_payment_due_date">get_previous_by_payment_due_date() (logistics.models.Invoice method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.models.InventoryReceipt.get_previous_by_receipt_date">get_previous_by_receipt_date() (logistics.models.InventoryReceipt method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.serializers.PurchaseOrderSerializer.get_quantity_ordered">get_quantity_ordered() (purchase.serializers.PurchaseOrderSerializer method)</a>
+</li>
       <li><a href="modules/inventory.html#inventory.views.ARIMAForecastAPIView.get_queryset">get_queryset() (inventory.views.ARIMAForecastAPIView method)</a>
 
       <ul>
@@ -434,13 +566,37 @@
 </li>
         <li><a href="modules/inventory.html#inventory.views.HistoricalInventoryListView.get_queryset">(inventory.views.HistoricalInventoryListView method)</a>
 </li>
+        <li><a href="modules/logistics.html#logistics.views.BaseInventoryReceiptAPIView.get_queryset">(logistics.views.BaseInventoryReceiptAPIView method)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.BaseInventoryReceiptVendorAPIView.get_queryset">(logistics.views.BaseInventoryReceiptVendorAPIView method)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.BaseInvoiceAPIView.get_queryset">(logistics.views.BaseInvoiceAPIView method)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.BaseInvoiceProcurementOfficerAPIView.get_queryset">(logistics.views.BaseInvoiceProcurementOfficerAPIView method)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.InvoicePaymentStatusUpdateView.get_queryset">(logistics.views.InvoicePaymentStatusUpdateView method)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.InvoiceVendorRatingUpdateView.get_queryset">(logistics.views.InvoiceVendorRatingUpdateView method)</a>
+</li>
         <li><a href="modules/purchase.html#purchase.views.BasePurchaseRequisitionAPIView.get_queryset">(purchase.views.BasePurchaseRequisitionAPIView method)</a>
 </li>
         <li><a href="modules/purchase.html#purchase.views.BaseSupplierAPIView.get_queryset">(purchase.views.BaseSupplierAPIView method)</a>
 </li>
+        <li><a href="modules/purchase.html#purchase.views.PurchaseOrderListView.get_queryset">(purchase.views.PurchaseOrderListView method)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.PurchaseOrderVendorListView.get_queryset">(purchase.views.PurchaseOrderVendorListView method)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.PurchaseOrderVendorStatusView.get_queryset">(purchase.views.PurchaseOrderVendorStatusView method)</a>
+</li>
         <li><a href="modules/purchase.html#purchase.views.SupplierBidProcurementOfficerListView.get_queryset">(purchase.views.SupplierBidProcurementOfficerListView method)</a>
 </li>
+        <li><a href="modules/purchase.html#purchase.views.SupplierBidProcurementOfficerRetrieveView.get_queryset">(purchase.views.SupplierBidProcurementOfficerRetrieveView method)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.SupplierBidProcurementOfficerStatusView.get_queryset">(purchase.views.SupplierBidProcurementOfficerStatusView method)</a>
+</li>
       </ul></li>
+      <li><a href="modules/logistics.html#logistics.models.InventoryReceipt.get_received_condition_display">get_received_condition_display() (logistics.models.InventoryReceipt method)</a>
+</li>
       <li><a href="modules/purchase.html#purchase.models.PurchaseOrder.get_status_display">get_status_display() (purchase.models.PurchaseOrder method)</a>
 
       <ul>
@@ -449,9 +605,9 @@
         <li><a href="modules/purchase.html#purchase.models.SupplierBid.get_status_display">(purchase.models.SupplierBid method)</a>
 </li>
       </ul></li>
-      <li><a href="modules/purchase.html#purchase.serializers.SupplierBidProcurementOfficerSerializer.get_supplier_rating">get_supplier_rating() (purchase.serializers.SupplierBidProcurementOfficerSerializer method)</a>
-</li>
       <li><a href="modules/accounts.html#accounts.serializers.MyTokenObtainPairSerializer.get_token">get_token() (accounts.serializers.MyTokenObtainPairSerializer class method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.serializers.PurchaseOrderSerializer.get_unit_price">get_unit_price() (purchase.serializers.PurchaseOrderSerializer method)</a>
 </li>
       <li><a href="modules/purchase.html#purchase.models.PurchaseRequisition.get_urgency_level_display">get_urgency_level_display() (purchase.models.PurchaseRequisition method)</a>
 </li>
@@ -462,7 +618,11 @@
       <li><a href="modules/accounts.html#accounts.views.getRoutes">getRoutes() (in module accounts.views)</a>
 
       <ul>
+        <li><a href="modules/dashboard.html#dashboard.views.getRoutes">(in module dashboard.views)</a>
+</li>
         <li><a href="modules/inventory.html#inventory.views.getRoutes">(in module inventory.views)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.getRoutes">(in module logistics.views)</a>
 </li>
         <li><a href="modules/purchase.html#purchase.views.getRoutes">(in module purchase.views)</a>
 </li>
@@ -501,6 +661,8 @@
 </li>
       <li><a href="modules/inventory.html#inventory.serializers.HistoricalInventorySerializer.Meta">HistoricalInventorySerializer.Meta (class in inventory.serializers)</a>
 </li>
+      <li><a href="modules/inventory.html#inventory.tests.HistoricalInventoryViewsTests">HistoricalInventoryViewsTests (class in inventory.tests)</a>
+</li>
       <li><a href="modules/inventory.html#inventory.models.OptimizedInventory.holding_cost">holding_cost (inventory.models.OptimizedInventory attribute)</a>
 </li>
   </ul></td>
@@ -520,6 +682,10 @@
 </li>
         <li><a href="modules/inventory.html#inventory.models.OptimizedInventory.id">(inventory.models.OptimizedInventory attribute)</a>
 </li>
+        <li><a href="modules/logistics.html#logistics.models.InventoryReceipt.id">(logistics.models.InventoryReceipt attribute)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.models.Invoice.id">(logistics.models.Invoice attribute)</a>
+</li>
         <li><a href="modules/purchase.html#purchase.models.PurchaseOrder.id">(purchase.models.PurchaseOrder attribute)</a>
 </li>
         <li><a href="modules/purchase.html#purchase.models.PurchaseRequisition.id">(purchase.models.PurchaseRequisition attribute)</a>
@@ -528,6 +694,10 @@
 </li>
       </ul></li>
       <li><a href="modules/inventory.html#inventory.models.Inventory.image">image (inventory.models.Inventory attribute)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.models.InventoryReceipt.inspection_notes">inspection_notes (logistics.models.InventoryReceipt attribute)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.models.InventoryReceipt.inspection_report">inspection_report (logistics.models.InventoryReceipt attribute)</a>
 </li>
       <li>
     inventory
@@ -585,8 +755,6 @@
         <li><a href="modules/inventory.html#module-inventory.tasks">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     inventory.tests
 
@@ -626,7 +794,35 @@
 </li>
       <li><a href="modules/inventory.html#inventory.views.InventoryListView">InventoryListView (class in inventory.views)</a>
 </li>
-      <li><a href="modules/inventory.html#inventory.tests.InventoryModelsTestCase">InventoryModelsTestCase (class in inventory.tests)</a>
+      <li><a href="modules/logistics.html#logistics.models.InventoryReceipt">InventoryReceipt (class in logistics.models)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.models.PurchaseOrder.inventoryreceipt">inventoryreceipt (purchase.models.PurchaseOrder attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/logistics.html#logistics.models.InventoryReceipt.DoesNotExist">InventoryReceipt.DoesNotExist</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.models.InventoryReceipt.MultipleObjectsReturned">InventoryReceipt.MultipleObjectsReturned</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.views.InventoryReceiptCreateView">InventoryReceiptCreateView (class in logistics.views)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.views.InventoryReceiptDeleteView">InventoryReceiptDeleteView (class in logistics.views)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.views.InventoryReceiptListView">InventoryReceiptListView (class in logistics.views)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.views.InventoryReceiptRetrieveView">InventoryReceiptRetrieveView (class in logistics.views)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.serializers.InventoryReceiptSerializer">InventoryReceiptSerializer (class in logistics.serializers)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.serializers.InventoryReceiptSerializer.Meta">InventoryReceiptSerializer.Meta (class in logistics.serializers)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests">InventoryReceiptTests (class in logistics.tests)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.views.InventoryReceiptUpdateView">InventoryReceiptUpdateView (class in logistics.views)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.views.InventoryReceiptVendorListView">InventoryReceiptVendorListView (class in logistics.views)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.views.InventoryReceiptVendorRetrieveView">InventoryReceiptVendorRetrieveView (class in logistics.views)</a>
 </li>
       <li><a href="modules/inventory.html#inventory.views.InventoryRetrieveView">InventoryRetrieveView (class in inventory.views)</a>
 </li>
@@ -634,9 +830,57 @@
 </li>
       <li><a href="modules/inventory.html#inventory.serializers.InventorySerializer.Meta">InventorySerializer.Meta (class in inventory.serializers)</a>
 </li>
+      <li><a href="modules/inventory.html#inventory.tests.InventorySignalsTests">InventorySignalsTests (class in inventory.tests)</a>
+</li>
       <li><a href="modules/inventory.html#inventory.views.InventoryUpdateView">InventoryUpdateView (class in inventory.views)</a>
 </li>
-      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTestCase">InventoryViewsTestCase (class in inventory.tests)</a>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests">InventoryViewsTests (class in inventory.tests)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.models.Invoice">Invoice (class in logistics.models)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.models.PurchaseOrder.invoice">invoice (purchase.models.PurchaseOrder attribute)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.models.Invoice.DoesNotExist">Invoice.DoesNotExist</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.models.Invoice.MultipleObjectsReturned">Invoice.MultipleObjectsReturned</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.models.Invoice.invoice_date">invoice_date (logistics.models.Invoice attribute)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.models.Invoice.invoice_number">invoice_number (logistics.models.Invoice attribute)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.models.Invoice.invoice_report">invoice_report (logistics.models.Invoice attribute)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.views.InvoiceCreateView">InvoiceCreateView (class in logistics.views)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.views.InvoiceDeleteView">InvoiceDeleteView (class in logistics.views)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.views.InvoiceListView">InvoiceListView (class in logistics.views)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.serializers.InvoicePaymentStatusSerializer">InvoicePaymentStatusSerializer (class in logistics.serializers)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.serializers.InvoicePaymentStatusSerializer.Meta">InvoicePaymentStatusSerializer.Meta (class in logistics.serializers)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.views.InvoicePaymentStatusUpdateView">InvoicePaymentStatusUpdateView (class in logistics.views)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.views.InvoiceProcurementOfficerListView">InvoiceProcurementOfficerListView (class in logistics.views)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.views.InvoiceProcurementOfficerRetrieveView">InvoiceProcurementOfficerRetrieveView (class in logistics.views)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.views.InvoiceRetrieveView">InvoiceRetrieveView (class in logistics.views)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.serializers.InvoiceSerializer">InvoiceSerializer (class in logistics.serializers)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.serializers.InvoiceSerializer.Meta">InvoiceSerializer.Meta (class in logistics.serializers)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests">InvoiceTests (class in logistics.tests)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.views.InvoiceUpdateView">InvoiceUpdateView (class in logistics.views)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.serializers.InvoiceVendorRatingSerializer">InvoiceVendorRatingSerializer (class in logistics.serializers)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.serializers.InvoiceVendorRatingSerializer.Meta">InvoiceVendorRatingSerializer.Meta (class in logistics.serializers)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.views.InvoiceVendorRatingUpdateView">InvoiceVendorRatingUpdateView (class in logistics.views)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.models.User.is_active">is_active (accounts.models.User attribute)</a>
 </li>
@@ -668,17 +912,78 @@
       </ul></li>
       <li><a href="modules/inventory.html#inventory.models.OptimizedInventory.lead_time">lead_time (inventory.models.OptimizedInventory attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/accounts.html#accounts.views.VendorView.list">list() (accounts.views.VendorView method)</a>
-
-      <ul>
-        <li><a href="modules/inventory.html#inventory.views.InventoryListView.list">(inventory.views.InventoryListView method)</a>
+      <li><a href="modules/inventory.html#inventory.views.InventoryListView.list">list() (inventory.views.InventoryListView method)</a>
 </li>
-      </ul></li>
       <li><a href="modules/inventory.html#inventory.models.Inventory.location">location (inventory.models.Inventory attribute)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.models.User.logentry_set">logentry_set (accounts.models.User attribute)</a>
+</li>
+      <li>
+    logistics
+
+      <ul>
+        <li><a href="modules/logistics.html#module-logistics">module</a>
+</li>
+      </ul></li>
+      <li>
+    logistics.admin
+
+      <ul>
+        <li><a href="modules/logistics.html#module-logistics.admin">module</a>
+</li>
+      </ul></li>
+      <li>
+    logistics.apps
+
+      <ul>
+        <li><a href="modules/logistics.html#module-logistics.apps">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    logistics.models
+
+      <ul>
+        <li><a href="modules/logistics.html#module-logistics.models">module</a>
+</li>
+      </ul></li>
+      <li>
+    logistics.serializers
+
+      <ul>
+        <li><a href="modules/logistics.html#module-logistics.serializers">module</a>
+</li>
+      </ul></li>
+      <li>
+    logistics.tasks
+
+      <ul>
+        <li><a href="modules/logistics.html#module-logistics.tasks">module</a>
+</li>
+      </ul></li>
+      <li>
+    logistics.tests
+
+      <ul>
+        <li><a href="modules/logistics.html#module-logistics.tests">module</a>
+</li>
+      </ul></li>
+      <li>
+    logistics.urls
+
+      <ul>
+        <li><a href="modules/logistics.html#module-logistics.urls">module</a>
+</li>
+      </ul></li>
+      <li>
+    logistics.views
+
+      <ul>
+        <li><a href="modules/logistics.html#module-logistics.views">module</a>
+</li>
+      </ul></li>
+      <li><a href="modules/logistics.html#logistics.apps.LogisticsConfig">LogisticsConfig (class in logistics.apps)</a>
 </li>
       <li><a href="modules/inventory.html#inventory.views.BaseOptimizedInventoryAPIView.lookup_field">lookup_field (inventory.views.BaseOptimizedInventoryAPIView attribute)</a>
 </li>
@@ -707,13 +1012,25 @@
 </li>
         <li><a href="modules/inventory.html#inventory.serializers.OptimizedInventorySerializer.Meta.model">(inventory.serializers.OptimizedInventorySerializer.Meta attribute)</a>
 </li>
+        <li><a href="modules/logistics.html#logistics.serializers.InventoryReceiptSerializer.Meta.model">(logistics.serializers.InventoryReceiptSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.serializers.InvoicePaymentStatusSerializer.Meta.model">(logistics.serializers.InvoicePaymentStatusSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.serializers.InvoiceSerializer.Meta.model">(logistics.serializers.InvoiceSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.serializers.InvoiceVendorRatingSerializer.Meta.model">(logistics.serializers.InvoiceVendorRatingSerializer.Meta attribute)</a>
+</li>
         <li><a href="modules/purchase.html#purchase.serializers.PurchaseOrderSerializer.Meta.model">(purchase.serializers.PurchaseOrderSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.serializers.PurchaseOrderStatusSerializer.Meta.model">(purchase.serializers.PurchaseOrderStatusSerializer.Meta attribute)</a>
 </li>
         <li><a href="modules/purchase.html#purchase.serializers.PurchaseRequisitionSerializer.Meta.model">(purchase.serializers.PurchaseRequisitionSerializer.Meta attribute)</a>
 </li>
         <li><a href="modules/purchase.html#purchase.serializers.PurchaseRequisitionVendorSerializer.Meta.model">(purchase.serializers.PurchaseRequisitionVendorSerializer.Meta attribute)</a>
 </li>
         <li><a href="modules/purchase.html#purchase.serializers.SupplierBidProcurementOfficerSerializer.Meta.model">(purchase.serializers.SupplierBidProcurementOfficerSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.serializers.SupplierBidProcurementOfficerStatusSerializer.Meta.model">(purchase.serializers.SupplierBidProcurementOfficerStatusSerializer.Meta attribute)</a>
 </li>
         <li><a href="modules/purchase.html#purchase.serializers.SupplierBidSerializer.Meta.model">(purchase.serializers.SupplierBidSerializer.Meta attribute)</a>
 </li>
@@ -742,6 +1059,22 @@
 </li>
         <li><a href="modules/accounts.html#module-accounts.views">accounts.views</a>
 </li>
+        <li><a href="modules/dashboard.html#module-dashboard">dashboard</a>
+</li>
+        <li><a href="modules/dashboard.html#module-dashboard.admin">dashboard.admin</a>
+</li>
+        <li><a href="modules/dashboard.html#module-dashboard.apps">dashboard.apps</a>
+</li>
+        <li><a href="modules/dashboard.html#module-dashboard.models">dashboard.models</a>
+</li>
+        <li><a href="modules/dashboard.html#module-dashboard.serializers">dashboard.serializers</a>
+</li>
+        <li><a href="modules/dashboard.html#module-dashboard.tests">dashboard.tests</a>
+</li>
+        <li><a href="modules/dashboard.html#module-dashboard.urls">dashboard.urls</a>
+</li>
+        <li><a href="modules/dashboard.html#module-dashboard.views">dashboard.views</a>
+</li>
         <li><a href="modules/inventory.html#module-inventory">inventory</a>
 </li>
         <li><a href="modules/inventory.html#module-inventory.admin">inventory.admin</a>
@@ -760,6 +1093,24 @@
 </li>
         <li><a href="modules/inventory.html#module-inventory.views">inventory.views</a>
 </li>
+        <li><a href="modules/logistics.html#module-logistics">logistics</a>
+</li>
+        <li><a href="modules/logistics.html#module-logistics.admin">logistics.admin</a>
+</li>
+        <li><a href="modules/logistics.html#module-logistics.apps">logistics.apps</a>
+</li>
+        <li><a href="modules/logistics.html#module-logistics.models">logistics.models</a>
+</li>
+        <li><a href="modules/logistics.html#module-logistics.serializers">logistics.serializers</a>
+</li>
+        <li><a href="modules/logistics.html#module-logistics.tasks">logistics.tasks</a>
+</li>
+        <li><a href="modules/logistics.html#module-logistics.tests">logistics.tests</a>
+</li>
+        <li><a href="modules/logistics.html#module-logistics.urls">logistics.urls</a>
+</li>
+        <li><a href="modules/logistics.html#module-logistics.views">logistics.views</a>
+</li>
         <li><a href="modules/purchase.html#module-purchase">purchase</a>
 </li>
         <li><a href="modules/purchase.html#module-purchase.admin">purchase.admin</a>
@@ -769,6 +1120,8 @@
         <li><a href="modules/purchase.html#module-purchase.models">purchase.models</a>
 </li>
         <li><a href="modules/purchase.html#module-purchase.serializers">purchase.serializers</a>
+</li>
+        <li><a href="modules/purchase.html#module-purchase.tasks">purchase.tasks</a>
 </li>
         <li><a href="modules/purchase.html#module-purchase.tests">purchase.tests</a>
 </li>
@@ -785,6 +1138,8 @@
 </li>
       <li><a href="modules/accounts.html#accounts.views.MyTokenObtainPairView">MyTokenObtainPairView (class in accounts.views)</a>
 </li>
+      <li><a href="modules/accounts.html#accounts.views.MyTokenRefreshView">MyTokenRefreshView (class in accounts.views)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -794,7 +1149,11 @@
       <li><a href="modules/accounts.html#accounts.apps.AccountsConfig.name">name (accounts.apps.AccountsConfig attribute)</a>
 
       <ul>
+        <li><a href="modules/dashboard.html#dashboard.apps.DashboardConfig.name">(dashboard.apps.DashboardConfig attribute)</a>
+</li>
         <li><a href="modules/inventory.html#inventory.apps.InventoryConfig.name">(inventory.apps.InventoryConfig attribute)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.apps.LogisticsConfig.name">(logistics.apps.LogisticsConfig attribute)</a>
 </li>
         <li><a href="modules/purchase.html#purchase.apps.PurchaseConfig.name">(purchase.apps.PurchaseConfig attribute)</a>
 </li>
@@ -814,6 +1173,10 @@
 </li>
         <li><a href="modules/inventory.html#inventory.models.OptimizedInventory.objects">(inventory.models.OptimizedInventory attribute)</a>
 </li>
+        <li><a href="modules/logistics.html#logistics.models.InventoryReceipt.objects">(logistics.models.InventoryReceipt attribute)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.models.Invoice.objects">(logistics.models.Invoice attribute)</a>
+</li>
         <li><a href="modules/purchase.html#purchase.models.PurchaseOrder.objects">(purchase.models.PurchaseOrder attribute)</a>
 </li>
         <li><a href="modules/purchase.html#purchase.models.PurchaseRequisition.objects">(purchase.models.PurchaseRequisition attribute)</a>
@@ -827,10 +1190,10 @@
 </li>
       <li><a href="modules/inventory.html#inventory.models.OptimizedInventory.DoesNotExist">OptimizedInventory.DoesNotExist</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/inventory.html#inventory.models.OptimizedInventory.MultipleObjectsReturned">OptimizedInventory.MultipleObjectsReturned</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/inventory.html#inventory.views.OptimizedInventoryCreateAPIView">OptimizedInventoryCreateAPIView (class in inventory.views)</a>
 </li>
       <li><a href="modules/inventory.html#inventory.views.OptimizedInventoryDestroyAPIView">OptimizedInventoryDestroyAPIView (class in inventory.views)</a>
@@ -843,6 +1206,20 @@
 </li>
       <li><a href="modules/inventory.html#inventory.views.OptimizedInventoryUpdateAPIView">OptimizedInventoryUpdateAPIView (class in inventory.views)</a>
 </li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests">OptimizedInventoryViewsTests (class in inventory.tests)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.models.InventoryReceipt.order">order (logistics.models.InventoryReceipt attribute)</a>
+
+      <ul>
+        <li><a href="modules/logistics.html#logistics.models.Invoice.order">(logistics.models.Invoice attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/logistics.html#logistics.models.InventoryReceipt.order_id">order_id (logistics.models.InventoryReceipt attribute)</a>
+
+      <ul>
+        <li><a href="modules/logistics.html#logistics.models.Invoice.order_id">(logistics.models.Invoice attribute)</a>
+</li>
+      </ul></li>
       <li><a href="modules/purchase.html#purchase.models.PurchaseOrder.order_number">order_number (purchase.models.PurchaseOrder attribute)</a>
 </li>
       <li><a href="modules/inventory.html#inventory.models.OptimizedInventory.ordering_cost">ordering_cost (inventory.models.OptimizedInventory attribute)</a>
@@ -869,6 +1246,30 @@
 </li>
       <li><a href="modules/accounts.html#accounts.tests.PasswordResetViewTests">PasswordResetViewTests (class in accounts.tests)</a>
 </li>
+      <li><a href="modules/logistics.html#logistics.views.InventoryReceiptUpdateView.patch">patch() (logistics.views.InventoryReceiptUpdateView method)</a>
+
+      <ul>
+        <li><a href="modules/logistics.html#logistics.views.InvoicePaymentStatusUpdateView.patch">(logistics.views.InvoicePaymentStatusUpdateView method)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.InvoiceUpdateView.patch">(logistics.views.InvoiceUpdateView method)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.InvoiceVendorRatingUpdateView.patch">(logistics.views.InvoiceVendorRatingUpdateView method)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.PurchaseRequisitionUpdateView.patch">(purchase.views.PurchaseRequisitionUpdateView method)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.SupplierBidUpdateView.patch">(purchase.views.SupplierBidUpdateView method)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/logistics.html#logistics.models.Invoice.payment_due_date">payment_due_date (logistics.models.Invoice attribute)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.models.Invoice.payment_mode">payment_mode (logistics.models.Invoice attribute)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.models.Invoice.PAYMENT_MODE_CHOICES">PAYMENT_MODE_CHOICES (logistics.models.Invoice attribute)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.models.Invoice.payment_status">payment_status (logistics.models.Invoice attribute)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.models.Invoice.PAYMENT_STATUS_CHOICES">PAYMENT_STATUS_CHOICES (logistics.models.Invoice attribute)</a>
+</li>
       <li><a href="modules/accounts.html#accounts.views.ProcurementOfficerRegisterView.perform_create">perform_create() (accounts.views.ProcurementOfficerRegisterView method)</a>
 
       <ul>
@@ -878,17 +1279,47 @@
 </li>
         <li><a href="modules/inventory.html#inventory.views.OptimizedInventoryCreateAPIView.perform_create">(inventory.views.OptimizedInventoryCreateAPIView method)</a>
 </li>
+        <li><a href="modules/logistics.html#logistics.views.InventoryReceiptCreateView.perform_create">(logistics.views.InventoryReceiptCreateView method)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.InvoiceCreateView.perform_create">(logistics.views.InvoiceCreateView method)</a>
+</li>
         <li><a href="modules/purchase.html#purchase.views.PurchaseRequisitionCreateView.perform_create">(purchase.views.PurchaseRequisitionCreateView method)</a>
 </li>
         <li><a href="modules/purchase.html#purchase.views.SupplierBidCreateView.perform_create">(purchase.views.SupplierBidCreateView method)</a>
 </li>
       </ul></li>
-      <li><a href="modules/inventory.html#inventory.views.OptimizedInventoryUpdateAPIView.perform_update">perform_update() (inventory.views.OptimizedInventoryUpdateAPIView method)</a>
+      <li><a href="modules/logistics.html#logistics.views.InventoryReceiptDeleteView.perform_destroy">perform_destroy() (logistics.views.InventoryReceiptDeleteView method)</a>
+
+      <ul>
+        <li><a href="modules/logistics.html#logistics.views.InvoiceDeleteView.perform_destroy">(logistics.views.InvoiceDeleteView method)</a>
 </li>
+        <li><a href="modules/purchase.html#purchase.views.PurchaseRequisitionDeleteView.perform_destroy">(purchase.views.PurchaseRequisitionDeleteView method)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.SupplierBidDeleteView.perform_destroy">(purchase.views.SupplierBidDeleteView method)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/inventory.html#inventory.views.OptimizedInventoryUpdateAPIView.perform_update">perform_update() (inventory.views.OptimizedInventoryUpdateAPIView method)</a>
+
+      <ul>
+        <li><a href="modules/logistics.html#logistics.views.InventoryReceiptUpdateView.perform_update">(logistics.views.InventoryReceiptUpdateView method)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.InvoicePaymentStatusUpdateView.perform_update">(logistics.views.InvoicePaymentStatusUpdateView method)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.InvoiceUpdateView.perform_update">(logistics.views.InvoiceUpdateView method)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.InvoiceVendorRatingUpdateView.perform_update">(logistics.views.InvoiceVendorRatingUpdateView method)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.PurchaseRequisitionUpdateView.perform_update">(purchase.views.PurchaseRequisitionUpdateView method)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.SupplierBidUpdateView.perform_update">(purchase.views.SupplierBidUpdateView method)</a>
+</li>
+      </ul></li>
       <li><a href="modules/accounts.html#accounts.views.DeleteUserProfileView.permission_classes">permission_classes (accounts.views.DeleteUserProfileView attribute)</a>
 
       <ul>
         <li><a href="modules/accounts.html#accounts.views.MyTokenObtainPairView.permission_classes">(accounts.views.MyTokenObtainPairView attribute)</a>
+</li>
+        <li><a href="modules/accounts.html#accounts.views.MyTokenRefreshView.permission_classes">(accounts.views.MyTokenRefreshView attribute)</a>
 </li>
         <li><a href="modules/accounts.html#accounts.views.PasswordResetConfirmView.permission_classes">(accounts.views.PasswordResetConfirmView attribute)</a>
 </li>
@@ -899,6 +1330,12 @@
         <li><a href="modules/accounts.html#accounts.views.VendorRegisterView.permission_classes">(accounts.views.VendorRegisterView attribute)</a>
 </li>
         <li><a href="modules/accounts.html#accounts.views.VendorView.permission_classes">(accounts.views.VendorView attribute)</a>
+</li>
+        <li><a href="modules/dashboard.html#dashboard.views.AdminDashboardView.permission_classes">(dashboard.views.AdminDashboardView attribute)</a>
+</li>
+        <li><a href="modules/dashboard.html#dashboard.views.ProcurementOfficerDashboardView.permission_classes">(dashboard.views.ProcurementOfficerDashboardView attribute)</a>
+</li>
+        <li><a href="modules/dashboard.html#dashboard.views.VendorDashboardView.permission_classes">(dashboard.views.VendorDashboardView attribute)</a>
 </li>
         <li><a href="modules/inventory.html#inventory.views.ARIMAForecastAPIView.permission_classes">(inventory.views.ARIMAForecastAPIView attribute)</a>
 </li>
@@ -912,9 +1349,27 @@
 </li>
         <li><a href="modules/inventory.html#inventory.views.OptimizedInventoryUpdateAPIView.permission_classes">(inventory.views.OptimizedInventoryUpdateAPIView attribute)</a>
 </li>
+        <li><a href="modules/logistics.html#logistics.views.BaseInventoryReceiptAPIView.permission_classes">(logistics.views.BaseInventoryReceiptAPIView attribute)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.BaseInventoryReceiptVendorAPIView.permission_classes">(logistics.views.BaseInventoryReceiptVendorAPIView attribute)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.BaseInvoiceAPIView.permission_classes">(logistics.views.BaseInvoiceAPIView attribute)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.BaseInvoiceProcurementOfficerAPIView.permission_classes">(logistics.views.BaseInvoiceProcurementOfficerAPIView attribute)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.InvoicePaymentStatusUpdateView.permission_classes">(logistics.views.InvoicePaymentStatusUpdateView attribute)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.InvoiceVendorRatingUpdateView.permission_classes">(logistics.views.InvoiceVendorRatingUpdateView attribute)</a>
+</li>
         <li><a href="modules/purchase.html#purchase.views.BasePurchaseRequisitionAPIView.permission_classes">(purchase.views.BasePurchaseRequisitionAPIView attribute)</a>
 </li>
         <li><a href="modules/purchase.html#purchase.views.BaseSupplierAPIView.permission_classes">(purchase.views.BaseSupplierAPIView attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.PurchaseOrderListView.permission_classes">(purchase.views.PurchaseOrderListView attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.PurchaseOrderVendorListView.permission_classes">(purchase.views.PurchaseOrderVendorListView attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.PurchaseOrderVendorStatusView.permission_classes">(purchase.views.PurchaseOrderVendorStatusView attribute)</a>
 </li>
         <li><a href="modules/purchase.html#purchase.views.PurchaseRequisitionVendorListView.permission_classes">(purchase.views.PurchaseRequisitionVendorListView attribute)</a>
 </li>
@@ -922,24 +1377,38 @@
 </li>
         <li><a href="modules/purchase.html#purchase.views.SupplierBidProcurementOfficerRankingView.permission_classes">(purchase.views.SupplierBidProcurementOfficerRankingView attribute)</a>
 </li>
+        <li><a href="modules/purchase.html#purchase.views.SupplierBidProcurementOfficerRetrieveView.permission_classes">(purchase.views.SupplierBidProcurementOfficerRetrieveView attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.SupplierBidProcurementOfficerStatusView.permission_classes">(purchase.views.SupplierBidProcurementOfficerStatusView attribute)</a>
+</li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/accounts.html#accounts.models.User.phone_number">phone_number (accounts.models.User attribute)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.models.User.phone_number_regex">phone_number_regex (accounts.models.User attribute)</a>
 </li>
       <li><a href="modules/inventory.html#inventory.views.ARIMAForecastAPIView.post">post() (inventory.views.ARIMAForecastAPIView method)</a>
+
+      <ul>
+        <li><a href="modules/purchase.html#purchase.views.SupplierBidProcurementOfficerRankingView.post">(purchase.views.SupplierBidProcurementOfficerRankingView method)</a>
 </li>
+      </ul></li>
       <li><a href="modules/inventory.html#inventory.models.Inventory.procurement_officer">procurement_officer (inventory.models.Inventory attribute)</a>
 </li>
       <li><a href="modules/inventory.html#inventory.models.Inventory.procurement_officer_id">procurement_officer_id (inventory.models.Inventory attribute)</a>
+</li>
+      <li><a href="modules/dashboard.html#dashboard.serializers.ProcurementOfficerDashboardSerializer">ProcurementOfficerDashboardSerializer (class in dashboard.serializers)</a>
+</li>
+      <li><a href="modules/dashboard.html#dashboard.views.ProcurementOfficerDashboardView">ProcurementOfficerDashboardView (class in dashboard.views)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.serializers.ProcurementOfficerRegisterSerializer">ProcurementOfficerRegisterSerializer (class in accounts.serializers)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.serializers.ProcurementOfficerRegisterSerializer.Meta">ProcurementOfficerRegisterSerializer.Meta (class in accounts.serializers)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/accounts.html#accounts.views.ProcurementOfficerRegisterView">ProcurementOfficerRegisterView (class in accounts.views)</a>
+</li>
+      <li><a href="modules/accounts.html#accounts.tests.ProcurementOfficerRegisterViewTests">ProcurementOfficerRegisterViewTests (class in accounts.tests)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.serializers.ProfileSerializer">ProfileSerializer (class in accounts.serializers)</a>
 </li>
@@ -981,6 +1450,13 @@
 </li>
       </ul></li>
       <li>
+    purchase.tasks
+
+      <ul>
+        <li><a href="modules/purchase.html#module-purchase.tasks">module</a>
+</li>
+      </ul></li>
+      <li>
     purchase.tests
 
       <ul>
@@ -1011,9 +1487,21 @@
 </li>
       <li><a href="modules/purchase.html#purchase.models.PurchaseOrder.MultipleObjectsReturned">PurchaseOrder.MultipleObjectsReturned</a>
 </li>
+      <li><a href="modules/purchase.html#purchase.views.PurchaseOrderListView">PurchaseOrderListView (class in purchase.views)</a>
+</li>
       <li><a href="modules/purchase.html#purchase.serializers.PurchaseOrderSerializer">PurchaseOrderSerializer (class in purchase.serializers)</a>
 </li>
       <li><a href="modules/purchase.html#purchase.serializers.PurchaseOrderSerializer.Meta">PurchaseOrderSerializer.Meta (class in purchase.serializers)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.serializers.PurchaseOrderStatusSerializer">PurchaseOrderStatusSerializer (class in purchase.serializers)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.serializers.PurchaseOrderStatusSerializer.Meta">PurchaseOrderStatusSerializer.Meta (class in purchase.serializers)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.views.PurchaseOrderVendorListView">PurchaseOrderVendorListView (class in purchase.views)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.views.PurchaseOrderVendorStatusView">PurchaseOrderVendorStatusView (class in purchase.views)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseOrderViewsTests">PurchaseOrderViewsTests (class in purchase.tests)</a>
 </li>
       <li><a href="modules/purchase.html#purchase.models.PurchaseRequisition">PurchaseRequisition (class in purchase.models)</a>
 </li>
@@ -1043,6 +1531,8 @@
 </li>
       <li><a href="modules/purchase.html#purchase.serializers.PurchaseRequisitionVendorSerializer.Meta">PurchaseRequisitionVendorSerializer.Meta (class in purchase.serializers)</a>
 </li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests">PurchaseRequisitionViewsTests (class in purchase.tests)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -1050,8 +1540,6 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/purchase.html#purchase.models.SupplierBid.quantity_fulfilled">quantity_fulfilled (purchase.models.SupplierBid attribute)</a>
-</li>
-      <li><a href="modules/purchase.html#purchase.models.PurchaseOrder.quantity_ordered">quantity_ordered (purchase.models.PurchaseOrder attribute)</a>
 </li>
       <li><a href="modules/purchase.html#purchase.models.PurchaseRequisition.quantity_requested">quantity_requested (purchase.models.PurchaseRequisition attribute)</a>
 </li>
@@ -1072,11 +1560,31 @@
 </li>
         <li><a href="modules/inventory.html#inventory.views.InventoryCreateView.queryset">(inventory.views.InventoryCreateView attribute)</a>
 </li>
+        <li><a href="modules/logistics.html#logistics.views.InventoryReceiptCreateView.queryset">(logistics.views.InventoryReceiptCreateView attribute)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.InventoryReceiptDeleteView.queryset">(logistics.views.InventoryReceiptDeleteView attribute)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.InventoryReceiptUpdateView.queryset">(logistics.views.InventoryReceiptUpdateView attribute)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.InvoiceCreateView.queryset">(logistics.views.InvoiceCreateView attribute)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.InvoiceDeleteView.queryset">(logistics.views.InvoiceDeleteView attribute)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.InvoiceUpdateView.queryset">(logistics.views.InvoiceUpdateView attribute)</a>
+</li>
         <li><a href="modules/purchase.html#purchase.views.PurchaseRequisitionCreateView.queryset">(purchase.views.PurchaseRequisitionCreateView attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.PurchaseRequisitionDeleteView.queryset">(purchase.views.PurchaseRequisitionDeleteView attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.PurchaseRequisitionUpdateView.queryset">(purchase.views.PurchaseRequisitionUpdateView attribute)</a>
 </li>
         <li><a href="modules/purchase.html#purchase.views.PurchaseRequisitionVendorListView.queryset">(purchase.views.PurchaseRequisitionVendorListView attribute)</a>
 </li>
         <li><a href="modules/purchase.html#purchase.views.SupplierBidCreateView.queryset">(purchase.views.SupplierBidCreateView attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.SupplierBidDeleteView.queryset">(purchase.views.SupplierBidDeleteView attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.SupplierBidUpdateView.queryset">(purchase.views.SupplierBidUpdateView attribute)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -1086,13 +1594,33 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/inventory.html#inventory.serializers.OptimizedInventorySerializer.Meta.read_only_fields">read_only_fields (inventory.serializers.OptimizedInventorySerializer.Meta attribute)</a>
+
+      <ul>
+        <li><a href="modules/logistics.html#logistics.serializers.InventoryReceiptSerializer.Meta.read_only_fields">(logistics.serializers.InventoryReceiptSerializer.Meta attribute)</a>
 </li>
-      <li><a href="modules/accounts.html#accounts.tests.RegisterViewTests">RegisterViewTests (class in accounts.tests)</a>
+        <li><a href="modules/logistics.html#logistics.serializers.InvoiceSerializer.Meta.read_only_fields">(logistics.serializers.InvoiceSerializer.Meta attribute)</a>
 </li>
-      <li><a href="modules/inventory.html#inventory.models.OptimizedInventory.reorder_point">reorder_point (inventory.models.OptimizedInventory attribute)</a>
+        <li><a href="modules/logistics.html#logistics.serializers.InvoiceVendorRatingSerializer.Meta.read_only_fields">(logistics.serializers.InvoiceVendorRatingSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.serializers.PurchaseRequisitionSerializer.Meta.read_only_fields">(purchase.serializers.PurchaseRequisitionSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.serializers.SupplierBidProcurementOfficerSerializer.Meta.read_only_fields">(purchase.serializers.SupplierBidProcurementOfficerSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.serializers.SupplierBidSerializer.Meta.read_only_fields">(purchase.serializers.SupplierBidSerializer.Meta attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/logistics.html#logistics.models.InventoryReceipt.receipt_date">receipt_date (logistics.models.InventoryReceipt attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/logistics.html#logistics.models.InventoryReceipt.receipt_id">receipt_id (logistics.models.InventoryReceipt attribute)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.models.InventoryReceipt.received_condition">received_condition (logistics.models.InventoryReceipt attribute)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.models.InventoryReceipt.received_quantity">received_quantity (logistics.models.InventoryReceipt attribute)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.models.OptimizedInventory.reorder_point">reorder_point (inventory.models.OptimizedInventory attribute)</a>
+</li>
       <li><a href="modules/purchase.html#purchase.models.PurchaseRequisition.report">report (purchase.models.PurchaseRequisition attribute)</a>
 </li>
       <li><a href="modules/purchase.html#purchase.models.SupplierBid.requisition">requisition (purchase.models.SupplierBid attribute)</a>
@@ -1130,6 +1658,12 @@
 </li>
         <li><a href="modules/accounts.html#accounts.views.VendorView.serializer_class">(accounts.views.VendorView attribute)</a>
 </li>
+        <li><a href="modules/dashboard.html#dashboard.views.AdminDashboardView.serializer_class">(dashboard.views.AdminDashboardView attribute)</a>
+</li>
+        <li><a href="modules/dashboard.html#dashboard.views.ProcurementOfficerDashboardView.serializer_class">(dashboard.views.ProcurementOfficerDashboardView attribute)</a>
+</li>
+        <li><a href="modules/dashboard.html#dashboard.views.VendorDashboardView.serializer_class">(dashboard.views.VendorDashboardView attribute)</a>
+</li>
         <li><a href="modules/inventory.html#inventory.views.ARIMAForecastAPIView.serializer_class">(inventory.views.ARIMAForecastAPIView attribute)</a>
 </li>
         <li><a href="modules/inventory.html#inventory.views.BaseInventoryAPIView.serializer_class">(inventory.views.BaseInventoryAPIView attribute)</a>
@@ -1142,15 +1676,37 @@
 </li>
         <li><a href="modules/inventory.html#inventory.views.OptimizedInventoryUpdateAPIView.serializer_class">(inventory.views.OptimizedInventoryUpdateAPIView attribute)</a>
 </li>
+        <li><a href="modules/logistics.html#logistics.views.BaseInventoryReceiptAPIView.serializer_class">(logistics.views.BaseInventoryReceiptAPIView attribute)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.BaseInventoryReceiptVendorAPIView.serializer_class">(logistics.views.BaseInventoryReceiptVendorAPIView attribute)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.BaseInvoiceAPIView.serializer_class">(logistics.views.BaseInvoiceAPIView attribute)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.BaseInvoiceProcurementOfficerAPIView.serializer_class">(logistics.views.BaseInvoiceProcurementOfficerAPIView attribute)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.InvoicePaymentStatusUpdateView.serializer_class">(logistics.views.InvoicePaymentStatusUpdateView attribute)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.views.InvoiceVendorRatingUpdateView.serializer_class">(logistics.views.InvoiceVendorRatingUpdateView attribute)</a>
+</li>
         <li><a href="modules/purchase.html#purchase.views.BasePurchaseRequisitionAPIView.serializer_class">(purchase.views.BasePurchaseRequisitionAPIView attribute)</a>
 </li>
         <li><a href="modules/purchase.html#purchase.views.BaseSupplierAPIView.serializer_class">(purchase.views.BaseSupplierAPIView attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.PurchaseOrderListView.serializer_class">(purchase.views.PurchaseOrderListView attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.PurchaseOrderVendorListView.serializer_class">(purchase.views.PurchaseOrderVendorListView attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.PurchaseOrderVendorStatusView.serializer_class">(purchase.views.PurchaseOrderVendorStatusView attribute)</a>
 </li>
         <li><a href="modules/purchase.html#purchase.views.PurchaseRequisitionVendorListView.serializer_class">(purchase.views.PurchaseRequisitionVendorListView attribute)</a>
 </li>
         <li><a href="modules/purchase.html#purchase.views.SupplierBidProcurementOfficerListView.serializer_class">(purchase.views.SupplierBidProcurementOfficerListView attribute)</a>
 </li>
         <li><a href="modules/purchase.html#purchase.views.SupplierBidProcurementOfficerRankingView.serializer_class">(purchase.views.SupplierBidProcurementOfficerRankingView attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.SupplierBidProcurementOfficerRetrieveView.serializer_class">(purchase.views.SupplierBidProcurementOfficerRetrieveView attribute)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.SupplierBidProcurementOfficerStatusView.serializer_class">(purchase.views.SupplierBidProcurementOfficerStatusView attribute)</a>
 </li>
       </ul></li>
       <li><a href="modules/inventory.html#inventory.models.OptimizedInventory.service_level">service_level (inventory.models.OptimizedInventory attribute)</a>
@@ -1162,7 +1718,7 @@
 </li>
         <li><a href="modules/accounts.html#accounts.tests.PasswordResetViewTests.setUp">(accounts.tests.PasswordResetViewTests method)</a>
 </li>
-        <li><a href="modules/accounts.html#accounts.tests.RegisterViewTests.setUp">(accounts.tests.RegisterViewTests method)</a>
+        <li><a href="modules/accounts.html#accounts.tests.ProcurementOfficerRegisterViewTests.setUp">(accounts.tests.ProcurementOfficerRegisterViewTests method)</a>
 </li>
         <li><a href="modules/accounts.html#accounts.tests.SetUpUsers.setUp">(accounts.tests.SetUpUsers method)</a>
 </li>
@@ -1172,13 +1728,51 @@
 </li>
         <li><a href="modules/accounts.html#accounts.tests.VendorListViewTests.setUp">(accounts.tests.VendorListViewTests method)</a>
 </li>
-        <li><a href="modules/inventory.html#inventory.tests.InventoryModelsTestCase.setUp">(inventory.tests.InventoryModelsTestCase method)</a>
+        <li><a href="modules/accounts.html#accounts.tests.VendorRegisterViewTests.setUp">(accounts.tests.VendorRegisterViewTests method)</a>
 </li>
-        <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTestCase.setUp">(inventory.tests.InventoryViewsTestCase method)</a>
+        <li><a href="modules/dashboard.html#dashboard.tests.DashboardViewsTests.setUp">(dashboard.tests.DashboardViewsTests method)</a>
+</li>
+        <li><a href="modules/dashboard.html#dashboard.tests.SetupClass.setUp">(dashboard.tests.SetupClass method)</a>
+</li>
+        <li><a href="modules/inventory.html#inventory.tests.ARIMAForecastViewsTests.setUp">(inventory.tests.ARIMAForecastViewsTests method)</a>
+</li>
+        <li><a href="modules/inventory.html#inventory.tests.HistoricalInventoryViewsTests.setUp">(inventory.tests.HistoricalInventoryViewsTests method)</a>
+</li>
+        <li><a href="modules/inventory.html#inventory.tests.InventorySignalsTests.setUp">(inventory.tests.InventorySignalsTests method)</a>
+</li>
+        <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.setUp">(inventory.tests.InventoryViewsTests method)</a>
+</li>
+        <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.setUp">(inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+        <li><a href="modules/inventory.html#inventory.tests.SetupClass.setUp">(inventory.tests.SetupClass method)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.setUp">(logistics.tests.InventoryReceiptTests method)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.setUp">(logistics.tests.InvoiceTests method)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.tests.SetupClass.setUp">(logistics.tests.SetupClass method)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.setUp">(purchase.tests.PurchaseOrderViewsTests method)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.setUp">(purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.tests.SetupClass.setUp">(purchase.tests.SetupClass method)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.setUp">(purchase.tests.SupplierBidViewsTests method)</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/dashboard.html#dashboard.tests.SetupClass">SetupClass (class in dashboard.tests)</a>
+
+      <ul>
+        <li><a href="modules/inventory.html#inventory.tests.SetupClass">(class in inventory.tests)</a>
+</li>
+        <li><a href="modules/logistics.html#logistics.tests.SetupClass">(class in logistics.tests)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.tests.SetupClass">(class in purchase.tests)</a>
+</li>
+      </ul></li>
       <li><a href="modules/accounts.html#accounts.tests.SetUpUsers">SetUpUsers (class in accounts.tests)</a>
 </li>
       <li><a href="modules/inventory.html#inventory.models.OptimizedInventory.shelf_life">shelf_life (inventory.models.OptimizedInventory attribute)</a>
@@ -1233,9 +1827,17 @@
 </li>
       <li><a href="modules/purchase.html#purchase.views.SupplierBidProcurementOfficerRankingView">SupplierBidProcurementOfficerRankingView (class in purchase.views)</a>
 </li>
+      <li><a href="modules/purchase.html#purchase.views.SupplierBidProcurementOfficerRetrieveView">SupplierBidProcurementOfficerRetrieveView (class in purchase.views)</a>
+</li>
       <li><a href="modules/purchase.html#purchase.serializers.SupplierBidProcurementOfficerSerializer">SupplierBidProcurementOfficerSerializer (class in purchase.serializers)</a>
 </li>
       <li><a href="modules/purchase.html#purchase.serializers.SupplierBidProcurementOfficerSerializer.Meta">SupplierBidProcurementOfficerSerializer.Meta (class in purchase.serializers)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.serializers.SupplierBidProcurementOfficerStatusSerializer">SupplierBidProcurementOfficerStatusSerializer (class in purchase.serializers)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.serializers.SupplierBidProcurementOfficerStatusSerializer.Meta">SupplierBidProcurementOfficerStatusSerializer.Meta (class in purchase.serializers)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.views.SupplierBidProcurementOfficerStatusView">SupplierBidProcurementOfficerStatusView (class in purchase.views)</a>
 </li>
       <li><a href="modules/purchase.html#purchase.views.SupplierBidRetrieveView">SupplierBidRetrieveView (class in purchase.views)</a>
 </li>
@@ -1245,21 +1847,73 @@
 </li>
       <li><a href="modules/purchase.html#purchase.views.SupplierBidUpdateView">SupplierBidUpdateView (class in purchase.views)</a>
 </li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests">SupplierBidViewsTests (class in purchase.tests)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_admin_dashboard_view">test_admin_dashboard_view() (dashboard.tests.DashboardViewsTests method)</a>
+</li>
+      <li><a href="modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_admin_dashboard_view_invalid_http_method">test_admin_dashboard_view_invalid_http_method() (dashboard.tests.DashboardViewsTests method)</a>
+</li>
+      <li><a href="modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_admin_dashboard_view_invalid_token">test_admin_dashboard_view_invalid_token() (dashboard.tests.DashboardViewsTests method)</a>
+</li>
+      <li><a href="modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_admin_dashboard_view_procurement_officer">test_admin_dashboard_view_procurement_officer() (dashboard.tests.DashboardViewsTests method)</a>
+</li>
+      <li><a href="modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_admin_dashboard_view_unauthenticated">test_admin_dashboard_view_unauthenticated() (dashboard.tests.DashboardViewsTests method)</a>
+</li>
+      <li><a href="modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_admin_dashboard_view_vendor">test_admin_dashboard_view_vendor() (dashboard.tests.DashboardViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_insufficient_data">test_arima_forecast_view_insufficient_data() (inventory.tests.ARIMAForecastViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_invalid_data">test_arima_forecast_view_invalid_data() (inventory.tests.ARIMAForecastViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_invalid_file_type">test_arima_forecast_view_invalid_file_type() (inventory.tests.ARIMAForecastViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_invalid_http_method">test_arima_forecast_view_invalid_http_method() (inventory.tests.ARIMAForecastViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_invalid_token">test_arima_forecast_view_invalid_token() (inventory.tests.ARIMAForecastViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_other_procurement_officer">test_arima_forecast_view_other_procurement_officer() (inventory.tests.ARIMAForecastViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_procurement_officer">test_arima_forecast_view_procurement_officer() (inventory.tests.ARIMAForecastViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_sufficient_data">test_arima_forecast_view_sufficient_data() (inventory.tests.ARIMAForecastViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_unauthenticated">test_arima_forecast_view_unauthenticated() (inventory.tests.ARIMAForecastViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_upload_csv_insufficient_data">test_arima_forecast_view_upload_csv_insufficient_data() (inventory.tests.ARIMAForecastViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_upload_csv_sufficient_data">test_arima_forecast_view_upload_csv_sufficient_data() (inventory.tests.ARIMAForecastViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_vendor">test_arima_forecast_view_vendor() (inventory.tests.ARIMAForecastViewsTests method)</a>
+</li>
       <li><a href="modules/accounts.html#accounts.tests.ChangePasswordViewTests.test_change_password_successfully">test_change_password_successfully() (accounts.tests.ChangePasswordViewTests method)</a>
+</li>
+      <li><a href="modules/accounts.html#accounts.tests.ChangePasswordViewTests.test_change_password_unauthenticated">test_change_password_unauthenticated() (accounts.tests.ChangePasswordViewTests method)</a>
+</li>
+      <li><a href="modules/accounts.html#accounts.tests.ChangePasswordViewTests.test_change_password_with_invalid_http_authorization_header">test_change_password_with_invalid_http_authorization_header() (accounts.tests.ChangePasswordViewTests method)</a>
+</li>
+      <li><a href="modules/accounts.html#accounts.tests.ChangePasswordViewTests.test_change_password_with_invalid_http_method">test_change_password_with_invalid_http_method() (accounts.tests.ChangePasswordViewTests method)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.tests.ChangePasswordViewTests.test_change_password_with_invalid_old_password">test_change_password_with_invalid_old_password() (accounts.tests.ChangePasswordViewTests method)</a>
 </li>
-      <li><a href="modules/inventory.html#inventory.tests.InventoryModelsTestCase.test_create_historical_inventory_on_create">test_create_historical_inventory_on_create() (inventory.tests.InventoryModelsTestCase method)</a>
+      <li><a href="modules/accounts.html#accounts.tests.ChangePasswordViewTests.test_change_password_with_invalid_payload">test_change_password_with_invalid_payload() (accounts.tests.ChangePasswordViewTests method)</a>
 </li>
-      <li><a href="modules/inventory.html#inventory.tests.InventoryModelsTestCase.test_create_historical_inventory_on_update">test_create_historical_inventory_on_update() (inventory.tests.InventoryModelsTestCase method)</a>
+      <li><a href="modules/accounts.html#accounts.tests.ChangePasswordViewTests.test_change_password_with_mismatched_passwords">test_change_password_with_mismatched_passwords() (accounts.tests.ChangePasswordViewTests method)</a>
 </li>
-      <li><a href="modules/inventory.html#inventory.tests.InventoryModelsTestCase.test_delete_historical_inventory_on_inventory_delete">test_delete_historical_inventory_on_inventory_delete() (inventory.tests.InventoryModelsTestCase method)</a>
+      <li><a href="modules/accounts.html#accounts.tests.ChangePasswordViewTests.test_change_password_without_providing_old_password">test_change_password_without_providing_old_password() (accounts.tests.ChangePasswordViewTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.InventorySignalsTests.test_create_historical_inventory_on_create">test_create_historical_inventory_on_create() (inventory.tests.InventorySignalsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.InventorySignalsTests.test_create_historical_inventory_on_update_with_demand">test_create_historical_inventory_on_update_with_demand() (inventory.tests.InventorySignalsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.InventorySignalsTests.test_create_historical_inventory_on_update_without_demand">test_create_historical_inventory_on_update_without_demand() (inventory.tests.InventorySignalsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.InventorySignalsTests.test_delete_historical_inventory_on_inventory_delete">test_delete_historical_inventory_on_inventory_delete() (inventory.tests.InventorySignalsTests method)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.tests.UserProfileViewTests.test_delete_procurement_officer_profile">test_delete_procurement_officer_profile() (accounts.tests.UserProfileViewTests method)</a>
 </li>
@@ -1273,57 +1927,679 @@
 </li>
       <li><a href="modules/accounts.html#accounts.tests.UserProfileViewTests.test_get_vendor_profile">test_get_vendor_profile() (accounts.tests.UserProfileViewTests method)</a>
 </li>
-      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTestCase.test_historical_inventory_list_view_procurement_officer">test_historical_inventory_list_view_procurement_officer() (inventory.tests.InventoryViewsTestCase method)</a>
+      <li><a href="modules/inventory.html#inventory.tests.HistoricalInventoryViewsTests.test_historical_inventory_list_view_invalid_http_method">test_historical_inventory_list_view_invalid_http_method() (inventory.tests.HistoricalInventoryViewsTests method)</a>
+
+      <ul>
+        <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_historical_inventory_list_view_invalid_http_method">(inventory.tests.InventoryViewsTests method)</a>
 </li>
-      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTestCase.test_historical_inventory_list_view_procurement_officer_invalid_inventory_id">test_historical_inventory_list_view_procurement_officer_invalid_inventory_id() (inventory.tests.InventoryViewsTestCase method)</a>
+      </ul></li>
+      <li><a href="modules/inventory.html#inventory.tests.HistoricalInventoryViewsTests.test_historical_inventory_list_view_invalid_token">test_historical_inventory_list_view_invalid_token() (inventory.tests.HistoricalInventoryViewsTests method)</a>
+
+      <ul>
+        <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_historical_inventory_list_view_invalid_token">(inventory.tests.InventoryViewsTests method)</a>
 </li>
+      </ul></li>
+      <li><a href="modules/inventory.html#inventory.tests.HistoricalInventoryViewsTests.test_historical_inventory_list_view_other_procurement_officer">test_historical_inventory_list_view_other_procurement_officer() (inventory.tests.HistoricalInventoryViewsTests method)</a>
+
+      <ul>
+        <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_historical_inventory_list_view_other_procurement_officer">(inventory.tests.InventoryViewsTests method)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/inventory.html#inventory.tests.HistoricalInventoryViewsTests.test_historical_inventory_list_view_procurement_officer">test_historical_inventory_list_view_procurement_officer() (inventory.tests.HistoricalInventoryViewsTests method)</a>
+
+      <ul>
+        <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_historical_inventory_list_view_procurement_officer">(inventory.tests.InventoryViewsTests method)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/inventory.html#inventory.tests.HistoricalInventoryViewsTests.test_historical_inventory_list_view_unauthenticated">test_historical_inventory_list_view_unauthenticated() (inventory.tests.HistoricalInventoryViewsTests method)</a>
+
+      <ul>
+        <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_historical_inventory_list_view_unauthenticated">(inventory.tests.InventoryViewsTests method)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/inventory.html#inventory.tests.HistoricalInventoryViewsTests.test_historical_inventory_list_view_vendor">test_historical_inventory_list_view_vendor() (inventory.tests.HistoricalInventoryViewsTests method)</a>
+
+      <ul>
+        <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_historical_inventory_list_view_vendor">(inventory.tests.InventoryViewsTests method)</a>
+</li>
+      </ul></li>
       <li><a href="modules/accounts.html#accounts.tests.VendorListViewTests.test_insufficient_permissions_vendor">test_insufficient_permissions_vendor() (accounts.tests.VendorListViewTests method)</a>
 </li>
-      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTestCase.test_inventory_create_view_procurement_officer">test_inventory_create_view_procurement_officer() (inventory.tests.InventoryViewsTestCase method)</a>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_create_view_invalid_data">test_inventory_create_view_invalid_data() (inventory.tests.InventoryViewsTests method)</a>
 </li>
-      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTestCase.test_inventory_create_view_vendor">test_inventory_create_view_vendor() (inventory.tests.InventoryViewsTestCase method)</a>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_create_view_invalid_http_method">test_inventory_create_view_invalid_http_method() (inventory.tests.InventoryViewsTests method)</a>
 </li>
-      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTestCase.test_inventory_delete_view_procurement_officer_other_item">test_inventory_delete_view_procurement_officer_other_item() (inventory.tests.InventoryViewsTestCase method)</a>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_create_view_invalid_token">test_inventory_create_view_invalid_token() (inventory.tests.InventoryViewsTests method)</a>
 </li>
-      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTestCase.test_inventory_delete_view_procurement_officer_own_item">test_inventory_delete_view_procurement_officer_own_item() (inventory.tests.InventoryViewsTestCase method)</a>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_create_view_missing_data">test_inventory_create_view_missing_data() (inventory.tests.InventoryViewsTests method)</a>
 </li>
-      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTestCase.test_inventory_list_view_procurement_officer">test_inventory_list_view_procurement_officer() (inventory.tests.InventoryViewsTestCase method)</a>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_create_view_procurement_officer">test_inventory_create_view_procurement_officer() (inventory.tests.InventoryViewsTests method)</a>
 </li>
-      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTestCase.test_inventory_list_view_vendor">test_inventory_list_view_vendor() (inventory.tests.InventoryViewsTestCase method)</a>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_create_view_unauthenticated">test_inventory_create_view_unauthenticated() (inventory.tests.InventoryViewsTests method)</a>
 </li>
-      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTestCase.test_inventory_retrieve_view_procurement_officer">test_inventory_retrieve_view_procurement_officer() (inventory.tests.InventoryViewsTestCase method)</a>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_create_view_vendor">test_inventory_create_view_vendor() (inventory.tests.InventoryViewsTests method)</a>
 </li>
-      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTestCase.test_inventory_retrieve_view_vendor">test_inventory_retrieve_view_vendor() (inventory.tests.InventoryViewsTestCase method)</a>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_delete_view_invalid_http_method">test_inventory_delete_view_invalid_http_method() (inventory.tests.InventoryViewsTests method)</a>
 </li>
-      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTestCase.test_inventory_update_view_procurement_officer_other_item">test_inventory_update_view_procurement_officer_other_item() (inventory.tests.InventoryViewsTestCase method)</a>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_delete_view_invalid_token">test_inventory_delete_view_invalid_token() (inventory.tests.InventoryViewsTests method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTestCase.test_inventory_update_view_procurement_officer_own_item">test_inventory_update_view_procurement_officer_own_item() (inventory.tests.InventoryViewsTestCase method)</a>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_delete_view_other_procurement_officer">test_inventory_delete_view_other_procurement_officer() (inventory.tests.InventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_delete_view_procurement_officer_own_item">test_inventory_delete_view_procurement_officer_own_item() (inventory.tests.InventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_delete_view_unauthenticated">test_inventory_delete_view_unauthenticated() (inventory.tests.InventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_delete_view_vendor">test_inventory_delete_view_vendor() (inventory.tests.InventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_list_view_invalid_http_method">test_inventory_list_view_invalid_http_method() (inventory.tests.InventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_list_view_invalid_token">test_inventory_list_view_invalid_token() (inventory.tests.InventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_list_view_procurement_officer">test_inventory_list_view_procurement_officer() (inventory.tests.InventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_list_view_unauthenticated">test_inventory_list_view_unauthenticated() (inventory.tests.InventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_list_view_vendor">test_inventory_list_view_vendor() (inventory.tests.InventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_create_view_invalid_data">test_inventory_receipt_create_view_invalid_data() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_create_view_invalid_http_method">test_inventory_receipt_create_view_invalid_http_method() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_create_view_invalid_token">test_inventory_receipt_create_view_invalid_token() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_create_view_missing_data">test_inventory_receipt_create_view_missing_data() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_create_view_one_to_one_purchase_order">test_inventory_receipt_create_view_one_to_one_purchase_order() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_create_view_order_status_delivered">test_inventory_receipt_create_view_order_status_delivered() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_create_view_order_status_pending">test_inventory_receipt_create_view_order_status_pending() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_create_view_order_status_shipped">test_inventory_receipt_create_view_order_status_shipped() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_create_view_other_procurement_officer">test_inventory_receipt_create_view_other_procurement_officer() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_create_view_procurement_officer">test_inventory_receipt_create_view_procurement_officer() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_create_view_unauthenticated">test_inventory_receipt_create_view_unauthenticated() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_create_view_vendor">test_inventory_receipt_create_view_vendor() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_delete_view_invalid_http_method">test_inventory_receipt_delete_view_invalid_http_method() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_delete_view_invalid_token">test_inventory_receipt_delete_view_invalid_token() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_delete_view_other_procurement_officer">test_inventory_receipt_delete_view_other_procurement_officer() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_delete_view_procurement_officer_own_item">test_inventory_receipt_delete_view_procurement_officer_own_item() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_delete_view_unauthenticated">test_inventory_receipt_delete_view_unauthenticated() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_delete_view_vendor">test_inventory_receipt_delete_view_vendor() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_list_view_invalid_http_method">test_inventory_receipt_list_view_invalid_http_method() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_list_view_invalid_token">test_inventory_receipt_list_view_invalid_token() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_list_view_other_procurement_officer">test_inventory_receipt_list_view_other_procurement_officer() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_list_view_procurement_officer">test_inventory_receipt_list_view_procurement_officer() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_list_view_unauthenticated">test_inventory_receipt_list_view_unauthenticated() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_list_view_vendor">test_inventory_receipt_list_view_vendor() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_retrieve_view_invalid_http_method">test_inventory_receipt_retrieve_view_invalid_http_method() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_retrieve_view_invalid_token">test_inventory_receipt_retrieve_view_invalid_token() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_retrieve_view_other_procurement_officer">test_inventory_receipt_retrieve_view_other_procurement_officer() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_retrieve_view_procurement_officer_own_item">test_inventory_receipt_retrieve_view_procurement_officer_own_item() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_retrieve_view_unauthenticated">test_inventory_receipt_retrieve_view_unauthenticated() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_retrieve_view_vendor">test_inventory_receipt_retrieve_view_vendor() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_update_view_invalid_data">test_inventory_receipt_update_view_invalid_data() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_update_view_invalid_http_method">test_inventory_receipt_update_view_invalid_http_method() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_update_view_invalid_token">test_inventory_receipt_update_view_invalid_token() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_update_view_missing_data">test_inventory_receipt_update_view_missing_data() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_update_view_other_procurement_officer">test_inventory_receipt_update_view_other_procurement_officer() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_update_view_procurement_officer_own_item">test_inventory_receipt_update_view_procurement_officer_own_item() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_update_view_unauthenticated">test_inventory_receipt_update_view_unauthenticated() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_update_view_vendor">test_inventory_receipt_update_view_vendor() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_vendor_list_view_invalid_http_method">test_inventory_receipt_vendor_list_view_invalid_http_method() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_vendor_list_view_invalid_token">test_inventory_receipt_vendor_list_view_invalid_token() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_vendor_list_view_other_vendor">test_inventory_receipt_vendor_list_view_other_vendor() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_vendor_list_view_procurement_officer">test_inventory_receipt_vendor_list_view_procurement_officer() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_vendor_list_view_unauthenticated">test_inventory_receipt_vendor_list_view_unauthenticated() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_vendor_list_view_vendor">test_inventory_receipt_vendor_list_view_vendor() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_vendor_retrieve_view_invalid_http_method">test_inventory_receipt_vendor_retrieve_view_invalid_http_method() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_vendor_retrieve_view_invalid_token">test_inventory_receipt_vendor_retrieve_view_invalid_token() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_vendor_retrieve_view_other_vendor">test_inventory_receipt_vendor_retrieve_view_other_vendor() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_vendor_retrieve_view_procurement_officer">test_inventory_receipt_vendor_retrieve_view_procurement_officer() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_vendor_retrieve_view_unauthenticated">test_inventory_receipt_vendor_retrieve_view_unauthenticated() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InventoryReceiptTests.test_inventory_receipt_vendor_retrieve_view_vendor_own_item">test_inventory_receipt_vendor_retrieve_view_vendor_own_item() (logistics.tests.InventoryReceiptTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_retrieve_view_invalid_http_method">test_inventory_retrieve_view_invalid_http_method() (inventory.tests.InventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_retrieve_view_invalid_token">test_inventory_retrieve_view_invalid_token() (inventory.tests.InventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_retrieve_view_other_procurement_officer">test_inventory_retrieve_view_other_procurement_officer() (inventory.tests.InventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_retrieve_view_procurement_officer_own_item">test_inventory_retrieve_view_procurement_officer_own_item() (inventory.tests.InventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_retrieve_view_unauthenticated">test_inventory_retrieve_view_unauthenticated() (inventory.tests.InventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_retrieve_view_vendor">test_inventory_retrieve_view_vendor() (inventory.tests.InventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_update_view_invalid_data">test_inventory_update_view_invalid_data() (inventory.tests.InventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_update_view_invalid_http_method">test_inventory_update_view_invalid_http_method() (inventory.tests.InventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_update_view_invalid_token">test_inventory_update_view_invalid_token() (inventory.tests.InventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_update_view_missing_data">test_inventory_update_view_missing_data() (inventory.tests.InventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_update_view_other_procurement_officer">test_inventory_update_view_other_procurement_officer() (inventory.tests.InventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_update_view_procurement_officer_own_item">test_inventory_update_view_procurement_officer_own_item() (inventory.tests.InventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_update_view_unauthenticated">test_inventory_update_view_unauthenticated() (inventory.tests.InventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.InventoryViewsTests.test_inventory_update_view_vendor">test_inventory_update_view_vendor() (inventory.tests.InventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_create_view_invalid_data">test_invoice_create_view_invalid_data() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_create_view_invalid_http_method">test_invoice_create_view_invalid_http_method() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_create_view_invalid_token">test_invoice_create_view_invalid_token() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_create_view_missing_data">test_invoice_create_view_missing_data() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_create_view_one_to_one_purchase_order">test_invoice_create_view_one_to_one_purchase_order() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_create_view_order_status_delivered">test_invoice_create_view_order_status_delivered() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_create_view_order_status_pending">test_invoice_create_view_order_status_pending() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_create_view_order_status_shipped">test_invoice_create_view_order_status_shipped() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_create_view_other_vendor">test_invoice_create_view_other_vendor() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_create_view_procurement_officer">test_invoice_create_view_procurement_officer() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_create_view_unauthenticated">test_invoice_create_view_unauthenticated() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_create_view_vendor">test_invoice_create_view_vendor() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_delete_view_invalid_http_method">test_invoice_delete_view_invalid_http_method() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_delete_view_invalid_token">test_invoice_delete_view_invalid_token() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_delete_view_other_vendor">test_invoice_delete_view_other_vendor() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_delete_view_procurement_officer">test_invoice_delete_view_procurement_officer() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_delete_view_unauthenticated">test_invoice_delete_view_unauthenticated() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_delete_view_vendor_own_item">test_invoice_delete_view_vendor_own_item() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_list_view_invalid_http_method">test_invoice_list_view_invalid_http_method() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_list_view_invalid_token">test_invoice_list_view_invalid_token() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_list_view_other_vendor">test_invoice_list_view_other_vendor() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_list_view_procurement_officer">test_invoice_list_view_procurement_officer() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_list_view_unauthenticated">test_invoice_list_view_unauthenticated() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_list_view_vendor">test_invoice_list_view_vendor() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_payment_status_view_invalid_data">test_invoice_payment_status_view_invalid_data() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_payment_status_view_invalid_http_method">test_invoice_payment_status_view_invalid_http_method() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_payment_status_view_invalid_token">test_invoice_payment_status_view_invalid_token() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_payment_status_view_missing_data">test_invoice_payment_status_view_missing_data() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_payment_status_view_other_procurement_officer">test_invoice_payment_status_view_other_procurement_officer() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_payment_status_view_procurement_officer">test_invoice_payment_status_view_procurement_officer() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_payment_status_view_status_paid">test_invoice_payment_status_view_status_paid() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_payment_status_view_unauthenticated">test_invoice_payment_status_view_unauthenticated() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_payment_status_view_vendor">test_invoice_payment_status_view_vendor() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_procurement_officer_list_view_invalid_http_method">test_invoice_procurement_officer_list_view_invalid_http_method() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_procurement_officer_list_view_invalid_token">test_invoice_procurement_officer_list_view_invalid_token() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_procurement_officer_list_view_other_procurement_officer">test_invoice_procurement_officer_list_view_other_procurement_officer() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_procurement_officer_list_view_procurement_officer">test_invoice_procurement_officer_list_view_procurement_officer() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_procurement_officer_list_view_unauthenticated">test_invoice_procurement_officer_list_view_unauthenticated() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_procurement_officer_list_view_vendor">test_invoice_procurement_officer_list_view_vendor() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_procurement_officer_retrieve_view_invalid_http_method">test_invoice_procurement_officer_retrieve_view_invalid_http_method() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_procurement_officer_retrieve_view_invalid_token">test_invoice_procurement_officer_retrieve_view_invalid_token() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_procurement_officer_retrieve_view_other_procurement_officer">test_invoice_procurement_officer_retrieve_view_other_procurement_officer() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_procurement_officer_retrieve_view_procurement_officer_own_item">test_invoice_procurement_officer_retrieve_view_procurement_officer_own_item() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_procurement_officer_retrieve_view_unauthenticated">test_invoice_procurement_officer_retrieve_view_unauthenticated() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_procurement_officer_retrieve_view_vendor">test_invoice_procurement_officer_retrieve_view_vendor() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_retrieve_view_invalid_http_method">test_invoice_retrieve_view_invalid_http_method() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_retrieve_view_invalid_token">test_invoice_retrieve_view_invalid_token() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_retrieve_view_other_vendor">test_invoice_retrieve_view_other_vendor() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_retrieve_view_procurement_officer">test_invoice_retrieve_view_procurement_officer() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_retrieve_view_unauthenticated">test_invoice_retrieve_view_unauthenticated() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_retrieve_view_vendor_own_item">test_invoice_retrieve_view_vendor_own_item() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_update_view_invalid_data">test_invoice_update_view_invalid_data() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_update_view_invalid_http_method">test_invoice_update_view_invalid_http_method() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_update_view_invalid_token">test_invoice_update_view_invalid_token() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_update_view_missing_data">test_invoice_update_view_missing_data() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_update_view_other_vendor">test_invoice_update_view_other_vendor() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_update_view_procurement_officer">test_invoice_update_view_procurement_officer() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_update_view_unauthenticated">test_invoice_update_view_unauthenticated() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_update_view_vendor_own_item">test_invoice_update_view_vendor_own_item() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_vendor_rating_view_invalid_data">test_invoice_vendor_rating_view_invalid_data() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_vendor_rating_view_invalid_http_method">test_invoice_vendor_rating_view_invalid_http_method() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_vendor_rating_view_invalid_token">test_invoice_vendor_rating_view_invalid_token() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_vendor_rating_view_missing_data">test_invoice_vendor_rating_view_missing_data() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_vendor_rating_view_other_procurement_officer">test_invoice_vendor_rating_view_other_procurement_officer() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_vendor_rating_view_procurement_officer">test_invoice_vendor_rating_view_procurement_officer() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_vendor_rating_view_unauthenticated">test_invoice_vendor_rating_view_unauthenticated() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_vendor_rating_view_unpaid">test_invoice_vendor_rating_view_unpaid() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_vendor_rating_view_vendor">test_invoice_vendor_rating_view_vendor() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_vendor_rating_view_vendor_rated">test_invoice_vendor_rating_view_vendor_rated() (logistics.tests.InvoiceTests method)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.tests.InvoiceTests.test_invoice_vendpr_rating_view_invalid_rating">test_invoice_vendpr_rating_view_invalid_rating() (logistics.tests.InvoiceTests method)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.tests.VendorListViewTests.test_no_vendors">test_no_vendors() (accounts.tests.VendorListViewTests method)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.tests.TokenViewTests.test_obtain_token">test_obtain_token() (accounts.tests.TokenViewTests method)</a>
 </li>
+      <li><a href="modules/accounts.html#accounts.tests.TokenViewTests.test_obtain_token_with_invalid_credentials">test_obtain_token_with_invalid_credentials() (accounts.tests.TokenViewTests method)</a>
+</li>
+      <li><a href="modules/accounts.html#accounts.tests.TokenViewTests.test_obtain_token_with_missing_credentials">test_obtain_token_with_missing_credentials() (accounts.tests.TokenViewTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_classical_eoq">test_optimized_inventory_classical_eoq() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_existing_optimized_inventory">test_optimized_inventory_create_view_existing_optimized_inventory() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_invalid_data">test_optimized_inventory_create_view_invalid_data() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_invalid_http_method">test_optimized_inventory_create_view_invalid_http_method() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_invalid_token">test_optimized_inventory_create_view_invalid_token() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_missing_data">test_optimized_inventory_create_view_missing_data() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_other_procurement_officer">test_optimized_inventory_create_view_other_procurement_officer() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_procurement_officer">test_optimized_inventory_create_view_procurement_officer() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_read_only_fields">test_optimized_inventory_create_view_read_only_fields() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_unauthenticated">test_optimized_inventory_create_view_unauthenticated() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_vendor">test_optimized_inventory_create_view_vendor() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_invalid_http_method">test_optimized_inventory_delete_view_invalid_http_method() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_invalid_token">test_optimized_inventory_delete_view_invalid_token() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_other_procurement_officer">test_optimized_inventory_delete_view_other_procurement_officer() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_procurement_officer">test_optimized_inventory_delete_view_procurement_officer() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_unauthenticated">test_optimized_inventory_delete_view_unauthenticated() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_vendor">test_optimized_inventory_delete_view_vendor() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_eoq_for_limited_storage">test_optimized_inventory_eoq_for_limited_storage() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_eoq_for_perishable_items">test_optimized_inventory_eoq_for_perishable_items() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_eoq_with_rop">test_optimized_inventory_eoq_with_rop() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_holding_cost_equals_0">test_optimized_inventory_holding_cost_equals_0() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_invalid_http_method">test_optimized_inventory_retrieve_view_invalid_http_method() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_invalid_token">test_optimized_inventory_retrieve_view_invalid_token() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_other_procurement_officer">test_optimized_inventory_retrieve_view_other_procurement_officer() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_procurement_officer">test_optimized_inventory_retrieve_view_procurement_officer() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_unauthenticated">test_optimized_inventory_retrieve_view_unauthenticated() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_vendor">test_optimized_inventory_retrieve_view_vendor() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_invalid_data">test_optimized_inventory_update_view_invalid_data() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_invalid_http_method">test_optimized_inventory_update_view_invalid_http_method() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_invalid_token">test_optimized_inventory_update_view_invalid_token() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_missing_data">test_optimized_inventory_update_view_missing_data() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_other_procurement_officer">test_optimized_inventory_update_view_other_procurement_officer() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_procurement_officer">test_optimized_inventory_update_view_procurement_officer() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_unauthenticated">test_optimized_inventory_update_view_unauthenticated() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
+      <li><a href="modules/inventory.html#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_vendor">test_optimized_inventory_update_view_vendor() (inventory.tests.OptimizedInventoryViewsTests method)</a>
+</li>
       <li><a href="modules/accounts.html#accounts.tests.PasswordResetConfirmViewTests.test_password_reset_confirm_successful">test_password_reset_confirm_successful() (accounts.tests.PasswordResetConfirmViewTests method)</a>
+</li>
+      <li><a href="modules/accounts.html#accounts.tests.PasswordResetConfirmViewTests.test_password_reset_confirm_with_authenticated_user">test_password_reset_confirm_with_authenticated_user() (accounts.tests.PasswordResetConfirmViewTests method)</a>
+</li>
+      <li><a href="modules/accounts.html#accounts.tests.PasswordResetConfirmViewTests.test_password_reset_confirm_with_invalid_http_method">test_password_reset_confirm_with_invalid_http_method() (accounts.tests.PasswordResetConfirmViewTests method)</a>
+</li>
+      <li><a href="modules/accounts.html#accounts.tests.PasswordResetConfirmViewTests.test_password_reset_confirm_with_invalid_payload">test_password_reset_confirm_with_invalid_payload() (accounts.tests.PasswordResetConfirmViewTests method)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.tests.PasswordResetConfirmViewTests.test_password_reset_confirm_with_invalid_token">test_password_reset_confirm_with_invalid_token() (accounts.tests.PasswordResetConfirmViewTests method)</a>
 </li>
+      <li><a href="modules/accounts.html#accounts.tests.PasswordResetConfirmViewTests.test_password_reset_confirm_with_invalid_user">test_password_reset_confirm_with_invalid_user() (accounts.tests.PasswordResetConfirmViewTests method)</a>
+</li>
       <li><a href="modules/accounts.html#accounts.tests.PasswordResetConfirmViewTests.test_password_reset_confirm_with_mismatched_passwords">test_password_reset_confirm_with_mismatched_passwords() (accounts.tests.PasswordResetConfirmViewTests method)</a>
+</li>
+      <li><a href="modules/accounts.html#accounts.tests.PasswordResetViewTests.test_password_reset_successful">test_password_reset_successful() (accounts.tests.PasswordResetViewTests method)</a>
+</li>
+      <li><a href="modules/accounts.html#accounts.tests.PasswordResetViewTests.test_password_reset_with_authenticated_user">test_password_reset_with_authenticated_user() (accounts.tests.PasswordResetViewTests method)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.tests.PasswordResetViewTests.test_password_reset_with_invalid_email">test_password_reset_with_invalid_email() (accounts.tests.PasswordResetViewTests method)</a>
 </li>
+      <li><a href="modules/accounts.html#accounts.tests.PasswordResetViewTests.test_password_reset_with_invalid_http_method">test_password_reset_with_invalid_http_method() (accounts.tests.PasswordResetViewTests method)</a>
+</li>
+      <li><a href="modules/accounts.html#accounts.tests.PasswordResetViewTests.test_password_reset_with_invalid_payload">test_password_reset_with_invalid_payload() (accounts.tests.PasswordResetViewTests method)</a>
+</li>
+      <li><a href="modules/accounts.html#accounts.tests.PasswordResetViewTests.test_password_reset_with_missing_email">test_password_reset_with_missing_email() (accounts.tests.PasswordResetViewTests method)</a>
+</li>
+      <li><a href="modules/accounts.html#accounts.tests.PasswordResetViewTests.test_password_reset_with_unregistered_email">test_password_reset_with_unregistered_email() (accounts.tests.PasswordResetViewTests method)</a>
+</li>
+      <li><a href="modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_procurement_officer_dashboard_view">test_procurement_officer_dashboard_view() (dashboard.tests.DashboardViewsTests method)</a>
+</li>
+      <li><a href="modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_procurement_officer_dashboard_view_admin">test_procurement_officer_dashboard_view_admin() (dashboard.tests.DashboardViewsTests method)</a>
+</li>
+      <li><a href="modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_procurement_officer_dashboard_view_invalid_http_method">test_procurement_officer_dashboard_view_invalid_http_method() (dashboard.tests.DashboardViewsTests method)</a>
+</li>
+      <li><a href="modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_procurement_officer_dashboard_view_invalid_token">test_procurement_officer_dashboard_view_invalid_token() (dashboard.tests.DashboardViewsTests method)</a>
+</li>
+      <li><a href="modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_procurement_officer_dashboard_view_unauthenticated">test_procurement_officer_dashboard_view_unauthenticated() (dashboard.tests.DashboardViewsTests method)</a>
+</li>
+      <li><a href="modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_procurement_officer_dashboard_view_vendor">test_procurement_officer_dashboard_view_vendor() (dashboard.tests.DashboardViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_list_view_invalid_http_method">test_purchase_order_list_view_invalid_http_method() (purchase.tests.PurchaseOrderViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_list_view_invalid_token">test_purchase_order_list_view_invalid_token() (purchase.tests.PurchaseOrderViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_list_view_procurement_officer">test_purchase_order_list_view_procurement_officer() (purchase.tests.PurchaseOrderViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_list_view_unauthenticated">test_purchase_order_list_view_unauthenticated() (purchase.tests.PurchaseOrderViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_list_view_vendor">test_purchase_order_list_view_vendor() (purchase.tests.PurchaseOrderViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_list_view_invalid_http_method">test_purchase_order_vendor_list_view_invalid_http_method() (purchase.tests.PurchaseOrderViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_list_view_invalid_token">test_purchase_order_vendor_list_view_invalid_token() (purchase.tests.PurchaseOrderViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_list_view_procurement_officer">test_purchase_order_vendor_list_view_procurement_officer() (purchase.tests.PurchaseOrderViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_list_view_unauthenticated">test_purchase_order_vendor_list_view_unauthenticated() (purchase.tests.PurchaseOrderViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_list_view_vendor">test_purchase_order_vendor_list_view_vendor() (purchase.tests.PurchaseOrderViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_delivered_to_delivered">test_purchase_order_vendor_status_view_delivered_to_delivered() (purchase.tests.PurchaseOrderViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_delivered_to_pending">test_purchase_order_vendor_status_view_delivered_to_pending() (purchase.tests.PurchaseOrderViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_delivered_to_shipped">test_purchase_order_vendor_status_view_delivered_to_shipped() (purchase.tests.PurchaseOrderViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_invalid_data">test_purchase_order_vendor_status_view_invalid_data() (purchase.tests.PurchaseOrderViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_invalid_http_method">test_purchase_order_vendor_status_view_invalid_http_method() (purchase.tests.PurchaseOrderViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_invalid_token">test_purchase_order_vendor_status_view_invalid_token() (purchase.tests.PurchaseOrderViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_missing_data">test_purchase_order_vendor_status_view_missing_data() (purchase.tests.PurchaseOrderViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_pending_to_delivered">test_purchase_order_vendor_status_view_pending_to_delivered() (purchase.tests.PurchaseOrderViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_pending_to_pending">test_purchase_order_vendor_status_view_pending_to_pending() (purchase.tests.PurchaseOrderViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_pending_to_shipped">test_purchase_order_vendor_status_view_pending_to_shipped() (purchase.tests.PurchaseOrderViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_procurement_officer">test_purchase_order_vendor_status_view_procurement_officer() (purchase.tests.PurchaseOrderViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_shipped_to_delivered">test_purchase_order_vendor_status_view_shipped_to_delivered() (purchase.tests.PurchaseOrderViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_shipped_to_pending">test_purchase_order_vendor_status_view_shipped_to_pending() (purchase.tests.PurchaseOrderViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_shipped_to_shipped">test_purchase_order_vendor_status_view_shipped_to_shipped() (purchase.tests.PurchaseOrderViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_unauthenticated">test_purchase_order_vendor_status_view_unauthenticated() (purchase.tests.PurchaseOrderViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseOrderViewsTests.test_purchase_order_vendor_status_view_vendor">test_purchase_order_vendor_status_view_vendor() (purchase.tests.PurchaseOrderViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_create_view_invalid_data">test_purchase_requisition_create_view_invalid_data() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_create_view_invalid_http_method">test_purchase_requisition_create_view_invalid_http_method() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_create_view_invalid_token">test_purchase_requisition_create_view_invalid_token() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_create_view_missing_data">test_purchase_requisition_create_view_missing_data() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_create_view_one_to_one_inventory">test_purchase_requisition_create_view_one_to_one_inventory() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_create_view_other_inventory">test_purchase_requisition_create_view_other_inventory() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_create_view_procurement_officer">test_purchase_requisition_create_view_procurement_officer() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_create_view_unauthenticated">test_purchase_requisition_create_view_unauthenticated() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_create_view_vendor">test_purchase_requisition_create_view_vendor() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_delete_view_invalid_http_method">test_purchase_requisition_delete_view_invalid_http_method() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_delete_view_invalid_token">test_purchase_requisition_delete_view_invalid_token() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_delete_view_other_procurement_officer">test_purchase_requisition_delete_view_other_procurement_officer() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_delete_view_procurement_officer_own_item">test_purchase_requisition_delete_view_procurement_officer_own_item() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_delete_view_status_approved">test_purchase_requisition_delete_view_status_approved() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_delete_view_status_rejected">test_purchase_requisition_delete_view_status_rejected() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_delete_view_unauthenticated">test_purchase_requisition_delete_view_unauthenticated() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_delete_view_vendor">test_purchase_requisition_delete_view_vendor() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_list_view_invalid_http_method">test_purchase_requisition_list_view_invalid_http_method() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_list_view_invalid_token">test_purchase_requisition_list_view_invalid_token() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_list_view_procurement_officer">test_purchase_requisition_list_view_procurement_officer() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_list_view_unauthenticated">test_purchase_requisition_list_view_unauthenticated() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_list_view_vendor">test_purchase_requisition_list_view_vendor() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_retrieve_view_invalid_http_method">test_purchase_requisition_retrieve_view_invalid_http_method() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_retrieve_view_invalid_token">test_purchase_requisition_retrieve_view_invalid_token() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_retrieve_view_other_procurement_officer">test_purchase_requisition_retrieve_view_other_procurement_officer() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_retrieve_view_procurement_officer_own_item">test_purchase_requisition_retrieve_view_procurement_officer_own_item() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_retrieve_view_unauthenticated">test_purchase_requisition_retrieve_view_unauthenticated() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_retrieve_view_vendor">test_purchase_requisition_retrieve_view_vendor() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_update_view_invalid_data">test_purchase_requisition_update_view_invalid_data() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_update_view_invalid_http_method">test_purchase_requisition_update_view_invalid_http_method() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_update_view_invalid_token">test_purchase_requisition_update_view_invalid_token() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_update_view_missing_data">test_purchase_requisition_update_view_missing_data() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_update_view_other_procurement_officer">test_purchase_requisition_update_view_other_procurement_officer() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_update_view_procurement_officer_own_item">test_purchase_requisition_update_view_procurement_officer_own_item() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_update_view_status_approved">test_purchase_requisition_update_view_status_approved() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_update_view_status_rejected">test_purchase_requisition_update_view_status_rejected() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_update_view_unauthenticated">test_purchase_requisition_update_view_unauthenticated() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_update_view_vendor">test_purchase_requisition_update_view_vendor() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_vendor_list_view_invalid_http_method">test_purchase_requisition_vendor_list_view_invalid_http_method() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_vendor_list_view_invalid_token">test_purchase_requisition_vendor_list_view_invalid_token() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_vendor_list_view_procurement_officer">test_purchase_requisition_vendor_list_view_procurement_officer() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_vendor_list_view_unauthenticated">test_purchase_requisition_vendor_list_view_unauthenticated() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.PurchaseRequisitionViewsTests.test_purchase_requisition_vendor_list_view_vendor">test_purchase_requisition_vendor_list_view_vendor() (purchase.tests.PurchaseRequisitionViewsTests method)</a>
+</li>
       <li><a href="modules/accounts.html#accounts.tests.TokenViewTests.test_refresh_token">test_refresh_token() (accounts.tests.TokenViewTests method)</a>
 </li>
-      <li><a href="modules/accounts.html#accounts.tests.RegisterViewTests.test_register_procurement_officer_user">test_register_procurement_officer_user() (accounts.tests.RegisterViewTests method)</a>
+      <li><a href="modules/accounts.html#accounts.tests.TokenViewTests.test_refresh_token_which_was_used_previously">test_refresh_token_which_was_used_previously() (accounts.tests.TokenViewTests method)</a>
 </li>
-      <li><a href="modules/accounts.html#accounts.tests.RegisterViewTests.test_register_user_with_invalid_email">test_register_user_with_invalid_email() (accounts.tests.RegisterViewTests method)</a>
+      <li><a href="modules/accounts.html#accounts.tests.TokenViewTests.test_refresh_token_with_blacklisted_token">test_refresh_token_with_blacklisted_token() (accounts.tests.TokenViewTests method)</a>
 </li>
-      <li><a href="modules/accounts.html#accounts.tests.RegisterViewTests.test_register_user_with_invalid_phone_number">test_register_user_with_invalid_phone_number() (accounts.tests.RegisterViewTests method)</a>
+      <li><a href="modules/accounts.html#accounts.tests.TokenViewTests.test_refresh_token_with_expired_token">test_refresh_token_with_expired_token() (accounts.tests.TokenViewTests method)</a>
 </li>
-      <li><a href="modules/accounts.html#accounts.tests.RegisterViewTests.test_register_user_with_password_mismatch">test_register_user_with_password_mismatch() (accounts.tests.RegisterViewTests method)</a>
+      <li><a href="modules/accounts.html#accounts.tests.TokenViewTests.test_refresh_token_with_invalid_token">test_refresh_token_with_invalid_token() (accounts.tests.TokenViewTests method)</a>
 </li>
-      <li><a href="modules/accounts.html#accounts.tests.RegisterViewTests.test_register_vendor_user">test_register_vendor_user() (accounts.tests.RegisterViewTests method)</a>
+      <li><a href="modules/accounts.html#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_procurement_officer_user">test_register_procurement_officer_user() (accounts.tests.ProcurementOfficerRegisterViewTests method)</a>
+</li>
+      <li><a href="modules/accounts.html#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_authenticated_user">test_register_user_with_authenticated_user() (accounts.tests.ProcurementOfficerRegisterViewTests method)</a>
+
+      <ul>
+        <li><a href="modules/accounts.html#accounts.tests.VendorRegisterViewTests.test_register_user_with_authenticated_user">(accounts.tests.VendorRegisterViewTests method)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/accounts.html#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_existing_email">test_register_user_with_existing_email() (accounts.tests.ProcurementOfficerRegisterViewTests method)</a>
+
+      <ul>
+        <li><a href="modules/accounts.html#accounts.tests.VendorRegisterViewTests.test_register_user_with_existing_email">(accounts.tests.VendorRegisterViewTests method)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/accounts.html#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_existing_gstin">test_register_user_with_existing_gstin() (accounts.tests.ProcurementOfficerRegisterViewTests method)</a>
+
+      <ul>
+        <li><a href="modules/accounts.html#accounts.tests.VendorRegisterViewTests.test_register_user_with_existing_gstin">(accounts.tests.VendorRegisterViewTests method)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/accounts.html#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_existing_username">test_register_user_with_existing_username() (accounts.tests.ProcurementOfficerRegisterViewTests method)</a>
+
+      <ul>
+        <li><a href="modules/accounts.html#accounts.tests.VendorRegisterViewTests.test_register_user_with_existing_username">(accounts.tests.VendorRegisterViewTests method)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/accounts.html#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_invalid_email">test_register_user_with_invalid_email() (accounts.tests.ProcurementOfficerRegisterViewTests method)</a>
+
+      <ul>
+        <li><a href="modules/accounts.html#accounts.tests.VendorRegisterViewTests.test_register_user_with_invalid_email">(accounts.tests.VendorRegisterViewTests method)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/accounts.html#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_invalid_gstin">test_register_user_with_invalid_gstin() (accounts.tests.ProcurementOfficerRegisterViewTests method)</a>
+
+      <ul>
+        <li><a href="modules/accounts.html#accounts.tests.VendorRegisterViewTests.test_register_user_with_invalid_gstin">(accounts.tests.VendorRegisterViewTests method)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/accounts.html#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_invalid_http_method">test_register_user_with_invalid_http_method() (accounts.tests.ProcurementOfficerRegisterViewTests method)</a>
+
+      <ul>
+        <li><a href="modules/accounts.html#accounts.tests.VendorRegisterViewTests.test_register_user_with_invalid_http_method">(accounts.tests.VendorRegisterViewTests method)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/accounts.html#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_invalid_payload">test_register_user_with_invalid_payload() (accounts.tests.ProcurementOfficerRegisterViewTests method)</a>
+
+      <ul>
+        <li><a href="modules/accounts.html#accounts.tests.VendorRegisterViewTests.test_register_user_with_invalid_payload">(accounts.tests.VendorRegisterViewTests method)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/accounts.html#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_invalid_phone_number">test_register_user_with_invalid_phone_number() (accounts.tests.ProcurementOfficerRegisterViewTests method)</a>
+
+      <ul>
+        <li><a href="modules/accounts.html#accounts.tests.VendorRegisterViewTests.test_register_user_with_invalid_phone_number">(accounts.tests.VendorRegisterViewTests method)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/accounts.html#accounts.tests.ProcurementOfficerRegisterViewTests.test_register_user_with_password_mismatch">test_register_user_with_password_mismatch() (accounts.tests.ProcurementOfficerRegisterViewTests method)</a>
+
+      <ul>
+        <li><a href="modules/accounts.html#accounts.tests.VendorRegisterViewTests.test_register_user_with_password_mismatch">(accounts.tests.VendorRegisterViewTests method)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/accounts.html#accounts.tests.VendorRegisterViewTests.test_register_vendor_user">test_register_vendor_user() (accounts.tests.VendorRegisterViewTests method)</a>
 </li>
       <li>
     test_scripts
@@ -1336,19 +2612,175 @@
 </li>
       <li><a href="modules/accounts.html#accounts.tests.VendorListViewTests.test_sufficient_permissions_procurement_officer">test_sufficient_permissions_procurement_officer() (accounts.tests.VendorListViewTests method)</a>
 </li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_create_view_insufficient_quantity_fulfilled">test_supplier_bid_create_view_insufficient_quantity_fulfilled() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_create_view_invalid_data">test_supplier_bid_create_view_invalid_data() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_create_view_invalid_http_method">test_supplier_bid_create_view_invalid_http_method() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_create_view_invalid_token">test_supplier_bid_create_view_invalid_token() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_create_view_missing_data">test_supplier_bid_create_view_missing_data() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_create_view_procurement_officer">test_supplier_bid_create_view_procurement_officer() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_create_view_requisition_bidded">test_supplier_bid_create_view_requisition_bidded() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_create_view_requisition_status_approved">test_supplier_bid_create_view_requisition_status_approved() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_create_view_requisition_status_rejected">test_supplier_bid_create_view_requisition_status_rejected() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_create_view_unauthenticated">test_supplier_bid_create_view_unauthenticated() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_create_view_vendor">test_supplier_bid_create_view_vendor() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_delete_view_invalid_http_method">test_supplier_bid_delete_view_invalid_http_method() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_delete_view_invalid_token">test_supplier_bid_delete_view_invalid_token() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_delete_view_other_vendor">test_supplier_bid_delete_view_other_vendor() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_delete_view_procurement_officer">test_supplier_bid_delete_view_procurement_officer() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_delete_view_status_accepted">test_supplier_bid_delete_view_status_accepted() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_delete_view_status_rejected">test_supplier_bid_delete_view_status_rejected() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_delete_view_unauthenticated">test_supplier_bid_delete_view_unauthenticated() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_delete_view_vendor_own_item">test_supplier_bid_delete_view_vendor_own_item() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_list_view_invalid_http_method">test_supplier_bid_list_view_invalid_http_method() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_list_view_invalid_token">test_supplier_bid_list_view_invalid_token() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_list_view_procurement_officer">test_supplier_bid_list_view_procurement_officer() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_list_view_unauthenticated">test_supplier_bid_list_view_unauthenticated() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_list_view_vendor">test_supplier_bid_list_view_vendor() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_prcourement_officer_bid_accept">test_supplier_bid_prcourement_officer_bid_accept() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_prcourement_officer_bid_reject">test_supplier_bid_prcourement_officer_bid_reject() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_list_view_invalid_http_method">test_supplier_bid_procurement_officer_list_view_invalid_http_method() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_list_view_invalid_token">test_supplier_bid_procurement_officer_list_view_invalid_token() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_list_view_procurement_officer">test_supplier_bid_procurement_officer_list_view_procurement_officer() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_list_view_unauthenticated">test_supplier_bid_procurement_officer_list_view_unauthenticated() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_list_view_vendor">test_supplier_bid_procurement_officer_list_view_vendor() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_rank_view_insufficient_bids">test_supplier_bid_procurement_officer_rank_view_insufficient_bids() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_rank_view_invalid_data">test_supplier_bid_procurement_officer_rank_view_invalid_data() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_rank_view_invalid_http_method">test_supplier_bid_procurement_officer_rank_view_invalid_http_method() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_rank_view_invalid_token">test_supplier_bid_procurement_officer_rank_view_invalid_token() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_rank_view_missing_data">test_supplier_bid_procurement_officer_rank_view_missing_data() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_rank_view_procurement_officer">test_supplier_bid_procurement_officer_rank_view_procurement_officer() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_rank_view_sum_not_1">test_supplier_bid_procurement_officer_rank_view_sum_not_1() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_rank_view_unauthenticated">test_supplier_bid_procurement_officer_rank_view_unauthenticated() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_rank_view_vendor">test_supplier_bid_procurement_officer_rank_view_vendor() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_retrieve_view_invalid_http_method">test_supplier_bid_procurement_officer_retrieve_view_invalid_http_method() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_retrieve_view_invalid_token">test_supplier_bid_procurement_officer_retrieve_view_invalid_token() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_retrieve_view_other_procurement_officer">test_supplier_bid_procurement_officer_retrieve_view_other_procurement_officer() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_retrieve_view_procurement_officer_own_item">test_supplier_bid_procurement_officer_retrieve_view_procurement_officer_own_item() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_retrieve_view_unauthenticated">test_supplier_bid_procurement_officer_retrieve_view_unauthenticated() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_retrieve_view_vendor">test_supplier_bid_procurement_officer_retrieve_view_vendor() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_status_accept">test_supplier_bid_procurement_officer_status_accept() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_status_invalid_data">test_supplier_bid_procurement_officer_status_invalid_data() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_status_invalid_http_method">test_supplier_bid_procurement_officer_status_invalid_http_method() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_status_invalid_token">test_supplier_bid_procurement_officer_status_invalid_token() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_status_missing_data">test_supplier_bid_procurement_officer_status_missing_data() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_status_procurement_officer">test_supplier_bid_procurement_officer_status_procurement_officer() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_status_reject">test_supplier_bid_procurement_officer_status_reject() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_status_unauthenticated">test_supplier_bid_procurement_officer_status_unauthenticated() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_procurement_officer_status_vendor">test_supplier_bid_procurement_officer_status_vendor() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_retrieve_view_invalid_http_method">test_supplier_bid_retrieve_view_invalid_http_method() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_retrieve_view_invalid_token">test_supplier_bid_retrieve_view_invalid_token() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_retrieve_view_other_vendor">test_supplier_bid_retrieve_view_other_vendor() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_retrieve_view_procurement_officer">test_supplier_bid_retrieve_view_procurement_officer() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_retrieve_view_unauthenticated">test_supplier_bid_retrieve_view_unauthenticated() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_retrieve_view_vendor_own_item">test_supplier_bid_retrieve_view_vendor_own_item() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_update_view_invalid_data">test_supplier_bid_update_view_invalid_data() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_update_view_invalid_http_method">test_supplier_bid_update_view_invalid_http_method() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_update_view_invalid_token">test_supplier_bid_update_view_invalid_token() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_update_view_missing_data">test_supplier_bid_update_view_missing_data() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_update_view_other_vendor">test_supplier_bid_update_view_other_vendor() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_update_view_procurement_officer">test_supplier_bid_update_view_procurement_officer() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_update_view_status_accepted">test_supplier_bid_update_view_status_accepted() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_update_view_status_rejected">test_supplier_bid_update_view_status_rejected() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_update_view_unauthenticated">test_supplier_bid_update_view_unauthenticated() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
+      <li><a href="modules/purchase.html#purchase.tests.SupplierBidViewsTests.test_supplier_bid_update_view_vendor_own_item">test_supplier_bid_update_view_vendor_own_item() (purchase.tests.SupplierBidViewsTests method)</a>
+</li>
       <li><a href="modules/accounts.html#accounts.tests.UserProfileViewTests.test_update_procurement_officer_profile">test_update_procurement_officer_profile() (accounts.tests.UserProfileViewTests method)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.tests.UserProfileViewTests.test_update_user_profile_unauthenticated">test_update_user_profile_unauthenticated() (accounts.tests.UserProfileViewTests method)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.tests.UserProfileViewTests.test_update_vendor_profile">test_update_vendor_profile() (accounts.tests.UserProfileViewTests method)</a>
 </li>
-      <li><a href="modules/accounts.html#accounts.tests.VendorListViewTests.test_vendor_list">test_vendor_list() (accounts.tests.VendorListViewTests method)</a>
+      <li><a href="modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_vendor_dashboard_view">test_vendor_dashboard_view() (dashboard.tests.DashboardViewsTests method)</a>
 </li>
-      <li><a href="modules/accounts.html#accounts.tests.TokenViewTests.test_verify_token">test_verify_token() (accounts.tests.TokenViewTests method)</a>
+      <li><a href="modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_vendor_dashboard_view_admin">test_vendor_dashboard_view_admin() (dashboard.tests.DashboardViewsTests method)</a>
+</li>
+      <li><a href="modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_vendor_dashboard_view_invalid_http_method">test_vendor_dashboard_view_invalid_http_method() (dashboard.tests.DashboardViewsTests method)</a>
+</li>
+      <li><a href="modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_vendor_dashboard_view_invalid_token">test_vendor_dashboard_view_invalid_token() (dashboard.tests.DashboardViewsTests method)</a>
+</li>
+      <li><a href="modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_vendor_dashboard_view_procurement_officer">test_vendor_dashboard_view_procurement_officer() (dashboard.tests.DashboardViewsTests method)</a>
+</li>
+      <li><a href="modules/dashboard.html#dashboard.tests.DashboardViewsTests.test_vendor_dashboard_view_unauthenticated">test_vendor_dashboard_view_unauthenticated() (dashboard.tests.DashboardViewsTests method)</a>
+</li>
+      <li><a href="modules/accounts.html#accounts.tests.VendorListViewTests.test_vendor_list">test_vendor_list() (accounts.tests.VendorListViewTests method)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.serializers.ProfileSerializer.to_representation">to_representation() (accounts.serializers.ProfileSerializer method)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.tests.TokenViewTests">TokenViewTests (class in accounts.tests)</a>
+</li>
+      <li><a href="modules/logistics.html#logistics.models.Invoice.total_amount">total_amount (logistics.models.Invoice attribute)</a>
+</li>
+      <li><a href="modules/accounts.html#accounts.models.Vendor.total_ratings">total_ratings (accounts.models.Vendor attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1359,8 +2791,6 @@
       <li><a href="modules/inventory.html#inventory.models.Inventory.unit_price">unit_price (inventory.models.Inventory attribute)</a>
 
       <ul>
-        <li><a href="modules/purchase.html#purchase.models.PurchaseOrder.unit_price">(purchase.models.PurchaseOrder attribute)</a>
-</li>
         <li><a href="modules/purchase.html#purchase.models.SupplierBid.unit_price">(purchase.models.SupplierBid attribute)</a>
 </li>
       </ul></li>
@@ -1379,13 +2809,17 @@
 </li>
         <li><a href="modules/inventory.html#inventory.views.OptimizedInventoryUpdateAPIView.update">(inventory.views.OptimizedInventoryUpdateAPIView method)</a>
 </li>
+        <li><a href="modules/purchase.html#purchase.views.PurchaseOrderVendorStatusView.update">(purchase.views.PurchaseOrderVendorStatusView method)</a>
+</li>
+        <li><a href="modules/purchase.html#purchase.views.SupplierBidProcurementOfficerStatusView.update">(purchase.views.SupplierBidProcurementOfficerStatusView method)</a>
+</li>
       </ul></li>
       <li><a href="modules/accounts.html#accounts.views.UpdateUserProfileView">UpdateUserProfileView (class in accounts.views)</a>
 </li>
-      <li><a href="modules/purchase.html#purchase.models.PurchaseRequisition.urgency_level">urgency_level (purchase.models.PurchaseRequisition attribute)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/purchase.html#purchase.models.PurchaseRequisition.urgency_level">urgency_level (purchase.models.PurchaseRequisition attribute)</a>
+</li>
       <li><a href="modules/purchase.html#purchase.models.PurchaseRequisition.URGENCY_LEVEL_CHOICES">URGENCY_LEVEL_CHOICES (purchase.models.PurchaseRequisition attribute)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.models.Vendor.user">user (accounts.models.Vendor attribute)</a>
@@ -1425,6 +2859,8 @@
 </li>
         <li><a href="modules/accounts.html#accounts.serializers.VendorRegisterSerializer.validate">(accounts.serializers.VendorRegisterSerializer method)</a>
 </li>
+        <li><a href="modules/purchase.html#purchase.serializers.SupplierBidProcurementOfficerSerializer.validate">(purchase.serializers.SupplierBidProcurementOfficerSerializer method)</a>
+</li>
       </ul></li>
       <li><a href="modules/accounts.html#accounts.serializers.PasswordResetSerializer.validate_email">validate_email() (accounts.serializers.PasswordResetSerializer method)</a>
 </li>
@@ -1440,15 +2876,19 @@
 </li>
       <li><a href="modules/accounts.html#accounts.models.Vendor.vendor_certified">vendor_certified (accounts.models.Vendor attribute)</a>
 </li>
-      <li><a href="modules/accounts.html#accounts.models.Vendor.vendor_name">vendor_name (accounts.models.Vendor attribute)</a>
+      <li><a href="modules/logistics.html#logistics.models.Invoice.vendor_rated">vendor_rated (logistics.models.Invoice attribute)</a>
+</li>
+      <li><a href="modules/accounts.html#accounts.models.Vendor.vendor_rating">vendor_rating (accounts.models.Vendor attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/accounts.html#accounts.models.Vendor.vendor_rating">vendor_rating (accounts.models.Vendor attribute)</a>
-</li>
       <li><a href="modules/accounts.html#accounts.models.Vendor.vendor_type">vendor_type (accounts.models.Vendor attribute)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.models.Vendor.VENDOR_TYPE_CHOICES">VENDOR_TYPE_CHOICES (accounts.models.Vendor attribute)</a>
+</li>
+      <li><a href="modules/dashboard.html#dashboard.serializers.VendorDashboardSerializer">VendorDashboardSerializer (class in dashboard.serializers)</a>
+</li>
+      <li><a href="modules/dashboard.html#dashboard.views.VendorDashboardView">VendorDashboardView (class in dashboard.views)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.serializers.VendorInfoSerializer">VendorInfoSerializer (class in accounts.serializers)</a>
 </li>
@@ -1461,6 +2901,8 @@
       <li><a href="modules/accounts.html#accounts.serializers.VendorRegisterSerializer.Meta">VendorRegisterSerializer.Meta (class in accounts.serializers)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.views.VendorRegisterView">VendorRegisterView (class in accounts.views)</a>
+</li>
+      <li><a href="modules/accounts.html#accounts.tests.VendorRegisterViewTests">VendorRegisterViewTests (class in accounts.tests)</a>
 </li>
       <li><a href="modules/accounts.html#accounts.serializers.VendorSerializer">VendorSerializer (class in accounts.serializers)</a>
 </li>

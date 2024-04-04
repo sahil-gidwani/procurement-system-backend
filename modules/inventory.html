@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>inventory package &mdash; Smart Procurement System 1.0 documentation</title>
+  <title>inventory package &mdash; ProcurEase 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
@@ -32,7 +32,7 @@
           
           
           <a href="../index.html" class="icon icon-home">
-            Smart Procurement System
+            ProcurEase
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -137,7 +137,7 @@
 </li>
 <li><a class="reference internal" href="#inventory.serializers.OptimizedInventorySerializer"><code class="docutils literal notranslate"><span class="pre">OptimizedInventorySerializer</span></code></a><ul>
 <li><a class="reference internal" href="#inventory.serializers.OptimizedInventorySerializer.Meta"><code class="docutils literal notranslate"><span class="pre">OptimizedInventorySerializer.Meta</span></code></a><ul>
-<li><a class="reference internal" href="#inventory.serializers.OptimizedInventorySerializer.Meta.exclude"><code class="docutils literal notranslate"><span class="pre">OptimizedInventorySerializer.Meta.exclude</span></code></a></li>
+<li><a class="reference internal" href="#inventory.serializers.OptimizedInventorySerializer.Meta.fields"><code class="docutils literal notranslate"><span class="pre">OptimizedInventorySerializer.Meta.fields</span></code></a></li>
 <li><a class="reference internal" href="#inventory.serializers.OptimizedInventorySerializer.Meta.model"><code class="docutils literal notranslate"><span class="pre">OptimizedInventorySerializer.Meta.model</span></code></a></li>
 <li><a class="reference internal" href="#inventory.serializers.OptimizedInventorySerializer.Meta.read_only_fields"><code class="docutils literal notranslate"><span class="pre">OptimizedInventorySerializer.Meta.read_only_fields</span></code></a></li>
 </ul>
@@ -148,28 +148,123 @@
 </li>
 <li><a class="reference internal" href="#module-inventory.tasks">inventory.tasks module</a></li>
 <li><a class="reference internal" href="#module-inventory.tests">inventory.tests module</a><ul>
-<li><a class="reference internal" href="#inventory.tests.InventoryModelsTestCase"><code class="docutils literal notranslate"><span class="pre">InventoryModelsTestCase</span></code></a><ul>
-<li><a class="reference internal" href="#inventory.tests.InventoryModelsTestCase.setUp"><code class="docutils literal notranslate"><span class="pre">InventoryModelsTestCase.setUp()</span></code></a></li>
-<li><a class="reference internal" href="#inventory.tests.InventoryModelsTestCase.test_create_historical_inventory_on_create"><code class="docutils literal notranslate"><span class="pre">InventoryModelsTestCase.test_create_historical_inventory_on_create()</span></code></a></li>
-<li><a class="reference internal" href="#inventory.tests.InventoryModelsTestCase.test_create_historical_inventory_on_update"><code class="docutils literal notranslate"><span class="pre">InventoryModelsTestCase.test_create_historical_inventory_on_update()</span></code></a></li>
-<li><a class="reference internal" href="#inventory.tests.InventoryModelsTestCase.test_delete_historical_inventory_on_inventory_delete"><code class="docutils literal notranslate"><span class="pre">InventoryModelsTestCase.test_delete_historical_inventory_on_inventory_delete()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.ARIMAForecastViewsTests"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastViewsTests</span></code></a><ul>
+<li><a class="reference internal" href="#inventory.tests.ARIMAForecastViewsTests.setUp"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastViewsTests.setUp()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_insufficient_data"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastViewsTests.test_arima_forecast_view_insufficient_data()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_invalid_data"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastViewsTests.test_arima_forecast_view_invalid_data()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_invalid_file_type"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastViewsTests.test_arima_forecast_view_invalid_file_type()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_invalid_http_method"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastViewsTests.test_arima_forecast_view_invalid_http_method()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_invalid_token"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastViewsTests.test_arima_forecast_view_invalid_token()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_other_procurement_officer"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastViewsTests.test_arima_forecast_view_other_procurement_officer()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_procurement_officer"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastViewsTests.test_arima_forecast_view_procurement_officer()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_sufficient_data"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastViewsTests.test_arima_forecast_view_sufficient_data()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_unauthenticated"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastViewsTests.test_arima_forecast_view_unauthenticated()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_upload_csv_insufficient_data"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastViewsTests.test_arima_forecast_view_upload_csv_insufficient_data()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_upload_csv_sufficient_data"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastViewsTests.test_arima_forecast_view_upload_csv_sufficient_data()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_vendor"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastViewsTests.test_arima_forecast_view_vendor()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#inventory.tests.InventoryViewsTestCase"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTestCase</span></code></a><ul>
-<li><a class="reference internal" href="#inventory.tests.InventoryViewsTestCase.create_inventory_item"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTestCase.create_inventory_item()</span></code></a></li>
-<li><a class="reference internal" href="#inventory.tests.InventoryViewsTestCase.setUp"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTestCase.setUp()</span></code></a></li>
-<li><a class="reference internal" href="#inventory.tests.InventoryViewsTestCase.test_historical_inventory_list_view_procurement_officer"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTestCase.test_historical_inventory_list_view_procurement_officer()</span></code></a></li>
-<li><a class="reference internal" href="#inventory.tests.InventoryViewsTestCase.test_historical_inventory_list_view_procurement_officer_invalid_inventory_id"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTestCase.test_historical_inventory_list_view_procurement_officer_invalid_inventory_id()</span></code></a></li>
-<li><a class="reference internal" href="#inventory.tests.InventoryViewsTestCase.test_inventory_create_view_procurement_officer"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTestCase.test_inventory_create_view_procurement_officer()</span></code></a></li>
-<li><a class="reference internal" href="#inventory.tests.InventoryViewsTestCase.test_inventory_create_view_vendor"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTestCase.test_inventory_create_view_vendor()</span></code></a></li>
-<li><a class="reference internal" href="#inventory.tests.InventoryViewsTestCase.test_inventory_delete_view_procurement_officer_other_item"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTestCase.test_inventory_delete_view_procurement_officer_other_item()</span></code></a></li>
-<li><a class="reference internal" href="#inventory.tests.InventoryViewsTestCase.test_inventory_delete_view_procurement_officer_own_item"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTestCase.test_inventory_delete_view_procurement_officer_own_item()</span></code></a></li>
-<li><a class="reference internal" href="#inventory.tests.InventoryViewsTestCase.test_inventory_list_view_procurement_officer"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTestCase.test_inventory_list_view_procurement_officer()</span></code></a></li>
-<li><a class="reference internal" href="#inventory.tests.InventoryViewsTestCase.test_inventory_list_view_vendor"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTestCase.test_inventory_list_view_vendor()</span></code></a></li>
-<li><a class="reference internal" href="#inventory.tests.InventoryViewsTestCase.test_inventory_retrieve_view_procurement_officer"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTestCase.test_inventory_retrieve_view_procurement_officer()</span></code></a></li>
-<li><a class="reference internal" href="#inventory.tests.InventoryViewsTestCase.test_inventory_retrieve_view_vendor"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTestCase.test_inventory_retrieve_view_vendor()</span></code></a></li>
-<li><a class="reference internal" href="#inventory.tests.InventoryViewsTestCase.test_inventory_update_view_procurement_officer_other_item"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTestCase.test_inventory_update_view_procurement_officer_other_item()</span></code></a></li>
-<li><a class="reference internal" href="#inventory.tests.InventoryViewsTestCase.test_inventory_update_view_procurement_officer_own_item"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTestCase.test_inventory_update_view_procurement_officer_own_item()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.HistoricalInventoryViewsTests"><code class="docutils literal notranslate"><span class="pre">HistoricalInventoryViewsTests</span></code></a><ul>
+<li><a class="reference internal" href="#inventory.tests.HistoricalInventoryViewsTests.setUp"><code class="docutils literal notranslate"><span class="pre">HistoricalInventoryViewsTests.setUp()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.HistoricalInventoryViewsTests.test_historical_inventory_list_view_invalid_http_method"><code class="docutils literal notranslate"><span class="pre">HistoricalInventoryViewsTests.test_historical_inventory_list_view_invalid_http_method()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.HistoricalInventoryViewsTests.test_historical_inventory_list_view_invalid_token"><code class="docutils literal notranslate"><span class="pre">HistoricalInventoryViewsTests.test_historical_inventory_list_view_invalid_token()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.HistoricalInventoryViewsTests.test_historical_inventory_list_view_other_procurement_officer"><code class="docutils literal notranslate"><span class="pre">HistoricalInventoryViewsTests.test_historical_inventory_list_view_other_procurement_officer()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.HistoricalInventoryViewsTests.test_historical_inventory_list_view_procurement_officer"><code class="docutils literal notranslate"><span class="pre">HistoricalInventoryViewsTests.test_historical_inventory_list_view_procurement_officer()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.HistoricalInventoryViewsTests.test_historical_inventory_list_view_unauthenticated"><code class="docutils literal notranslate"><span class="pre">HistoricalInventoryViewsTests.test_historical_inventory_list_view_unauthenticated()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.HistoricalInventoryViewsTests.test_historical_inventory_list_view_vendor"><code class="docutils literal notranslate"><span class="pre">HistoricalInventoryViewsTests.test_historical_inventory_list_view_vendor()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#inventory.tests.InventorySignalsTests"><code class="docutils literal notranslate"><span class="pre">InventorySignalsTests</span></code></a><ul>
+<li><a class="reference internal" href="#inventory.tests.InventorySignalsTests.setUp"><code class="docutils literal notranslate"><span class="pre">InventorySignalsTests.setUp()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventorySignalsTests.test_create_historical_inventory_on_create"><code class="docutils literal notranslate"><span class="pre">InventorySignalsTests.test_create_historical_inventory_on_create()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventorySignalsTests.test_create_historical_inventory_on_update_with_demand"><code class="docutils literal notranslate"><span class="pre">InventorySignalsTests.test_create_historical_inventory_on_update_with_demand()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventorySignalsTests.test_create_historical_inventory_on_update_without_demand"><code class="docutils literal notranslate"><span class="pre">InventorySignalsTests.test_create_historical_inventory_on_update_without_demand()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventorySignalsTests.test_delete_historical_inventory_on_inventory_delete"><code class="docutils literal notranslate"><span class="pre">InventorySignalsTests.test_delete_historical_inventory_on_inventory_delete()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests</span></code></a><ul>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.setUp"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.setUp()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_historical_inventory_list_view_invalid_http_method"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_historical_inventory_list_view_invalid_http_method()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_historical_inventory_list_view_invalid_token"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_historical_inventory_list_view_invalid_token()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_historical_inventory_list_view_other_procurement_officer"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_historical_inventory_list_view_other_procurement_officer()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_historical_inventory_list_view_procurement_officer"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_historical_inventory_list_view_procurement_officer()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_historical_inventory_list_view_unauthenticated"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_historical_inventory_list_view_unauthenticated()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_historical_inventory_list_view_vendor"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_historical_inventory_list_view_vendor()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_create_view_invalid_data"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_create_view_invalid_data()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_create_view_invalid_http_method"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_create_view_invalid_http_method()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_create_view_invalid_token"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_create_view_invalid_token()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_create_view_missing_data"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_create_view_missing_data()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_create_view_procurement_officer"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_create_view_procurement_officer()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_create_view_unauthenticated"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_create_view_unauthenticated()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_create_view_vendor"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_create_view_vendor()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_delete_view_invalid_http_method"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_delete_view_invalid_http_method()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_delete_view_invalid_token"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_delete_view_invalid_token()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_delete_view_other_procurement_officer"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_delete_view_other_procurement_officer()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_delete_view_procurement_officer_own_item"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_delete_view_procurement_officer_own_item()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_delete_view_unauthenticated"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_delete_view_unauthenticated()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_delete_view_vendor"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_delete_view_vendor()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_list_view_invalid_http_method"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_list_view_invalid_http_method()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_list_view_invalid_token"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_list_view_invalid_token()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_list_view_procurement_officer"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_list_view_procurement_officer()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_list_view_unauthenticated"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_list_view_unauthenticated()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_list_view_vendor"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_list_view_vendor()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_retrieve_view_invalid_http_method"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_retrieve_view_invalid_http_method()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_retrieve_view_invalid_token"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_retrieve_view_invalid_token()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_retrieve_view_other_procurement_officer"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_retrieve_view_other_procurement_officer()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_retrieve_view_procurement_officer_own_item"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_retrieve_view_procurement_officer_own_item()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_retrieve_view_unauthenticated"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_retrieve_view_unauthenticated()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_retrieve_view_vendor"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_retrieve_view_vendor()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_update_view_invalid_data"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_update_view_invalid_data()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_update_view_invalid_http_method"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_update_view_invalid_http_method()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_update_view_invalid_token"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_update_view_invalid_token()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_update_view_missing_data"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_update_view_missing_data()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_update_view_other_procurement_officer"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_update_view_other_procurement_officer()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_update_view_procurement_officer_own_item"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_update_view_procurement_officer_own_item()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_update_view_unauthenticated"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_update_view_unauthenticated()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.InventoryViewsTests.test_inventory_update_view_vendor"><code class="docutils literal notranslate"><span class="pre">InventoryViewsTests.test_inventory_update_view_vendor()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests</span></code></a><ul>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.setUp"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.setUp()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_classical_eoq"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_classical_eoq()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_existing_optimized_inventory"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_create_view_existing_optimized_inventory()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_invalid_data"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_create_view_invalid_data()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_invalid_http_method"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_create_view_invalid_http_method()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_invalid_token"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_create_view_invalid_token()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_missing_data"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_create_view_missing_data()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_other_procurement_officer"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_create_view_other_procurement_officer()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_procurement_officer"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_create_view_procurement_officer()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_read_only_fields"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_create_view_read_only_fields()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_unauthenticated"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_create_view_unauthenticated()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_vendor"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_create_view_vendor()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_invalid_http_method"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_invalid_http_method()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_invalid_token"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_invalid_token()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_other_procurement_officer"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_other_procurement_officer()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_procurement_officer"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_procurement_officer()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_unauthenticated"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_unauthenticated()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_vendor"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_vendor()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_eoq_for_limited_storage"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_eoq_for_limited_storage()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_eoq_for_perishable_items"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_eoq_for_perishable_items()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_eoq_with_rop"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_eoq_with_rop()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_holding_cost_equals_0"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_holding_cost_equals_0()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_invalid_http_method"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_invalid_http_method()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_invalid_token"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_invalid_token()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_other_procurement_officer"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_other_procurement_officer()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_procurement_officer"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_procurement_officer()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_unauthenticated"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_unauthenticated()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_vendor"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_vendor()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_invalid_data"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_update_view_invalid_data()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_invalid_http_method"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_update_view_invalid_http_method()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_invalid_token"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_update_view_invalid_token()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_missing_data"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_update_view_missing_data()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_other_procurement_officer"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_update_view_other_procurement_officer()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_procurement_officer"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_update_view_procurement_officer()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_unauthenticated"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_update_view_unauthenticated()</span></code></a></li>
+<li><a class="reference internal" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_vendor"><code class="docutils literal notranslate"><span class="pre">OptimizedInventoryViewsTests.test_optimized_inventory_update_view_vendor()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#inventory.tests.SetupClass"><code class="docutils literal notranslate"><span class="pre">SetupClass</span></code></a><ul>
+<li><a class="reference internal" href="#inventory.tests.SetupClass.setUp"><code class="docutils literal notranslate"><span class="pre">SetupClass.setUp()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -177,7 +272,6 @@
 <li><a class="reference internal" href="#module-inventory.urls">inventory.urls module</a></li>
 <li><a class="reference internal" href="#module-inventory.views">inventory.views module</a><ul>
 <li><a class="reference internal" href="#inventory.views.ARIMAForecastAPIView"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastAPIView</span></code></a><ul>
-<li><a class="reference internal" href="#inventory.views.ARIMAForecastAPIView.dispatch"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastAPIView.dispatch()</span></code></a></li>
 <li><a class="reference internal" href="#inventory.views.ARIMAForecastAPIView.get"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastAPIView.get()</span></code></a></li>
 <li><a class="reference internal" href="#inventory.views.ARIMAForecastAPIView.get_queryset"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastAPIView.get_queryset()</span></code></a></li>
 <li><a class="reference internal" href="#inventory.views.ARIMAForecastAPIView.permission_classes"><code class="docutils literal notranslate"><span class="pre">ARIMAForecastAPIView.permission_classes</span></code></a></li>
@@ -199,7 +293,6 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#inventory.views.HistoricalInventoryListView"><code class="docutils literal notranslate"><span class="pre">HistoricalInventoryListView</span></code></a><ul>
-<li><a class="reference internal" href="#inventory.views.HistoricalInventoryListView.dispatch"><code class="docutils literal notranslate"><span class="pre">HistoricalInventoryListView.dispatch()</span></code></a></li>
 <li><a class="reference internal" href="#inventory.views.HistoricalInventoryListView.get_queryset"><code class="docutils literal notranslate"><span class="pre">HistoricalInventoryListView.get_queryset()</span></code></a></li>
 <li><a class="reference internal" href="#inventory.views.HistoricalInventoryListView.permission_classes"><code class="docutils literal notranslate"><span class="pre">HistoricalInventoryListView.permission_classes</span></code></a></li>
 <li><a class="reference internal" href="#inventory.views.HistoricalInventoryListView.serializer_class"><code class="docutils literal notranslate"><span class="pre">HistoricalInventoryListView.serializer_class</span></code></a></li>
@@ -258,7 +351,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">Smart Procurement System</a>
+          <a href="../index.html">ProcurEase</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -740,8 +833,8 @@ object the first time, the query is executed.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="reference internal" href="../_modules/inventory/serializers.html#OptimizedInventorySerializer.Meta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.serializers.OptimizedInventorySerializer.Meta" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="inventory.serializers.OptimizedInventorySerializer.Meta.exclude">
-<span class="sig-name descname"><span class="pre">exclude</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['inventory']</span></em><a class="headerlink" href="#inventory.serializers.OptimizedInventorySerializer.Meta.exclude" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="inventory.serializers.OptimizedInventorySerializer.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'__all__'</span></em><a class="headerlink" href="#inventory.serializers.OptimizedInventorySerializer.Meta.fields" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -752,7 +845,7 @@ object the first time, the query is executed.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="inventory.serializers.OptimizedInventorySerializer.Meta.read_only_fields">
-<span class="sig-name descname"><span class="pre">read_only_fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['eoq',</span> <span class="pre">'safety_stock',</span> <span class="pre">'reorder_point']</span></em><a class="headerlink" href="#inventory.serializers.OptimizedInventorySerializer.Meta.read_only_fields" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">read_only_fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['eoq',</span> <span class="pre">'safety_stock',</span> <span class="pre">'reorder_point',</span> <span class="pre">'inventory']</span></em><a class="headerlink" href="#inventory.serializers.OptimizedInventorySerializer.Meta.read_only_fields" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -766,106 +859,549 @@ object the first time, the query is executed.</p>
 <section id="module-inventory.tests">
 <span id="inventory-tests-module"></span><h2>inventory.tests module<a class="headerlink" href="#module-inventory.tests" title="Link to this heading"></a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="inventory.tests.InventoryModelsTestCase">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.tests.</span></span><span class="sig-name descname"><span class="pre">InventoryModelsTestCase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryModelsTestCase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryModelsTestCase" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<dt class="sig sig-object py" id="inventory.tests.ARIMAForecastViewsTests">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.tests.</span></span><span class="sig-name descname"><span class="pre">ARIMAForecastViewsTests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#ARIMAForecastViewsTests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.ARIMAForecastViewsTests" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#inventory.tests.SetupClass" title="inventory.tests.SetupClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">SetupClass</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="inventory.tests.InventoryModelsTestCase.setUp">
-<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryModelsTestCase.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryModelsTestCase.setUp" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="inventory.tests.ARIMAForecastViewsTests.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#ARIMAForecastViewsTests.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.ARIMAForecastViewsTests.setUp" title="Link to this definition"></a></dt>
 <dd><p>Hook method for setting up the test fixture before exercising it.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="inventory.tests.InventoryModelsTestCase.test_create_historical_inventory_on_create">
-<span class="sig-name descname"><span class="pre">test_create_historical_inventory_on_create</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryModelsTestCase.test_create_historical_inventory_on_create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryModelsTestCase.test_create_historical_inventory_on_create" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_insufficient_data">
+<span class="sig-name descname"><span class="pre">test_arima_forecast_view_insufficient_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#ARIMAForecastViewsTests.test_arima_forecast_view_insufficient_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_insufficient_data" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="inventory.tests.InventoryModelsTestCase.test_create_historical_inventory_on_update">
-<span class="sig-name descname"><span class="pre">test_create_historical_inventory_on_update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryModelsTestCase.test_create_historical_inventory_on_update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryModelsTestCase.test_create_historical_inventory_on_update" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_invalid_data">
+<span class="sig-name descname"><span class="pre">test_arima_forecast_view_invalid_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#ARIMAForecastViewsTests.test_arima_forecast_view_invalid_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_invalid_data" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="inventory.tests.InventoryModelsTestCase.test_delete_historical_inventory_on_inventory_delete">
-<span class="sig-name descname"><span class="pre">test_delete_historical_inventory_on_inventory_delete</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryModelsTestCase.test_delete_historical_inventory_on_inventory_delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryModelsTestCase.test_delete_historical_inventory_on_inventory_delete" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_invalid_file_type">
+<span class="sig-name descname"><span class="pre">test_arima_forecast_view_invalid_file_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#ARIMAForecastViewsTests.test_arima_forecast_view_invalid_file_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_invalid_file_type" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_invalid_http_method">
+<span class="sig-name descname"><span class="pre">test_arima_forecast_view_invalid_http_method</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#ARIMAForecastViewsTests.test_arima_forecast_view_invalid_http_method"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_invalid_http_method" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_invalid_token">
+<span class="sig-name descname"><span class="pre">test_arima_forecast_view_invalid_token</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#ARIMAForecastViewsTests.test_arima_forecast_view_invalid_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_invalid_token" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_other_procurement_officer">
+<span class="sig-name descname"><span class="pre">test_arima_forecast_view_other_procurement_officer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#ARIMAForecastViewsTests.test_arima_forecast_view_other_procurement_officer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_other_procurement_officer" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_procurement_officer">
+<span class="sig-name descname"><span class="pre">test_arima_forecast_view_procurement_officer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#ARIMAForecastViewsTests.test_arima_forecast_view_procurement_officer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_procurement_officer" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_sufficient_data">
+<span class="sig-name descname"><span class="pre">test_arima_forecast_view_sufficient_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#ARIMAForecastViewsTests.test_arima_forecast_view_sufficient_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_sufficient_data" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_unauthenticated">
+<span class="sig-name descname"><span class="pre">test_arima_forecast_view_unauthenticated</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#ARIMAForecastViewsTests.test_arima_forecast_view_unauthenticated"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_unauthenticated" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_upload_csv_insufficient_data">
+<span class="sig-name descname"><span class="pre">test_arima_forecast_view_upload_csv_insufficient_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#ARIMAForecastViewsTests.test_arima_forecast_view_upload_csv_insufficient_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_upload_csv_insufficient_data" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_upload_csv_sufficient_data">
+<span class="sig-name descname"><span class="pre">test_arima_forecast_view_upload_csv_sufficient_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#ARIMAForecastViewsTests.test_arima_forecast_view_upload_csv_sufficient_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_upload_csv_sufficient_data" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_vendor">
+<span class="sig-name descname"><span class="pre">test_arima_forecast_view_vendor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#ARIMAForecastViewsTests.test_arima_forecast_view_vendor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.ARIMAForecastViewsTests.test_arima_forecast_view_vendor" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTestCase">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.tests.</span></span><span class="sig-name descname"><span class="pre">InventoryViewsTestCase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTestCase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTestCase" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<dt class="sig sig-object py" id="inventory.tests.HistoricalInventoryViewsTests">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.tests.</span></span><span class="sig-name descname"><span class="pre">HistoricalInventoryViewsTests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#HistoricalInventoryViewsTests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.HistoricalInventoryViewsTests" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#inventory.tests.SetupClass" title="inventory.tests.SetupClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">SetupClass</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTestCase.create_inventory_item">
-<span class="sig-name descname"><span class="pre">create_inventory_item</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTestCase.create_inventory_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTestCase.create_inventory_item" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTestCase.setUp">
-<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTestCase.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTestCase.setUp" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="inventory.tests.HistoricalInventoryViewsTests.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#HistoricalInventoryViewsTests.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.HistoricalInventoryViewsTests.setUp" title="Link to this definition"></a></dt>
 <dd><p>Hook method for setting up the test fixture before exercising it.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTestCase.test_historical_inventory_list_view_procurement_officer">
-<span class="sig-name descname"><span class="pre">test_historical_inventory_list_view_procurement_officer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTestCase.test_historical_inventory_list_view_procurement_officer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTestCase.test_historical_inventory_list_view_procurement_officer" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="inventory.tests.HistoricalInventoryViewsTests.test_historical_inventory_list_view_invalid_http_method">
+<span class="sig-name descname"><span class="pre">test_historical_inventory_list_view_invalid_http_method</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#HistoricalInventoryViewsTests.test_historical_inventory_list_view_invalid_http_method"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.HistoricalInventoryViewsTests.test_historical_inventory_list_view_invalid_http_method" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTestCase.test_historical_inventory_list_view_procurement_officer_invalid_inventory_id">
-<span class="sig-name descname"><span class="pre">test_historical_inventory_list_view_procurement_officer_invalid_inventory_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTestCase.test_historical_inventory_list_view_procurement_officer_invalid_inventory_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTestCase.test_historical_inventory_list_view_procurement_officer_invalid_inventory_id" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="inventory.tests.HistoricalInventoryViewsTests.test_historical_inventory_list_view_invalid_token">
+<span class="sig-name descname"><span class="pre">test_historical_inventory_list_view_invalid_token</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#HistoricalInventoryViewsTests.test_historical_inventory_list_view_invalid_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.HistoricalInventoryViewsTests.test_historical_inventory_list_view_invalid_token" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTestCase.test_inventory_create_view_procurement_officer">
-<span class="sig-name descname"><span class="pre">test_inventory_create_view_procurement_officer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTestCase.test_inventory_create_view_procurement_officer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTestCase.test_inventory_create_view_procurement_officer" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="inventory.tests.HistoricalInventoryViewsTests.test_historical_inventory_list_view_other_procurement_officer">
+<span class="sig-name descname"><span class="pre">test_historical_inventory_list_view_other_procurement_officer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#HistoricalInventoryViewsTests.test_historical_inventory_list_view_other_procurement_officer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.HistoricalInventoryViewsTests.test_historical_inventory_list_view_other_procurement_officer" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTestCase.test_inventory_create_view_vendor">
-<span class="sig-name descname"><span class="pre">test_inventory_create_view_vendor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTestCase.test_inventory_create_view_vendor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTestCase.test_inventory_create_view_vendor" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="inventory.tests.HistoricalInventoryViewsTests.test_historical_inventory_list_view_procurement_officer">
+<span class="sig-name descname"><span class="pre">test_historical_inventory_list_view_procurement_officer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#HistoricalInventoryViewsTests.test_historical_inventory_list_view_procurement_officer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.HistoricalInventoryViewsTests.test_historical_inventory_list_view_procurement_officer" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTestCase.test_inventory_delete_view_procurement_officer_other_item">
-<span class="sig-name descname"><span class="pre">test_inventory_delete_view_procurement_officer_other_item</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTestCase.test_inventory_delete_view_procurement_officer_other_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTestCase.test_inventory_delete_view_procurement_officer_other_item" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="inventory.tests.HistoricalInventoryViewsTests.test_historical_inventory_list_view_unauthenticated">
+<span class="sig-name descname"><span class="pre">test_historical_inventory_list_view_unauthenticated</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#HistoricalInventoryViewsTests.test_historical_inventory_list_view_unauthenticated"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.HistoricalInventoryViewsTests.test_historical_inventory_list_view_unauthenticated" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTestCase.test_inventory_delete_view_procurement_officer_own_item">
-<span class="sig-name descname"><span class="pre">test_inventory_delete_view_procurement_officer_own_item</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTestCase.test_inventory_delete_view_procurement_officer_own_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTestCase.test_inventory_delete_view_procurement_officer_own_item" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="inventory.tests.HistoricalInventoryViewsTests.test_historical_inventory_list_view_vendor">
+<span class="sig-name descname"><span class="pre">test_historical_inventory_list_view_vendor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#HistoricalInventoryViewsTests.test_historical_inventory_list_view_vendor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.HistoricalInventoryViewsTests.test_historical_inventory_list_view_vendor" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="inventory.tests.InventorySignalsTests">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.tests.</span></span><span class="sig-name descname"><span class="pre">InventorySignalsTests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventorySignalsTests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventorySignalsTests" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#inventory.tests.SetupClass" title="inventory.tests.SetupClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">SetupClass</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventorySignalsTests.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventorySignalsTests.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventorySignalsTests.setUp" title="Link to this definition"></a></dt>
+<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventorySignalsTests.test_create_historical_inventory_on_create">
+<span class="sig-name descname"><span class="pre">test_create_historical_inventory_on_create</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventorySignalsTests.test_create_historical_inventory_on_create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventorySignalsTests.test_create_historical_inventory_on_create" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTestCase.test_inventory_list_view_procurement_officer">
-<span class="sig-name descname"><span class="pre">test_inventory_list_view_procurement_officer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTestCase.test_inventory_list_view_procurement_officer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTestCase.test_inventory_list_view_procurement_officer" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="inventory.tests.InventorySignalsTests.test_create_historical_inventory_on_update_with_demand">
+<span class="sig-name descname"><span class="pre">test_create_historical_inventory_on_update_with_demand</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventorySignalsTests.test_create_historical_inventory_on_update_with_demand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventorySignalsTests.test_create_historical_inventory_on_update_with_demand" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTestCase.test_inventory_list_view_vendor">
-<span class="sig-name descname"><span class="pre">test_inventory_list_view_vendor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTestCase.test_inventory_list_view_vendor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTestCase.test_inventory_list_view_vendor" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="inventory.tests.InventorySignalsTests.test_create_historical_inventory_on_update_without_demand">
+<span class="sig-name descname"><span class="pre">test_create_historical_inventory_on_update_without_demand</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventorySignalsTests.test_create_historical_inventory_on_update_without_demand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventorySignalsTests.test_create_historical_inventory_on_update_without_demand" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTestCase.test_inventory_retrieve_view_procurement_officer">
-<span class="sig-name descname"><span class="pre">test_inventory_retrieve_view_procurement_officer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTestCase.test_inventory_retrieve_view_procurement_officer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTestCase.test_inventory_retrieve_view_procurement_officer" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="inventory.tests.InventorySignalsTests.test_delete_historical_inventory_on_inventory_delete">
+<span class="sig-name descname"><span class="pre">test_delete_historical_inventory_on_inventory_delete</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventorySignalsTests.test_delete_historical_inventory_on_inventory_delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventorySignalsTests.test_delete_historical_inventory_on_inventory_delete" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.tests.</span></span><span class="sig-name descname"><span class="pre">InventoryViewsTests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#inventory.tests.SetupClass" title="inventory.tests.SetupClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">SetupClass</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.setUp" title="Link to this definition"></a></dt>
+<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_historical_inventory_list_view_invalid_http_method">
+<span class="sig-name descname"><span class="pre">test_historical_inventory_list_view_invalid_http_method</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_historical_inventory_list_view_invalid_http_method"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_historical_inventory_list_view_invalid_http_method" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTestCase.test_inventory_retrieve_view_vendor">
-<span class="sig-name descname"><span class="pre">test_inventory_retrieve_view_vendor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTestCase.test_inventory_retrieve_view_vendor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTestCase.test_inventory_retrieve_view_vendor" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_historical_inventory_list_view_invalid_token">
+<span class="sig-name descname"><span class="pre">test_historical_inventory_list_view_invalid_token</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_historical_inventory_list_view_invalid_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_historical_inventory_list_view_invalid_token" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTestCase.test_inventory_update_view_procurement_officer_other_item">
-<span class="sig-name descname"><span class="pre">test_inventory_update_view_procurement_officer_other_item</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTestCase.test_inventory_update_view_procurement_officer_other_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTestCase.test_inventory_update_view_procurement_officer_other_item" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_historical_inventory_list_view_other_procurement_officer">
+<span class="sig-name descname"><span class="pre">test_historical_inventory_list_view_other_procurement_officer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_historical_inventory_list_view_other_procurement_officer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_historical_inventory_list_view_other_procurement_officer" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTestCase.test_inventory_update_view_procurement_officer_own_item">
-<span class="sig-name descname"><span class="pre">test_inventory_update_view_procurement_officer_own_item</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTestCase.test_inventory_update_view_procurement_officer_own_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTestCase.test_inventory_update_view_procurement_officer_own_item" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_historical_inventory_list_view_procurement_officer">
+<span class="sig-name descname"><span class="pre">test_historical_inventory_list_view_procurement_officer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_historical_inventory_list_view_procurement_officer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_historical_inventory_list_view_procurement_officer" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_historical_inventory_list_view_unauthenticated">
+<span class="sig-name descname"><span class="pre">test_historical_inventory_list_view_unauthenticated</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_historical_inventory_list_view_unauthenticated"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_historical_inventory_list_view_unauthenticated" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_historical_inventory_list_view_vendor">
+<span class="sig-name descname"><span class="pre">test_historical_inventory_list_view_vendor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_historical_inventory_list_view_vendor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_historical_inventory_list_view_vendor" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_create_view_invalid_data">
+<span class="sig-name descname"><span class="pre">test_inventory_create_view_invalid_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_create_view_invalid_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_create_view_invalid_data" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_create_view_invalid_http_method">
+<span class="sig-name descname"><span class="pre">test_inventory_create_view_invalid_http_method</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_create_view_invalid_http_method"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_create_view_invalid_http_method" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_create_view_invalid_token">
+<span class="sig-name descname"><span class="pre">test_inventory_create_view_invalid_token</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_create_view_invalid_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_create_view_invalid_token" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_create_view_missing_data">
+<span class="sig-name descname"><span class="pre">test_inventory_create_view_missing_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_create_view_missing_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_create_view_missing_data" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_create_view_procurement_officer">
+<span class="sig-name descname"><span class="pre">test_inventory_create_view_procurement_officer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_create_view_procurement_officer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_create_view_procurement_officer" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_create_view_unauthenticated">
+<span class="sig-name descname"><span class="pre">test_inventory_create_view_unauthenticated</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_create_view_unauthenticated"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_create_view_unauthenticated" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_create_view_vendor">
+<span class="sig-name descname"><span class="pre">test_inventory_create_view_vendor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_create_view_vendor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_create_view_vendor" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_delete_view_invalid_http_method">
+<span class="sig-name descname"><span class="pre">test_inventory_delete_view_invalid_http_method</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_delete_view_invalid_http_method"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_delete_view_invalid_http_method" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_delete_view_invalid_token">
+<span class="sig-name descname"><span class="pre">test_inventory_delete_view_invalid_token</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_delete_view_invalid_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_delete_view_invalid_token" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_delete_view_other_procurement_officer">
+<span class="sig-name descname"><span class="pre">test_inventory_delete_view_other_procurement_officer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_delete_view_other_procurement_officer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_delete_view_other_procurement_officer" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_delete_view_procurement_officer_own_item">
+<span class="sig-name descname"><span class="pre">test_inventory_delete_view_procurement_officer_own_item</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_delete_view_procurement_officer_own_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_delete_view_procurement_officer_own_item" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_delete_view_unauthenticated">
+<span class="sig-name descname"><span class="pre">test_inventory_delete_view_unauthenticated</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_delete_view_unauthenticated"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_delete_view_unauthenticated" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_delete_view_vendor">
+<span class="sig-name descname"><span class="pre">test_inventory_delete_view_vendor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_delete_view_vendor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_delete_view_vendor" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_list_view_invalid_http_method">
+<span class="sig-name descname"><span class="pre">test_inventory_list_view_invalid_http_method</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_list_view_invalid_http_method"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_list_view_invalid_http_method" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_list_view_invalid_token">
+<span class="sig-name descname"><span class="pre">test_inventory_list_view_invalid_token</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_list_view_invalid_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_list_view_invalid_token" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_list_view_procurement_officer">
+<span class="sig-name descname"><span class="pre">test_inventory_list_view_procurement_officer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_list_view_procurement_officer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_list_view_procurement_officer" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_list_view_unauthenticated">
+<span class="sig-name descname"><span class="pre">test_inventory_list_view_unauthenticated</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_list_view_unauthenticated"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_list_view_unauthenticated" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_list_view_vendor">
+<span class="sig-name descname"><span class="pre">test_inventory_list_view_vendor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_list_view_vendor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_list_view_vendor" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_retrieve_view_invalid_http_method">
+<span class="sig-name descname"><span class="pre">test_inventory_retrieve_view_invalid_http_method</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_retrieve_view_invalid_http_method"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_retrieve_view_invalid_http_method" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_retrieve_view_invalid_token">
+<span class="sig-name descname"><span class="pre">test_inventory_retrieve_view_invalid_token</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_retrieve_view_invalid_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_retrieve_view_invalid_token" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_retrieve_view_other_procurement_officer">
+<span class="sig-name descname"><span class="pre">test_inventory_retrieve_view_other_procurement_officer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_retrieve_view_other_procurement_officer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_retrieve_view_other_procurement_officer" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_retrieve_view_procurement_officer_own_item">
+<span class="sig-name descname"><span class="pre">test_inventory_retrieve_view_procurement_officer_own_item</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_retrieve_view_procurement_officer_own_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_retrieve_view_procurement_officer_own_item" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_retrieve_view_unauthenticated">
+<span class="sig-name descname"><span class="pre">test_inventory_retrieve_view_unauthenticated</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_retrieve_view_unauthenticated"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_retrieve_view_unauthenticated" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_retrieve_view_vendor">
+<span class="sig-name descname"><span class="pre">test_inventory_retrieve_view_vendor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_retrieve_view_vendor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_retrieve_view_vendor" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_update_view_invalid_data">
+<span class="sig-name descname"><span class="pre">test_inventory_update_view_invalid_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_update_view_invalid_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_update_view_invalid_data" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_update_view_invalid_http_method">
+<span class="sig-name descname"><span class="pre">test_inventory_update_view_invalid_http_method</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_update_view_invalid_http_method"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_update_view_invalid_http_method" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_update_view_invalid_token">
+<span class="sig-name descname"><span class="pre">test_inventory_update_view_invalid_token</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_update_view_invalid_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_update_view_invalid_token" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_update_view_missing_data">
+<span class="sig-name descname"><span class="pre">test_inventory_update_view_missing_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_update_view_missing_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_update_view_missing_data" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_update_view_other_procurement_officer">
+<span class="sig-name descname"><span class="pre">test_inventory_update_view_other_procurement_officer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_update_view_other_procurement_officer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_update_view_other_procurement_officer" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_update_view_procurement_officer_own_item">
+<span class="sig-name descname"><span class="pre">test_inventory_update_view_procurement_officer_own_item</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_update_view_procurement_officer_own_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_update_view_procurement_officer_own_item" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_update_view_unauthenticated">
+<span class="sig-name descname"><span class="pre">test_inventory_update_view_unauthenticated</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_update_view_unauthenticated"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_update_view_unauthenticated" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.InventoryViewsTests.test_inventory_update_view_vendor">
+<span class="sig-name descname"><span class="pre">test_inventory_update_view_vendor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#InventoryViewsTests.test_inventory_update_view_vendor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.InventoryViewsTests.test_inventory_update_view_vendor" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.tests.</span></span><span class="sig-name descname"><span class="pre">OptimizedInventoryViewsTests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#inventory.tests.SetupClass" title="inventory.tests.SetupClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">SetupClass</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.setUp" title="Link to this definition"></a></dt>
+<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_classical_eoq">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_classical_eoq</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_classical_eoq"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_classical_eoq" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_existing_optimized_inventory">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_create_view_existing_optimized_inventory</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_create_view_existing_optimized_inventory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_existing_optimized_inventory" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_invalid_data">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_create_view_invalid_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_create_view_invalid_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_invalid_data" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_invalid_http_method">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_create_view_invalid_http_method</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_create_view_invalid_http_method"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_invalid_http_method" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_invalid_token">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_create_view_invalid_token</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_create_view_invalid_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_invalid_token" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_missing_data">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_create_view_missing_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_create_view_missing_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_missing_data" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_other_procurement_officer">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_create_view_other_procurement_officer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_create_view_other_procurement_officer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_other_procurement_officer" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_procurement_officer">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_create_view_procurement_officer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_create_view_procurement_officer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_procurement_officer" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_read_only_fields">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_create_view_read_only_fields</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_create_view_read_only_fields"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_read_only_fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_unauthenticated">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_create_view_unauthenticated</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_create_view_unauthenticated"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_unauthenticated" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_vendor">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_create_view_vendor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_create_view_vendor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_create_view_vendor" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_invalid_http_method">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_delete_view_invalid_http_method</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_invalid_http_method"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_invalid_http_method" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_invalid_token">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_delete_view_invalid_token</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_invalid_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_invalid_token" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_other_procurement_officer">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_delete_view_other_procurement_officer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_other_procurement_officer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_other_procurement_officer" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_procurement_officer">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_delete_view_procurement_officer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_procurement_officer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_procurement_officer" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_unauthenticated">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_delete_view_unauthenticated</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_unauthenticated"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_unauthenticated" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_vendor">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_delete_view_vendor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_vendor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_delete_view_vendor" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_eoq_for_limited_storage">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_eoq_for_limited_storage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_eoq_for_limited_storage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_eoq_for_limited_storage" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_eoq_for_perishable_items">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_eoq_for_perishable_items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_eoq_for_perishable_items"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_eoq_for_perishable_items" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_eoq_with_rop">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_eoq_with_rop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_eoq_with_rop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_eoq_with_rop" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_holding_cost_equals_0">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_holding_cost_equals_0</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_holding_cost_equals_0"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_holding_cost_equals_0" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_invalid_http_method">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_retrieve_view_invalid_http_method</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_invalid_http_method"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_invalid_http_method" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_invalid_token">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_retrieve_view_invalid_token</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_invalid_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_invalid_token" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_other_procurement_officer">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_retrieve_view_other_procurement_officer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_other_procurement_officer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_other_procurement_officer" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_procurement_officer">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_retrieve_view_procurement_officer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_procurement_officer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_procurement_officer" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_unauthenticated">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_retrieve_view_unauthenticated</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_unauthenticated"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_unauthenticated" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_vendor">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_retrieve_view_vendor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_vendor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_retrieve_view_vendor" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_invalid_data">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_update_view_invalid_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_update_view_invalid_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_invalid_data" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_invalid_http_method">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_update_view_invalid_http_method</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_update_view_invalid_http_method"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_invalid_http_method" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_invalid_token">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_update_view_invalid_token</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_update_view_invalid_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_invalid_token" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_missing_data">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_update_view_missing_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_update_view_missing_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_missing_data" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_other_procurement_officer">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_update_view_other_procurement_officer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_update_view_other_procurement_officer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_other_procurement_officer" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_procurement_officer">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_update_view_procurement_officer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_update_view_procurement_officer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_procurement_officer" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_unauthenticated">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_update_view_unauthenticated</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_update_view_unauthenticated"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_unauthenticated" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_vendor">
+<span class="sig-name descname"><span class="pre">test_optimized_inventory_update_view_vendor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#OptimizedInventoryViewsTests.test_optimized_inventory_update_view_vendor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.OptimizedInventoryViewsTests.test_optimized_inventory_update_view_vendor" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="inventory.tests.SetupClass">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.tests.</span></span><span class="sig-name descname"><span class="pre">SetupClass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#SetupClass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.SetupClass" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="inventory.tests.SetupClass.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/tests.html#SetupClass.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.tests.SetupClass.setUp" title="Link to this definition"></a></dt>
+<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -879,13 +1415,6 @@ object the first time, the query is executed.</p>
 <dt class="sig sig-object py" id="inventory.views.ARIMAForecastAPIView">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.views.</span></span><span class="sig-name descname"><span class="pre">ARIMAForecastAPIView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#ARIMAForecastAPIView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.ARIMAForecastAPIView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">GenericAPIView</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="inventory.views.ARIMAForecastAPIView.dispatch">
-<span class="sig-name descname"><span class="pre">dispatch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#inventory.views.ARIMAForecastAPIView.dispatch" title="Link to this definition"></a></dt>
-<dd><p><cite>.dispatch()</cite> is pretty much the same as Django’s regular dispatch,
-but with extra hooks for startup, finalize, and exception handling.</p>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="inventory.views.ARIMAForecastAPIView.get">
 <span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inventory_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#ARIMAForecastAPIView.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.ARIMAForecastAPIView.get" title="Link to this definition"></a></dt>
@@ -994,13 +1523,6 @@ querysets depending on the incoming request.</p>
 <dt class="sig sig-object py" id="inventory.views.HistoricalInventoryListView">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">inventory.views.</span></span><span class="sig-name descname"><span class="pre">HistoricalInventoryListView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#HistoricalInventoryListView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.HistoricalInventoryListView" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ListAPIView</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="inventory.views.HistoricalInventoryListView.dispatch">
-<span class="sig-name descname"><span class="pre">dispatch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#inventory.views.HistoricalInventoryListView.dispatch" title="Link to this definition"></a></dt>
-<dd><p><cite>.dispatch()</cite> is pretty much the same as Django’s regular dispatch,
-but with extra hooks for startup, finalize, and exception handling.</p>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="inventory.views.HistoricalInventoryListView.get_queryset">
 <span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/inventory/views.html#HistoricalInventoryListView.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#inventory.views.HistoricalInventoryListView.get_queryset" title="Link to this definition"></a></dt>
