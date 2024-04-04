@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    path("", views.getRoutes, name="logistics_routes"),
     path(
         "inventory-receipt/list/",
         views.InventoryReceiptListView.as_view(),
@@ -26,5 +27,60 @@ urlpatterns = [
         "inventory-receipt/<int:pk>/delete/",
         views.InventoryReceiptDeleteView.as_view(),
         name="inventory_receipt_delete",
+    ),
+    path(
+        "inventory-receipt/vendor/list/",
+        views.InventoryReceiptVendorListView.as_view(),
+        name="inventory_receipt_vendor_list",
+    ),
+    path(
+        "inventory-receipt/vendor/<int:pk>/",
+        views.InventoryReceiptVendorRetrieveView.as_view(),
+        name="inventory_receipt_vendor_detail",
+    ),
+    path(
+        "invoice/list/",
+        views.InvoiceListView.as_view(),
+        name="invoice_list",
+    ),
+    path(
+        "invoice/create/<int:order_id>/",
+        views.InvoiceCreateView.as_view(),
+        name="invoice_create",
+    ),
+    path(
+        "invoice/<int:pk>/",
+        views.InvoiceRetrieveView.as_view(),
+        name="invoice_detail",
+    ),
+    path(
+        "invoice/<int:pk>/update/",
+        views.InvoiceUpdateView.as_view(),
+        name="invoice_update",
+    ),
+    path(
+        "invoice/<int:pk>/delete/",
+        views.InvoiceDeleteView.as_view(),
+        name="invoice_delete",
+    ),
+    path(
+        "invoice/procurement-officer/list/",
+        views.InvoiceProcurementOfficerListView.as_view(),
+        name="invoice_procurement_officer_list",
+    ),
+    path(
+        "invoice/procurement-officer/<int:pk>/",
+        views.InvoiceProcurementOfficerRetrieveView.as_view(),
+        name="invoice_procurement_officer_detail",
+    ),
+    path(
+        "invoice/<int:pk>/payment-status/",
+        views.InvoicePaymentStatusUpdateView.as_view(),
+        name="invoice_payment_status",
+    ),
+    path(
+        "invoice/<int:pk>/vendor-rating/",
+        views.InvoiceVendorRatingUpdateView.as_view(),
+        name="invoice_vendor_rating",
     ),
 ]

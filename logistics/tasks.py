@@ -5,6 +5,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from django.core.files.base import ContentFile
 from django.conf import settings
+from django.core.mail import send_mail
 from .models import InventoryReceipt, Invoice
 
 
@@ -74,3 +75,33 @@ def generate_report_and_save(instance_id, report_type):
 
     except Exception as e:
         return f"Error generating report: {e}"
+
+
+@shared_task
+def send_logistics_email(instance_id, type, action):
+    if type == 'inventory_receipt':
+        instance = InventoryReceipt.objects.get(id=instance_id)
+        if action not in ['created', 'updated', 'deleted']:
+            raise ValueError("Invalid action")
+        subject = f"Inventory Receipt {action.capitalize()}"
+        message = f"Dear User,\n\nThe inventory receipt with ID {instance.receipt_id} has been {action}.\n\nThank you."
+    elif type == 'invoice':
+        instance = Invoice.objects.get(id=instance_id)
+        if action not in ['created', 'updated', 'deleted', 'payment_received', 'vendor_rated']:
+            raise ValueError("Invalid action")
+        subject = f"Invoice {action.capitalize()}"
+        message = f"Dear User,\n\nThe invoice with number {instance.invoice_number} has been {action}.\n\nThank you."
+    else:
+        raise ValueError("Invalid type")
+
+    try:
+        send_mail(
+            subject,
+            message,
+            settings.EMAIL_HOST_USER,
+            [instance.order.bid.requisition.inventory.procurement_officer.email, instance.order.bid.supplier.email],
+            fail_silently=True,
+        )
+        return f"{type.capitalize()} {action} email sent successfully."
+    except Exception as e:
+        return f"Error sending email: {e}"

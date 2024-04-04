@@ -868,6 +868,327 @@ paths:
                 items:
                   $ref: '#/components/schemas/InventoryReceipt'
           description: ''
+  /logistics/inventory-receipt/vendor/{id}/:
+    get:
+      operationId: logistics_inventory_receipt_vendor_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - logistics
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryReceipt'
+          description: ''
+  /logistics/inventory-receipt/vendor/list/:
+    get:
+      operationId: logistics_inventory_receipt_vendor_list_list
+      tags:
+      - logistics
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InventoryReceipt'
+          description: ''
+  /logistics/invoice/{id}/:
+    get:
+      operationId: logistics_invoice_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - logistics
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+          description: ''
+  /logistics/invoice/{id}/delete/:
+    delete:
+      operationId: logistics_invoice_delete_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - logistics
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /logistics/invoice/{id}/payment-status/:
+    put:
+      operationId: logistics_invoice_payment_status_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - logistics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoicePaymentStatus'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/InvoicePaymentStatus'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/InvoicePaymentStatus'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoicePaymentStatus'
+          description: ''
+    patch:
+      operationId: logistics_invoice_payment_status_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - logistics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedInvoicePaymentStatus'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedInvoicePaymentStatus'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedInvoicePaymentStatus'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoicePaymentStatus'
+          description: ''
+  /logistics/invoice/{id}/update/:
+    put:
+      operationId: logistics_invoice_update_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - logistics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Invoice'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Invoice'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Invoice'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+          description: ''
+    patch:
+      operationId: logistics_invoice_update_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - logistics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedInvoice'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedInvoice'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedInvoice'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+          description: ''
+  /logistics/invoice/{id}/vendor-rating/:
+    put:
+      operationId: logistics_invoice_vendor_rating_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - logistics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceVendorRating'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/InvoiceVendorRating'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/InvoiceVendorRating'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceVendorRating'
+          description: ''
+    patch:
+      operationId: logistics_invoice_vendor_rating_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - logistics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedInvoiceVendorRating'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedInvoiceVendorRating'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedInvoiceVendorRating'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceVendorRating'
+          description: ''
+  /logistics/invoice/create/{order_id}/:
+    post:
+      operationId: logistics_invoice_create_create
+      parameters:
+      - in: path
+        name: order_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - logistics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Invoice'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Invoice'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Invoice'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+          description: ''
+  /logistics/invoice/list/:
+    get:
+      operationId: logistics_invoice_list_list
+      tags:
+      - logistics
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Invoice'
+          description: ''
+  /logistics/invoice/procurement-officer/list/:
+    get:
+      operationId: logistics_invoice_procurement_officer_list_list
+      tags:
+      - logistics
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Invoice'
+          description: ''
   /purchase/purchase-orders/list/:
     get:
       operationId: purchase_purchase_orders_list_list
@@ -1415,12 +1736,6 @@ components:
         user_registration_over_time: {}
         vendors_by_vendor_type: {}
         vendor_rating_distribution: {}
-      required:
-      - total_users
-      - user_registration_over_time
-      - users_by_role
-      - vendor_rating_distribution
-      - vendors_by_vendor_type
     BlankEnum:
       enum:
       - ''
@@ -1526,12 +1841,80 @@ components:
         inspection_report:
           type: string
           format: uri
+          readOnly: true
           nullable: true
       required:
       - id
+      - inspection_report
       - receipt_date
       - receipt_id
       - received_quantity
+    Invoice:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        invoice_number:
+          type: string
+          maxLength: 255
+        invoice_date:
+          type: string
+          format: date
+          readOnly: true
+        account_number:
+          type: string
+          maxLength: 255
+        total_amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        payment_due_date:
+          type: string
+          format: date
+        payment_mode:
+          $ref: '#/components/schemas/PaymentModeEnum'
+        payment_status:
+          allOf:
+          - $ref: '#/components/schemas/PaymentStatusEnum'
+          readOnly: true
+        invoice_report:
+          type: string
+          format: uri
+          readOnly: true
+          nullable: true
+        vendor_rated:
+          type: boolean
+          readOnly: true
+      required:
+      - account_number
+      - id
+      - invoice_date
+      - invoice_number
+      - invoice_report
+      - payment_due_date
+      - payment_mode
+      - payment_status
+      - total_amount
+      - vendor_rated
+    InvoicePaymentStatus:
+      type: object
+      properties:
+        payment_status:
+          $ref: '#/components/schemas/PaymentStatusEnum'
+    InvoiceVendorRating:
+      type: object
+      properties:
+        vendor_rating:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,1}(?:\.\d{0,2})?$
+        vendor_rated:
+          type: boolean
+          readOnly: true
+      required:
+      - vendor_rated
+      - vendor_rating
     MyTokenObtainPair:
       type: object
       properties:
@@ -1699,7 +2082,60 @@ components:
         inspection_report:
           type: string
           format: uri
+          readOnly: true
           nullable: true
+    PatchedInvoice:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        invoice_number:
+          type: string
+          maxLength: 255
+        invoice_date:
+          type: string
+          format: date
+          readOnly: true
+        account_number:
+          type: string
+          maxLength: 255
+        total_amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        payment_due_date:
+          type: string
+          format: date
+        payment_mode:
+          $ref: '#/components/schemas/PaymentModeEnum'
+        payment_status:
+          allOf:
+          - $ref: '#/components/schemas/PaymentStatusEnum'
+          readOnly: true
+        invoice_report:
+          type: string
+          format: uri
+          readOnly: true
+          nullable: true
+        vendor_rated:
+          type: boolean
+          readOnly: true
+    PatchedInvoicePaymentStatus:
+      type: object
+      properties:
+        payment_status:
+          $ref: '#/components/schemas/PaymentStatusEnum'
+    PatchedInvoiceVendorRating:
+      type: object
+      properties:
+        vendor_rating:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,1}(?:\.\d{0,2})?$
+        vendor_rated:
+          type: boolean
+          readOnly: true
     PatchedOptimizedInventory:
       type: object
       properties:
@@ -1881,6 +2317,26 @@ components:
       properties:
         status:
           $ref: '#/components/schemas/StatusC90Enum'
+    PaymentModeEnum:
+      enum:
+      - credit
+      - debit
+      - cash
+      - cheque
+      type: string
+      description: |-
+        * `credit` - Credit
+        * `debit` - Debit
+        * `cash` - Cash
+        * `cheque` - Cheque
+    PaymentStatusEnum:
+      enum:
+      - paid
+      - pending
+      type: string
+      description: |-
+        * `paid` - Paid
+        * `pending` - Pending
     ProcurementOfficerDashboard:
       type: object
       properties:
@@ -1898,19 +2354,6 @@ components:
         purchase_requisitions_over_time: {}
         purchase_requisitions_age: {}
         quantity_requested_distribution: {}
-      required:
-      - inventory_age
-      - inventory_items_added
-      - purchase_requisitions_age
-      - purchase_requisitions_by_status
-      - purchase_requisitions_over_time
-      - quantity_requested_distribution
-      - stock_quantity_distribution
-      - top_items_stock_quantity
-      - top_items_total_price
-      - top_items_unit_price
-      - total_inventory_items
-      - total_purchase_requisitions
     ProcurementOfficerRegister:
       type: object
       properties:
@@ -2384,15 +2827,6 @@ components:
         top_orders_order_amount: {}
         purchase_orders_by_status: {}
         purchase_orders_over_time: {}
-      required:
-      - purchase_orders_by_status
-      - purchase_orders_over_time
-      - supplier_bids_by_status
-      - supplier_bids_over_time
-      - top_bids_bid_amount
-      - top_orders_order_amount
-      - total_purchase_orders
-      - total_supplier_bids
     VendorInfo:
       type: object
       properties:
