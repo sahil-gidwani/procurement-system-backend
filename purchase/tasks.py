@@ -10,7 +10,8 @@ def send_requisition_update_email(requisition_id):
 
     # Get all vendors who submitted bids for the given requisition
     submitted_bids = SupplierBid.objects.filter(
-        requisition_id=requisition_id).select_related('supplier')
+        requisition_id=requisition_id
+    ).select_related("supplier")
 
     # Extract unique email addresses of vendors
     vendor_emails = set(bid.supplier.email for bid in submitted_bids)
@@ -42,7 +43,9 @@ def send_supplier_bid_email(procurement_officer_email, supplier_name, requisitio
 
 
 @shared_task
-def send_supplier_bid_update_email(procurement_officer_email, supplier_name, requisition_id):
+def send_supplier_bid_update_email(
+    procurement_officer_email, supplier_name, requisition_id
+):
     subject = "Supplier Bid Update"
     message = f"Dear Procurement Officer,\n\n{supplier_name} has updated their bid for requisition ID {requisition_id}.\n\nThank you."
     send_mail(
@@ -98,7 +101,9 @@ def send_requisition_accepted_email(procurement_officer_email, requisition_id):
 
 
 @shared_task
-def send_purchase_order_email(recepients, bid_id, requisition_id, purchase_order_number):
+def send_purchase_order_email(
+    recepients, bid_id, requisition_id, purchase_order_number
+):
     subject = "Purchase Order Created"
     message = f"Dear User,\n\nA purchase order with number {purchase_order_number} has been created for bid ID {bid_id} and requisition ID {requisition_id}.\n\nThank you."
     send_mail(
@@ -112,7 +117,9 @@ def send_purchase_order_email(recepients, bid_id, requisition_id, purchase_order
 
 
 @shared_task
-def send_purchase_order_status_email(procurement_officer_email, purchase_order_number, new_status):
+def send_purchase_order_status_email(
+    procurement_officer_email, purchase_order_number, new_status
+):
     subject = "Purchase Order Status Update"
     message = f"Dear Procurement Officer,\n\nThe status of purchase order number {purchase_order_number} has been updated to {new_status}.\n\nThank you."
     send_mail(

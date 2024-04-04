@@ -7,73 +7,95 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('inventory', '0007_remove_optimizedinventory_annual_demand_and_more'),
+        ("inventory", "0007_remove_optimizedinventory_annual_demand_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='historicalinventory',
-            name='demand',
+            model_name="historicalinventory",
+            name="demand",
             field=models.PositiveIntegerField(default=0),
         ),
         migrations.AlterField(
-            model_name='historicalinventory',
-            name='stock_quantity',
+            model_name="historicalinventory",
+            name="stock_quantity",
             field=models.PositiveIntegerField(),
         ),
         migrations.AlterField(
-            model_name='inventory',
-            name='stock_quantity',
+            model_name="inventory",
+            name="stock_quantity",
             field=models.PositiveIntegerField(),
         ),
         migrations.AlterField(
-            model_name='inventory',
-            name='unit_price',
-            field=models.DecimalField(decimal_places=2, max_digits=10, validators=[django.core.validators.MinValueValidator(0.0)]),
+            model_name="inventory",
+            name="unit_price",
+            field=models.DecimalField(
+                decimal_places=2,
+                max_digits=10,
+                validators=[django.core.validators.MinValueValidator(0.0)],
+            ),
         ),
         migrations.AlterField(
-            model_name='optimizedinventory',
-            name='demand',
-            field=models.FloatField(validators=[django.core.validators.MinValueValidator(0.0)]),
+            model_name="optimizedinventory",
+            name="demand",
+            field=models.FloatField(
+                validators=[django.core.validators.MinValueValidator(0.0)]
+            ),
         ),
         migrations.AlterField(
-            model_name='optimizedinventory',
-            name='eoq',
-            field=models.FloatField(blank=True, null=True, validators=[django.core.validators.MinValueValidator(0.0)]),
+            model_name="optimizedinventory",
+            name="eoq",
+            field=models.FloatField(
+                blank=True,
+                null=True,
+                validators=[django.core.validators.MinValueValidator(0.0)],
+            ),
         ),
         migrations.AlterField(
-            model_name='optimizedinventory',
-            name='holding_cost',
-            field=models.FloatField(validators=[django.core.validators.MinValueValidator(0.0)]),
+            model_name="optimizedinventory",
+            name="holding_cost",
+            field=models.FloatField(
+                validators=[django.core.validators.MinValueValidator(0.0)]
+            ),
         ),
         migrations.AlterField(
-            model_name='optimizedinventory',
-            name='lead_time',
+            model_name="optimizedinventory",
+            name="lead_time",
             field=models.PositiveIntegerField(blank=True, null=True),
         ),
         migrations.AlterField(
-            model_name='optimizedinventory',
-            name='ordering_cost',
-            field=models.FloatField(validators=[django.core.validators.MinValueValidator(0.0)]),
+            model_name="optimizedinventory",
+            name="ordering_cost",
+            field=models.FloatField(
+                validators=[django.core.validators.MinValueValidator(0.0)]
+            ),
         ),
         migrations.AlterField(
-            model_name='optimizedinventory',
-            name='reorder_point',
-            field=models.FloatField(blank=True, null=True, validators=[django.core.validators.MinValueValidator(0.0)]),
+            model_name="optimizedinventory",
+            name="reorder_point",
+            field=models.FloatField(
+                blank=True,
+                null=True,
+                validators=[django.core.validators.MinValueValidator(0.0)],
+            ),
         ),
         migrations.AlterField(
-            model_name='optimizedinventory',
-            name='safety_stock',
-            field=models.FloatField(blank=True, null=True, validators=[django.core.validators.MinValueValidator(0.0)]),
+            model_name="optimizedinventory",
+            name="safety_stock",
+            field=models.FloatField(
+                blank=True,
+                null=True,
+                validators=[django.core.validators.MinValueValidator(0.0)],
+            ),
         ),
         migrations.AlterField(
-            model_name='optimizedinventory',
-            name='shelf_life',
+            model_name="optimizedinventory",
+            name="shelf_life",
             field=models.PositiveIntegerField(blank=True, null=True),
         ),
         migrations.AlterField(
-            model_name='optimizedinventory',
-            name='storage_limit',
+            model_name="optimizedinventory",
+            name="storage_limit",
             field=models.PositiveIntegerField(blank=True, null=True),
         ),
     ]

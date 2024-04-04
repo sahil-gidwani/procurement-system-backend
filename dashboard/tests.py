@@ -64,7 +64,7 @@ class SetupClass(TestCase):
             location="Test Location",
             procurement_officer=self.procurement_officer,
         )
-        
+
         self.purchase_requisition = PurchaseRequisition.objects.create(
             requisition_number="PR-001",
             quantity_requested=50,
@@ -90,7 +90,9 @@ class SetupClass(TestCase):
         )
 
         self.admin_dashboard_url = reverse("admin_dashboard")
-        self.procurement_officer_dashboard_url = reverse("procurement_officer_dashboard")
+        self.procurement_officer_dashboard_url = reverse(
+            "procurement_officer_dashboard"
+        )
         self.vendor_dashboard_url = reverse("vendor_dashboard")
 
 
@@ -102,26 +104,26 @@ class DashboardViewsTests(SetupClass, TestCase):
         self.client.force_authenticate(user=self.admin)
         response = self.client.get(self.admin_dashboard_url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-    
+
     def test_admin_dashboard_view_procurement_officer(self):
         self.client.force_authenticate(user=self.procurement_officer)
         response = self.client.get(self.admin_dashboard_url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-    
+
     def test_admin_dashboard_view_vendor(self):
         self.client.force_authenticate(user=self.vendor)
         response = self.client.get(self.admin_dashboard_url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-    
+
     def test_admin_dashboard_view_unauthenticated(self):
         response = self.client.get(self.admin_dashboard_url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_admin_dashboard_view_invalid_token(self):
         self.client.credentials(HTTP_AUTHORIZATION="Bearer invalidtoken")
         response = self.client.get(self.admin_dashboard_url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_admin_dashboard_view_invalid_http_method(self):
         self.client.force_authenticate(user=self.admin)
         response = self.client.post(self.admin_dashboard_url)
@@ -131,26 +133,26 @@ class DashboardViewsTests(SetupClass, TestCase):
         self.client.force_authenticate(user=self.procurement_officer)
         response = self.client.get(self.procurement_officer_dashboard_url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-    
+
     def test_procurement_officer_dashboard_view_admin(self):
         self.client.force_authenticate(user=self.admin)
         response = self.client.get(self.procurement_officer_dashboard_url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-    
+
     def test_procurement_officer_dashboard_view_vendor(self):
         self.client.force_authenticate(user=self.vendor)
         response = self.client.get(self.procurement_officer_dashboard_url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-    
+
     def test_procurement_officer_dashboard_view_unauthenticated(self):
         response = self.client.get(self.procurement_officer_dashboard_url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_procurement_officer_dashboard_view_invalid_token(self):
         self.client.credentials(HTTP_AUTHORIZATION="Bearer invalidtoken")
         response = self.client.get(self.procurement_officer_dashboard_url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_procurement_officer_dashboard_view_invalid_http_method(self):
         self.client.force_authenticate(user=self.procurement_officer)
         response = self.client.post(self.procurement_officer_dashboard_url)
@@ -165,21 +167,21 @@ class DashboardViewsTests(SetupClass, TestCase):
         self.client.force_authenticate(user=self.admin)
         response = self.client.get(self.vendor_dashboard_url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-    
+
     def test_vendor_dashboard_view_procurement_officer(self):
         self.client.force_authenticate(user=self.procurement_officer)
         response = self.client.get(self.vendor_dashboard_url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-    
+
     def test_vendor_dashboard_view_unauthenticated(self):
         response = self.client.get(self.vendor_dashboard_url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_vendor_dashboard_view_invalid_token(self):
         self.client.credentials(HTTP_AUTHORIZATION="Bearer invalidtoken")
         response = self.client.get(self.vendor_dashboard_url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_vendor_dashboard_view_invalid_http_method(self):
         self.client.force_authenticate(user=self.vendor)
         response = self.client.post(self.vendor_dashboard_url)

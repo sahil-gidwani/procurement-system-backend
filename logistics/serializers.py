@@ -23,7 +23,10 @@ class InvoicePaymentStatusSerializer(serializers.ModelSerializer):
 
 
 class InvoiceVendorRatingSerializer(serializers.ModelSerializer):
-    vendor_rating = serializers.FloatField(min_value=0.00, max_value=5.00, required=True)
+    vendor_rating = serializers.FloatField(
+        min_value=0.00, max_value=5.00, required=True
+    )
+
     class Meta:
         model = Invoice
         fields = ["vendor_rating", "vendor_rated"]

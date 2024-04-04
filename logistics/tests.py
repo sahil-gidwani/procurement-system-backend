@@ -302,53 +302,73 @@ class SetupClass(TestCase):
 
         self.inventory_receipt_list_url = reverse("inventory_receipt_list")
         self.inventory_receipt_create_duplicate_url = reverse(
-            "inventory_receipt_create", kwargs={'order_id': 1})
+            "inventory_receipt_create", kwargs={"order_id": 1}
+        )
         self.inventory_receipt_create_order_status_pending_url = reverse(
-            "inventory_receipt_create", kwargs={'order_id': 2})
+            "inventory_receipt_create", kwargs={"order_id": 2}
+        )
         self.inventory_receipt_create_order_status_shipped_url = reverse(
-            "inventory_receipt_create", kwargs={'order_id': 3})
+            "inventory_receipt_create", kwargs={"order_id": 3}
+        )
         self.inventory_receipt_create_order_status_delivered_url = reverse(
-            "inventory_receipt_create", kwargs={'order_id': 4})
+            "inventory_receipt_create", kwargs={"order_id": 4}
+        )
         self.inventory_receipt_create_url = reverse(
-            "inventory_receipt_create", kwargs={'order_id': 5})
+            "inventory_receipt_create", kwargs={"order_id": 5}
+        )
         self.inventory_receipt_retrieve_url = reverse(
-            "inventory_receipt_detail", kwargs={'pk': 1})
+            "inventory_receipt_detail", kwargs={"pk": 1}
+        )
         self.inventory_receipt_update_url = reverse(
-            "inventory_receipt_update", kwargs={'pk': 1})
+            "inventory_receipt_update", kwargs={"pk": 1}
+        )
         self.inventory_receipt_delete_url = reverse(
-            "inventory_receipt_delete", kwargs={'pk': 1})
+            "inventory_receipt_delete", kwargs={"pk": 1}
+        )
         self.inventory_receipt_vendor_list_url = reverse(
-            "inventory_receipt_vendor_list")
+            "inventory_receipt_vendor_list"
+        )
         self.inventory_receipt_vendor_retrieve_url = reverse(
-            "inventory_receipt_vendor_detail", kwargs={'pk': 1})
+            "inventory_receipt_vendor_detail", kwargs={"pk": 1}
+        )
         self.invoice_list_url = reverse("invoice_list")
         self.invoice_create_duplicate_url = reverse(
-            "invoice_create", kwargs={'order_id': 1})
+            "invoice_create", kwargs={"order_id": 1}
+        )
         self.invoice_create_order_status_pending_url = reverse(
-            "invoice_create", kwargs={'order_id': 2})
+            "invoice_create", kwargs={"order_id": 2}
+        )
         self.invoice_create_order_status_shipped_url = reverse(
-            "invoice_create", kwargs={'order_id': 3})
+            "invoice_create", kwargs={"order_id": 3}
+        )
         self.invoice_create_order_status_delivered_url = reverse(
-            "invoice_create", kwargs={'order_id': 4})
-        self.invoice_create_url = reverse(
-            "invoice_create", kwargs={'order_id': 5})
-        self.invoice_retrieve_url = reverse("invoice_detail", kwargs={'pk': 1})
-        self.invoice_update_url = reverse("invoice_update", kwargs={'pk': 1})
-        self.invoice_delete_url = reverse("invoice_delete", kwargs={'pk': 1})
+            "invoice_create", kwargs={"order_id": 4}
+        )
+        self.invoice_create_url = reverse("invoice_create", kwargs={"order_id": 5})
+        self.invoice_retrieve_url = reverse("invoice_detail", kwargs={"pk": 1})
+        self.invoice_update_url = reverse("invoice_update", kwargs={"pk": 1})
+        self.invoice_delete_url = reverse("invoice_delete", kwargs={"pk": 1})
         self.invoice_procurement_officer_list_url = reverse(
-            "invoice_procurement_officer_list")
+            "invoice_procurement_officer_list"
+        )
         self.invoice_procurement_officer_retrieve_url = reverse(
-            "invoice_procurement_officer_detail", kwargs={'pk': 1})
+            "invoice_procurement_officer_detail", kwargs={"pk": 1}
+        )
         self.invoice_payment_status_url = reverse(
-            "invoice_payment_status", kwargs={'pk': 1})
+            "invoice_payment_status", kwargs={"pk": 1}
+        )
         self.invoice_payment_status_paid_url = reverse(
-            "invoice_payment_status", kwargs={'pk': 2})
+            "invoice_payment_status", kwargs={"pk": 2}
+        )
         self.invoice_vendor_rating_url = reverse(
-            "invoice_vendor_rating", kwargs={'pk': 2})
+            "invoice_vendor_rating", kwargs={"pk": 2}
+        )
         self.invoice_vendor_rating_rated_url = reverse(
-            "invoice_vendor_rating", kwargs={'pk': 3})
+            "invoice_vendor_rating", kwargs={"pk": 3}
+        )
         self.invoice_vendor_rating_unpaid_url = reverse(
-            "invoice_vendor_rating", kwargs={'pk': 1})
+            "invoice_vendor_rating", kwargs={"pk": 1}
+        )
 
 
 class InventoryReceiptTests(SetupClass, TestCase):
@@ -384,8 +404,7 @@ class InventoryReceiptTests(SetupClass, TestCase):
     def test_inventory_receipt_list_view_invalid_http_method(self):
         self.client.force_authenticate(user=self.procurement_officer)
         response = self.client.post(self.inventory_receipt_list_url)
-        self.assertEqual(response.status_code,
-                         status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_inventory_receipt_create_view_procurement_officer(self):
         self.client.force_authenticate(user=self.procurement_officer)
@@ -409,8 +428,7 @@ class InventoryReceiptTests(SetupClass, TestCase):
             "received_condition": "good",
             "inspection_notes": "Test Notes",
         }
-        response = self.client.post(
-            self.inventory_receipt_create_duplicate_url, data)
+        response = self.client.post(self.inventory_receipt_create_duplicate_url, data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(InventoryReceipt.objects.count(), 3)
 
@@ -423,7 +441,8 @@ class InventoryReceiptTests(SetupClass, TestCase):
             "inspection_notes": "Test Notes",
         }
         response = self.client.post(
-            self.inventory_receipt_create_order_status_pending_url, data)
+            self.inventory_receipt_create_order_status_pending_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(InventoryReceipt.objects.count(), 3)
 
@@ -436,7 +455,8 @@ class InventoryReceiptTests(SetupClass, TestCase):
             "inspection_notes": "Test Notes",
         }
         response = self.client.post(
-            self.inventory_receipt_create_order_status_shipped_url, data)
+            self.inventory_receipt_create_order_status_shipped_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(InventoryReceipt.objects.count(), 3)
 
@@ -449,7 +469,8 @@ class InventoryReceiptTests(SetupClass, TestCase):
             "inspection_notes": "Test Notes",
         }
         response = self.client.post(
-            self.inventory_receipt_create_order_status_delivered_url, data)
+            self.inventory_receipt_create_order_status_delivered_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(response.data["receipt_id"], "IR-004")
         inventory_receipt = InventoryReceipt.objects.get(receipt_id="IR-004")
@@ -505,8 +526,7 @@ class InventoryReceiptTests(SetupClass, TestCase):
     def test_inventory_receipt_create_view_invalid_http_method(self):
         self.client.force_authenticate(user=self.procurement_officer)
         response = self.client.get(self.inventory_receipt_create_url)
-        self.assertEqual(response.status_code,
-                         status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
         self.assertEqual(InventoryReceipt.objects.count(), 3)
 
     def test_inventory_receipt_create_view_missing_data(self):
@@ -555,8 +575,7 @@ class InventoryReceiptTests(SetupClass, TestCase):
     def test_inventory_receipt_retrieve_view_invalid_http_method(self):
         self.client.force_authenticate(user=self.procurement_officer)
         response = self.client.post(self.inventory_receipt_retrieve_url)
-        self.assertEqual(response.status_code,
-                         status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_inventory_receipt_update_view_procurement_officer_own_item(self):
         self.client.force_authenticate(user=self.procurement_officer)
@@ -613,8 +632,7 @@ class InventoryReceiptTests(SetupClass, TestCase):
     def test_inventory_receipt_update_view_invalid_http_method(self):
         self.client.force_authenticate(user=self.procurement_officer)
         response = self.client.get(self.inventory_receipt_update_url)
-        self.assertEqual(response.status_code,
-                         status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_inventory_receipt_update_view_missing_data(self):
         self.client.force_authenticate(user=self.procurement_officer)
@@ -660,8 +678,7 @@ class InventoryReceiptTests(SetupClass, TestCase):
     def test_inventory_receipt_delete_view_invalid_http_method(self):
         self.client.force_authenticate(user=self.procurement_officer)
         response = self.client.get(self.inventory_receipt_delete_url)
-        self.assertEqual(response.status_code,
-                         status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_inventory_receipt_vendor_list_view_vendor(self):
         self.client.force_authenticate(user=self.vendor)
@@ -688,18 +705,18 @@ class InventoryReceiptTests(SetupClass, TestCase):
         self.client.credentials(HTTP_AUTHORIZATION="Bearer invalidtoken")
         response = self.client.get(self.inventory_receipt_vendor_list_url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_inventory_receipt_vendor_list_view_invalid_http_method(self):
         self.client.force_authenticate(user=self.vendor)
         response = self.client.post(self.inventory_receipt_vendor_list_url)
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
-    
+
     def test_inventory_receipt_vendor_retrieve_view_vendor_own_item(self):
         self.client.force_authenticate(user=self.vendor)
         response = self.client.get(self.inventory_receipt_vendor_retrieve_url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data["receipt_id"], "IR-001")
-    
+
     def test_inventory_receipt_vendor_retrieve_view_other_vendor(self):
         self.client.force_authenticate(user=self.vendor2)
         response = self.client.get(self.inventory_receipt_vendor_retrieve_url)
@@ -709,21 +726,21 @@ class InventoryReceiptTests(SetupClass, TestCase):
         self.client.force_authenticate(user=self.procurement_officer)
         response = self.client.get(self.inventory_receipt_vendor_retrieve_url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-    
+
     def test_inventory_receipt_vendor_retrieve_view_unauthenticated(self):
         response = self.client.get(self.inventory_receipt_vendor_retrieve_url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_inventory_receipt_vendor_retrieve_view_invalid_token(self):
         self.client.credentials(HTTP_AUTHORIZATION="Bearer invalidtoken")
         response = self.client.get(self.inventory_receipt_vendor_retrieve_url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_inventory_receipt_vendor_retrieve_view_invalid_http_method(self):
         self.client.force_authenticate(user=self.vendor)
         response = self.client.post(self.inventory_receipt_vendor_retrieve_url)
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
-    
+
 
 class InvoiceTests(SetupClass, TestCase):
     def setUp(self):
@@ -734,32 +751,32 @@ class InvoiceTests(SetupClass, TestCase):
         response = self.client.get(self.invoice_list_url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 3)
-    
+
     def test_invoice_list_view_other_vendor(self):
         self.client.force_authenticate(user=self.vendor2)
         response = self.client.get(self.invoice_list_url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 0)
-    
+
     def test_invoice_list_view_procurement_officer(self):
         self.client.force_authenticate(user=self.procurement_officer)
         response = self.client.get(self.invoice_list_url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-    
+
     def test_invoice_list_view_unauthenticated(self):
         response = self.client.get(self.invoice_list_url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_invoice_list_view_invalid_token(self):
         self.client.credentials(HTTP_AUTHORIZATION="Bearer invalidtoken")
         response = self.client.get(self.invoice_list_url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_invoice_list_view_invalid_http_method(self):
         self.client.force_authenticate(user=self.vendor)
         response = self.client.post(self.invoice_list_url)
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
-    
+
     def test_invoice_create_view_vendor(self):
         self.client.force_authenticate(user=self.vendor)
         data = {
@@ -774,7 +791,7 @@ class InvoiceTests(SetupClass, TestCase):
         self.assertEqual(response.data["invoice_number"], "INV-004")
         invoice = Invoice.objects.get(invoice_number="INV-004")
         self.assertEqual(invoice.order.order_number, "PO-005")
-    
+
     def test_invoice_create_view_one_to_one_purchase_order(self):
         self.client.force_authenticate(user=self.vendor)
         data = {
@@ -787,7 +804,7 @@ class InvoiceTests(SetupClass, TestCase):
         response = self.client.post(self.invoice_create_duplicate_url, data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(Invoice.objects.count(), 3)
-    
+
     def test_invoice_create_view_order_status_pending(self):
         self.client.force_authenticate(user=self.vendor)
         data = {
@@ -800,7 +817,7 @@ class InvoiceTests(SetupClass, TestCase):
         response = self.client.post(self.invoice_create_order_status_pending_url, data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(Invoice.objects.count(), 3)
-    
+
     def test_invoice_create_view_order_status_shipped(self):
         self.client.force_authenticate(user=self.vendor)
         data = {
@@ -813,7 +830,7 @@ class InvoiceTests(SetupClass, TestCase):
         response = self.client.post(self.invoice_create_order_status_shipped_url, data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(Invoice.objects.count(), 3)
-    
+
     def test_invoice_create_view_order_status_delivered(self):
         self.client.force_authenticate(user=self.vendor)
         data = {
@@ -823,12 +840,14 @@ class InvoiceTests(SetupClass, TestCase):
             "payment_due_date": (timezone.now() + timedelta(days=30)).date(),
             "payment_mode": "credit",
         }
-        response = self.client.post(self.invoice_create_order_status_delivered_url, data)
+        response = self.client.post(
+            self.invoice_create_order_status_delivered_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(response.data["invoice_number"], "INV-004")
         invoice = Invoice.objects.get(invoice_number="INV-004")
         self.assertEqual(invoice.order.order_number, "PO-004")
-    
+
     def test_invoice_create_view_procurement_officer(self):
         self.client.force_authenticate(user=self.procurement_officer)
         data = {
@@ -841,7 +860,7 @@ class InvoiceTests(SetupClass, TestCase):
         response = self.client.post(self.invoice_create_url, data)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
         self.assertEqual(Invoice.objects.count(), 3)
-    
+
     def test_invoice_create_view_other_vendor(self):
         self.client.force_authenticate(user=self.vendor2)
         data = {
@@ -854,7 +873,7 @@ class InvoiceTests(SetupClass, TestCase):
         response = self.client.post(self.invoice_create_url, data)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
         self.assertEqual(Invoice.objects.count(), 3)
-    
+
     def test_invoice_create_view_unauthenticated(self):
         data = {
             "invoice_number": "INV-002",
@@ -866,7 +885,7 @@ class InvoiceTests(SetupClass, TestCase):
         response = self.client.post(self.invoice_create_url, data)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         self.assertEqual(Invoice.objects.count(), 3)
-    
+
     def test_invoice_create_view_invalid_token(self):
         self.client.credentials(HTTP_AUTHORIZATION="Bearer invalidtoken")
         data = {
@@ -879,19 +898,19 @@ class InvoiceTests(SetupClass, TestCase):
         response = self.client.post(self.invoice_create_url, data)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         self.assertEqual(Invoice.objects.count(), 3)
-    
+
     def test_invoice_create_view_invalid_http_method(self):
         self.client.force_authenticate(user=self.vendor)
         response = self.client.get(self.invoice_create_url)
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
         self.assertEqual(Invoice.objects.count(), 3)
-    
+
     def test_invoice_create_view_missing_data(self):
         self.client.force_authenticate(user=self.vendor)
         response = self.client.post(self.invoice_create_url)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(Invoice.objects.count(), 3)
-    
+
     def test_invoice_create_view_invalid_data(self):
         self.client.force_authenticate(user=self.vendor)
         data = {
@@ -904,37 +923,37 @@ class InvoiceTests(SetupClass, TestCase):
         response = self.client.post(self.invoice_create_url, data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(Invoice.objects.count(), 3)
-    
+
     def test_invoice_retrieve_view_vendor_own_item(self):
         self.client.force_authenticate(user=self.vendor)
         response = self.client.get(self.invoice_retrieve_url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data["invoice_number"], "INV-001")
-    
+
     def test_invoice_retrieve_view_other_vendor(self):
         self.client.force_authenticate(user=self.vendor2)
         response = self.client.get(self.invoice_retrieve_url)
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
-    
+
     def test_invoice_retrieve_view_procurement_officer(self):
         self.client.force_authenticate(user=self.procurement_officer)
         response = self.client.get(self.invoice_retrieve_url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-    
+
     def test_invoice_retrieve_view_unauthenticated(self):
         response = self.client.get(self.invoice_retrieve_url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_invoice_retrieve_view_invalid_token(self):
         self.client.credentials(HTTP_AUTHORIZATION="Bearer invalidtoken")
         response = self.client.get(self.invoice_retrieve_url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_invoice_retrieve_view_invalid_http_method(self):
         self.client.force_authenticate(user=self.vendor)
         response = self.client.post(self.invoice_retrieve_url)
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
-    
+
     def test_invoice_update_view_vendor_own_item(self):
         self.client.force_authenticate(user=self.vendor)
         data = {
@@ -959,7 +978,7 @@ class InvoiceTests(SetupClass, TestCase):
         }
         response = self.client.put(self.invoice_update_url, data)
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
-    
+
     def test_invoice_update_view_procurement_officer(self):
         self.client.force_authenticate(user=self.procurement_officer)
         data = {
@@ -970,7 +989,7 @@ class InvoiceTests(SetupClass, TestCase):
         }
         response = self.client.put(self.invoice_update_url, data)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-    
+
     def test_invoice_update_view_unauthenticated(self):
         data = {
             "account_number": "1234567891",
@@ -980,7 +999,7 @@ class InvoiceTests(SetupClass, TestCase):
         }
         response = self.client.put(self.invoice_update_url, data)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_invoice_update_view_invalid_token(self):
         self.client.credentials(HTTP_AUTHORIZATION="Bearer invalidtoken")
         data = {
@@ -991,17 +1010,17 @@ class InvoiceTests(SetupClass, TestCase):
         }
         response = self.client.put(self.invoice_update_url, data)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_invoice_update_view_invalid_http_method(self):
         self.client.force_authenticate(user=self.vendor)
         response = self.client.get(self.invoice_update_url)
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
-    
+
     def test_invoice_update_view_missing_data(self):
         self.client.force_authenticate(user=self.vendor)
         response = self.client.put(self.invoice_update_url)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-    
+
     def test_invoice_update_view_invalid_data(self):
         self.client.force_authenticate(user=self.vendor)
         data = {
@@ -1012,245 +1031,215 @@ class InvoiceTests(SetupClass, TestCase):
         }
         response = self.client.put(self.invoice_update_url, data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-    
+
     def test_invoice_delete_view_vendor_own_item(self):
         self.client.force_authenticate(user=self.vendor)
         response = self.client.delete(self.invoice_delete_url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         with self.assertRaises(ObjectDoesNotExist):
             Invoice.objects.get(invoice_number="INV-001")
-        
+
     def test_invoice_delete_view_other_vendor(self):
         self.client.force_authenticate(user=self.vendor2)
         response = self.client.delete(self.invoice_delete_url)
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
-    
+
     def test_invoice_delete_view_procurement_officer(self):
         self.client.force_authenticate(user=self.procurement_officer)
         response = self.client.delete(self.invoice_delete_url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-    
+
     def test_invoice_delete_view_unauthenticated(self):
         response = self.client.delete(self.invoice_delete_url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_invoice_delete_view_invalid_token(self):
         self.client.credentials(HTTP_AUTHORIZATION="Bearer invalidtoken")
         response = self.client.delete(self.invoice_delete_url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_invoice_delete_view_invalid_http_method(self):
         self.client.force_authenticate(user=self.vendor)
         response = self.client.get(self.invoice_delete_url)
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
-    
+
     def test_invoice_procurement_officer_list_view_procurement_officer(self):
         self.client.force_authenticate(user=self.procurement_officer)
         response = self.client.get(self.invoice_procurement_officer_list_url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 3)
-    
+
     def test_invoice_procurement_officer_list_view_other_procurement_officer(self):
         self.client.force_authenticate(user=self.procurement_officer2)
         response = self.client.get(self.invoice_procurement_officer_list_url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 0)
-    
+
     def test_invoice_procurement_officer_list_view_vendor(self):
         self.client.force_authenticate(user=self.vendor)
         response = self.client.get(self.invoice_procurement_officer_list_url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-    
+
     def test_invoice_procurement_officer_list_view_unauthenticated(self):
         response = self.client.get(self.invoice_procurement_officer_list_url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_invoice_procurement_officer_list_view_invalid_token(self):
         self.client.credentials(HTTP_AUTHORIZATION="Bearer invalidtoken")
         response = self.client.get(self.invoice_procurement_officer_list_url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_invoice_procurement_officer_list_view_invalid_http_method(self):
         self.client.force_authenticate(user=self.procurement_officer)
         response = self.client.post(self.invoice_procurement_officer_list_url)
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
-    
-    def test_invoice_procurement_officer_retrieve_view_procurement_officer_own_item(self):
+
+    def test_invoice_procurement_officer_retrieve_view_procurement_officer_own_item(
+        self,
+    ):
         self.client.force_authenticate(user=self.procurement_officer)
         response = self.client.get(self.invoice_procurement_officer_retrieve_url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data["invoice_number"], "INV-001")
-    
+
     def test_invoice_procurement_officer_retrieve_view_other_procurement_officer(self):
         self.client.force_authenticate(user=self.procurement_officer2)
         response = self.client.get(self.invoice_procurement_officer_retrieve_url)
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
-    
+
     def test_invoice_procurement_officer_retrieve_view_vendor(self):
         self.client.force_authenticate(user=self.vendor)
         response = self.client.get(self.invoice_procurement_officer_retrieve_url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-    
+
     def test_invoice_procurement_officer_retrieve_view_unauthenticated(self):
         response = self.client.get(self.invoice_procurement_officer_retrieve_url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_invoice_procurement_officer_retrieve_view_invalid_token(self):
         self.client.credentials(HTTP_AUTHORIZATION="Bearer invalidtoken")
         response = self.client.get(self.invoice_procurement_officer_retrieve_url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_invoice_procurement_officer_retrieve_view_invalid_http_method(self):
         self.client.force_authenticate(user=self.procurement_officer)
         response = self.client.post(self.invoice_procurement_officer_retrieve_url)
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
-    
+
     def test_invoice_payment_status_view_procurement_officer(self):
         self.client.force_authenticate(user=self.procurement_officer)
-        data = {
-            "payment_status": "paid"
-        }
+        data = {"payment_status": "paid"}
         response = self.client.put(self.invoice_payment_status_url, data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         invoice = Invoice.objects.get(invoice_number="INV-001")
         self.assertEqual(invoice.payment_status, "paid")
-    
+
     def test_invoice_payment_status_view_status_paid(self):
         self.client.force_authenticate(user=self.procurement_officer)
-        data = {
-            "payment_status": "paid"
-        }
+        data = {"payment_status": "paid"}
         response = self.client.put(self.invoice_payment_status_paid_url, data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-    
+
     def test_invoice_payment_status_view_vendor(self):
         self.client.force_authenticate(user=self.vendor)
-        data = {
-            "payment_status": "paid"
-        }
+        data = {"payment_status": "paid"}
         response = self.client.put(self.invoice_payment_status_url, data)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-    
+
     def test_invoice_payment_status_view_other_procurement_officer(self):
         self.client.force_authenticate(user=self.procurement_officer2)
-        data = {
-            "payment_status": "paid"
-        }
+        data = {"payment_status": "paid"}
         response = self.client.put(self.invoice_payment_status_url, data)
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
-    
+
     def test_invoice_payment_status_view_unauthenticated(self):
-        data = {
-            "payment_status": "paid"
-        }
+        data = {"payment_status": "paid"}
         response = self.client.put(self.invoice_payment_status_url, data)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_invoice_payment_status_view_invalid_token(self):
         self.client.credentials(HTTP_AUTHORIZATION="Bearer invalidtoken")
-        data = {
-            "payment_status": "paid"
-        }
+        data = {"payment_status": "paid"}
         response = self.client.put(self.invoice_payment_status_url, data)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_invoice_payment_status_view_invalid_http_method(self):
         self.client.force_authenticate(user=self.procurement_officer)
         response = self.client.get(self.invoice_payment_status_url)
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
-    
+
     def test_invoice_payment_status_view_missing_data(self):
         self.client.force_authenticate(user=self.procurement_officer)
         response = self.client.patch(self.invoice_payment_status_url)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-    
+
     def test_invoice_payment_status_view_invalid_data(self):
         self.client.force_authenticate(user=self.procurement_officer)
-        data = {
-            "payment_status": "invalid"
-        }
+        data = {"payment_status": "invalid"}
         response = self.client.put(self.invoice_payment_status_url, data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_invoice_vendor_rating_view_procurement_officer(self):
         self.client.force_authenticate(user=self.procurement_officer)
-        data = {
-            "vendor_rating": 5
-        }
+        data = {"vendor_rating": 5}
         response = self.client.put(self.invoice_vendor_rating_url, data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         invoice = Invoice.objects.get(invoice_number="INV-002")
         self.assertEqual(invoice.vendor_rated, True)
-    
+
     def test_invoice_vendor_rating_view_vendor(self):
         self.client.force_authenticate(user=self.vendor)
-        data = {
-            "vendor_rating": 5
-        }
+        data = {"vendor_rating": 5}
         response = self.client.put(self.invoice_vendor_rating_url, data)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-    
+
     def test_invoice_vendor_rating_view_other_procurement_officer(self):
         self.client.force_authenticate(user=self.procurement_officer2)
-        data = {
-            "vendor_rating": 5
-        }
+        data = {"vendor_rating": 5}
         response = self.client.put(self.invoice_vendor_rating_url, data)
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
-    
+
     def test_invoice_vendor_rating_view_unauthenticated(self):
-        data = {
-            "vendor_rating": 5
-        }
+        data = {"vendor_rating": 5}
         response = self.client.put(self.invoice_vendor_rating_url, data)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_invoice_vendor_rating_view_invalid_token(self):
         self.client.credentials(HTTP_AUTHORIZATION="Bearer invalidtoken")
-        data = {
-            "vendor_rating": 5
-        }
+        data = {"vendor_rating": 5}
         response = self.client.put(self.invoice_vendor_rating_url, data)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_invoice_vendor_rating_view_invalid_http_method(self):
         self.client.force_authenticate(user=self.procurement_officer)
         response = self.client.get(self.invoice_vendor_rating_url)
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
-    
+
     def test_invoice_vendor_rating_view_missing_data(self):
         self.client.force_authenticate(user=self.procurement_officer)
         response = self.client.put(self.invoice_vendor_rating_url)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-    
+
     def test_invoice_vendor_rating_view_invalid_data(self):
         self.client.force_authenticate(user=self.procurement_officer)
-        data = {
-            "vendor_rating": "invalid"
-        }
+        data = {"vendor_rating": "invalid"}
         response = self.client.put(self.invoice_vendor_rating_url, data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-    
+
     def test_invoice_vendor_rating_view_vendor_rated(self):
         self.client.force_authenticate(user=self.procurement_officer)
-        data = {
-            "vendor_rating": 5
-        }
+        data = {"vendor_rating": 5}
         response = self.client.put(self.invoice_vendor_rating_rated_url, data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_invoice_vendor_rating_view_unpaid(self):
         self.client.force_authenticate(user=self.procurement_officer)
-        data = {
-            "vendor_rating": 5
-        }
+        data = {"vendor_rating": 5}
         response = self.client.put(self.invoice_vendor_rating_unpaid_url, data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-    
+
     def test_invoice_vendpr_rating_view_invalid_rating(self):
         self.client.force_authenticate(user=self.procurement_officer)
-        data = {
-            "vendor_rating": 6
-        }
+        data = {"vendor_rating": 6}
         response = self.client.put(self.invoice_vendor_rating_url, data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)

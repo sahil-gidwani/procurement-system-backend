@@ -77,8 +77,7 @@ class SetUpUsers(APITestCase):
             "password_reset_confirm",
             kwargs={"pk": self.procurement_officer.pk, "token": "token"},
         )
-        self.procurement_officer_register_url = reverse(
-            "procurement_officer_register")
+        self.procurement_officer_register_url = reverse("procurement_officer_register")
         self.vendor_register_url = reverse("vendor_register")
         self.user_profile_url = reverse("user_profile")
         self.update_profile_url = reverse("update_user_profile")
@@ -120,8 +119,7 @@ class TokenViewTests(SetUpUsers, APITestCase):
         data = {
             "refresh": str(refresh),
         }
-        response = self.client.post(
-            self.token_refresh_url, data, format="json")
+        response = self.client.post(self.token_refresh_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertIn("access", response.data)
         self.assertIn("refresh", response.data)
@@ -130,8 +128,7 @@ class TokenViewTests(SetUpUsers, APITestCase):
         data = {
             "refresh": "invalidtoken",
         }
-        response = self.client.post(
-            self.token_refresh_url, data, format="json")
+        response = self.client.post(self.token_refresh_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_refresh_token_with_expired_token(self):
@@ -140,8 +137,7 @@ class TokenViewTests(SetUpUsers, APITestCase):
         data = {
             "refresh": str(refresh),
         }
-        response = self.client.post(
-            self.token_refresh_url, data, format="json")
+        response = self.client.post(self.token_refresh_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_refresh_token_with_blacklisted_token(self):
@@ -150,8 +146,7 @@ class TokenViewTests(SetUpUsers, APITestCase):
         data = {
             "refresh": str(token.access_token),
         }
-        response = self.client.post(
-            self.token_refresh_url, data, format="json")
+        response = self.client.post(self.token_refresh_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_refresh_token_which_was_used_previously(self):
@@ -159,11 +154,9 @@ class TokenViewTests(SetUpUsers, APITestCase):
         data = {
             "refresh": str(refresh),
         }
-        response = self.client.post(
-            self.token_refresh_url, data, format="json")
+        response = self.client.post(self.token_refresh_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        response = self.client.post(
-            self.token_refresh_url, data, format="json")
+        response = self.client.post(self.token_refresh_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     # * The following tests are for the TokenVerifyView, which is not used in the project
@@ -207,10 +200,10 @@ class ChangePasswordViewTests(SetUpUsers, APITestCase):
         super().setUp()
 
     def test_change_password_successfully(self):
-        login_data = {"username": "procurement_officer",
-                      "password": "testpassword"}
+        login_data = {"username": "procurement_officer", "password": "testpassword"}
         login_response = self.client.post(
-            self.token_obtain_url, login_data, format="json")
+            self.token_obtain_url, login_data, format="json"
+        )
         self.assertEqual(login_response.status_code, status.HTTP_200_OK)
 
         token = login_response.data["access"]
@@ -227,10 +220,10 @@ class ChangePasswordViewTests(SetUpUsers, APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_change_password_with_invalid_old_password(self):
-        login_data = {"username": "procurement_officer",
-                      "password": "testpassword"}
+        login_data = {"username": "procurement_officer", "password": "testpassword"}
         login_response = self.client.post(
-            self.token_obtain_url, login_data, format="json")
+            self.token_obtain_url, login_data, format="json"
+        )
         self.assertEqual(login_response.status_code, status.HTTP_200_OK)
 
         token = login_response.data["access"]
@@ -247,10 +240,10 @@ class ChangePasswordViewTests(SetUpUsers, APITestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_change_password_with_mismatched_passwords(self):
-        login_data = {"username": "procurement_officer",
-                      "password": "testpassword"}
+        login_data = {"username": "procurement_officer", "password": "testpassword"}
         login_response = self.client.post(
-            self.token_obtain_url, login_data, format="json")
+            self.token_obtain_url, login_data, format="json"
+        )
         self.assertEqual(login_response.status_code, status.HTTP_200_OK)
 
         token = login_response.data["access"]
@@ -267,10 +260,10 @@ class ChangePasswordViewTests(SetUpUsers, APITestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_change_password_without_providing_old_password(self):
-        login_data = {"username": "procurement_officer",
-                      "password": "testpassword"}
+        login_data = {"username": "procurement_officer", "password": "testpassword"}
         login_response = self.client.post(
-            self.token_obtain_url, login_data, format="json")
+            self.token_obtain_url, login_data, format="json"
+        )
         self.assertEqual(login_response.status_code, status.HTTP_200_OK)
 
         token = login_response.data["access"]
@@ -309,10 +302,10 @@ class ChangePasswordViewTests(SetUpUsers, APITestCase):
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_change_password_with_invalid_http_method(self):
-        login_data = {"username": "procurement_officer",
-                      "password": "testpassword"}
+        login_data = {"username": "procurement_officer", "password": "testpassword"}
         login_response = self.client.post(
-            self.token_obtain_url, login_data, format="json")
+            self.token_obtain_url, login_data, format="json"
+        )
         self.assertEqual(login_response.status_code, status.HTTP_200_OK)
 
         token = login_response.data["access"]
@@ -326,14 +319,13 @@ class ChangePasswordViewTests(SetUpUsers, APITestCase):
         response = self.client.get(
             self.change_password_url, new_password_data, format="json"
         )
-        self.assertEqual(response.status_code,
-                         status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_change_password_with_invalid_payload(self):
-        login_data = {"username": "procurement_officer",
-                      "password": "testpassword"}
+        login_data = {"username": "procurement_officer", "password": "testpassword"}
         login_response = self.client.post(
-            self.token_obtain_url, login_data, format="json")
+            self.token_obtain_url, login_data, format="json"
+        )
         self.assertEqual(login_response.status_code, status.HTTP_200_OK)
 
         token = login_response.data["access"]
@@ -357,53 +349,45 @@ class PasswordResetViewTests(SetUpUsers, APITestCase):
 
     def test_password_reset_successful(self):
         data = {"email": "procurement_officer@example.com"}
-        response = self.client.post(
-            self.password_reset_url, data, format="json")
+        response = self.client.post(self.password_reset_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         # self.assertEqual(len(mail.outbox), 1)
         self.assertIn("success", response.data)
 
     def test_password_reset_with_invalid_email(self):
         data = {"email": "invalidemail"}
-        response = self.client.post(
-            self.password_reset_url, data, format="json")
+        response = self.client.post(self.password_reset_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         # self.assertEqual(len(mail.outbox), 0)
 
     def test_password_reset_with_missing_email(self):
         data = {}
-        response = self.client.post(
-            self.password_reset_url, data, format="json")
+        response = self.client.post(self.password_reset_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         # self.assertEqual(len(mail.outbox), 0)
 
     def test_password_reset_with_unregistered_email(self):
         data = {"email": "unregistered@example.com"}
-        response = self.client.post(
-            self.password_reset_url, data, format="json")
+        response = self.client.post(self.password_reset_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         # self.assertEqual(len(mail.outbox), 0)
 
     def test_password_reset_with_invalid_http_method(self):
         data = {"email": "procurement_officer@example.com"}
-        response = self.client.get(
-            self.password_reset_url, data, format="json")
-        self.assertEqual(response.status_code,
-                         status.HTTP_405_METHOD_NOT_ALLOWED)
+        response = self.client.get(self.password_reset_url, data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
         # self.assertEqual(len(mail.outbox), 0)
 
     def test_password_reset_with_invalid_payload(self):
         data = {"invalidkey": "1234"}
-        response = self.client.post(
-            self.password_reset_url, data, format="json")
+        response = self.client.post(self.password_reset_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         # self.assertEqual(len(mail.outbox), 0)
 
     def test_password_reset_with_authenticated_user(self):
         data = {"email": "procurement_officer@example.com"}
         self.client.force_authenticate(user=self.procurement_officer)
-        response = self.client.post(
-            self.password_reset_url, data, format="json")
+        response = self.client.post(self.password_reset_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         # self.assertEqual(len(mail.outbox), 1)
 
@@ -426,17 +410,13 @@ class PasswordResetConfirmViewTests(APITestCase):
         )
 
     def test_password_reset_confirm_successful(self):
-        data = {"password": "newtestpassword",
-                "confirm_password": "newtestpassword"}
-        response = self.client.put(
-            self.password_reset_confirm_url, data, format="json")
+        data = {"password": "newtestpassword", "confirm_password": "newtestpassword"}
+        response = self.client.put(self.password_reset_confirm_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_password_reset_confirm_with_mismatched_passwords(self):
-        data = {"password": "newtestpassword",
-                "confirm_password": "mismatchedpassword"}
-        response = self.client.put(
-            self.password_reset_confirm_url, data, format="json")
+        data = {"password": "newtestpassword", "confirm_password": "mismatchedpassword"}
+        response = self.client.put(self.password_reset_confirm_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_password_reset_confirm_with_invalid_token(self):
@@ -444,49 +424,39 @@ class PasswordResetConfirmViewTests(APITestCase):
             "password_reset_confirm",
             kwargs={"pk": self.user.pk, "token": "invalidtoken"},
         )
-        data = {"password": "newtestpassword",
-                "confirm_password": "newtestpassword"}
+        data = {"password": "newtestpassword", "confirm_password": "newtestpassword"}
         response = self.client.put(invalid_token_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_password_reset_confirm_with_invalid_user(self):
         invalid_user_url = reverse(
             "password_reset_confirm",
-            kwargs={"pk": 1234,
-                    "token": default_token_generator.make_token(self.user)},
+            kwargs={"pk": 1234, "token": default_token_generator.make_token(self.user)},
         )
-        data = {"password": "newtestpassword",
-                "confirm_password": "newtestpassword"}
+        data = {"password": "newtestpassword", "confirm_password": "newtestpassword"}
         response = self.client.put(invalid_user_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_password_reset_confirm_with_invalid_http_method(self):
-        data = {"password": "newtestpassword",
-                "confirm_password": "newtestpassword"}
-        response = self.client.get(
-            self.password_reset_confirm_url, data, format="json")
-        self.assertEqual(response.status_code,
-                         status.HTTP_405_METHOD_NOT_ALLOWED)
+        data = {"password": "newtestpassword", "confirm_password": "newtestpassword"}
+        response = self.client.get(self.password_reset_confirm_url, data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_password_reset_confirm_with_invalid_payload(self):
         data = {"invalidkey": "1234"}
-        response = self.client.put(
-            self.password_reset_confirm_url, data, format="json")
+        response = self.client.put(self.password_reset_confirm_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_password_reset_confirm_with_authenticated_user(self):
-        data = {"password": "newtestpassword",
-                "confirm_password": "newtestpassword"}
+        data = {"password": "newtestpassword", "confirm_password": "newtestpassword"}
         self.client.force_authenticate(user=self.user)
-        response = self.client.put(
-            self.password_reset_confirm_url, data, format="json")
+        response = self.client.put(self.password_reset_confirm_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 
 class ProcurementOfficerRegisterViewTests(APITestCase):
     def setUp(self):
-        self.procurement_officer_register_url = reverse(
-            "procurement_officer_register")
+        self.procurement_officer_register_url = reverse("procurement_officer_register")
 
     def test_register_procurement_officer_user(self):
         data = {
@@ -499,7 +469,7 @@ class ProcurementOfficerRegisterViewTests(APITestCase):
             "company_name": "Procurement Corporation",
             "address": "123 Main St",
             "password1": "yourpassword",
-            "password2": "yourpassword"
+            "password2": "yourpassword",
         }
         response = self.client.post(
             self.procurement_officer_register_url, data, format="json"
@@ -698,8 +668,7 @@ class ProcurementOfficerRegisterViewTests(APITestCase):
         response = self.client.get(
             self.procurement_officer_register_url, data, format="json"
         )
-        self.assertEqual(response.status_code,
-                         status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
         self.assertEqual(User.objects.count(), 0)
 
     def test_register_user_with_invalid_payload(self):
@@ -764,8 +733,7 @@ class VendorRegisterViewTests(APITestCase):
                 "vendor_type": "supplier",
             },
         }
-        response = self.client.post(
-            self.vendor_register_url, data, format="json")
+        response = self.client.post(self.vendor_register_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(User.objects.count(), 1)
         self.assertEqual(Vendor.objects.count(), 1)
@@ -796,8 +764,7 @@ class VendorRegisterViewTests(APITestCase):
                 "vendor_type": "supplier",
             },
         }
-        response = self.client.post(
-            self.vendor_register_url, data, format="json")
+        response = self.client.post(self.vendor_register_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(User.objects.count(), 0)
         self.assertEqual(Vendor.objects.count(), 0)
@@ -819,8 +786,7 @@ class VendorRegisterViewTests(APITestCase):
                 "vendor_type": "supplier",
             },
         }
-        response = self.client.post(
-            self.vendor_register_url, data, format="json")
+        response = self.client.post(self.vendor_register_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(User.objects.count(), 0)
         self.assertEqual(Vendor.objects.count(), 0)
@@ -842,8 +808,7 @@ class VendorRegisterViewTests(APITestCase):
                 "vendor_type": "supplier",
             },
         }
-        response = self.client.post(
-            self.vendor_register_url, data, format="json")
+        response = self.client.post(self.vendor_register_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(User.objects.count(), 0)
         self.assertEqual(Vendor.objects.count(), 0)
@@ -865,8 +830,7 @@ class VendorRegisterViewTests(APITestCase):
                 "vendor_type": "supplier",
             },
         }
-        response = self.client.post(
-            self.vendor_register_url, data, format="json")
+        response = self.client.post(self.vendor_register_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(User.objects.count(), 0)
         self.assertEqual(Vendor.objects.count(), 0)
@@ -900,8 +864,7 @@ class VendorRegisterViewTests(APITestCase):
                 "vendor_type": "supplier",
             },
         }
-        response = self.client.post(
-            self.vendor_register_url, data, format="json")
+        response = self.client.post(self.vendor_register_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(User.objects.count(), 1)
         self.assertEqual(Vendor.objects.count(), 0)
@@ -935,8 +898,7 @@ class VendorRegisterViewTests(APITestCase):
                 "vendor_type": "supplier",
             },
         }
-        response = self.client.post(
-            self.vendor_register_url, data, format="json")
+        response = self.client.post(self.vendor_register_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(User.objects.count(), 1)
         self.assertEqual(Vendor.objects.count(), 0)
@@ -970,8 +932,7 @@ class VendorRegisterViewTests(APITestCase):
                 "vendor_type": "supplier",
             },
         }
-        response = self.client.post(
-            self.vendor_register_url, data, format="json")
+        response = self.client.post(self.vendor_register_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(User.objects.count(), 1)
         self.assertEqual(Vendor.objects.count(), 0)
@@ -993,19 +954,14 @@ class VendorRegisterViewTests(APITestCase):
                 "vendor_type": "supplier",
             },
         }
-        response = self.client.get(
-            self.vendor_register_url, data, format="json"
-        )
-        self.assertEqual(response.status_code,
-                         status.HTTP_405_METHOD_NOT_ALLOWED)
+        response = self.client.get(self.vendor_register_url, data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
         self.assertEqual(User.objects.count(), 0)
         self.assertEqual(Vendor.objects.count(), 0)
 
     def test_register_user_with_invalid_payload(self):
         data = {"invalidkey": "1234"}
-        response = self.client.post(
-            self.vendor_register_url, data, format="json"
-        )
+        response = self.client.post(self.vendor_register_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(User.objects.count(), 0)
         self.assertEqual(Vendor.objects.count(), 0)
@@ -1040,9 +996,7 @@ class VendorRegisterViewTests(APITestCase):
             user_role="vendor",
         )
         self.client.force_authenticate(user=user)
-        response = self.client.post(
-            self.vendor_register_url, data, format="json"
-        )
+        response = self.client.post(self.vendor_register_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(User.objects.count(), 2)
         self.assertEqual(Vendor.objects.count(), 1)
@@ -1071,26 +1025,22 @@ class UserProfileViewTests(SetUpUsers):
     def test_update_procurement_officer_profile(self):
         self.client.force_authenticate(user=self.procurement_officer)
         data = {"username": "new_procurement_username"}
-        response = self.client.patch(
-            self.update_profile_url, data, format="json")
+        response = self.client.patch(self.update_profile_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.procurement_officer.refresh_from_db()
-        self.assertEqual(self.procurement_officer.username,
-                         "new_procurement_username")
+        self.assertEqual(self.procurement_officer.username, "new_procurement_username")
 
     def test_update_vendor_profile(self):
         self.client.force_authenticate(user=self.vendor)
         data = {"username": "new_vendor_username"}
-        response = self.client.patch(
-            self.update_profile_url, data, format="json")
+        response = self.client.patch(self.update_profile_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.vendor.refresh_from_db()
         self.assertEqual(self.vendor.username, "new_vendor_username")
 
     def test_update_user_profile_unauthenticated(self):
         data = {"username": "new_username"}
-        response = self.client.patch(
-            self.update_profile_url, data, format="json")
+        response = self.client.patch(self.update_profile_url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_delete_procurement_officer_profile(self):
@@ -1105,8 +1055,7 @@ class UserProfileViewTests(SetUpUsers):
         self.client.force_authenticate(user=self.vendor)
         response = self.client.delete(self.delete_profile_url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-        self.assertRaises(User.DoesNotExist,
-                          User.objects.get, username="vendor")
+        self.assertRaises(User.DoesNotExist, User.objects.get, username="vendor")
 
     def test_delete_user_profile_unauthenticated(self):
         response = self.client.delete(self.delete_profile_url)

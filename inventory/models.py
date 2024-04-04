@@ -8,7 +8,9 @@ from accounts.models import User
 class Inventory(models.Model):
     item_name = models.CharField(max_length=255)
     description = models.TextField()
-    unit_price = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0.0)])
+    unit_price = models.DecimalField(
+        max_digits=10, decimal_places=2, validators=[MinValueValidator(0.0)]
+    )
     stock_quantity = models.PositiveIntegerField()
     location = models.CharField(max_length=255)
     date_added = models.DateTimeField(auto_now_add=True)
@@ -40,8 +42,12 @@ class OptimizedInventory(models.Model):
         null=True,
         blank=True,
     )
-    safety_stock = models.FloatField(null=True, blank=True, validators=[MinValueValidator(0.0)])
-    reorder_point = models.FloatField(null=True, blank=True, validators=[MinValueValidator(0.0)])
+    safety_stock = models.FloatField(
+        null=True, blank=True, validators=[MinValueValidator(0.0)]
+    )
+    reorder_point = models.FloatField(
+        null=True, blank=True, validators=[MinValueValidator(0.0)]
+    )
     shelf_life = models.PositiveIntegerField(null=True, blank=True)
     storage_limit = models.PositiveIntegerField(null=True, blank=True)
     eoq = models.FloatField(null=True, blank=True, validators=[MinValueValidator(0.0)])
@@ -59,7 +65,7 @@ def create_historical_inventory(sender, instance, created, **kwargs):
         .order_by("-datetime")
         .first()
     )
-    
+
     demand = 0
     if latest_historical_inventory:
         demand = max(

@@ -13,9 +13,13 @@ class InventoryReceipt(models.Model):
     receipt_id = models.CharField(max_length=255)
     receipt_date = models.DateField(auto_now_add=True)
     received_quantity = models.IntegerField(validators=[MinValueValidator(0)])
-    received_condition = models.CharField(max_length=20, choices=CONDITION_CHOICES, null=True, blank=True)
+    received_condition = models.CharField(
+        max_length=20, choices=CONDITION_CHOICES, null=True, blank=True
+    )
     inspection_notes = models.TextField(null=True, blank=True)
-    inspection_report = models.FileField(upload_to="inspection/reports", null=True, blank=True)
+    inspection_report = models.FileField(
+        upload_to="inspection/reports", null=True, blank=True
+    )
     order = models.OneToOneField(PurchaseOrder, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -38,11 +42,17 @@ class Invoice(models.Model):
     invoice_number = models.CharField(max_length=255)
     invoice_date = models.DateField(auto_now_add=True)
     account_number = models.CharField(max_length=255)
-    total_amount = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0.0)])
+    total_amount = models.DecimalField(
+        max_digits=10, decimal_places=2, validators=[MinValueValidator(0.0)]
+    )
     payment_due_date = models.DateField()
     payment_mode = models.CharField(max_length=20, choices=PAYMENT_MODE_CHOICES)
-    payment_status = models.CharField(max_length=20, choices=PAYMENT_STATUS_CHOICES, default="pending")
-    invoice_report = models.FileField(upload_to="invoice/reports", null=True, blank=True)
+    payment_status = models.CharField(
+        max_length=20, choices=PAYMENT_STATUS_CHOICES, default="pending"
+    )
+    invoice_report = models.FileField(
+        upload_to="invoice/reports", null=True, blank=True
+    )
     vendor_rated = models.BooleanField(default=False)
     order = models.OneToOneField(PurchaseOrder, on_delete=models.CASCADE)
 

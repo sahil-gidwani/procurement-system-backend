@@ -33,7 +33,9 @@ class PurchaseRequisition(models.Model):
 
 class SupplierBid(models.Model):
     quantity_fulfilled = models.IntegerField()
-    unit_price = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0.0)])
+    unit_price = models.DecimalField(
+        max_digits=10, decimal_places=2, validators=[MinValueValidator(0.0)]
+    )
     date_submitted = models.DateTimeField(auto_now_add=True)
     days_delivery = models.IntegerField(validators=[MinValueValidator(1)])
     attachments = models.ImageField(upload_to="bid", null=True, blank=True)

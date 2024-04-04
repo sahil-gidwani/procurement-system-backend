@@ -189,6 +189,7 @@ class VendorRegisterSerializer(serializers.ModelSerializer):
 
 class ProfileSerializer(serializers.ModelSerializer):
     vendor = VendorInfoSerializer(write_only=True, required=False, allow_null=True)
+
     class Meta:
         model = User
         fields = (
@@ -202,17 +203,17 @@ class ProfileSerializer(serializers.ModelSerializer):
             "address",
             "vendor",
         )
-    
+
     def __init__(self, *args, **kwargs):
         super(ProfileSerializer, self).__init__(*args, **kwargs)
 
         # Adjust the 'required' attribute of the 'vendor' field based on user role
-        if 'context' in kwargs and 'request' in kwargs['context']:
-            user = kwargs['context']['request'].user
+        if "context" in kwargs and "request" in kwargs["context"]:
+            user = kwargs["context"]["request"].user
             if user.is_authenticated:  # Ensure user is authenticated
                 user_role = user.user_role
-                if user_role == 'procurement_officer':
-                    self.fields['vendor'].required = False
+                if user_role == "procurement_officer":
+                    self.fields["vendor"].required = False
 
     def update(self, instance, validated_data):
         # Update user fields
@@ -224,7 +225,9 @@ class ProfileSerializer(serializers.ModelSerializer):
             "phone_number", instance.phone_number
         )
         instance.gstin = validated_data.get("gstin", instance.gstin)
-        instance.company_name = validated_data.get("company_name", instance.company_name)
+        instance.company_name = validated_data.get(
+            "company_name", instance.company_name
+        )
         instance.address = validated_data.get("address", instance.address)
         instance.save()
 

@@ -7,13 +7,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accounts', '0008_vendor_total_ratings_alter_vendor_vendor_rating'),
+        ("accounts", "0008_vendor_total_ratings_alter_vendor_vendor_rating"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='vendor',
-            name='contract_expiry_date',
-            field=models.DateField(default=datetime.datetime(2029, 3, 8, 12, 56, 23, 186389)),
+            model_name="vendor",
+            name="contract_expiry_date",
+            field=models.DateField(
+                default=datetime.datetime(2029, 3, 8, 12, 56, 23, 186389)
+            ),
         ),
     ]

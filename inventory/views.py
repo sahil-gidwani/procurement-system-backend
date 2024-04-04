@@ -240,7 +240,7 @@ class ARIMAForecastAPIView(generics.GenericAPIView):
                 {"file": "Too many columns in the file"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
-        
+
         df.columns = ["datetime", "demand"]
         df["datetime"] = pd.to_datetime(df["datetime"])
         df.set_index("datetime", inplace=True)
@@ -363,7 +363,9 @@ class OptimizedInventoryCreateAPIView(generics.CreateAPIView):
                 inventory_id=inventory_id,
             )
         except IntegrityError:
-            raise ValidationError("OptimizedInventory already exists for this inventory.")
+            raise ValidationError(
+                "OptimizedInventory already exists for this inventory."
+            )
 
 
 class OptimizedInventoryUpdateAPIView(generics.UpdateAPIView):
@@ -392,7 +394,7 @@ class OptimizedInventoryUpdateAPIView(generics.UpdateAPIView):
         if not request.data:
             return Response(
                 {"detail": "No data provided for update"},
-                status=status.HTTP_400_BAD_REQUEST
+                status=status.HTTP_400_BAD_REQUEST,
             )
 
         inventory = get_object_or_404(Inventory, id=inventory_id)
@@ -468,9 +470,7 @@ class BaseOptimizedInventoryAPIView(generics.GenericAPIView):
     def get_queryset(self):
         inventory_id = self.kwargs.get("inventory_id")
 
-        inventory = get_object_or_404(
-            Inventory, id=inventory_id
-        )
+        inventory = get_object_or_404(Inventory, id=inventory_id)
 
         if inventory.procurement_officer != self.request.user:
             raise PermissionDenied(

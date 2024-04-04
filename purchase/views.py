@@ -22,7 +22,7 @@ from .serializers import (
     SupplierBidProcurementOfficerSerializer,
     SupplierBidProcurementOfficerStatusSerializer,
     PurchaseOrderSerializer,
-    PurchaseOrderStatusSerializer
+    PurchaseOrderStatusSerializer,
 )
 from .tasks import (
     send_requisition_update_email,
@@ -32,7 +32,7 @@ from .tasks import (
     send_bid_rejected_email,
     send_requisition_accepted_email,
     send_purchase_order_email,
-    send_purchase_order_status_email
+    send_purchase_order_status_email,
 )
 from inventory.models import Inventory
 from accounts.permissions import IsProcurementOfficer, IsVendor
@@ -56,11 +56,13 @@ class BasePurchaseRequisitionAPIView(generics.GenericAPIView):
             return get_object_or_404(self.get_queryset(), id=self.kwargs.get("pk"))
 
         inventory = get_object_or_404(
-            Inventory, id=inventory_id,
+            Inventory,
+            id=inventory_id,
         )
         if inventory.procurement_officer != self.request.user:
             raise PermissionDenied(
-                "You do not have permission to access this inventory item.")
+                "You do not have permission to access this inventory item."
+            )
         obj = get_object_or_404(self.get_queryset(), inventory=inventory)
 
         return obj
@@ -78,18 +80,19 @@ class PurchaseRequisitionCreateView(
 
     def perform_create(self, serializer):
         inventory_id = self.kwargs.get("inventory_id")
-        inventory = get_object_or_404(
-            Inventory, pk=inventory_id
-        )
+        inventory = get_object_or_404(Inventory, pk=inventory_id)
 
         if inventory.procurement_officer != self.request.user:
             raise PermissionDenied(
-                "You do not have permission to access this inventory item.")
+                "You do not have permission to access this inventory item."
+            )
 
-        existing_requisition = PurchaseRequisition.objects.filter(inventory=inventory).exists()
+        existing_requisition = PurchaseRequisition.objects.filter(
+            inventory=inventory
+        ).exists()
         if existing_requisition:
             raise ValidationError("A requisition for this inventory already exists.")
-        
+
         serializer.save(inventory=inventory)
 
 
@@ -106,19 +109,21 @@ class PurchaseRequisitionUpdateView(
 
     def perform_update(self, serializer):
         instance = self.get_object()
-        if instance.status == 'approved':
+        if instance.status == "approved":
             raise serializers.ValidationError(
                 {"status": "Requisition is already approved."}
             )
-        
-        serializer.validated_data['status'] = 'pending'
+
+        serializer.validated_data["status"] = "pending"
         serializer.save()
 
         send_requisition_update_email.delay(instance.id)
-    
+
     def patch(self, request, *args, **kwargs):
         if not request.data:
-            return Response({"error": "No data provided"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {"error": "No data provided"}, status=status.HTTP_400_BAD_REQUEST
+            )
         return super().patch(request, *args, **kwargs)
 
 
@@ -128,7 +133,7 @@ class PurchaseRequisitionDeleteView(
     queryset = PurchaseRequisition.objects.all()
 
     def perform_destroy(self, instance):
-        if instance.status == 'approved':
+        if instance.status == "approved":
             raise serializers.ValidationError(
                 {"status": "Requisition is already approved."}
             )
@@ -139,7 +144,7 @@ class PurchaseRequisitionDeleteView(
 class PurchaseRequisitionVendorListView(generics.ListAPIView):
     permission_classes = [IsAuthenticated, IsVendor]
     serializer_class = PurchaseRequisitionVendorSerializer
-    queryset = PurchaseRequisition.objects.filter(status='pending')
+    queryset = PurchaseRequisition.objects.filter(status="pending")
 
 
 class BaseSupplierAPIView(generics.GenericAPIView):
@@ -174,18 +179,21 @@ class SupplierBidCreateView(BaseSupplierAPIView, generics.CreateAPIView):
         requisition_id = self.kwargs.get("requisition_id")
         requisition = get_object_or_404(PurchaseRequisition, pk=requisition_id)
 
-        if requisition.status == 'approved' or requisition.status == 'rejected':
+        if requisition.status == "approved" or requisition.status == "rejected":
             raise serializers.ValidationError(
                 {"status": "Requisition is already approved or rejected."}
             )
 
         # Validate quantity_fulfilled against requisition.quantity_requested
-        quantity_fulfilled = serializer.validated_data.get(
-            "quantity_fulfilled")
-        if quantity_fulfilled is not None and quantity_fulfilled < requisition.quantity_requested:
+        quantity_fulfilled = serializer.validated_data.get("quantity_fulfilled")
+        if (
+            quantity_fulfilled is not None
+            and quantity_fulfilled < requisition.quantity_requested
+        ):
             raise serializers.ValidationError(
-                {"quantity_fulfilled":
-                    f"Quantity fulfilled must be greater than or equal to quantity requested ({requisition.quantity_requested})."}
+                {
+                    "quantity_fulfilled": f"Quantity fulfilled must be greater than or equal to quantity requested ({requisition.quantity_requested})."
+                }
             )
 
         try:
@@ -193,7 +201,7 @@ class SupplierBidCreateView(BaseSupplierAPIView, generics.CreateAPIView):
             send_supplier_bid_email.delay(
                 requisition.inventory.procurement_officer.email,
                 self.request.user.company_name,
-                requisition.requisition_number
+                requisition.requisition_number,
             )
         except IntegrityError:
             raise ValidationError(
@@ -213,34 +221,37 @@ class SupplierBidUpdateView(BaseSupplierAPIView, generics.UpdateAPIView):
         requisition = instance.requisition
 
         # Prevent updating the bid if it is already accepted
-        if instance.status == 'accepted':
-            raise serializers.ValidationError(
-                {"status": "Bid is already accepted."}
-            )
+        if instance.status == "accepted":
+            raise serializers.ValidationError({"status": "Bid is already accepted."})
 
         # Validate quantity_fulfilled against requisition.quantity_requested
-        quantity_fulfilled = serializer.validated_data.get(
-            "quantity_fulfilled")
-        if quantity_fulfilled is not None and quantity_fulfilled < requisition.quantity_requested:
+        quantity_fulfilled = serializer.validated_data.get("quantity_fulfilled")
+        if (
+            quantity_fulfilled is not None
+            and quantity_fulfilled < requisition.quantity_requested
+        ):
             raise serializers.ValidationError(
-                {"quantity_fulfilled":
-                    f"Quantity fulfilled must be greater than or equal to quantity requested ({requisition.quantity_requested})."}
+                {
+                    "quantity_fulfilled": f"Quantity fulfilled must be greater than or equal to quantity requested ({requisition.quantity_requested})."
+                }
             )
 
         # Reset status to submitted if the bid is not accepted
-        serializer.validated_data['status'] = 'submitted'
+        serializer.validated_data["status"] = "submitted"
 
         serializer.save(requisition=requisition, supplier=self.request.user)
 
         send_supplier_bid_update_email.delay(
             requisition.inventory.procurement_officer.email,
             self.request.user.company_name,
-            requisition.requisition_number
+            requisition.requisition_number,
         )
-    
+
     def patch(self, request, *args, **kwargs):
         if not request.data:
-            return Response({"error": "No data provided"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {"error": "No data provided"}, status=status.HTTP_400_BAD_REQUEST
+            )
         return super().patch(request, *args, **kwargs)
 
 
@@ -248,10 +259,8 @@ class SupplierBidDeleteView(BaseSupplierAPIView, generics.DestroyAPIView):
     queryset = SupplierBid.objects.all()
 
     def perform_destroy(self, instance):
-        if instance.status == 'accepted':
-            raise serializers.ValidationError(
-                {"status": "Bid is already accepted."}
-            )
+        if instance.status == "accepted":
+            raise serializers.ValidationError({"status": "Bid is already accepted."})
         instance.delete()
 
 
@@ -284,7 +293,7 @@ class SupplierBidProcurementOfficerRankingView(generics.GenericAPIView):
         if bids.count() < 2:
             return Response(
                 {"error": "There must be at least two bids to perform ranking."},
-                status=status.HTTP_400_BAD_REQUEST
+                status=status.HTTP_400_BAD_REQUEST,
             )
 
         serializer = self.serializer_class(bids, many=True)
@@ -303,8 +312,13 @@ class SupplierBidProcurementOfficerRankingView(generics.GenericAPIView):
         # 1. Normalize the Decision Matrix
         norm_df = df.copy()
         norm_df = norm_df[
-            ["unit_price", "total_cost", "days_delivery",
-                "supplier_rating", "total_ratings"]
+            [
+                "unit_price",
+                "total_cost",
+                "days_delivery",
+                "supplier_rating",
+                "total_ratings",
+            ]
         ]
         norm_df = (norm_df - norm_df.min()) / (norm_df.max() - norm_df.min())
 
@@ -364,15 +378,19 @@ class SupplierBidProcurementOfficerRankingView(generics.GenericAPIView):
         df_json = df.to_json(orient="records")
 
         # Create the radar chart
-        criteria = ["unit_price", "total_cost",
-                    "days_delivery", "supplier_rating", "total_ratings"]
+        criteria = [
+            "unit_price",
+            "total_cost",
+            "days_delivery",
+            "supplier_rating",
+            "total_ratings",
+        ]
         norm_values = norm_df.values.tolist()
         alternative_names = list(norm_df["rank"])
         fig = go.Figure()
         for name, values in zip(alternative_names, norm_values):
             fig.add_trace(
-                go.Scatterpolar(r=values, theta=criteria,
-                                fill="toself", name=name)
+                go.Scatterpolar(r=values, theta=criteria, fill="toself", name=name)
             )
         fig.update_layout(
             polar=dict(
@@ -391,8 +409,13 @@ class SupplierBidProcurementOfficerRankingView(generics.GenericAPIView):
             color="rank",
             color_continuous_scale=px.colors.sequential.Viridis,
             labels={"rank": "Rank"},
-            dimensions=["unit_price", "total_cost",
-                        "days_delivery", "supplier_rating", "total_ratings"],
+            dimensions=[
+                "unit_price",
+                "total_cost",
+                "days_delivery",
+                "supplier_rating",
+                "total_ratings",
+            ],
         )
         fig.update_layout(
             title="Multi-Criteria Evaluation: Parallel Coordinates of Bids Ranking",
@@ -431,50 +454,66 @@ class SupplierBidProcurementOfficerStatusView(generics.UpdateAPIView):
         )
 
     def update(self, request, *args, **kwargs):
-        partial = kwargs.pop('partial', False)
+        partial = kwargs.pop("partial", False)
         instance = self.get_object()
-        serializer = self.get_serializer(
-            instance, data=request.data, partial=partial)
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
         serializer.is_valid(raise_exception=True)
 
-        if 'status' not in serializer.validated_data:
-            return Response({"error": "Bid status is required."}, status=status.HTTP_400_BAD_REQUEST)
+        if "status" not in serializer.validated_data:
+            return Response(
+                {"error": "Bid status is required."}, status=status.HTTP_400_BAD_REQUEST
+            )
 
-        bid_status = serializer.validated_data.get('status')
+        bid_status = serializer.validated_data.get("status")
 
-        if bid_status not in ['accepted', 'rejected']:
-            return Response({"error": "Bid status can only be 'accepted' or 'rejected'."}, status=status.HTTP_400_BAD_REQUEST)
+        if bid_status not in ["accepted", "rejected"]:
+            return Response(
+                {"error": "Bid status can only be 'accepted' or 'rejected'."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
 
-        if instance.status != 'submitted':
-            return Response({"error": "Bid status already modified."}, status=status.HTTP_400_BAD_REQUEST)
+        if instance.status != "submitted":
+            return Response(
+                {"error": "Bid status already modified."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
 
         # Custom logic for updating requisition and creating purchase order
-        if bid_status == 'accepted':
+        if bid_status == "accepted":
             requisition = instance.requisition
-            if SupplierBid.objects.filter(requisition=requisition, status='accepted').exists():
+            if SupplierBid.objects.filter(
+                requisition=requisition, status="accepted"
+            ).exists():
                 # If another bid is already accepted, do not update the status
-                return Response({"error": "Another bid is already accepted for this requisition."}, status=status.HTTP_400_BAD_REQUEST)
+                return Response(
+                    {"error": "Another bid is already accepted for this requisition."},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
 
             # No other bids are accepted, proceed with the update
             self.perform_update(serializer)
             send_bid_accepted_email.delay(
-                instance.supplier.email, instance.id, requisition.requisition_number)
+                instance.supplier.email, instance.id, requisition.requisition_number
+            )
 
-            requisition.status = 'approved'
+            requisition.status = "approved"
             requisition.save()
             send_requisition_accepted_email.delay(
-                requisition.inventory.procurement_officer.email, requisition.requisition_number)
+                requisition.inventory.procurement_officer.email,
+                requisition.requisition_number,
+            )
 
             # Reject all other bids associated with the requisition
-            other_bids = SupplierBid.objects.filter(
-                requisition=requisition).exclude(id=instance.id)
-            other_bids.update(status='rejected')
+            other_bids = SupplierBid.objects.filter(requisition=requisition).exclude(
+                id=instance.id
+            )
+            other_bids.update(status="rejected")
 
             # Convert the QuerySet to a list and extract the email addresses
-            supplier_emails = list(other_bids.values_list(
-                'supplier__email', flat=True))
+            supplier_emails = list(other_bids.values_list("supplier__email", flat=True))
             send_bid_rejected_email.delay(
-                supplier_emails, instance.id, requisition.requisition_number)
+                supplier_emails, instance.id, requisition.requisition_number
+            )
 
             # Create a purchase order automatically
             purchase_order = PurchaseOrder.objects.create(
@@ -482,16 +521,26 @@ class SupplierBidProcurementOfficerStatusView(generics.UpdateAPIView):
                 bid_id=instance.id,
             )
             purchase_order.save()
-            send_purchase_order_email.delay([instance.supplier.email, requisition.inventory.procurement_officer.email],
-                                            instance.id, requisition.requisition_number, purchase_order.order_number)
+            send_purchase_order_email.delay(
+                [
+                    instance.supplier.email,
+                    requisition.inventory.procurement_officer.email,
+                ],
+                instance.id,
+                requisition.requisition_number,
+                purchase_order.order_number,
+            )
 
             return Response(serializer.data)
 
-        elif bid_status == 'rejected':
+        elif bid_status == "rejected":
             # Only perform serializer update if bid is rejected
             self.perform_update(serializer)
             send_bid_rejected_email.delay(
-                [instance.supplier.email], instance.id, instance.requisition.requisition_number)
+                [instance.supplier.email],
+                instance.id,
+                instance.requisition.requisition_number,
+            )
             return Response(serializer.data)
 
 
@@ -512,9 +561,7 @@ class PurchaseOrderVendorListView(generics.ListAPIView):
     serializer_class = PurchaseOrderSerializer
 
     def get_queryset(self):
-        return PurchaseOrder.objects.filter(
-            bid__supplier=self.request.user
-        )
+        return PurchaseOrder.objects.filter(bid__supplier=self.request.user)
 
 
 class PurchaseOrderVendorStatusView(generics.UpdateAPIView):
@@ -529,26 +576,40 @@ class PurchaseOrderVendorStatusView(generics.UpdateAPIView):
 
     def update(self, request, *args, **kwargs):
         instance = self.get_object()
-        serializer = self.get_serializer(
-            instance, data=request.data, partial=True)
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
 
-        new_status = serializer.validated_data.get('status')
+        new_status = serializer.validated_data.get("status")
 
         # Check if the status transition is valid
-        if instance.status == 'delivered':
-            return Response({"error": "Order is already delivered."}, status=status.HTTP_400_BAD_REQUEST)
-        elif instance.status == 'shipped' and new_status == 'shipped':
-            return Response({"error": "Order is already shipped."}, status=status.HTTP_400_BAD_REQUEST)
-        elif new_status not in ['shipped', 'delivered']:
-            return Response({"error": "Invalid status transition."}, status=status.HTTP_400_BAD_REQUEST)
-        elif new_status == 'delivered' and instance.status != 'shipped':
-            return Response({"error": "Order must be shipped before it can be delivered."}, status=status.HTTP_400_BAD_REQUEST)
+        if instance.status == "delivered":
+            return Response(
+                {"error": "Order is already delivered."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        elif instance.status == "shipped" and new_status == "shipped":
+            return Response(
+                {"error": "Order is already shipped."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        elif new_status not in ["shipped", "delivered"]:
+            return Response(
+                {"error": "Invalid status transition."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        elif new_status == "delivered" and instance.status != "shipped":
+            return Response(
+                {"error": "Order must be shipped before it can be delivered."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
 
         instance.status = new_status
         instance.save()
         send_purchase_order_status_email.delay(
-            instance.bid.requisition.inventory.procurement_officer.email, instance.order_number, new_status)
+            instance.bid.requisition.inventory.procurement_officer.email,
+            instance.order_number,
+            new_status,
+        )
 
         return Response(serializer.data)
 

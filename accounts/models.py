@@ -37,7 +37,9 @@ class Vendor(models.Model):
         ("service_provider", "Service Provider"),
     ]
     vendor_type = models.CharField(max_length=20, choices=VENDOR_TYPE_CHOICES)
-    contract_expiry_date = models.DateField(default=datetime.now() + timedelta(days=5*365))
+    contract_expiry_date = models.DateField(
+        default=datetime.now() + timedelta(days=5 * 365)
+    )
     vendor_rating = models.FloatField(
         validators=[MinValueValidator(0.0), MaxValueValidator(5.0)], default=0.0
     )

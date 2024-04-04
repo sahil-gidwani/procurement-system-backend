@@ -7,18 +7,24 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accounts', '0007_alter_user_gstin'),
+        ("accounts", "0007_alter_user_gstin"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='vendor',
-            name='total_ratings',
+            model_name="vendor",
+            name="total_ratings",
             field=models.PositiveIntegerField(default=0),
         ),
         migrations.AlterField(
-            model_name='vendor',
-            name='vendor_rating',
-            field=models.FloatField(default=0.0, validators=[django.core.validators.MinValueValidator(0.0), django.core.validators.MaxValueValidator(5.0)]),
+            model_name="vendor",
+            name="vendor_rating",
+            field=models.FloatField(
+                default=0.0,
+                validators=[
+                    django.core.validators.MinValueValidator(0.0),
+                    django.core.validators.MaxValueValidator(5.0),
+                ],
+            ),
         ),
     ]

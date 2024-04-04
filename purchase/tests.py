@@ -151,72 +151,96 @@ class SetupClass(TestCase):
             inventory=self.inventory_item3,
         )
 
-        self.purchase_requisition_list_url = reverse(
-            "purchase_requisition_list")
+        self.purchase_requisition_list_url = reverse("purchase_requisition_list")
         self.purchase_requisition_create_url = reverse(
-            "purchase_requisition_create", kwargs={'inventory_id': 4})
+            "purchase_requisition_create", kwargs={"inventory_id": 4}
+        )
         self.purchase_requisition_create_existing_url = reverse(
-            "purchase_requisition_create", kwargs={'inventory_id': 1})
+            "purchase_requisition_create", kwargs={"inventory_id": 1}
+        )
         self.purchase_requisition_retrieve_url = reverse(
-            "purchase_requisition_detail", kwargs={'pk': 1})
+            "purchase_requisition_detail", kwargs={"pk": 1}
+        )
         self.purchase_requisition_update_url = reverse(
-            "purchase_requisition_update", kwargs={'pk': 1})
+            "purchase_requisition_update", kwargs={"pk": 1}
+        )
         self.purchase_requisition_update_status_approved_url = reverse(
-            "purchase_requisition_update", kwargs={'pk': 2})
+            "purchase_requisition_update", kwargs={"pk": 2}
+        )
         self.purchase_requisition_update_status_rejected_url = reverse(
-            "purchase_requisition_update", kwargs={'pk': 3})
+            "purchase_requisition_update", kwargs={"pk": 3}
+        )
         self.purchase_requisition_delete_url = reverse(
-            "purchase_requisition_delete", kwargs={'pk': 1})
+            "purchase_requisition_delete", kwargs={"pk": 1}
+        )
         self.purchase_requisition_delete_status_approved_url = reverse(
-            "purchase_requisition_delete", kwargs={'pk': 2})
+            "purchase_requisition_delete", kwargs={"pk": 2}
+        )
         self.purchase_requisition_delete_status_rejected_url = reverse(
-            "purchase_requisition_delete", kwargs={'pk': 3})
+            "purchase_requisition_delete", kwargs={"pk": 3}
+        )
         self.purchase_requisition_vendor_list_url = reverse(
-            "purchase_requisition_vendor_list")
+            "purchase_requisition_vendor_list"
+        )
         self.supplier_bid_list_url = reverse("supplier_bid_list")
         self.supplier_bid_create_url = reverse(
-            "supplier_bid_create", kwargs={'requisition_id': 1})
+            "supplier_bid_create", kwargs={"requisition_id": 1}
+        )
         self.supplier_bid_create_requisition_status_approved_url = reverse(
-            "supplier_bid_create", kwargs={'requisition_id': 2})
+            "supplier_bid_create", kwargs={"requisition_id": 2}
+        )
         self.supplier_bid_create_requisition_status_rejected_url = reverse(
-            "supplier_bid_create", kwargs={'requisition_id': 3})
+            "supplier_bid_create", kwargs={"requisition_id": 3}
+        )
         self.supplier_bid_retrieve_url = reverse(
-            "supplier_bid_detail", kwargs={'pk': 1})
-        self.supplier_bid_update_url = reverse(
-            "supplier_bid_update", kwargs={'pk': 1})
+            "supplier_bid_detail", kwargs={"pk": 1}
+        )
+        self.supplier_bid_update_url = reverse("supplier_bid_update", kwargs={"pk": 1})
         self.supplier_bid_update_status_accepted_url = reverse(
-            "supplier_bid_update", kwargs={'pk': 3})
+            "supplier_bid_update", kwargs={"pk": 3}
+        )
         self.supplier_bid_update_status_rejected_url = reverse(
-            "supplier_bid_update", kwargs={'pk': 4})
-        self.supplier_bid_delete_url = reverse(
-            "supplier_bid_delete", kwargs={'pk': 1})
+            "supplier_bid_update", kwargs={"pk": 4}
+        )
+        self.supplier_bid_delete_url = reverse("supplier_bid_delete", kwargs={"pk": 1})
         self.supplier_bid_delete_status_accepted_url = reverse(
-            "supplier_bid_delete", kwargs={'pk': 3})
+            "supplier_bid_delete", kwargs={"pk": 3}
+        )
         self.supplier_bid_delete_status_rejected_url = reverse(
-            "supplier_bid_delete", kwargs={'pk': 4})
+            "supplier_bid_delete", kwargs={"pk": 4}
+        )
         self.supplier_bid_procurment_officer_list_url = reverse(
-            "supplier_bid_procurement_officer_list", kwargs={'requisition_id': 4})
+            "supplier_bid_procurement_officer_list", kwargs={"requisition_id": 4}
+        )
         self.supplier_bid_procurement_officer_ranking_url = reverse(
-            "supplier_bid_procurement_officer_ranking", kwargs={'requisition_id': 4})
+            "supplier_bid_procurement_officer_ranking", kwargs={"requisition_id": 4}
+        )
         self.supplier_bid_procurement_officer_detail_url = reverse(
-            "supplier_bid_procurement_officer_detail", kwargs={'pk': 1})
+            "supplier_bid_procurement_officer_detail", kwargs={"pk": 1}
+        )
         self.supplier_bid_procurement_officer_status_url = reverse(
-            "supplier_bid_procurement_officer_status", kwargs={'pk': 1})
+            "supplier_bid_procurement_officer_status", kwargs={"pk": 1}
+        )
         self.supplier_bid_procurement_officer_status_accepted_url = reverse(
-            "supplier_bid_procurement_officer_status", kwargs={'pk': 3})
+            "supplier_bid_procurement_officer_status", kwargs={"pk": 3}
+        )
         self.supplier_bid_procurement_officer_status_rejected_url = reverse(
-            "supplier_bid_procurement_officer_status", kwargs={'pk': 4})
+            "supplier_bid_procurement_officer_status", kwargs={"pk": 4}
+        )
         self.purchase_order_list_url = reverse("purchase_order_list")
-        self.purchase_order_vendor_list_url = reverse(
-            "purchase_order_vendor_list")
+        self.purchase_order_vendor_list_url = reverse("purchase_order_vendor_list")
         self.purchase_order_vendor_status_url = reverse(
-            "purchase_order_vendor_status", kwargs={'pk': 1})
+            "purchase_order_vendor_status", kwargs={"pk": 1}
+        )
         self.purchase_order_vendor_status_pending_url = reverse(
-            "purchase_order_vendor_status", kwargs={'pk': 1})
+            "purchase_order_vendor_status", kwargs={"pk": 1}
+        )
         self.purchase_order_vendor_status_shipped_url = reverse(
-            "purchase_order_vendor_status", kwargs={'pk': 2})
+            "purchase_order_vendor_status", kwargs={"pk": 2}
+        )
         self.purchase_order_vendor_status_delivered_url = reverse(
-            "purchase_order_vendor_status", kwargs={'pk': 3})
+            "purchase_order_vendor_status", kwargs={"pk": 3}
+        )
 
 
 class PurchaseRequisitionViewsTests(SetupClass, TestCase):
@@ -259,7 +283,9 @@ class PurchaseRequisitionViewsTests(SetupClass, TestCase):
         response = self.client.post(self.purchase_requisition_create_url, data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(response.data["requisition_number"], "PR-004")
-        purchase_requisition = PurchaseRequisition.objects.get(requisition_number="PR-004")
+        purchase_requisition = PurchaseRequisition.objects.get(
+            requisition_number="PR-004"
+        )
         self.assertEqual(purchase_requisition.status, "pending")
 
     def test_purchase_requisition_create_view_one_to_one_inventory(self):
@@ -392,7 +418,9 @@ class PurchaseRequisitionViewsTests(SetupClass, TestCase):
         data = {
             "quantity_requested": 150,
         }
-        response = self.client.patch(self.purchase_requisition_update_status_approved_url, data)
+        response = self.client.patch(
+            self.purchase_requisition_update_status_approved_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         purchase_requisition = PurchaseRequisition.objects.get(pk=2)
         self.assertEqual(purchase_requisition.quantity_requested, 100)
@@ -402,7 +430,9 @@ class PurchaseRequisitionViewsTests(SetupClass, TestCase):
         data = {
             "quantity_requested": 200,
         }
-        response = self.client.patch(self.purchase_requisition_update_status_rejected_url, data)
+        response = self.client.patch(
+            self.purchase_requisition_update_status_rejected_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         purchase_requisition = PurchaseRequisition.objects.get(pk=3)
         self.assertEqual(purchase_requisition.quantity_requested, 200)
@@ -493,13 +523,17 @@ class PurchaseRequisitionViewsTests(SetupClass, TestCase):
 
     def test_purchase_requisition_delete_view_status_approved(self):
         self.client.force_authenticate(user=self.procurement_officer)
-        response = self.client.delete(self.purchase_requisition_delete_status_approved_url)
+        response = self.client.delete(
+            self.purchase_requisition_delete_status_approved_url
+        )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(PurchaseRequisition.objects.count(), 3)
 
     def test_purchase_requisition_delete_view_status_rejected(self):
         self.client.force_authenticate(user=self.procurement_officer)
-        response = self.client.delete(self.purchase_requisition_delete_status_rejected_url)
+        response = self.client.delete(
+            self.purchase_requisition_delete_status_rejected_url
+        )
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(PurchaseRequisition.objects.count(), 2)
 
@@ -522,7 +556,7 @@ class PurchaseRequisitionViewsTests(SetupClass, TestCase):
         self.client.force_authenticate(user=self.vendor)
         response = self.client.get(self.purchase_requisition_vendor_list_url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        #* Vendor should be able to see only 1 since only pending requisitions are shown
+        # * Vendor should be able to see only 1 since only pending requisitions are shown
         self.assertEqual(len(response.data), 1)
 
     def test_purchase_requisition_vendor_list_view_procurement_officer(self):
@@ -659,7 +693,9 @@ class SupplierBidViewsTests(SetupClass, TestCase):
             "unit_price": 10.00,
             "days_delivery": 7,
         }
-        response = self.client.post(self.supplier_bid_create_requisition_status_approved_url, data)
+        response = self.client.post(
+            self.supplier_bid_create_requisition_status_approved_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(SupplierBid.objects.count(), 4)
 
@@ -670,7 +706,9 @@ class SupplierBidViewsTests(SetupClass, TestCase):
             "unit_price": 10.00,
             "days_delivery": 7,
         }
-        response = self.client.post(self.supplier_bid_create_requisition_status_rejected_url, data)
+        response = self.client.post(
+            self.supplier_bid_create_requisition_status_rejected_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(SupplierBid.objects.count(), 4)
 
@@ -681,7 +719,9 @@ class SupplierBidViewsTests(SetupClass, TestCase):
             "unit_price": 10.00,
             "days_delivery": 7,
         }
-        response = self.client.post(reverse("supplier_bid_create", kwargs={'requisition_id': 4}), data)
+        response = self.client.post(
+            reverse("supplier_bid_create", kwargs={"requisition_id": 4}), data
+        )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(SupplierBid.objects.count(), 4)
 
@@ -946,7 +986,9 @@ class SupplierBidViewsTests(SetupClass, TestCase):
             "weight_supplier_rating": 0.20,
             "weight_total_ratings": 0.20,
         }
-        response = self.client.post(self.supplier_bid_procurement_officer_ranking_url, data)
+        response = self.client.post(
+            self.supplier_bid_procurement_officer_ranking_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertIn("dataframe", response.data)
         self.assertIn("radar_plot", response.data)
@@ -961,7 +1003,9 @@ class SupplierBidViewsTests(SetupClass, TestCase):
             "weight_supplier_rating": 0.20,
             "weight_total_ratings": 0.30,
         }
-        response = self.client.post(self.supplier_bid_procurement_officer_ranking_url, data)
+        response = self.client.post(
+            self.supplier_bid_procurement_officer_ranking_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_supplier_bid_procurement_officer_rank_view_insufficient_bids(self):
@@ -973,7 +1017,11 @@ class SupplierBidViewsTests(SetupClass, TestCase):
             "weight_supplier_rating": 0.20,
             "weight_total_ratings": 0.20,
         }
-        response = self.client.post(reverse("supplier_bid_procurement_officer_ranking", kwargs={'requisition_id': 1}))
+        response = self.client.post(
+            reverse(
+                "supplier_bid_procurement_officer_ranking", kwargs={"requisition_id": 1}
+            )
+        )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_supplier_bid_procurement_officer_rank_view_vendor(self):
@@ -985,7 +1033,9 @@ class SupplierBidViewsTests(SetupClass, TestCase):
             "weight_supplier_rating": 0.20,
             "weight_total_ratings": 0.20,
         }
-        response = self.client.post(self.supplier_bid_procurement_officer_ranking_url, data)
+        response = self.client.post(
+            self.supplier_bid_procurement_officer_ranking_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_supplier_bid_procurement_officer_rank_view_unauthenticated(self):
@@ -996,7 +1046,9 @@ class SupplierBidViewsTests(SetupClass, TestCase):
             "weight_supplier_rating": 0.20,
             "weight_total_ratings": 0.20,
         }
-        response = self.client.post(self.supplier_bid_procurement_officer_ranking_url, data)
+        response = self.client.post(
+            self.supplier_bid_procurement_officer_ranking_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_supplier_bid_procurement_officer_rank_view_invalid_token(self):
@@ -1008,7 +1060,9 @@ class SupplierBidViewsTests(SetupClass, TestCase):
             "weight_supplier_rating": 0.20,
             "weight_total_ratings": 0.20,
         }
-        response = self.client.post(self.supplier_bid_procurement_officer_ranking_url, data)
+        response = self.client.post(
+            self.supplier_bid_procurement_officer_ranking_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_supplier_bid_procurement_officer_rank_view_invalid_http_method(self):
@@ -1030,16 +1084,22 @@ class SupplierBidViewsTests(SetupClass, TestCase):
             "weight_supplier_rating": "invalid",
             "weight_total_ratings": "invalid",
         }
-        response = self.client.post(self.supplier_bid_procurement_officer_ranking_url, data)
+        response = self.client.post(
+            self.supplier_bid_procurement_officer_ranking_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
-    def test_supplier_bid_procurement_officer_retrieve_view_procurement_officer_own_item(self):
+    def test_supplier_bid_procurement_officer_retrieve_view_procurement_officer_own_item(
+        self,
+    ):
         self.client.force_authenticate(user=self.procurement_officer)
         response = self.client.get(self.supplier_bid_procurement_officer_detail_url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data["quantity_fulfilled"], 50)
 
-    def test_supplier_bid_procurement_officer_retrieve_view_other_procurement_officer(self):
+    def test_supplier_bid_procurement_officer_retrieve_view_other_procurement_officer(
+        self,
+    ):
         self.client.force_authenticate(user=self.procurement_officer2)
         response = self.client.get(self.supplier_bid_procurement_officer_detail_url)
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
@@ -1069,7 +1129,8 @@ class SupplierBidViewsTests(SetupClass, TestCase):
             "status": "accepted",
         }
         response = self.client.patch(
-            self.supplier_bid_procurement_officer_status_url, data)
+            self.supplier_bid_procurement_officer_status_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data["status"], "accepted")
         supplier_bid = SupplierBid.objects.get(pk=1)
@@ -1087,14 +1148,15 @@ class SupplierBidViewsTests(SetupClass, TestCase):
         purchase_order = PurchaseOrder.objects.get(pk=1)
         self.assertEqual(purchase_order.status, "pending")
         self.assertEqual(purchase_order.bid_id, 1)
-    
+
     def test_supplier_bid_procurement_officer_status_reject(self):
         self.client.force_authenticate(user=self.procurement_officer)
         data = {
             "status": "rejected",
         }
         response = self.client.patch(
-            self.supplier_bid_procurement_officer_status_url, data)
+            self.supplier_bid_procurement_officer_status_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data["status"], "rejected")
         supplier_bid = SupplierBid.objects.get(pk=1)
@@ -1111,17 +1173,18 @@ class SupplierBidViewsTests(SetupClass, TestCase):
         # Check that the purchase order is not created
         with self.assertRaises(ObjectDoesNotExist):
             PurchaseOrder.objects.get(pk=1)
-    
+
     def test_supplier_bid_prcourement_officer_bid_accept(self):
         self.client.force_authenticate(user=self.procurement_officer)
         data = {
             "status": "rejected",
         }
         response = self.client.patch(
-            self.supplier_bid_procurement_officer_status_accepted_url, data)
+            self.supplier_bid_procurement_officer_status_accepted_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         supplier_bid = SupplierBid.objects.get(pk=3)
-        self.assertEqual(supplier_bid.status, "accepted") 
+        self.assertEqual(supplier_bid.status, "accepted")
 
     def test_supplier_bid_prcourement_officer_bid_reject(self):
         self.client.force_authenticate(user=self.procurement_officer)
@@ -1129,18 +1192,20 @@ class SupplierBidViewsTests(SetupClass, TestCase):
             "status": "accepted",
         }
         response = self.client.patch(
-            self.supplier_bid_procurement_officer_status_rejected_url, data)
+            self.supplier_bid_procurement_officer_status_rejected_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         supplier_bid = SupplierBid.objects.get(pk=4)
         self.assertEqual(supplier_bid.status, "rejected")
-    
+
     def test_supplier_bid_procurement_officer_status_procurement_officer(self):
         self.client.force_authenticate(user=self.procurement_officer)
         data = {
             "status": "accepted",
         }
         response = self.client.patch(
-            self.supplier_bid_procurement_officer_status_url, data)
+            self.supplier_bid_procurement_officer_status_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data["status"], "accepted")
         supplier_bid = SupplierBid.objects.get(pk=1)
@@ -1152,7 +1217,8 @@ class SupplierBidViewsTests(SetupClass, TestCase):
             "status": "accepted",
         }
         response = self.client.patch(
-            self.supplier_bid_procurement_officer_status_url, data)
+            self.supplier_bid_procurement_officer_status_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
         supplier_bid = SupplierBid.objects.get(pk=1)
         self.assertEqual(supplier_bid.status, "submitted")
@@ -1162,7 +1228,8 @@ class SupplierBidViewsTests(SetupClass, TestCase):
             "status": "accepted",
         }
         response = self.client.patch(
-            self.supplier_bid_procurement_officer_status_url, data)
+            self.supplier_bid_procurement_officer_status_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         supplier_bid = SupplierBid.objects.get(pk=1)
         self.assertEqual(supplier_bid.status, "submitted")
@@ -1173,24 +1240,22 @@ class SupplierBidViewsTests(SetupClass, TestCase):
             "status": "accepted",
         }
         response = self.client.patch(
-            self.supplier_bid_procurement_officer_status_url, data)
+            self.supplier_bid_procurement_officer_status_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         supplier_bid = SupplierBid.objects.get(pk=1)
         self.assertEqual(supplier_bid.status, "submitted")
 
     def test_supplier_bid_procurement_officer_status_invalid_http_method(self):
         self.client.force_authenticate(user=self.procurement_officer)
-        response = self.client.get(
-            self.supplier_bid_procurement_officer_status_url)
-        self.assertEqual(response.status_code,
-                         status.HTTP_405_METHOD_NOT_ALLOWED)
+        response = self.client.get(self.supplier_bid_procurement_officer_status_url)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
         supplier_bid = SupplierBid.objects.get(pk=1)
         self.assertEqual(supplier_bid.status, "submitted")
 
     def test_supplier_bid_procurement_officer_status_missing_data(self):
         self.client.force_authenticate(user=self.procurement_officer)
-        response = self.client.patch(
-            self.supplier_bid_procurement_officer_status_url)
+        response = self.client.patch(self.supplier_bid_procurement_officer_status_url)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         supplier_bid = SupplierBid.objects.get(pk=1)
         self.assertEqual(supplier_bid.status, "submitted")
@@ -1201,7 +1266,8 @@ class SupplierBidViewsTests(SetupClass, TestCase):
             "status": "invalid",
         }
         response = self.client.patch(
-            self.supplier_bid_procurement_officer_status_url, data)
+            self.supplier_bid_procurement_officer_status_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         supplier_bid = SupplierBid.objects.get(pk=1)
         self.assertEqual(supplier_bid.status, "submitted")
@@ -1261,143 +1327,161 @@ class PurchaseOrderViewsTests(SetupClass, TestCase):
         response = self.client.get(self.purchase_order_list_url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 3)
-    
+
     def test_purchase_order_list_view_vendor(self):
         self.client.force_authenticate(user=self.vendor)
         response = self.client.get(self.purchase_order_list_url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-    
+
     def test_purchase_order_list_view_unauthenticated(self):
         response = self.client.get(self.purchase_order_list_url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_purchase_order_list_view_invalid_token(self):
         self.client.credentials(HTTP_AUTHORIZATION="Bearer invalidtoken")
         response = self.client.get(self.purchase_order_list_url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_purchase_order_list_view_invalid_http_method(self):
         self.client.force_authenticate(user=self.procurement_officer)
         response = self.client.post(self.purchase_order_list_url)
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
-    
+
     def test_purchase_order_vendor_list_view_vendor(self):
         self.client.force_authenticate(user=self.vendor)
         response = self.client.get(self.purchase_order_vendor_list_url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 3)
-    
+
     def test_purchase_order_vendor_list_view_procurement_officer(self):
         self.client.force_authenticate(user=self.procurement_officer)
         response = self.client.get(self.purchase_order_vendor_list_url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-    
+
     def test_purchase_order_vendor_list_view_unauthenticated(self):
         response = self.client.get(self.purchase_order_vendor_list_url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_purchase_order_vendor_list_view_invalid_token(self):
         self.client.credentials(HTTP_AUTHORIZATION="Bearer invalidtoken")
         response = self.client.get(self.purchase_order_vendor_list_url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
     def test_purchase_order_vendor_list_view_invalid_http_method(self):
         self.client.force_authenticate(user=self.vendor)
         response = self.client.post(self.purchase_order_vendor_list_url)
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
-    
+
     def test_purchase_order_vendor_status_view_pending_to_pending(self):
         self.client.force_authenticate(user=self.vendor)
         data = {
             "status": "pending",
         }
-        response = self.client.patch(self.purchase_order_vendor_status_pending_url, data)
+        response = self.client.patch(
+            self.purchase_order_vendor_status_pending_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         purchase_order = PurchaseOrder.objects.get(pk=1)
         self.assertEqual(purchase_order.status, "pending")
-    
+
     def test_purchase_order_vendor_status_view_pending_to_shipped(self):
         self.client.force_authenticate(user=self.vendor)
         data = {
             "status": "shipped",
         }
-        response = self.client.patch(self.purchase_order_vendor_status_pending_url, data)
+        response = self.client.patch(
+            self.purchase_order_vendor_status_pending_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data["status"], "shipped")
         purchase_order = PurchaseOrder.objects.get(pk=1)
         self.assertEqual(purchase_order.status, "shipped")
-    
+
     def test_purchase_order_vendor_status_view_pending_to_delivered(self):
         self.client.force_authenticate(user=self.vendor)
         data = {
             "status": "delivered",
         }
-        response = self.client.patch(self.purchase_order_vendor_status_pending_url, data)
+        response = self.client.patch(
+            self.purchase_order_vendor_status_pending_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         purchase_order = PurchaseOrder.objects.get(pk=1)
         self.assertEqual(purchase_order.status, "pending")
-    
+
     def test_purchase_order_vendor_status_view_shipped_to_pending(self):
         self.client.force_authenticate(user=self.vendor)
         data = {
             "status": "pending",
         }
-        response = self.client.patch(self.purchase_order_vendor_status_shipped_url, data)
+        response = self.client.patch(
+            self.purchase_order_vendor_status_shipped_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         purchase_order = PurchaseOrder.objects.get(pk=2)
         self.assertEqual(purchase_order.status, "shipped")
-    
+
     def test_purchase_order_vendor_status_view_shipped_to_shipped(self):
         self.client.force_authenticate(user=self.vendor)
         data = {
             "status": "shipped",
         }
-        response = self.client.patch(self.purchase_order_vendor_status_shipped_url, data)
+        response = self.client.patch(
+            self.purchase_order_vendor_status_shipped_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         purchase_order = PurchaseOrder.objects.get(pk=2)
         self.assertEqual(purchase_order.status, "shipped")
-    
+
     def test_purchase_order_vendor_status_view_shipped_to_delivered(self):
         self.client.force_authenticate(user=self.vendor)
         data = {
             "status": "delivered",
         }
-        response = self.client.patch(self.purchase_order_vendor_status_shipped_url, data)
+        response = self.client.patch(
+            self.purchase_order_vendor_status_shipped_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data["status"], "delivered")
         purchase_order = PurchaseOrder.objects.get(pk=2)
         self.assertEqual(purchase_order.status, "delivered")
-    
+
     def test_purchase_order_vendor_status_view_delivered_to_pending(self):
         self.client.force_authenticate(user=self.vendor)
         data = {
             "status": "pending",
         }
-        response = self.client.patch(self.purchase_order_vendor_status_delivered_url, data)
+        response = self.client.patch(
+            self.purchase_order_vendor_status_delivered_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         purchase_order = PurchaseOrder.objects.get(pk=3)
         self.assertEqual(purchase_order.status, "delivered")
-    
+
     def test_purchase_order_vendor_status_view_delivered_to_shipped(self):
         self.client.force_authenticate(user=self.vendor)
         data = {
             "status": "shipped",
         }
-        response = self.client.patch(self.purchase_order_vendor_status_delivered_url, data)
+        response = self.client.patch(
+            self.purchase_order_vendor_status_delivered_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         purchase_order = PurchaseOrder.objects.get(pk=3)
         self.assertEqual(purchase_order.status, "delivered")
-    
+
     def test_purchase_order_vendor_status_view_delivered_to_delivered(self):
         self.client.force_authenticate(user=self.vendor)
         data = {
             "status": "delivered",
         }
-        response = self.client.patch(self.purchase_order_vendor_status_delivered_url, data)
+        response = self.client.patch(
+            self.purchase_order_vendor_status_delivered_url, data
+        )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         purchase_order = PurchaseOrder.objects.get(pk=3)
         self.assertEqual(purchase_order.status, "delivered")
-    
+
     def test_purchase_order_vendor_status_view_vendor(self):
         self.client.force_authenticate(user=self.vendor)
         data = {
@@ -1408,7 +1492,7 @@ class PurchaseOrderViewsTests(SetupClass, TestCase):
         self.assertEqual(response.data["status"], "shipped")
         purchase_order = PurchaseOrder.objects.get(pk=1)
         self.assertEqual(purchase_order.status, "shipped")
-    
+
     def test_purchase_order_vendor_status_view_procurement_officer(self):
         self.client.force_authenticate(user=self.procurement_officer)
         data = {
@@ -1418,7 +1502,7 @@ class PurchaseOrderViewsTests(SetupClass, TestCase):
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
         purchase_order = PurchaseOrder.objects.get(pk=1)
         self.assertEqual(purchase_order.status, "pending")
-    
+
     def test_purchase_order_vendor_status_view_unauthenticated(self):
         data = {
             "status": "shipped",
@@ -1427,7 +1511,7 @@ class PurchaseOrderViewsTests(SetupClass, TestCase):
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         purchase_order = PurchaseOrder.objects.get(pk=1)
         self.assertEqual(purchase_order.status, "pending")
-    
+
     def test_purchase_order_vendor_status_view_invalid_token(self):
         self.client.credentials(HTTP_AUTHORIZATION="Bearer invalidtoken")
         data = {
@@ -1437,21 +1521,21 @@ class PurchaseOrderViewsTests(SetupClass, TestCase):
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         purchase_order = PurchaseOrder.objects.get(pk=1)
         self.assertEqual(purchase_order.status, "pending")
-    
+
     def test_purchase_order_vendor_status_view_invalid_http_method(self):
         self.client.force_authenticate(user=self.vendor)
         response = self.client.get(self.purchase_order_vendor_status_url)
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
         purchase_order = PurchaseOrder.objects.get(pk=1)
         self.assertEqual(purchase_order.status, "pending")
-    
+
     def test_purchase_order_vendor_status_view_missing_data(self):
         self.client.force_authenticate(user=self.vendor)
         response = self.client.patch(self.purchase_order_vendor_status_url)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         purchase_order = PurchaseOrder.objects.get(pk=1)
         self.assertEqual(purchase_order.status, "pending")
-    
+
     def test_purchase_order_vendor_status_view_invalid_data(self):
         self.client.force_authenticate(user=self.vendor)
         data = {

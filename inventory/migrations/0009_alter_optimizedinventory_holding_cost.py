@@ -7,13 +7,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('inventory', '0008_alter_historicalinventory_demand_and_more'),
+        ("inventory", "0008_alter_historicalinventory_demand_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='optimizedinventory',
-            name='holding_cost',
-            field=models.FloatField(validators=[django.core.validators.MinValueValidator(0.01)]),
+            model_name="optimizedinventory",
+            name="holding_cost",
+            field=models.FloatField(
+                validators=[django.core.validators.MinValueValidator(0.01)]
+            ),
         ),
     ]

@@ -7,33 +7,35 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accounts', '0009_alter_vendor_contract_expiry_date'),
+        ("accounts", "0009_alter_vendor_contract_expiry_date"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='vendor',
-            name='address',
+            model_name="vendor",
+            name="address",
         ),
         migrations.RemoveField(
-            model_name='vendor',
-            name='vendor_name',
+            model_name="vendor",
+            name="vendor_name",
         ),
         migrations.AddField(
-            model_name='user',
-            name='address',
-            field=models.TextField(default='abc'),
+            model_name="user",
+            name="address",
+            field=models.TextField(default="abc"),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='user',
-            name='company_name',
-            field=models.CharField(default='abc', max_length=255),
+            model_name="user",
+            name="company_name",
+            field=models.CharField(default="abc", max_length=255),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='vendor',
-            name='contract_expiry_date',
-            field=models.DateField(default=datetime.datetime(2029, 3, 9, 10, 59, 22, 42523)),
+            model_name="vendor",
+            name="contract_expiry_date",
+            field=models.DateField(
+                default=datetime.datetime(2029, 3, 9, 10, 59, 22, 42523)
+            ),
         ),
     ]

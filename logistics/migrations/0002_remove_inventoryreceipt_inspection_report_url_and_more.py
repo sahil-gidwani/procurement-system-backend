@@ -6,26 +6,28 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('logistics', '0001_initial'),
+        ("logistics", "0001_initial"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='inventoryreceipt',
-            name='inspection_report_url',
+            model_name="inventoryreceipt",
+            name="inspection_report_url",
         ),
         migrations.RemoveField(
-            model_name='invoice',
-            name='invoice_report_url',
+            model_name="invoice",
+            name="invoice_report_url",
         ),
         migrations.AddField(
-            model_name='inventoryreceipt',
-            name='inspection_report',
-            field=models.FileField(blank=True, null=True, upload_to='inspection/reports'),
+            model_name="inventoryreceipt",
+            name="inspection_report",
+            field=models.FileField(
+                blank=True, null=True, upload_to="inspection/reports"
+            ),
         ),
         migrations.AddField(
-            model_name='invoice',
-            name='invoice_report',
-            field=models.FileField(blank=True, null=True, upload_to='invoice/reports'),
+            model_name="invoice",
+            name="invoice_report",
+            field=models.FileField(blank=True, null=True, upload_to="invoice/reports"),
         ),
     ]

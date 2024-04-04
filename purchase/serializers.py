@@ -23,7 +23,8 @@ class PurchaseRequisitionVendorSerializer(serializers.ModelSerializer):
 
 class SupplierBidSerializer(serializers.ModelSerializer):
     requisition_number = serializers.ReadOnlyField(
-        source="requisition.requisition_number")
+        source="requisition.requisition_number"
+    )
 
     class Meta:
         model = SupplierBid
@@ -33,23 +34,40 @@ class SupplierBidSerializer(serializers.ModelSerializer):
 
 class SupplierBidProcurementOfficerSerializer(serializers.ModelSerializer):
     supplier_company_name = serializers.ReadOnlyField(
-        source="supplier.vendor.user.company_name")
+        source="supplier.vendor.user.company_name"
+    )
     supplier_rating = serializers.ReadOnlyField(source="supplier.vendor.vendor_rating")
     total_ratings = serializers.ReadOnlyField(source="supplier.vendor.total_ratings")
     weight_unit_price = serializers.FloatField(
-        write_only=True, required=True, min_value=0.0, max_value=1.0)
+        write_only=True, required=True, min_value=0.0, max_value=1.0
+    )
     weight_total_cost = serializers.FloatField(
-        write_only=True, required=True, min_value=0.0, max_value=1.0)
+        write_only=True, required=True, min_value=0.0, max_value=1.0
+    )
     weight_days_delivery = serializers.FloatField(
-        write_only=True, required=True, min_value=0.0, max_value=1.0)
+        write_only=True, required=True, min_value=0.0, max_value=1.0
+    )
     weight_supplier_rating = serializers.FloatField(
-        write_only=True, required=True, min_value=0.0, max_value=1.0)
+        write_only=True, required=True, min_value=0.0, max_value=1.0
+    )
     weight_total_ratings = serializers.FloatField(
-        write_only=True, required=True, min_value=0.0, max_value=1.0)
+        write_only=True, required=True, min_value=0.0, max_value=1.0
+    )
 
     class Meta:
         model = SupplierBid
-        read_only_fields = ["quantity_fulfilled", "unit_price", "date_submitted", "days_delivery", "attachments", "comments", "status", "supplier_company_name", "supplier_rating", "total_ratings"]
+        read_only_fields = [
+            "quantity_fulfilled",
+            "unit_price",
+            "date_submitted",
+            "days_delivery",
+            "attachments",
+            "comments",
+            "status",
+            "supplier_company_name",
+            "supplier_rating",
+            "total_ratings",
+        ]
         exclude = ["requisition", "supplier"]
 
     def validate(self, attrs):
@@ -85,7 +103,8 @@ class SupplierBidProcurementOfficerStatusSerializer(serializers.ModelSerializer)
 
 class PurchaseOrderSerializer(serializers.ModelSerializer):
     delivery_location = serializers.ReadOnlyField(
-        source="bid.requisition.inventory.location")
+        source="bid.requisition.inventory.location"
+    )
     quantity_ordered = serializers.SerializerMethodField()
     unit_price = serializers.SerializerMethodField()
     expected_delivery_date = serializers.SerializerMethodField()

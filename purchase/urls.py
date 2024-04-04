@@ -75,9 +75,9 @@ urlpatterns = [
         name="supplier_bid_procurement_officer_ranking",
     ),
     path(
-        "supplier-bids/procurement-officer/<int:pk>/", 
-        views.SupplierBidProcurementOfficerRetrieveView.as_view(), 
-        name="supplier_bid_procurement_officer_detail"
+        "supplier-bids/procurement-officer/<int:pk>/",
+        views.SupplierBidProcurementOfficerRetrieveView.as_view(),
+        name="supplier_bid_procurement_officer_detail",
     ),
     path(
         "supplier-bids/procurement-officer/<int:pk>/status/",

@@ -7,23 +7,31 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('purchase', '0006_remove_purchaseorder_quantity_ordered_and_more'),
+        ("purchase", "0006_remove_purchaseorder_quantity_ordered_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='purchaserequisition',
-            name='quantity_requested',
-            field=models.IntegerField(validators=[django.core.validators.MinValueValidator(1)]),
+            model_name="purchaserequisition",
+            name="quantity_requested",
+            field=models.IntegerField(
+                validators=[django.core.validators.MinValueValidator(1)]
+            ),
         ),
         migrations.AlterField(
-            model_name='supplierbid',
-            name='days_delivery',
-            field=models.IntegerField(validators=[django.core.validators.MinValueValidator(1)]),
+            model_name="supplierbid",
+            name="days_delivery",
+            field=models.IntegerField(
+                validators=[django.core.validators.MinValueValidator(1)]
+            ),
         ),
         migrations.AlterField(
-            model_name='supplierbid',
-            name='unit_price',
-            field=models.DecimalField(decimal_places=2, max_digits=10, validators=[django.core.validators.MinValueValidator(0.0)]),
+            model_name="supplierbid",
+            name="unit_price",
+            field=models.DecimalField(
+                decimal_places=2,
+                max_digits=10,
+                validators=[django.core.validators.MinValueValidator(0.0)],
+            ),
         ),
     ]

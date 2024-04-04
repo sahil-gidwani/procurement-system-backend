@@ -6,16 +6,16 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('purchase', '0005_alter_supplierbid_unique_together'),
+        ("purchase", "0005_alter_supplierbid_unique_together"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='purchaseorder',
-            name='quantity_ordered',
+            model_name="purchaseorder",
+            name="quantity_ordered",
         ),
         migrations.RemoveField(
-            model_name='purchaseorder',
-            name='unit_price',
+            model_name="purchaseorder",
+            name="unit_price",
         ),
     ]
