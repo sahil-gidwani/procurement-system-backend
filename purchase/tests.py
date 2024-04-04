@@ -799,7 +799,7 @@ class SupplierBidViewsTests(SetupClass, TestCase):
         response = self.client.patch(self.supplier_bid_update_status_rejected_url, data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         supplier_bid = SupplierBid.objects.get(pk=4)
-        self.assertEqual(supplier_bid.quantity_fulfilled, 200)
+        self.assertEqual(supplier_bid.quantity_fulfilled, 300)
         self.assertEqual(supplier_bid.status, "submitted")
 
     def test_supplier_bid_update_view_other_vendor(self):

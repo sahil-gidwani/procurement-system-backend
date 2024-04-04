@@ -22,4 +22,5 @@ class OptimizedInventorySerializer(serializers.ModelSerializer):
 
 
 class ARIMAForecastSerializer(serializers.Serializer):
+    # file = serializers.FileField(write_only=True)
     pass
