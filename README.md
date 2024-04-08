@@ -80,19 +80,19 @@ You can find the frontend repository [here](https://github.com/sahil-gidwani/pro
 ## Architecture
 
 <div align="center">
-  <img src="assets/diagrams/architecture.png" alt="Architecture Diagram" width="400"/>
+  <img src="assets/diagrams/architecture.png" alt="Architecture Diagram"/>
 </div>
 
 ## Workflow
 
 <div align="center">
-  <img src="assets/diagrams/workflow.png" alt="Workflow Diagram" width="400"/>
+  <img src="assets/diagrams/workflow.png" alt="Workflow Diagram"/>
 </div>
 
 ## ER Diagram
 
 <div align="center">
-  <img src="assets/diagrams/er.png" alt="ER Diagram" width="400"/>
+  <img src="assets/diagrams/er.png" alt="ER Diagram"/>
 </div>
 
 ## Report PDF
