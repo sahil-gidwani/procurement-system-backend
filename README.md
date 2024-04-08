@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/sahil-gidwani/procurement-system-frontend/blob/feature/purchase-pages/src/assets/ProcurEase-logo-orange-tagline.png" alt="AquaProbe Logo" width="350">
+  <img src="assets/logos/ProcurEase-logo-orange-tagline.png" alt="AquaProbe Logo" width="350">
 </p>
 
 ## Deployment Status
@@ -72,3 +72,29 @@
 ![Lines of code](https://img.shields.io/endpoint?url=https://ghloc.vercel.app/api/sahil-gidwani/procurement-system-backend/badge)
 
 </div>
+
+## Frontend Repository
+
+You can find the frontend repository [here](https://github.com/sahil-gidwani/procurement-system-frontend).
+
+## Architecture
+
+<div align="center">
+  <img src="assets/diagrams/architecture.png" alt="Architecture Diagram" width="400"/>
+</div>
+
+## Workflow
+
+<div align="center">
+  <img src="assets/diagrams/workflow.png" alt="Workflow Diagram" width="400"/>
+</div>
+
+## ER Diagram
+
+<div align="center">
+  <img src="assets/diagrams/er.png" alt="ER Diagram" width="400"/>
+</div>
+
+## Report PDF
+
+You can download the report PDF [here](assets/report/report.pdf).
