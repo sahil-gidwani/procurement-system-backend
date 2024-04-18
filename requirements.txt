@@ -30,7 +30,7 @@ djangorestframework-simplejwt==5.3.1
 docutils==0.20.1
 drf-spectacular==0.27.0
 flower==2.0.1
-gunicorn==21.2.0
+gunicorn==22.0.0
 humanize==4.9.0
 idna==3.6
 imagesize==1.4.1
