@@ -1783,8 +1783,12 @@ components:
           readOnly: true
         stock_quantity:
           type: integer
+          maximum: 2147483647
+          minimum: 0
         demand:
           type: integer
+          maximum: 2147483647
+          minimum: 0
         datetime:
           type: string
           format: date-time
@@ -1809,6 +1813,8 @@ components:
           pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
         stock_quantity:
           type: integer
+          maximum: 2147483647
+          minimum: 0
         location:
           type: string
           maxLength: 255
@@ -1848,6 +1854,7 @@ components:
           readOnly: true
         received_quantity:
           type: integer
+          maximum: 2147483647
           minimum: 0
         received_condition:
           nullable: true
@@ -1971,6 +1978,8 @@ components:
           minimum: 0.01
         lead_time:
           type: integer
+          maximum: 2147483647
+          minimum: 0
           nullable: true
         service_level:
           type: number
@@ -1990,9 +1999,13 @@ components:
           nullable: true
         shelf_life:
           type: integer
+          maximum: 2147483647
+          minimum: 0
           nullable: true
         storage_limit:
           type: integer
+          maximum: 2147483647
+          minimum: 0
           nullable: true
         eoq:
           type: number
@@ -2060,6 +2073,8 @@ components:
           pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
         stock_quantity:
           type: integer
+          maximum: 2147483647
+          minimum: 0
         location:
           type: string
           maxLength: 255
@@ -2090,6 +2105,7 @@ components:
           readOnly: true
         received_quantity:
           type: integer
+          maximum: 2147483647
           minimum: 0
         received_condition:
           nullable: true
@@ -2178,6 +2194,8 @@ components:
           minimum: 0.01
         lead_time:
           type: integer
+          maximum: 2147483647
+          minimum: 0
           nullable: true
         service_level:
           type: number
@@ -2197,9 +2215,13 @@ components:
           nullable: true
         shelf_life:
           type: integer
+          maximum: 2147483647
+          minimum: 0
           nullable: true
         storage_limit:
           type: integer
+          maximum: 2147483647
+          minimum: 0
           nullable: true
         eoq:
           type: number
@@ -2280,6 +2302,7 @@ components:
           readOnly: true
         quantity_requested:
           type: integer
+          maximum: 2147483647
           minimum: 1
         expected_delivery_date:
           type: string
@@ -2312,6 +2335,8 @@ components:
           readOnly: true
         quantity_fulfilled:
           type: integer
+          maximum: 2147483647
+          minimum: -2147483648
         unit_price:
           type: string
           format: decimal
@@ -2322,6 +2347,7 @@ components:
           readOnly: true
         days_delivery:
           type: integer
+          maximum: 2147483647
           minimum: 1
         attachments:
           type: string
@@ -2530,6 +2556,7 @@ components:
           readOnly: true
         quantity_requested:
           type: integer
+          maximum: 2147483647
           minimum: 1
         expected_delivery_date:
           type: string
@@ -2594,6 +2621,7 @@ components:
           readOnly: true
         quantity_requested:
           type: integer
+          maximum: 2147483647
           minimum: 1
         expected_delivery_date:
           type: string
@@ -2661,6 +2689,8 @@ components:
           readOnly: true
         quantity_fulfilled:
           type: integer
+          maximum: 2147483647
+          minimum: -2147483648
         unit_price:
           type: string
           format: decimal
@@ -2671,6 +2701,7 @@ components:
           readOnly: true
         days_delivery:
           type: integer
+          maximum: 2147483647
           minimum: 1
         attachments:
           type: string
@@ -2708,6 +2739,8 @@ components:
           readOnly: true
         total_ratings:
           type: integer
+          maximum: 2147483647
+          minimum: 0
           readOnly: true
         weight_unit_price:
           type: number
@@ -2830,6 +2863,8 @@ components:
           minimum: 0.0
         total_ratings:
           type: integer
+          maximum: 2147483647
+          minimum: 0
         user:
           type: integer
       required:
