@@ -22,6 +22,7 @@
 [![Migrations Status](https://github.com/sahil-gidwani/procurement-system-backend/actions/workflows/migrations.yml/badge.svg)](https://github.com/sahil-gidwani/procurement-system-backend/actions/workflows/migrations.yml)
 [![Schema Status](https://github.com/sahil-gidwani/procurement-system-backend/actions/workflows/schema.yml/badge.svg)](https://github.com/sahil-gidwani/procurement-system-backend/actions/workflows/schema.yml)
 [![Security Status](https://github.com/sahil-gidwani/procurement-system-backend/actions/workflows/security.yml/badge.svg)](https://github.com/sahil-gidwani/procurement-system-backend/actions/workflows/security.yml)
+[![gitcgr](https://gitcgr.com/badge/sahil-gidwani/procurement-system-backend.svg)](https://gitcgr.com/sahil-gidwani/procurement-system-backend)
 
 </div>
 
